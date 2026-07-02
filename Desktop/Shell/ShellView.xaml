@@ -7,15 +7,17 @@
              mc:Ignorable="d">
     <Grid Background="{DynamicResource BackgroundBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="60" /> <!-- Header -->
-            <RowDefinition Height="Auto" /> <!-- Top Navigation -->
-            <RowDefinition Height="*" /> <!-- Content -->
-            <RowDefinition Height="28" /> <!-- Status Bar -->
+            <RowDefinition Height="60" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="28" />
         </Grid.RowDefinitions>
 
-        <!-- Application Header -->
-        <Border Grid.Row="0" Background="#FFFFFF" BorderBrush="#DEE2E6" BorderThickness="0,0,0,1">
-            <Grid Margin="16,4">
+        <Border Grid.Row="0"
+                Background="{DynamicResource SurfaceBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="0,0,0,1">
+            <Grid Margin="{StaticResource Large}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="12" />
@@ -23,82 +25,106 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <!-- Logo Placeholder -->
-                <Border Width="48" Height="48" Background="#0F4C81" CornerRadius="4" VerticalAlignment="Center" HorizontalAlignment="Left">
-                    <TextBlock Text="VL" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Border Width="48"
+                        Height="48"
+                        Background="{DynamicResource PrimaryBrush}"
+                        CornerRadius="{StaticResource StandardCornerRadius}"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left">
+                    <TextBlock Text="VL"
+                               Foreground="{DynamicResource TextOnPrimaryBrush}"
+                               FontWeight="{StaticResource BoldFontWeight}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center" />
                 </Border>
 
-                <!-- App Title and meta -->
                 <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                    <TextBlock Text="Veteran Logistics" Margin="8,0" FontSize="24" FontWeight="Bold" Foreground="#212529" VerticalAlignment="Center" />
-                    <TextBlock Text=" | FY: 2025-2026" Margin="12,0,0,0" FontSize="14" Foreground="#6C757D" VerticalAlignment="Center" />
+                    <TextBlock Text="Veteran Logistics"
+                               Style="{StaticResource HeadingTextBlockStyle}"
+                               Margin="8,0"
+                               VerticalAlignment="Center" />
+                    <TextBlock Text=" | FY: 2025-2026"
+                               Style="{StaticResource SubHeadingTextBlockStyle}"
+                               Margin="12,0,0,0"
+                               VerticalAlignment="Center" />
                 </StackPanel>
 
-                <!-- Right side: notifications + profile -->
                 <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
-                    <Button Width="36" Height="36" Background="Transparent" BorderBrush="Transparent" ToolTip="Notifications">
-                        <TextBlock Text="🔔" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <Button Width="36"
+                            Height="36"
+                            Style="{StaticResource IconButtonStyle}"
+                            ToolTip="Notifications">
+                        <Viewbox Width="16" Height="16">
+                            <Path Data="{StaticResource BellIconGeometry}"
+                                  Fill="{DynamicResource TextPrimaryBrush}" />
+                        </Viewbox>
                     </Button>
 
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock Text="John.Doe" Margin="0,0,8,0" FontSize="14" Foreground="#6C757D" VerticalAlignment="Center" />
-                        <Button Content="Profile" Padding="8,4" />
+                        <TextBlock Text="John.Doe"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   Margin="0,0,8,0"
+                                   VerticalAlignment="Center" />
+                        <Button Content="Profile" />
                     </StackPanel>
                 </StackPanel>
             </Grid>
         </Border>
 
-        <!-- Top Navigation Menu -->
-        <Border Grid.Row="1" Background="#FFFFFF" BorderBrush="#DEE2E6" BorderThickness="0,0,0,1">
-            <Menu Style="{x:Null}" HorizontalAlignment="Stretch" Background="Transparent" Foreground="#212529">
-                <MenuItem Header="Dashboard" Style="{x:Null}" Padding="12,8" Margin="4,0" Foreground="#212529" Background="Transparent">
+        <Border Grid.Row="1"
+                Background="{DynamicResource SurfaceBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="0,0,0,1">
+            <Menu Style="{StaticResource TopMenuStyle}" HorizontalAlignment="Stretch">
+                <MenuItem Header="Dashboard" Style="{StaticResource TopMenuItemStyle}">
                     <MenuItem Header="Overview" />
                     <MenuItem Header="KPIs" />
                 </MenuItem>
-                <MenuItem Header="Masters" Style="{x:Null}" Padding="12,8" Margin="4,0" Foreground="#212529" Background="Transparent">
+                <MenuItem Header="Masters" Style="{StaticResource TopMenuItemStyle}">
                     <MenuItem Header="Companies" />
                     <MenuItem Header="Customers" />
                 </MenuItem>
-                <MenuItem Header="Transactions" Style="{x:Null}" Padding="12,8" Margin="4,0" Foreground="#212529" Background="Transparent">
+                <MenuItem Header="Transactions" Style="{StaticResource TopMenuItemStyle}">
                     <MenuItem Header="Orders" />
                     <MenuItem Header="Shipments" />
                 </MenuItem>
-                <MenuItem Header="Reports" Style="{x:Null}" Padding="12,8" Margin="4,0" Foreground="#212529" Background="Transparent">
+                <MenuItem Header="Reports" Style="{StaticResource TopMenuItemStyle}">
                     <MenuItem Header="Sales" />
                     <MenuItem Header="Inventory" />
                 </MenuItem>
-                <MenuItem Header="Administration" Style="{x:Null}" Padding="12,8" Margin="4,0" Foreground="#212529" Background="Transparent">
+                <MenuItem Header="Administration" Style="{StaticResource TopMenuItemStyle}">
                     <MenuItem Header="Users" />
                     <MenuItem Header="Roles" />
                 </MenuItem>
-                <MenuItem Header="Settings" Style="{x:Null}" Padding="12,8" Margin="4,0" Foreground="#212529" Background="Transparent" />
-                <MenuItem Header="Help" Style="{x:Null}" Padding="12,8" Margin="4,0" Foreground="#212529" Background="Transparent" />
+                <MenuItem Header="Settings" Style="{StaticResource TopMenuItemStyle}" />
+                <MenuItem Header="Help" Style="{StaticResource TopMenuItemStyle}" />
             </Menu>
         </Border>
 
-        <!-- Content Region -->
-        <Border Grid.Row="2" Background="#F5F7FA" Padding="16">
+        <Border Grid.Row="2" Background="{DynamicResource BackgroundBrush}" Padding="{StaticResource Large}">
             <ContentControl Content="{Binding CurrentViewModel}" />
         </Border>
 
-        <!-- Status Bar -->
-        <Border Grid.Row="3" Background="#FFFFFF" BorderBrush="#DEE2E6" BorderThickness="1,1,0,0">
-            <Grid Margin="12,0">
+        <Border Grid.Row="3"
+                Background="{DynamicResource SurfaceBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="1,1,0,0">
+            <Grid Margin="{StaticResource Medium}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock Text="Ready" Margin="0,0,12,0" FontSize="12" Foreground="#6C757D" VerticalAlignment="Center" />
-                    <TextBlock Text="FY: 2025-2026" Margin="0,0,12,0" FontSize="12" Foreground="#6C757D" VerticalAlignment="Center" />
-                    <TextBlock Text="Date: 2026-01-01" FontSize="12" Foreground="#6C757D" VerticalAlignment="Center" />
+                    <TextBlock Text="Ready" Style="{StaticResource CaptionTextBlockStyle}" Margin="0,0,12,0" VerticalAlignment="Center" />
+                    <TextBlock Text="FY: 2025-2026" Style="{StaticResource CaptionTextBlockStyle}" Margin="0,0,12,0" VerticalAlignment="Center" />
+                    <TextBlock Text="Date: 2026-01-01" Style="{StaticResource CaptionTextBlockStyle}" VerticalAlignment="Center" />
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
-                    <TextBlock Text="v0.1.0" Margin="0,0,12,0" FontSize="12" Foreground="#6C757D" VerticalAlignment="Center" />
-                    <TextBlock Text="DB: Unknown" Margin="0,0,12,0" FontSize="12" Foreground="#6C757D" VerticalAlignment="Center" />
-                    <TextBlock Text="Offline" FontSize="12" Foreground="#6C757D" VerticalAlignment="Center" />
+                    <TextBlock Text="v0.1.0" Style="{StaticResource CaptionTextBlockStyle}" Margin="0,0,12,0" VerticalAlignment="Center" />
+                    <TextBlock Text="DB: Unknown" Style="{StaticResource CaptionTextBlockStyle}" Margin="0,0,12,0" VerticalAlignment="Center" />
+                    <TextBlock Text="Offline" Style="{StaticResource CaptionTextBlockStyle}" VerticalAlignment="Center" />
                 </StackPanel>
             </Grid>
         </Border>

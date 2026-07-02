@@ -1,15 +1,28 @@
-﻿<Application x:Class="veteran_logistic.App"
+<Application x:Class="veteran_logistic.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:veteran_logistic"
              Startup="Application_Startup"
              Exit="Application_Exit"
-             DispatcherUnhandledException="Application_DispatcherUnhandledException"
-             >
+             DispatcherUnhandledException="Application_DispatcherUnhandledException">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!-- The theme system from Phase 0.10 has been removed. -->
+                <ResourceDictionary Source="/Resources/Colors.xaml" />
+                <ResourceDictionary Source="/Resources/Brushes.xaml" />
+                <ResourceDictionary Source="/Resources/Typography.xaml" />
+                <ResourceDictionary Source="/Resources/Spacing.xaml" />
+                <ResourceDictionary Source="/Resources/Icons.xaml" />
+                <ResourceDictionary Source="/Styles/WindowStyles.xaml" />
+                <ResourceDictionary Source="/Styles/TextBlockStyles.xaml" />
+                <ResourceDictionary Source="/Styles/ButtonStyles.xaml" />
+                <ResourceDictionary Source="/Styles/CheckBoxStyles.xaml" />
+                <ResourceDictionary Source="/Styles/TextBoxStyles.xaml" />
+                <ResourceDictionary Source="/Styles/ComboBoxStyles.xaml" />
+                <ResourceDictionary Source="/Styles/DatePickerStyles.xaml" />
+                <ResourceDictionary Source="/Styles/DataGridStyles.xaml" />
+                <ResourceDictionary Source="/Styles/MenuStyles.xaml" />
+                <ResourceDictionary Source="/Styles/StatusBarStyles.xaml" />
+                <ResourceDictionary Source="/Themes/LightTheme.xaml" />
                 <ResourceDictionary Source="/Resources/DataTemplates.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

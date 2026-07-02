@@ -1,0 +1,6 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Light theme placeholder.
+         This layer is intentionally separate so a future DarkTheme.xaml can replace it
+         without changing views or the shared resource dictionaries. -->
+</ResourceDictionary>

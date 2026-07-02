@@ -2,161 +2,224 @@
 
 ## 1. Overview
 
-This document records the infrastructure work implemented across the project's foundational phases. It lists architectural decisions, components added or modified, DI registrations, configuration changes, and guidance for usage and future extensibility.
+This document records the implementation work completed across the repository and maps it to the current folder structure. It captures architecture decisions, the main files added or updated, DI registrations, configuration changes, and guidance for future extension.
 
 ## 2. Development Phases
 
-This section details the work completed in each development phase, from initial setup to the latest features.
-
 ### Phase 0.1: Repository Initialization
-*   **Goal**: Create the repository and basic project scaffolding.
-*   **Details**: Established the initial `README`, licensing, and high-level project goals.
+* **Goal**: Create the repository and basic project scaffolding.
+* **Details**: Established the initial solution layout, repository metadata, and top-level WPF project structure.
 
 ### Phase 0.2: Core Packages & Build
-*   **Goal**: Add and validate essential NuGet packages and build settings.
-*   **Details**: Ensured the project compiles and basic runtime behavior is correct.
+* **Goal**: Add and validate essential NuGet packages and build settings.
+* **Details**: Added the core Microsoft, Entity Framework Core, CommunityToolkit.Mvvm, and Serilog packages required for the desktop application.
 
 ### Phase 0.3: Solution & Project Structure
-*   **Goal**: Define the solution and project layout.
-*   **Details**: Created folders for MVVM, Services, Desktop, Configuration, and Options. Established standard .NET WPF project settings.
+* **Goal**: Define the solution and project layout.
+* **Details**: Organized the code into the current folder structure:
+  * `Configuration`
+  * `DependencyInjection`
+  * `Desktop`
+  * `MVVM`
+  * `Options`
+  * `Resources`
+  * `Styles`
+  * `Themes`
+  * `VeteranLogistics.Data`
+  * `VeteranLogistics.Shared`
 
 ### Phase 0.4: Shell & Window Scaffold
-*   **Goal**: Implement the main application window and shell skeleton.
-*   **Details**: Implemented `MainWindow` and `ShellViewModel` to host the application shell via DataTemplate mapping. Validated WPF application wiring (`App.xaml`) and window initialization.
+* **Goal**: Implement the main application window and shell skeleton.
+* **Details**: Implemented `MainWindow`, `ShellView`, and `ShellViewModel` to host the application shell through `DataTemplate` mapping.
 
 ### Phase 0.5: Dependency Injection Scaffolding
-*   **Goal**: Establish the core Dependency Injection (DI) infrastructure.
-*   **Details**: Created DI entry points and `IServiceCollection` extension hooks. Registered core services and prepared the `RegisterApplication` composition method.
+* **Goal**: Establish the core dependency injection infrastructure.
+* **Details**: Created the application composition root and supporting DI registration helpers under `DependencyInjection`.
 
 ### Phase 0.6: Configuration & Options
-*   **Goal**: Introduce strongly-typed configuration.
-*   **Details**: Created configuration models (e.g., `ApplicationOptions`) bound from `appsettings.json`. Enabled `IOptions<T>` support in DI.
+* **Goal**: Introduce strongly typed configuration.
+* **Details**: Added options models under `Options` for application, database, feature, logging, and reporting settings, with host configuration bound from `appsettings.json`.
 
 ### Phase 0.7: Navigation
-*   **Goal**: Prepare the navigation infrastructure.
-*   **Details**: Created placeholders and registrations for `IViewModelFactory` and `INavigationService`. Registered `ShellViewModel` as a composition root for navigation.
+* **Goal**: Prepare the navigation infrastructure.
+* **Details**: Added navigation abstractions and implementations under `Desktop\Navigation`, including `INavigationService`, `IViewModelFactory`, `NavigationService`, and `ViewModelFactory`.
 
 ### Phase 0.8: Dialog & Notification Infrastructure
-*   **Goal**: Provide a reusable UI feedback abstraction to decouple ViewModels from `MessageBox`.
-*   **Key Components**:
-    *   `IDialogService` & `DialogService`: An abstraction for showing modal dialogs.
-    *   `INotificationService` & `NotificationService`: An abstraction for showing non-modal notifications (initially delegates to `IDialogService`).
-    *   Supporting models and enums (`DialogOptions`, `DialogResult`, `DialogType`, etc.).
-*   **DI Registration**: Services are registered as singletons via `AddDialogAndNotificationServices()`.
-*   **Notes**: All dialog methods are `async`-friendly. No third-party UI frameworks were introduced.
+* **Goal**: Provide a reusable UI feedback abstraction to decouple ViewModels from direct UI calls.
+* **Key Components**:
+  * `IDialogService` and `DialogService`
+  * `INotificationService` and `NotificationService`
+  * Supporting models and enums such as `DialogOptions`, `DialogResult`, `DialogType`, `NotificationMessage`, and `NotificationType`
+* **DI Registration**: Registered as singletons through the application composition root.
 
 ### Phase 0.9: Logging & Global Exception Handling
-*   **Goal**: Implement enterprise-grade logging and global exception handling.
-*   **Logging (Serilog)**:
-    *   **Configuration**: Managed via `appsettings.json` and `HostConfiguration.cs`.
-    *   **Sinks**: Configured for Console, Debug, and a daily Rolling File (`Logs/VeteranLogistics-<date>.log`).
-    *   **Performance**: Uses `Serilog.Sinks.Async` to prevent blocking UI threads.
-    *   **Enrichment**: Automatically adds `ApplicationName`, `Version`, `MachineName`, `Environment`, `ProcessId`, and `ThreadId` to all log entries.
-    *   **Packages**: `Serilog`, `Serilog.Extensions.Logging`, `Serilog.Sinks.File`, etc.
-*   **Global Exception Handling**:
-    *   **Hooks**: `DispatcherUnhandledException`, `AppDomain.CurrentDomain.UnhandledException`, and `TaskScheduler.UnobservedTaskException` are handled in `App.xaml.cs`.
-    *   **Behavior**: Exceptions are logged with full details, and a user-friendly error dialog is shown via `IDialogService`. Raw stack traces are not shown to the user.
+* **Goal**: Implement enterprise-grade logging and global exception handling.
+* **Logging (Serilog)**:
+  * **Configuration**: Managed through `appsettings.json` and `Configuration/HostConfiguration.cs`.
+  * **Sinks**: Configured for Console, Debug, and a daily rolling file under `Logs`.
+  * **Performance**: Uses `Serilog.Sinks.Async` to avoid blocking UI threads.
+  * **Enrichment**: Adds application, version, environment, machine, process, and thread metadata to each log entry.
+* **Global Exception Handling**:
+  * **Hooks**: `DispatcherUnhandledException`, `AppDomain.CurrentDomain.UnhandledException`, and `TaskScheduler.UnobservedTaskException` are handled in `App.xaml.cs`.
+  * **Behavior**: Exceptions are logged and a user-friendly error dialog is shown through `IDialogService`.
+
+### Phase 0.10: Theme Infrastructure
+* **Goal**: Establish a centralized UI design system for the WPF shell.
+* **Details**: Added foundational color, brush, typography, and spacing resources plus reusable control styles under `Styles`.
+* **Theme Layer**: Added `Themes/LightTheme.xaml` and `Themes/ThemeManager.cs` to support future theme switching without changing views.
+* **Shell Update**: Updated the shell and data templates to consume the shared resource dictionaries instead of hardcoded colors.
 
 ### Package Security Maintenance
-*   **Goal**: Remediate known vulnerabilities in NuGet dependencies.
-*   **Updates**:
-    *   `Microsoft.Data.SqlClient` -> `5.1.3`
-    *   `Azure.Identity` -> `1.11.4`
-    *   `System.IdentityModel.Tokens.Jwt` -> `6.34.0`
-*   **Validation**: Packages were restored and the build was validated.
+* **Goal**: Remediate known vulnerabilities in NuGet dependencies.
+* **Updates**:
+  * `Microsoft.Data.SqlClient` -> `5.1.3`
+  * `Azure.Identity` -> `1.11.4`
+  * `System.IdentityModel.Tokens.Jwt` -> `6.34.0`
+* **Validation**: Packages were restored and the build was validated after the updates.
 
 ## 3. Architecture & Design
 
-### Dependency Injection (DI) and Composition
-*   **Host Configuration**: The `ConfigureHost` method in `HostConfiguration.cs` builds the host, configures logging, and sets up services.
-*   **Central Composition**: The `RegisterApplication` extension method is the single entry point for registering all application-level services. It composes the application by calling specific registration helpers:
-    *   Binds `ApplicationOptions` from configuration.
-    *   Calls `AddNavigation()` to register navigation services and `ShellViewModel`.
-    *   Calls `AddDialogAndNotificationServices()` for UI feedback services.
-    *   Registers `MainWindow` as a Singleton.
+### Dependency Injection and Composition
+* `Configuration/HostConfiguration.cs` builds the generic host, configures logging, and wires up application services.
+* `DependencyInjection/ServiceCollectionExtensions.cs` is the main composition entry point used by the host.
+* The application is composed from smaller registration helpers so each area can evolve independently.
+
+### Folder-Based Organization
+* `Desktop\Shell` contains the shell view and shell ViewModel.
+* `Desktop\Navigation` contains navigation abstractions and implementations.
+* `Desktop\Services\Dialog` contains dialog infrastructure.
+* `Desktop\Services\Notification` contains notification infrastructure.
+* `Options` contains strongly typed configuration models.
+* `Styles` contains reusable UI control styles.
+* `Themes` contains theme-specific dictionaries and theme management.
+* `VeteranLogistics.Data` contains data access infrastructure.
+* `VeteranLogistics.Shared` contains reusable constants, enums, exceptions, interfaces, results, and validation helpers.
 
 ### Security and Privacy
-*   Logging has been configured to avoid recording sensitive data like passwords, connection strings, or PII.
-*   Code comments serve as reminders for developers to maintain this practice.
+* Logging is configured to avoid recording sensitive data such as passwords, connection strings, or personal information.
+* Code comments are used to preserve this guidance for future contributors.
 
 ## 4. Developer Guidance
 
 ### Usage Guidelines
-*   **Logging**:
-    *   Inject `Microsoft.Extensions.Logging.ILogger<T>` into your classes via constructor injection.
-    *   Use structured logging for better diagnostics.
-    *   **Do:** `_logger.LogInformation("Vehicle {VehicleId} processed", vehicle.Id);`
-    *   **Don't:** `_logger.LogInformation($"Vehicle {vehicle.Id} processed");`
-*   **Dialogs & Notifications**:
-    *   Inject `IDialogService` into ViewModels to show modal dialogs (`ShowConfirmationAsync`, `ShowErrorAsync`, etc.).
-    *   Inject `INotificationService` to show non-blocking messages.
-*   **Exception Handling**:
-    *   Allow unhandled exceptions to be caught by the global handlers. They will be logged automatically.
-    *   For expected business errors, catch the exception and use `IDialogService` to inform the user gracefully.
+* **Logging**: Inject `Microsoft.Extensions.Logging.ILogger<T>` into classes via constructor injection and use structured logging.
+* **Dialogs and Notifications**: Inject `IDialogService` for modal dialogs and `INotificationService` for non-blocking user feedback.
+* **Exception Handling**: Allow unexpected exceptions to flow to the global handlers. Catch and handle only expected business errors.
 
 ### Build & Run
-1.  **Restore packages**: `dotnet restore`
-2.  **Build solution**: `dotnet build`
-3.  **Run application**: Run from Visual Studio or use `dotnet run` on the executable project.
+1. Restore packages: `dotnet restore`
+2. Build solution: `dotnet build`
+3. Run application from Visual Studio or use `dotnet run` on the executable project
 
-## 5. Future Enhancements
+## 5. Current File Inventory
 
-The current architecture is designed for future improvements with minimal code changes:
-*   **Custom Dialogs**: Replace the `DialogService` implementation with one that uses custom, non-blocking dialog windows without changing any ViewModel code.
-*   **Toast Notifications**: Implement a true toast notification system and swap the `NotificationService` implementation.
-*   **Correlation ID**: Add a Correlation ID enricher for distributed tracing across services.
-*   **Additional Log Sinks**: Add new log destinations (e.g., a remote server or database) purely through configuration changes.
+### Application Core
+* `App.xaml`
+* `App.xaml.cs`
+* `MainWindow.xaml`
+* `MainWindow.xaml.cs`
+* `appsettings.json`
+* `AssemblyInfo.cs`
 
-## 6. Comprehensive File Inventory
+### Configuration
+* `Configuration/HostConfiguration.cs`
 
-This list details the key files in the solution, organized by their functional area and the phase they were introduced or significantly modified.
+### Dependency Injection
+* `DependencyInjection/ServiceCollectionExtensions.cs`
+* `DependencyInjection/NavigationRegistration.cs`
+* `DependencyInjection/DialogRegistration.cs`
+* `DependencyInjection/ViewModelRegistration.cs`
+* `DependencyInjection/ViewRegistration.cs`
+* `DependencyInjection/ServiceRegistration.cs`
 
-#### Application Core & Host (`Project Bootstrap`, `Phase 0.9`)
-*   `App.xaml` / `App.xaml.cs`: WPF application entry point, host startup, and global exception handling.
-*   `MainWindow.xaml` / `MainWindow.xaml.cs`: The main application window that hosts the shell.
-*   `appsettings.json`: Configuration source for the application.
+### Desktop Shell
+* `Desktop\Shell\ShellView.xaml`
+* `Desktop\Shell\ShellView.xaml.cs`
+* `Desktop\Shell\ShellViewModel.cs`
 
-#### Configuration (`Phase 0.2`, `Phase 0.6`)
-*   `Configuration/HostConfiguration.cs`: Configures the generic host, logging, and DI.
-*   `Configuration/ApplicationOptions.cs`: Strongly-typed application settings model.
-*   `Configuration/DatabaseOptions.cs`: Strongly-typed database connection settings.
+### Navigation
+* `Desktop\Navigation\INavigationService.cs`
+* `Desktop\Navigation\IViewModelFactory.cs`
+* `Desktop\Navigation\NavigationParameter.cs`
+* `Desktop\Navigation\NavigationResult.cs`
+* `Desktop\Navigation\NavigationService.cs`
+* `Desktop\Navigation\ViewModelFactory.cs`
 
-#### Dependency Injection (`Phase 0.3`, `Phase 0.5`, `Phase 0.8`)
-*   `DependencyInjection/ServiceRegistration.cs`: Main application composition root (`RegisterApplication`).
-*   `DependencyInjection/ServiceCollectionExtensions.cs`: Reusable `IServiceCollection` helpers.
-*   `DependencyInjection/NavigationRegistration.cs`: Registers navigation, shell, dialog, and notification services.
-*   `DependencyInjection/ViewRegistration.cs`: View registration helpers.
-*   `DependencyInjection/ViewModelRegistration.cs`: ViewModel registration helpers.
-*   `DependencyInjection/DialogRegistration.cs`: Placeholder for future dialog-specific registrations.
+### Dialog Services
+* `Desktop\Services\Dialog\IDialogService.cs`
+* `Desktop\Services\Dialog\DialogOptions.cs`
+* `Desktop\Services\Dialog\DialogResult.cs`
+* `Desktop\Services\Dialog\DialogType.cs`
+* `Desktop\Services\Dialog\DialogService.cs`
 
-#### Shell & Navigation (`Phase 0.7`)
-*   `Desktop/Shell/ShellView.xaml` / `...cs`: The main view that hosts the current page/view.
-*   `Desktop/Shell/ShellViewModel.cs`: The ViewModel for the shell, manages the `CurrentViewModel`.
-*   `Resources/DataTemplates.xaml`: Maps ViewModels to their corresponding Views.
-*   `Navigation/INavigationService.cs` / `...cs`: Service for handling view navigation.
-*   `Navigation/IViewModelFactory.cs` / `...cs`: Factory for creating ViewModels via the DI container.
+### Notification Services
+* `Desktop\Services\Notification\INotificationService.cs`
+* `Desktop\Services\Notification\NotificationMessage.cs`
+* `Desktop\Services\Notification\NotificationType.cs`
+* `Desktop\Services\Notification\NotificationService.cs`
 
-#### UI Services (`Phase 0.8`)
-*   `Desktop/Services/Dialog/IDialogService.cs` / `...cs`: Abstraction and implementation for modal dialogs.
-*   `Desktop/Services/Dialog/DialogOptions.cs`, `DialogResult.cs`, `DialogType.cs`: Supporting models and enums.
-*   `Desktop/Services/Notification/INotificationService.cs` / `...cs`: Abstraction and implementation for notifications.
-*   `Desktop/Services/Notification/NotificationMessage.cs`, `NotificationType.cs`: Supporting models and enums.
+### MVVM Base Types
+* `MVVM\ViewModelBase.cs`
+* `MVVM\ObservableValidatorBase.cs`
 
-#### Data Layer (`Phase 0.4`)
-*   `VeteranLogistics.Data/Context/VeteranLogisticsDbContext.cs`: EF Core `DbContext`.
-*   `VeteranLogistics.Data/Entities/Base/BaseEntity.cs`: Base class for entities with common properties.
-*   `VeteranLogistics.Data/DependencyInjection/ServiceCollectionExtensions.cs`: DI helpers for the data layer.
+### Options
+* `Options\ApplicationOptions.cs`
+* `Options\DatabaseOptions.cs`
+* `Options\FeatureOptions.cs`
+* `Options\LoggingOptions.cs`
+* `Options\ReportingOptions.cs`
 
-#### Shared Kernel (`Phase 0.5`)
-*   `VeteranLogistics.Shared/Constants/ApplicationConstants.cs`: Application-wide constants.
-*   `VeteranLogistics.Shared/Exceptions/*.cs`: Custom domain-specific exception types.
-*   `VeteranLogistics.Shared/Interfaces/*.cs`: Shared abstractions like `IDateTimeProvider` and `IUserSession`.
-*   `VeteranLogistics.Shared/Results/*.cs`: Implementation of the Result pattern for handling operation outcomes.
-*   `VeteranLogistics.Shared/Validation/*.cs`: Models for handling validation results and errors.
+### Resources
+* `Resources\DataTemplates.xaml`
+* `Resources\Brushes.xaml`
+* `Resources\Colors.xaml`
+* `Resources\Icons.xaml`
+* `Resources\Spacing.xaml`
+* `Resources\Typography.xaml`
 
----
-*Document History*
-*   **Created**: (date of creation)
-*   **Author**: Implementation automated by development agent (recorded changes in repository)
+### Styles
+* `Styles\ButtonStyles.xaml`
+* `Styles\CheckBoxStyles.xaml`
+* `Styles\ComboBoxStyles.xaml`
+* `Styles\DataGridStyles.xaml`
+* `Styles\DatePickerStyles.xaml`
+* `Styles\MenuStyles.xaml`
+* `Styles\StatusBarStyles.xaml`
+* `Styles\TextBlockStyles.xaml`
+* `Styles\TextBoxStyles.xaml`
+* `Styles\WindowStyles.xaml`
 
-*End of document*
+### Themes
+* `Themes\LightTheme.xaml`
+* `Themes\ThemeManager.cs`
+
+### Data Layer
+* `VeteranLogistics.Data\Context\VeteranLogisticsDbContext.cs`
+* `VeteranLogistics.Data\DependencyInjection\ServiceCollectionExtensions.cs`
+* `VeteranLogistics.Data\Entities\Base\BaseEntity.cs`
+
+### Shared Kernel
+* `VeteranLogistics.Shared\Constants\ApplicationConstants.cs`
+* `VeteranLogistics.Shared\Constants\RegexConstants.cs`
+* `VeteranLogistics.Shared\Constants\ValidationConstants.cs`
+* `VeteranLogistics.Shared\DependencyInjection\ServiceCollectionExtensions.cs`
+* `VeteranLogistics.Shared\Enums\OperationType.cs`
+* `VeteranLogistics.Shared\Enums\RecordStatus.cs`
+* `VeteranLogistics.Shared\Enums\YesNo.cs`
+* `VeteranLogistics.Shared\Exceptions\BusinessException.cs`
+* `VeteranLogistics.Shared\Exceptions\ForbiddenException.cs`
+* `VeteranLogistics.Shared\Exceptions\NotFoundException.cs`
+* `VeteranLogistics.Shared\Exceptions\UnauthorizedException.cs`
+* `VeteranLogistics.Shared\Exceptions\ValidationException.cs`
+* `VeteranLogistics.Shared\Interfaces\IDateTimeProvider.cs`
+* `VeteranLogistics.Shared\Interfaces\IUserSession.cs`
+* `VeteranLogistics.Shared\Results\Result.cs`
+* `VeteranLogistics.Shared\Results\ResultT.cs`
+* `VeteranLogistics.Shared\Validation\ValidationError.cs`
+* `VeteranLogistics.Shared\Validation\ValidationResult.cs`
+
+## 6. Document History
+
+* **Created**: 2026-07-02
+* **Updated**: 2026-07-02
+* **Update Summary**: Aligned the document with the current folder structure, added the actual file inventory, and recorded the implementation work completed in the repository.
