@@ -1,0 +1,11 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ===================================================================================== -->
+    <!-- Icons                                                                                 -->
+    <!-- Central repository for vector icons (as Geometry or Path data). This keeps UI clean.  -->
+    <!-- Example: <PathGeometry x:Key="Icon.Save">M0,0 L10,0 L5,10 Z</PathGeometry>             -->
+    <!-- For now, this file is a placeholder for future icons.                                 -->
+    <!-- ===================================================================================== -->
+
+</ResourceDictionary>

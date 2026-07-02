@@ -1,0 +1,28 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- ===================================================================================== -->
+    <!-- Spacing & Sizing                                                                      -->
+    <!-- Defines consistent dimensions for margins, padding, sizes, and borders.               -->
+    <!-- ===================================================================================== -->
+
+    <!-- Thickness for Margin/Padding -->
+    <Thickness x:Key="SpacingExtraSmall">4</Thickness>
+    <Thickness x:Key="SpacingSmall">8</Thickness>
+    <Thickness x:Key="SpacingMedium">12</Thickness>
+    <Thickness x:Key="SpacingLarge">16</Thickness>
+    <Thickness x:Key="SpacingExtraLarge">24</Thickness>
+
+    <!-- Corner Radius -->
+    <CornerRadius x:Key="CornerRadiusStandard">4</CornerRadius>
+    <CornerRadius x:Key="CornerRadiusLarge">8</CornerRadius>
+
+    <!-- Border Thickness -->
+    <Thickness x:Key="BorderThicknessStandard">1</Thickness>
+
+    <!-- Control Heights -->
+    <sys:Double x:Key="ControlHeightStandard">32</sys:Double>
+    <sys:Double x:Key="RowHeightStandard">36</sys:Double>
+
+</ResourceDictionary>

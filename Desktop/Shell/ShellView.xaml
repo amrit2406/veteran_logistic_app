@@ -1,0 +1,106 @@
+<UserControl x:Class="veteran_logistic.Shell.ShellView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:veteran_logistic.Shell"
+             mc:Ignorable="d">
+    <Grid Background="{DynamicResource BackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" /> <!-- Header -->
+            <RowDefinition Height="Auto" /> <!-- Top Navigation -->
+            <RowDefinition Height="*" /> <!-- Content -->
+            <RowDefinition Height="28" /> <!-- Status Bar -->
+        </Grid.RowDefinitions>
+
+        <!-- Application Header -->
+        <Border Grid.Row="0" Background="#FFFFFF" BorderBrush="#DEE2E6" BorderThickness="0,0,0,1">
+            <Grid Margin="16,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="12" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Logo Placeholder -->
+                <Border Width="48" Height="48" Background="#0F4C81" CornerRadius="4" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <TextBlock Text="VL" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Border>
+
+                <!-- App Title and meta -->
+                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <TextBlock Text="Veteran Logistics" Margin="8,0" FontSize="24" FontWeight="Bold" Foreground="#212529" VerticalAlignment="Center" />
+                    <TextBlock Text=" | FY: 2025-2026" Margin="12,0,0,0" FontSize="14" Foreground="#6C757D" VerticalAlignment="Center" />
+                </StackPanel>
+
+                <!-- Right side: notifications + profile -->
+                <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <Button Width="36" Height="36" Background="Transparent" BorderBrush="Transparent" ToolTip="Notifications">
+                        <TextBlock Text="🔔" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Button>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="John.Doe" Margin="0,0,8,0" FontSize="14" Foreground="#6C757D" VerticalAlignment="Center" />
+                        <Button Content="Profile" Padding="8,4" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Top Navigation Menu -->
+        <Border Grid.Row="1" Background="#FFFFFF" BorderBrush="#DEE2E6" BorderThickness="0,0,0,1">
+            <Menu Style="{x:Null}" HorizontalAlignment="Stretch" Background="Transparent" Foreground="#212529">
+                <MenuItem Header="Dashboard" Style="{x:Null}" Padding="12,8" Margin="4,0" Foreground="#212529" Background="Transparent">
+                    <MenuItem Header="Overview" />
+                    <MenuItem Header="KPIs" />
+                </MenuItem>
+                <MenuItem Header="Masters" Style="{x:Null}" Padding="12,8" Margin="4,0" Foreground="#212529" Background="Transparent">
+                    <MenuItem Header="Companies" />
+                    <MenuItem Header="Customers" />
+                </MenuItem>
+                <MenuItem Header="Transactions" Style="{x:Null}" Padding="12,8" Margin="4,0" Foreground="#212529" Background="Transparent">
+                    <MenuItem Header="Orders" />
+                    <MenuItem Header="Shipments" />
+                </MenuItem>
+                <MenuItem Header="Reports" Style="{x:Null}" Padding="12,8" Margin="4,0" Foreground="#212529" Background="Transparent">
+                    <MenuItem Header="Sales" />
+                    <MenuItem Header="Inventory" />
+                </MenuItem>
+                <MenuItem Header="Administration" Style="{x:Null}" Padding="12,8" Margin="4,0" Foreground="#212529" Background="Transparent">
+                    <MenuItem Header="Users" />
+                    <MenuItem Header="Roles" />
+                </MenuItem>
+                <MenuItem Header="Settings" Style="{x:Null}" Padding="12,8" Margin="4,0" Foreground="#212529" Background="Transparent" />
+                <MenuItem Header="Help" Style="{x:Null}" Padding="12,8" Margin="4,0" Foreground="#212529" Background="Transparent" />
+            </Menu>
+        </Border>
+
+        <!-- Content Region -->
+        <Border Grid.Row="2" Background="#F5F7FA" Padding="16">
+            <ContentControl Content="{Binding CurrentViewModel}" />
+        </Border>
+
+        <!-- Status Bar -->
+        <Border Grid.Row="3" Background="#FFFFFF" BorderBrush="#DEE2E6" BorderThickness="1,1,0,0">
+            <Grid Margin="12,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="Ready" Margin="0,0,12,0" FontSize="12" Foreground="#6C757D" VerticalAlignment="Center" />
+                    <TextBlock Text="FY: 2025-2026" Margin="0,0,12,0" FontSize="12" Foreground="#6C757D" VerticalAlignment="Center" />
+                    <TextBlock Text="Date: 2026-01-01" FontSize="12" Foreground="#6C757D" VerticalAlignment="Center" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <TextBlock Text="v0.1.0" Margin="0,0,12,0" FontSize="12" Foreground="#6C757D" VerticalAlignment="Center" />
+                    <TextBlock Text="DB: Unknown" Margin="0,0,12,0" FontSize="12" Foreground="#6C757D" VerticalAlignment="Center" />
+                    <TextBlock Text="Offline" FontSize="12" Foreground="#6C757D" VerticalAlignment="Center" />
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
