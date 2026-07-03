@@ -37,6 +37,7 @@ public static class ServiceCollectionExtensions
         services.AddDialogAndNotificationServices();
         services.AddAuthenticationInfrastructure();
         services.AddAuthenticationPersistence();
+        services.AddAuthenticationUI();
 
         // Bind strongly-typed options from configuration so components can receive IOptions<T>
         if (configuration is not null)

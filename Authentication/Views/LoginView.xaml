@@ -1,0 +1,151 @@
+<UserControl x:Class="veteran_logistic.Authentication.Views.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+    <Grid Background="{DynamicResource BackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Login Card -->
+        <Border Grid.Row="1"
+                Width="400"
+                Background="{DynamicResource SurfaceBrush}"
+                Padding="{StaticResource ExtraLarge}"
+                CornerRadius="{StaticResource LargeCornerRadius}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="{StaticResource StandardBorderThickness}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+            <StackPanel>
+                <!-- Branding -->
+                <Border Width="64"
+                        Height="64"
+                        Background="{DynamicResource PrimaryBrush}"
+                        CornerRadius="{StaticResource LargeCornerRadius}"
+                        HorizontalAlignment="Center"
+                        Margin="0,0,0,16">
+                    <TextBlock Text="VL"
+                               Foreground="{DynamicResource TextOnPrimaryBrush}"
+                               FontSize="24"
+                               FontWeight="{StaticResource BoldFontWeight}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center" />
+                </Border>
+
+                <TextBlock Text="Veteran Logistics"
+                           Style="{StaticResource HeadingTextBlockStyle}"
+                           FontSize="24"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,4" />
+
+                <TextBlock Text="Enterprise Logistics ERP"
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,24" />
+
+                <!-- Username -->
+                <TextBlock Text="Username"
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           Margin="0,0,0,4" />
+                <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+                         Height="{StaticResource StandardControlHeight}"
+                         Margin="0,0,0,16" />
+
+                <!-- Password -->
+                <TextBlock Text="Password"
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           Margin="0,0,0,4" />
+                <Grid Margin="0,0,0,16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <PasswordBox x:Name="PasswordBox"
+                                Grid.Column="0"
+                                Height="{StaticResource StandardControlHeight}"
+                                PasswordChanged="OnPasswordChanged"
+                                Margin="0,0,8,0" />
+
+                    <TextBox Grid.Column="0"
+                             Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
+                             Height="{StaticResource StandardControlHeight}"
+                             Visibility="Collapsed"
+                             Margin="0,0,8,0" />
+
+                    <Button Grid.Column="1"
+                            Width="36"
+                            Height="{StaticResource StandardControlHeight}"
+                            Style="{StaticResource IconButtonStyle}"
+                            Command="{Binding TogglePasswordVisibilityCommand}"
+                            ToolTip="Toggle Password Visibility">
+                        <TextBlock Text="👁"
+                                   FontSize="16"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Button>
+                </Grid>
+
+                <!-- Error Message -->
+                <Border Background="{DynamicResource ErrorBrush}"
+                        Padding="{StaticResource Small}"
+                        CornerRadius="{StaticResource StandardCornerRadius}"
+                        Margin="0,0,0,16"
+                        Visibility="Collapsed">
+                    <TextBlock Text="{Binding ErrorMessage}"
+                               Foreground="{DynamicResource TextOnPrimaryBrush}"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               TextWrapping="Wrap" />
+                </Border>
+
+                <!-- Loading Indicator -->
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Margin="0,0,0,16"
+                            Visibility="Collapsed">
+                    <ProgressBar Width="200"
+                               Height="4"
+                               IsIndeterminate="True"
+                               Foreground="{DynamicResource PrimaryBrush}"
+                               Margin="0,0,8,0" />
+                    <TextBlock Text="Authenticating..."
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+
+                <!-- Buttons -->
+                <Button Content="Login"
+                        Command="{Binding LoginCommand}"
+                        Height="40"
+                        Margin="0,0,0,8"
+                        Background="{DynamicResource PrimaryBrush}"
+                        Foreground="{DynamicResource TextOnPrimaryBrush}"
+                        FontWeight="{StaticResource SemiBoldFontWeight}" />
+
+                <Button Content="Exit"
+                        Command="{Binding ExitCommand}"
+                        Height="40"
+                        Style="{StaticResource BaseButtonStyle}"
+                        Background="Transparent"
+                        BorderBrush="{DynamicResource BorderBrush}" />
+            </StackPanel>
+        </Border>
+
+        <!-- Footer -->
+        <Border Grid.Row="2"
+                Background="{DynamicResource SurfaceBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="0,1,0,0"
+                Padding="{StaticResource Medium}"
+                VerticalAlignment="Bottom">
+            <TextBlock Text="© 2026 Veteran Logistics, Inc. All rights reserved."
+                       Style="{StaticResource CaptionTextBlockStyle}"
+                       HorizontalAlignment="Center" />
+        </Border>
+    </Grid>
+</UserControl>
