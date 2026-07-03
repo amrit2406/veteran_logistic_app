@@ -70,7 +70,7 @@ namespace veteran_logistic {
             
             #line default
             #line hidden
-            System.Uri resourceLocater = new System.Uri("/veteran_logistic;component/app.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/veteran_logistic;V1.0.0.0;component/app.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\App.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

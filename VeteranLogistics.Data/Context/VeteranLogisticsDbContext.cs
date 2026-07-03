@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using VeteranLogistics.Data.Entities.Administration;
 
 namespace VeteranLogistics.Data.Context;
 
@@ -16,6 +17,11 @@ public class VeteranLogisticsDbContext : DbContext
         : base(options)
     {
     }
+
+    /// <summary>
+    /// Gets or sets the Users DbSet.
+    /// </summary>
+    public DbSet<User> Users => Set<User>();
 
     /// <summary>
     /// Apply entity configurations discovered in this assembly.

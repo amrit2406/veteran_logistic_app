@@ -88,6 +88,25 @@ This document records the implementation work completed across the repository an
   * Repository, EF queries, database initializer, password handling, validators, audit logging, login UI, ViewModels, authorization, permissions, remember me, security workflow, and login implementation
 * **Validation Status**: Build verification was attempted, but the environment could not restore NuGet packages because network access to `nuget.org` is blocked in this workspace.
 
+### Phase 1.2: Authentication Persistence & Security
+* **Goal**: Add authentication persistence, password hashing, password policy, and validation infrastructure.
+* **Included**:
+  * Authentication contracts for repository, password hasher, password policy, and audit service
+  * Models for password hash result and authentication audit entry
+  * PBKDF2 password hashing implementation with HMAC-SHA256 (128-bit salt, 100,000 iterations, 256-bit hash)
+  * Password policy validation requiring 8+ characters with uppercase, lowercase, digit, and special character
+  * EF Core repository for user data access with async methods
+  * User entity in data layer with username, password hash, salt, display name, email, role, and active status
+  * Authentication seed for default administrator account reading from configuration
+  * AuthenticationOptions for default admin credentials configuration
+  * DI registration for Phase 1.2 services (repository as scoped, hasher/policy as singleton)
+  * Updated ApplicationDbContext with Users DbSet
+  * Added Microsoft.AspNetCore.Cryptography.KeyDerivation package for PBKDF2 support
+* **Explicitly Excluded**:
+  * Login Window, Login ViewModel, authentication workflow, session creation, Remember Me, Financial Year selection, authorization, permissions, logout, navigation, business workflow, and UI components
+  * Login request models and validators (moved to Phase 1.4)
+* **Validation Status**: Build verified successfully with no errors.
+
 ## 3. Architecture & Design
 
 ### Dependency Injection and Composition
@@ -147,12 +166,22 @@ This document records the implementation work completed across the repository an
 * `Authentication/Contracts/IAuthenticationService.cs`
 * `Authentication/Contracts/IApplicationContext.cs`
 * `Authentication/Contracts/ISessionManager.cs`
+* `Authentication/Contracts/IAuthenticationRepository.cs`
+* `Authentication/Contracts/IPasswordHasher.cs`
+* `Authentication/Contracts/IPasswordPolicy.cs`
+* `Authentication/Contracts/IAuthenticationAuditService.cs`
 * `Authentication/Models/AuthenticatedUser.cs`
 * `Authentication/Models/AuthenticationState.cs`
 * `Authentication/Models/UserSession.cs`
+* `Authentication/Models/PasswordHashResult.cs`
+* `Authentication/Models/AuthenticationAuditEntry.cs`
 * `Authentication/Session/ApplicationContext.cs`
 * `Authentication/Session/SessionManager.cs`
+* `Authentication/Security/PasswordHasher.cs`
+* `Authentication/Security/PasswordPolicy.cs`
+* `Authentication/Repositories/AuthenticationRepository.cs`
 * `Authentication/DependencyInjection/AuthenticationServiceCollectionExtensions.cs`
+* `Authentication/DependencyInjection/AuthenticationPersistenceServiceCollectionExtensions.cs`
 
 ### Desktop Shell
 * `Desktop\Shell\ShellView.xaml`
@@ -190,6 +219,7 @@ This document records the implementation work completed across the repository an
 * `Options\FeatureOptions.cs`
 * `Options\LoggingOptions.cs`
 * `Options\ReportingOptions.cs`
+* `Options\AuthenticationOptions.cs`
 
 ### Resources
 * `Resources\DataTemplates.xaml`
@@ -219,6 +249,8 @@ This document records the implementation work completed across the repository an
 * `VeteranLogistics.Data\Context\VeteranLogisticsDbContext.cs`
 * `VeteranLogistics.Data\DependencyInjection\ServiceCollectionExtensions.cs`
 * `VeteranLogistics.Data\Entities\Base\BaseEntity.cs`
+* `VeteranLogistics.Data\Entities\Administration\User.cs`
+* `VeteranLogistics.Data\Seed\AuthenticationSeed.cs`
 
 ### Shared Kernel
 * `VeteranLogistics.Shared\Constants\ApplicationConstants.cs`
@@ -244,4 +276,4 @@ This document records the implementation work completed across the repository an
 
 * **Created**: 2026-07-02
 * **Updated**: 2026-07-03
-* **Update Summary**: Aligned the document with the current folder structure, added the actual file inventory, and recorded the Phase 1.1 authentication scaffolding plus its DI registration and build-verification status.
+* **Update Summary**: Aligned the document with the current folder structure, added the actual file inventory, and recorded the Phase 1.1 authentication scaffolding plus its DI registration and build-verification status. Added Phase 1.2 authentication persistence and security implementation including contracts, models, security classes, repository, validation, seeding, and DI registration. Updated Phase 1.2 to increase PBKDF2 iterations to 100,000, remove login request models (moved to Phase 1.4), and move default admin credentials to configuration.

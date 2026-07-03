@@ -346,3 +346,5 @@ D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\refint\veteran_logistic.dl
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\veteran_logistic.pdb
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\veteran_logistic.genruntimeconfig.cache
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\ref\veteran_logistic.dll
+D:\app\veteran_logistic_app\bin\Debug\net10.0-windows\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\app\veteran_logistic_app\bin\Debug\net10.0-windows\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll

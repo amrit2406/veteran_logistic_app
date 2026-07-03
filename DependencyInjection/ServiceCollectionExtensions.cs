@@ -36,11 +36,13 @@ public static class ServiceCollectionExtensions
         // Preserve existing registrations expected by the host. Keep lightweight and non-destructive.
         services.AddDialogAndNotificationServices();
         services.AddAuthenticationInfrastructure();
+        services.AddAuthenticationPersistence();
 
         // Bind strongly-typed options from configuration so components can receive IOptions<T>
         if (configuration is not null)
         {
             services.Configure<veteran_logistic.Configuration.Options.ApplicationOptions>(configuration.GetSection("Application"));
+            services.Configure<veteran_logistic.Configuration.Options.AuthenticationOptions>(configuration.GetSection("Authentication"));
         }
 
         // Register navigation and shell-related services (includes ShellViewModel)
