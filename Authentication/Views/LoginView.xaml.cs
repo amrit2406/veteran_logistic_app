@@ -20,4 +20,9 @@ public partial class LoginView : UserControl
             viewModel.Password = passwordBox.Password;
         }
     }
+
+    private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+
+    }
 }

@@ -1,19 +1,34 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using veteran_logistic.Authentication.Contracts;
+using veteran_logistic.Authentication.Models;
 using veteran_logistic.MVVM;
+using veteran_logistic.Navigation;
 
 namespace veteran_logistic.Authentication.ViewModels;
 
 /// <summary>
 /// ViewModel for the Login screen.
-/// This is UI-only - no authentication logic is implemented in this phase.
 /// </summary>
 public sealed partial class LoginViewModel : ViewModelBase
 {
+    private readonly IAuthenticationService _authenticationService;
+    private readonly INavigationService _navigationService;
     private string _username = string.Empty;
     private string _password = string.Empty;
     private string? _errorMessage;
     private bool _isPasswordVisible;
+
+    /// <summary>
+    /// Initializes a new instance of the LoginViewModel.
+    /// </summary>
+    /// <param name="authenticationService">The authentication service.</param>
+    /// <param name="navigationService">The navigation service.</param>
+    public LoginViewModel(IAuthenticationService authenticationService, INavigationService navigationService)
+    {
+        _authenticationService = authenticationService ?? throw new ArgumentNullException(nameof(authenticationService));
+        _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
+    }
 
     /// <summary>
     /// Gets or sets the username entered by the user.
@@ -52,13 +67,62 @@ public sealed partial class LoginViewModel : ViewModelBase
     }
 
     /// <summary>
-    /// Placeholder command for login action.
-    /// Authentication logic will be implemented in Phase 1.4.
+    /// Command to authenticate the user and navigate to the Shell.
     /// </summary>
     [RelayCommand]
-    private void Login()
+    private async Task LoginAsync()
     {
-        // TODO: Implement authentication workflow in Phase 1.4
+        if (IsBusy)
+        {
+            return;
+        }
+
+        try
+        {
+            SetBusy("Authenticating...");
+            ErrorMessage = null;
+
+            if (string.IsNullOrWhiteSpace(Username))
+            {
+                ErrorMessage = "Please enter a username.";
+                ClearBusy();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(Password))
+            {
+                ErrorMessage = "Please enter a password.";
+                ClearBusy();
+                return;
+            }
+
+            var request = new LoginRequest
+            {
+                Username = Username,
+                Password = Password
+            };
+
+            var result = await _authenticationService.AuthenticateAsync(request);
+
+            if (result.IsSuccess)
+            {
+                // Navigate to the Shell on successful authentication
+                await _navigationService.NavigateAsync<Shell.ShellViewModel>();
+            }
+            else
+            {
+                // Display error message on failure
+                ErrorMessage = result.ErrorMessage ?? "Authentication failed.";
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = $"An error occurred: {ex.Message}";
+        }
+        finally
+        {
+            ClearBusy();
+        }
     }
 
     /// <summary>
@@ -67,7 +131,6 @@ public sealed partial class LoginViewModel : ViewModelBase
     [RelayCommand]
     private void Exit()
     {
-        // Placeholder - will be connected to application shutdown in a later phase
         System.Windows.Application.Current.Shutdown();
     }
 

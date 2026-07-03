@@ -1,6 +1,6 @@
 using System;
 using CommunityToolkit.Mvvm.ComponentModel;
-using veteran_logistic.MVVM;
+using veteran_logistic.Authentication.ViewModels;
 using veteran_logistic.Navigation;
 
 namespace veteran_logistic.Shell;
@@ -10,26 +10,27 @@ namespace veteran_logistic.Shell;
 /// </summary>
 public sealed class ShellViewModel : ObservableObject
 {
-    private readonly INavigationService _navigationService;
+    private readonly PlaceholderViewModel _placeholder = new();
     private object? _currentViewModel;
 
     public ShellViewModel(INavigationService navigationService)
     {
-        _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
-        _navigationService.CurrentViewModelChanged += OnCurrentViewModelChanged;
-        _currentViewModel = _navigationService.CurrentViewModel;
+        if (navigationService is null) throw new ArgumentNullException(nameof(navigationService));
 
-        // If no current ViewModel is provided yet (e.g., before authentication), expose a placeholder.
-        if (_currentViewModel is null)
-        {
-            _currentViewModel = new PlaceholderViewModel();
-        }
+        navigationService.CurrentViewModelChanged += OnCurrentViewModelChanged;
+        _currentViewModel = ResolveShellContent(navigationService.CurrentViewModel) ?? _placeholder;
     }
 
     private void OnCurrentViewModelChanged(object? vm)
     {
-        CurrentViewModel = vm;
+        CurrentViewModel = ResolveShellContent(vm) ?? _placeholder;
     }
+
+    private static object? ResolveShellContent(object? vm) => vm switch
+    {
+        null or ShellViewModel or LoginViewModel => null,
+        _ => vm
+    };
 
     /// <summary>
     /// Current active view model displayed in the shell.
@@ -39,11 +40,6 @@ public sealed class ShellViewModel : ObservableObject
         get => _currentViewModel;
         private set => SetProperty(ref _currentViewModel, value);
     }
-
-    /// <summary>
-    /// Temporary placeholder ViewModel shown before the authentication or initial module loads.
-    /// </summary>
-
 }
 
 /// <summary>

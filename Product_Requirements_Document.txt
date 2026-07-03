@@ -102,10 +102,72 @@ This document records the implementation work completed across the repository an
   * DI registration for Phase 1.2 services (repository as scoped, hasher/policy as singleton)
   * Updated ApplicationDbContext with Users DbSet
   * Added Microsoft.AspNetCore.Cryptography.KeyDerivation package for PBKDF2 support
+  * EF Core migrations for database schema creation (InitialCreate migration)
+  * DesignTimeDbContextFactory for design-time DbContext creation (migrations)
+  * Database seeding in App.xaml.cs startup to ensure default admin user exists
+  * Connection string configuration in appsettings.json under ConnectionStrings section
+  * Data layer DI registration in main ServiceCollectionExtensions
 * **Explicitly Excluded**:
   * Login Window, Login ViewModel, authentication workflow, session creation, Remember Me, Financial Year selection, authorization, permissions, logout, navigation, business workflow, and UI components
   * Login request models and validators (moved to Phase 1.4)
+* **Validation Status**: Build verified successfully with no errors. Database migrations created and applied. Default admin user seeded on startup.
+
+### Phase 1.3: Authentication UI
+* **Goal**: Implement the Login screen UI with ViewModel and View.
+* **Included**:
+  * LoginViewModel with username, password, error message, and password visibility properties
+  * LoginView XAML with branded login card, username/password inputs, password toggle, error display, loading indicator, and exit button
+  * DataTemplate mapping for LoginViewModel to LoginView in Resources/DataTemplates.xaml
+  * DI registration for LoginViewModel as transient
+  * PasswordBox code-behind for secure password binding
+* **Explicitly Excluded**:
+  * Authentication workflow, business logic, repository calls, session creation, navigation to Shell, Remember Me, Financial Year selection, authorization, permissions, logout, and security workflow
 * **Validation Status**: Build verified successfully with no errors.
+
+### Phase 1.4: User Authentication Workflow
+* **Goal**: Implement the complete authentication workflow by connecting the Login UI with the authentication infrastructure.
+* **Included**:
+  * LoginRequest model  (already existed from Phase 1.2)
+  * LoginRequestValidator for validating username and password presence
+  * AuthenticationResult model for operation results with Success/Failure factory methods
+  * AuthenticationAuditService implementation for audit logging
+  * AuthenticationService implementation with full workflow:
+    - Validates LoginRequest using LoginRequestValidator
+    - Retrieves user using IAuthenticationRepository
+    - Verifies password using IPasswordHasher
+    - Records authentication attempt using IAuthenticationAuditService
+    - On success: Creates UserSession, stores in ISessionManager, updates IApplicationContext, sets AuthenticationState, navigates to Shell
+    - On failure: Returns error message, keeps Login screen visible
+  * Updated IAuthenticationService contract with AuthenticateAsync method
+  * Updated LoginViewModel to use AuthenticationService and INavigationService
+  * AuthenticationWorkflowServiceCollectionExtensions for DI registration
+  * Value converters: NullToVisibilityConverter and BooleanToVisibilityConverter
+  * Updated MainWindow to use LoginViewModel instead of ShellViewModel (Login-first startup)
+  * Updated ShellViewModel registration from Singleton to Transient for proper navigation lifecycle
+  * Updated LoginView to bind ErrorMessage and IsBusy with visibility converters
+  * Updated App.xaml to register converters
+* **Explicitly Excluded**:
+  * Remember Me, Financial Year Selection, Role-Based Authorization, Permission-Based Authorization, Logout, Password Reset, Multi-Factor Authentication, Account Lockout, Session Persistence, and License Checking
+* **Validation Status**: Build verified successfully with no errors.
+
+### Phase 1.4A: Post-Implementation Cleanup & Shell Navigation Fix
+* **Goal**: Resolve Phase 1.4 follow-up issues without changing authentication workflow behavior or refactoring unrelated code.
+* **Included**:
+  * **DI cleanup** (`AuthenticationWorkflowServiceCollectionExtensions`):
+    - Removed duplicate registrations already owned by earlier phases
+    - Extension now registers only Phase 1.4 services: `IAuthenticationService` and `IAuthenticationAuditService`
+    - Left `AddAuthenticationPersistence` (Phase 1.2) and `AddAuthenticationUI` (Phase 1.3) unchanged for repository, password hasher, password policy, and `LoginViewModel`
+  * **Code cleanup** (`LoginViewModel`):
+    - Removed temporary debug comments
+    - No functional changes to login validation or navigation
+  * **Shell navigation fix** (`ShellViewModel`):
+    - Fixed infinite Shell nesting after successful login
+    - Root cause: after login, `NavigationService` current VM became `ShellViewModel`, and `ShellViewModel` mirrored that into its inner `CurrentViewModel`; the `ShellViewModel` DataTemplate then rendered `ShellView` inside itself repeatedly
+    - Added `ResolveShellContent()` so the shell content area ignores top-level navigation targets (`ShellViewModel`, `LoginViewModel`) and shows `PlaceholderViewModel` instead
+    - Main window still navigates to the full Shell chrome (header, menu, status bar) after login; only the inner content area uses the placeholder until a module ViewModel is navigated in a later phase
+* **Explicitly Unchanged**:
+  * Authentication workflow, login UI, startup flow, session creation, validation logic, authentication service, repository, and password hasher
+* **Validation Status**: Build verified successfully with no errors. Login-to-Shell navigation confirmed stable with no recursive rendering.
 
 ## 3. Architecture & Design
 
@@ -117,6 +179,7 @@ This document records the implementation work completed across the repository an
 ### Folder-Based Organization
 * `Desktop\Shell` contains the shell view and shell ViewModel.
 * `Desktop\Navigation` contains navigation abstractions and implementations.
+* `Desktop\Converters` contains value converters for data binding.
 * `Desktop\Services\Dialog` contains dialog infrastructure.
 * `Desktop\Services\Notification` contains notification infrastructure.
 * `Options` contains strongly typed configuration models.
@@ -175,13 +238,22 @@ This document records the implementation work completed across the repository an
 * `Authentication/Models/UserSession.cs`
 * `Authentication/Models/PasswordHashResult.cs`
 * `Authentication/Models/AuthenticationAuditEntry.cs`
+* `Authentication/Models/LoginRequest.cs`
+* `Authentication/Models/AuthenticationResult.cs`
 * `Authentication/Session/ApplicationContext.cs`
 * `Authentication/Session/SessionManager.cs`
 * `Authentication/Security/PasswordHasher.cs`
 * `Authentication/Security/PasswordPolicy.cs`
 * `Authentication/Repositories/AuthenticationRepository.cs`
+* `Authentication/Services/AuthenticationService.cs`
+* `Authentication/Services/AuthenticationAuditService.cs`
+* `Authentication/Validation/LoginRequestValidator.cs`
+* `Authentication/ViewModels/LoginViewModel.cs`
+* `Authentication/Views/LoginView.xaml`
+* `Authentication/Views/LoginView.xaml.cs`
 * `Authentication/DependencyInjection/AuthenticationServiceCollectionExtensions.cs`
 * `Authentication/DependencyInjection/AuthenticationPersistenceServiceCollectionExtensions.cs`
+* `Authentication/DependencyInjection/AuthenticationWorkflowServiceCollectionExtensions.cs`
 
 ### Desktop Shell
 * `Desktop\Shell\ShellView.xaml`
@@ -195,6 +267,10 @@ This document records the implementation work completed across the repository an
 * `Desktop\Navigation\NavigationResult.cs`
 * `Desktop\Navigation\NavigationService.cs`
 * `Desktop\Navigation\ViewModelFactory.cs`
+
+### Converters
+* `Desktop\Converters\NullToVisibilityConverter.cs`
+* `Desktop\Converters\BooleanToVisibilityConverter.cs`
 
 ### Dialog Services
 * `Desktop\Services\Dialog\IDialogService.cs`
@@ -247,9 +323,11 @@ This document records the implementation work completed across the repository an
 
 ### Data Layer
 * `VeteranLogistics.Data\Context\VeteranLogisticsDbContext.cs`
+* `VeteranLogistics.Data\DesignTimeDbContextFactory.cs`
 * `VeteranLogistics.Data\DependencyInjection\ServiceCollectionExtensions.cs`
 * `VeteranLogistics.Data\Entities\Base\BaseEntity.cs`
 * `VeteranLogistics.Data\Entities\Administration\User.cs`
+* `VeteranLogistics.Data\Migrations\` (EF Core migrations for database schema)
 * `VeteranLogistics.Data\Seed\AuthenticationSeed.cs`
 
 ### Shared Kernel
@@ -276,4 +354,10 @@ This document records the implementation work completed across the repository an
 
 * **Created**: 2026-07-02
 * **Updated**: 2026-07-03
-* **Update Summary**: Aligned the document with the current folder structure, added the actual file inventory, and recorded the Phase 1.1 authentication scaffolding plus its DI registration and build-verification status. Added Phase 1.2 authentication persistence and security implementation including contracts, models, security classes, repository, validation, seeding, and DI registration. Updated Phase 1.2 to increase PBKDF2 iterations to 100,000, remove login request models (moved to Phase 1.4), and move default admin credentials to configuration.
+* **Update Summary**: Aligned the document with the current folder structure, added the actual file inventory, and
+ recorded the Phase 1.1 authentication scaffolding plus its DI registration and build-verification status.
+  Added Phase 1.2 authentication persistence and security implementation including contracts, models, security classes, repository, validation, seeding, and DI registration.
+   Updated Phase 1.2 to increase PBKDF2 iterations to 100,000, remove login request models (moved to Phase 1.4), and move default admin credentials to configuration. 
+   Added Phase 1.3 authentication UI implementation with LoginViewModel and LoginView. 
+   Added Phase 1.4 user authentication workflow implementation connecting Login UI with authentication infrastructure, including validation, services, converters, and startup flow changes. 
+   Added Phase 1.4A post-implementation cleanup (duplicate DI removal, debug comment cleanup) and Shell navigation fix to prevent infinite Shell nesting after login.

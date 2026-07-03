@@ -350,3 +350,4 @@ D:\app\veteran_logistic_app\bin\Debug\net10.0-windows\Microsoft.AspNetCore.Crypt
 D:\app\veteran_logistic_app\bin\Debug\net10.0-windows\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Authentication\Views\LoginView.baml
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Authentication\Views\LoginView.g.cs
+d:\app\veteran_logistic_app\bin\Debug\net10.0-windows\appsettings.json

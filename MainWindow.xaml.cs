@@ -1,25 +1,40 @@
 ﻿using System;
 using System.Windows;
 using Microsoft.Extensions.Options;
-using veteran_logistic.Shell;
+using veteran_logistic.Authentication.ViewModels;
 using veteran_logistic.Configuration.Options;
+using veteran_logistic.Navigation;
 
 namespace veteran_logistic
 {
     /// <summary>
-    /// Main application window. Hosts the ShellView via DataTemplate mapping of ShellViewModel.
+    /// Main application window. Hosts the LoginView via DataTemplate mapping of LoginViewModel.
+    /// After successful authentication, navigation will transition to the Shell.
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow(ShellViewModel shellViewModel, IOptions<ApplicationOptions> appOptions)
+        private readonly INavigationService _navigationService;
+
+        public MainWindow(LoginViewModel loginViewModel, INavigationService navigationService, IOptions<ApplicationOptions> appOptions)
         {
             InitializeComponent();
 
-            // Set DataContext to the ShellViewModel so the ContentControl displays the Shell via DataTemplates
-            DataContext = shellViewModel ?? throw new ArgumentNullException(nameof(shellViewModel));
+            _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
+
+            // Set DataContext to the LoginViewModel so the ContentControl displays the Login screen via DataTemplates
+            DataContext = loginViewModel ?? throw new ArgumentNullException(nameof(loginViewModel));
+
+            // Subscribe to navigation changes to update DataContext
+            _navigationService.CurrentViewModelChanged += OnCurrentViewModelChanged;
 
             // Set window title from configuration when available
             Title = !string.IsNullOrWhiteSpace(appOptions?.Value?.Name) ? appOptions.Value.Name : "Veteran Logistics";
+        }
+
+        private void OnCurrentViewModelChanged(object? newViewModel)
+        {
+            // Update DataContext when navigation occurs
+            DataContext = newViewModel;
         }
     }
 }

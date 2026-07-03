@@ -53,7 +53,7 @@ namespace veteran_logistic.Shell {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/veteran_logistic;V1.0.0.0;component/desktop/shell/shellview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/veteran_logistic;component/desktop/shell/shellview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Desktop\Shell\ShellView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

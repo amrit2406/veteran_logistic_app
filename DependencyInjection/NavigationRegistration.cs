@@ -16,7 +16,7 @@ internal static class NavigationRegistration
         // Register NavigationService and related factory as singletons; ViewModels should be registered as Transient elsewhere
         services.AddSingleton<veteran_logistic.Navigation.IViewModelFactory, veteran_logistic.Navigation.ViewModelFactory>();
         services.AddSingleton<veteran_logistic.Navigation.INavigationService, veteran_logistic.Navigation.NavigationService>();
-        services.AddSingleton<veteran_logistic.Shell.ShellViewModel>();
+        services.AddTransient<veteran_logistic.Shell.ShellViewModel>();
 
         // Dialog and Notification infrastructure
         services.AddSingleton<veteran_logistic.Services.Dialog.IDialogService, veteran_logistic.Services.Dialog.DialogService>();

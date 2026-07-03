@@ -1,6 +1,7 @@
 <Application x:Class="veteran_logistic.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:veteran_logistic.Converters"
              Startup="Application_Startup"
              Exit="Application_Exit"
              DispatcherUnhandledException="Application_DispatcherUnhandledException">
@@ -25,6 +26,10 @@
                 <ResourceDictionary Source="/Themes/LightTheme.xaml" />
                 <ResourceDictionary Source="/Resources/DataTemplates.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            
+            <!-- Converters -->
+            <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

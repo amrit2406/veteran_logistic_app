@@ -2,6 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using veteran_logistic.Authentication.DependencyInjection;
 using veteran_logistic.Services.Dialog;
 using veteran_logistic.Services.Notification;
+using VeteranLogistics.Data.DependencyInjection;
 
 namespace veteran_logistic.DependencyInjection;
 
@@ -33,11 +34,16 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection RegisterApplication(this IServiceCollection services, Microsoft.Extensions.Configuration.IConfiguration configuration)
     {
         if (services is null) throw new ArgumentNullException(nameof(services));
+        
+        // Register data layer first (required by authentication repository)
+        services.AddVeteranLogisticsData(configuration);
+        
         // Preserve existing registrations expected by the host. Keep lightweight and non-destructive.
         services.AddDialogAndNotificationServices();
         services.AddAuthenticationInfrastructure();
         services.AddAuthenticationPersistence();
         services.AddAuthenticationUI();
+        services.AddAuthenticationWorkflow();
 
         // Bind strongly-typed options from configuration so components can receive IOptions<T>
         if (configuration is not null)
@@ -50,7 +56,7 @@ public static class ServiceCollectionExtensions
         services.AddNavigation();
 
         // Register MainWindow so it can be resolved from DI in App.xaml.cs
-        // MainWindow depends on ShellViewModel and IOptions<ApplicationOptions>
+        // MainWindow depends on LoginViewModel and IOptions<ApplicationOptions>
         services.AddSingleton<MainWindow>();
 
         // Additional module registrations should be added in their respective composition roots.

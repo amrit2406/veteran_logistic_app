@@ -3,7 +3,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using veteran_logistic.Services.Dialog;
+using veteran_logistic.Authentication.Contracts;
+using veteran_logistic.Configuration.Options;
+using VeteranLogistics.Data.Context;
+using VeteranLogistics.Data.Seed;
 using Serilog;
 
 namespace veteran_logistic
@@ -28,6 +33,21 @@ namespace veteran_logistic
 
             _host = builder.Build();
             await _host.StartAsync();
+
+            // Seed default administrator user
+            try
+            {
+                var dbContext = _host.Services.GetRequiredService<VeteranLogisticsDbContext>();
+                var authenticationOptions = _host.Services.GetRequiredService<IOptions<AuthenticationOptions>>().Value;
+                var passwordHasher = _host.Services.GetRequiredService<IPasswordHasher>();
+                
+                await AuthenticationSeed.EnsureDefaultAdministratorAsync(dbContext, authenticationOptions, passwordHasher);
+            }
+            catch (Exception ex)
+            {
+                var logger = _host.Services.GetRequiredService<ILogger<App>>();
+                logger.LogError(ex, "Failed to seed default administrator user.");
+            }
 
             // Register global exception handlers after the host is ready so services can be resolved
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
