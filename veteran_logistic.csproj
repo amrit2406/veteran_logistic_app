@@ -35,6 +35,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Desktop\Dialogs\" />
+    <Folder Include="Desktop\Controls\" />
+    <Folder Include="Desktop\Converters\" />
+    <Folder Include="Desktop\Behaviors\" />
+    <Folder Include="Desktop\AttachedProperties\" />
+    <Folder Include="Desktop\Templates\" />
     <Folder Include="MVVM\Interfaces\" />
     <Folder Include="MVVM\Services\" />
     <Folder Include="VeteranLogistics.Data\Entities\Administration\" />

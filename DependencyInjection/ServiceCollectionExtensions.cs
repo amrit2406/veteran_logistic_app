@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
+using veteran_logistic.Authentication.DependencyInjection;
 using veteran_logistic.Services.Dialog;
 using veteran_logistic.Services.Notification;
 
@@ -34,6 +35,7 @@ public static class ServiceCollectionExtensions
         if (services is null) throw new ArgumentNullException(nameof(services));
         // Preserve existing registrations expected by the host. Keep lightweight and non-destructive.
         services.AddDialogAndNotificationServices();
+        services.AddAuthenticationInfrastructure();
 
         // Bind strongly-typed options from configuration so components can receive IOptions<T>
         if (configuration is not null)

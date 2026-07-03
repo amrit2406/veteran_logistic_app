@@ -77,6 +77,17 @@ This document records the implementation work completed across the repository an
   * `System.IdentityModel.Tokens.Jwt` -> `6.34.0`
 * **Validation**: Packages were restored and the build was validated after the updates.
 
+### Phase 1.1: Authentication Infrastructure
+* **Goal**: Add the authentication infrastructure scaffolding only, without implementing login, authorization, or persistence behavior.
+* **Included**:
+  * Authentication contracts for service, session, and application context abstractions
+  * Simple runtime models for authenticated user, authentication state, and user session
+  * Runtime-only session and application context holders
+  * Centralized DI registration for the authentication infrastructure
+* **Explicitly Excluded**:
+  * Repository, EF queries, database initializer, password handling, validators, audit logging, login UI, ViewModels, authorization, permissions, remember me, security workflow, and login implementation
+* **Validation Status**: Build verification was attempted, but the environment could not restore NuGet packages because network access to `nuget.org` is blocked in this workspace.
+
 ## 3. Architecture & Design
 
 ### Dependency Injection and Composition
@@ -131,6 +142,17 @@ This document records the implementation work completed across the repository an
 * `DependencyInjection/ViewModelRegistration.cs`
 * `DependencyInjection/ViewRegistration.cs`
 * `DependencyInjection/ServiceRegistration.cs`
+
+### Authentication
+* `Authentication/Contracts/IAuthenticationService.cs`
+* `Authentication/Contracts/IApplicationContext.cs`
+* `Authentication/Contracts/ISessionManager.cs`
+* `Authentication/Models/AuthenticatedUser.cs`
+* `Authentication/Models/AuthenticationState.cs`
+* `Authentication/Models/UserSession.cs`
+* `Authentication/Session/ApplicationContext.cs`
+* `Authentication/Session/SessionManager.cs`
+* `Authentication/DependencyInjection/AuthenticationServiceCollectionExtensions.cs`
 
 ### Desktop Shell
 * `Desktop\Shell\ShellView.xaml`
@@ -221,5 +243,5 @@ This document records the implementation work completed across the repository an
 ## 6. Document History
 
 * **Created**: 2026-07-02
-* **Updated**: 2026-07-02
-* **Update Summary**: Aligned the document with the current folder structure, added the actual file inventory, and recorded the implementation work completed in the repository.
+* **Updated**: 2026-07-03
+* **Update Summary**: Aligned the document with the current folder structure, added the actual file inventory, and recorded the Phase 1.1 authentication scaffolding plus its DI registration and build-verification status.
