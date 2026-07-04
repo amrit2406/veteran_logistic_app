@@ -24,6 +24,11 @@ namespace veteran_logistic
             // Set DataContext to the LoginViewModel so the ContentControl displays the Login screen via DataTemplates
             DataContext = loginViewModel ?? throw new ArgumentNullException(nameof(loginViewModel));
 
+            Loaded += async (_, _) =>
+            {
+                await loginViewModel.InitializeAsync().ConfigureAwait(true);
+            };
+
             // Subscribe to navigation changes to update DataContext
             _navigationService.CurrentViewModelChanged += OnCurrentViewModelChanged;
 

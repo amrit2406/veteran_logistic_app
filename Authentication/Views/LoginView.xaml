@@ -54,7 +54,7 @@
                            Margin="0,0,0,4" />
                 <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
                          Height="{StaticResource StandardControlHeight}"
-                         Margin="0,0,0,16" TextChanged="TextBox_TextChanged" />
+                         Margin="0,0,0,16" />
 
                 <!-- Password -->
                 <TextBlock Text="Password"
@@ -90,6 +90,11 @@
                                    VerticalAlignment="Center" />
                     </Button>
                 </Grid>
+
+                <!-- Remember Me -->
+                <CheckBox Content="Remember me"
+                          IsChecked="{Binding RememberMe}"
+                          Margin="0,0,0,16" />
 
                 <!-- Error Message -->
                 <Border Background="{DynamicResource ErrorBrush}"

@@ -44,6 +44,7 @@ public static class ServiceCollectionExtensions
         services.AddAuthenticationPersistence();
         services.AddAuthenticationUI();
         services.AddAuthenticationWorkflow();
+        services.AddAuthenticationRememberMe();
 
         // Bind strongly-typed options from configuration so components can receive IOptions<T>
         if (configuration is not null)

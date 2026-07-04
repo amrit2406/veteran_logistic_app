@@ -14,20 +14,39 @@ public sealed partial class LoginViewModel : ViewModelBase
 {
     private readonly IAuthenticationService _authenticationService;
     private readonly INavigationService _navigationService;
+    private readonly IRememberMeService _rememberMeService;
     private string _username = string.Empty;
     private string _password = string.Empty;
     private string? _errorMessage;
     private bool _isPasswordVisible;
+    private bool _rememberMe;
 
     /// <summary>
     /// Initializes a new instance of the LoginViewModel.
     /// </summary>
     /// <param name="authenticationService">The authentication service.</param>
     /// <param name="navigationService">The navigation service.</param>
-    public LoginViewModel(IAuthenticationService authenticationService, INavigationService navigationService)
+    /// <param name="rememberMeService">The Remember Me service.</param>
+    public LoginViewModel(
+        IAuthenticationService authenticationService,
+        INavigationService navigationService,
+        IRememberMeService rememberMeService)
     {
         _authenticationService = authenticationService ?? throw new ArgumentNullException(nameof(authenticationService));
         _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
+        _rememberMeService = rememberMeService ?? throw new ArgumentNullException(nameof(rememberMeService));
+    }
+
+    /// <inheritdoc />
+    public override async Task InitializeAsync(CancellationToken cancellationToken = default)
+    {
+        if (IsInitialized)
+        {
+            return;
+        }
+
+        await RestoreRememberMeSettingsAsync(cancellationToken).ConfigureAwait(false);
+        await base.InitializeAsync(cancellationToken).ConfigureAwait(false);
     }
 
     /// <summary>
@@ -64,6 +83,15 @@ public sealed partial class LoginViewModel : ViewModelBase
     {
         get => _isPasswordVisible;
         set => SetProperty(ref _isPasswordVisible, value);
+    }
+
+    /// <summary>
+    /// Gets or sets whether Remember Me is enabled.
+    /// </summary>
+    public bool RememberMe
+    {
+        get => _rememberMe;
+        set => SetProperty(ref _rememberMe, value);
     }
 
     /// <summary>
@@ -106,6 +134,8 @@ public sealed partial class LoginViewModel : ViewModelBase
 
             if (result.IsSuccess)
             {
+                await PersistRememberMeSettingsAsync();
+
                 // Navigate to the Shell on successful authentication
                 await _navigationService.NavigateAsync<Shell.ShellViewModel>();
             }
@@ -122,6 +152,35 @@ public sealed partial class LoginViewModel : ViewModelBase
         finally
         {
             ClearBusy();
+        }
+    }
+
+    private async Task RestoreRememberMeSettingsAsync(CancellationToken cancellationToken)
+    {
+        var settings = await _rememberMeService.LoadAsync(cancellationToken).ConfigureAwait(false);
+
+        if (!settings.RememberMe)
+        {
+            return;
+        }
+
+        Username = settings.Username;
+        RememberMe = true;
+    }
+
+    private async Task PersistRememberMeSettingsAsync()
+    {
+        if (RememberMe)
+        {
+            await _rememberMeService.SaveAsync(new RememberMeSettings
+            {
+                Username = Username,
+                RememberMe = true
+            }).ConfigureAwait(false);
+        }
+        else
+        {
+            await _rememberMeService.ClearAsync().ConfigureAwait(false);
         }
     }
 
