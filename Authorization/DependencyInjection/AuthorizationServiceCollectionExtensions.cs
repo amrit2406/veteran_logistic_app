@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using veteran_logistic.Authorization.Contracts;
+using veteran_logistic.Authorization.Providers;
 using veteran_logistic.Authorization.Services;
 
 namespace veteran_logistic.Authorization.DependencyInjection;
@@ -22,6 +23,8 @@ public static class AuthorizationServiceCollectionExtensions
         }
 
         services.AddSingleton<IRoleAuthorizationService, RoleAuthorizationService>();
+        services.AddSingleton<IPermissionProvider, DefaultPermissionProvider>();
+        services.AddSingleton<IPermissionAuthorizationService, PermissionAuthorizationService>();
 
         return services;
     }
