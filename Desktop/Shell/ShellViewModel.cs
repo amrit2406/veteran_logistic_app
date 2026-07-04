@@ -1,5 +1,7 @@
 using System;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using veteran_logistic.Authentication.Contracts;
 using veteran_logistic.Authentication.ViewModels;
 using veteran_logistic.Navigation;
 
@@ -11,15 +13,8 @@ namespace veteran_logistic.Shell;
 public sealed class ShellViewModel : ObservableObject
 {
     private readonly PlaceholderViewModel _placeholder = new();
+    private readonly ILogoutService _logoutService;
     private object? _currentViewModel;
-
-    public ShellViewModel(INavigationService navigationService)
-    {
-        if (navigationService is null) throw new ArgumentNullException(nameof(navigationService));
-
-        navigationService.CurrentViewModelChanged += OnCurrentViewModelChanged;
-        _currentViewModel = ResolveShellContent(navigationService.CurrentViewModel) ?? _placeholder;
-    }
 
     private void OnCurrentViewModelChanged(object? vm)
     {
@@ -39,6 +34,27 @@ public sealed class ShellViewModel : ObservableObject
     {
         get => _currentViewModel;
         private set => SetProperty(ref _currentViewModel, value);
+    }
+
+    /// <summary>
+    /// Command to logout the current user and return to the login screen.
+    /// </summary>
+    public IAsyncRelayCommand LogoutCommand { get; }
+
+    public ShellViewModel(INavigationService navigationService, ILogoutService logoutService)
+    {
+        if (navigationService is null) throw new ArgumentNullException(nameof(navigationService));
+        if (logoutService is null) throw new ArgumentNullException(nameof(logoutService));
+
+        _logoutService = logoutService;
+        LogoutCommand = new AsyncRelayCommand(ExecuteLogoutAsync);
+        navigationService.CurrentViewModelChanged += OnCurrentViewModelChanged;
+        _currentViewModel = ResolveShellContent(navigationService.CurrentViewModel) ?? _placeholder;
+    }
+
+    private async Task ExecuteLogoutAsync()
+    {
+        await _logoutService.LogoutAsync();
     }
 }
 

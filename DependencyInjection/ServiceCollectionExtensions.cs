@@ -47,6 +47,7 @@ public static class ServiceCollectionExtensions
         services.AddAuthenticationUI();
         services.AddAuthenticationWorkflow();
         services.AddAuthenticationRememberMe();
+        services.AddAuthenticationLogout();
         services.AddFinancialYearSelection();
         services.AddAuthorization();
 

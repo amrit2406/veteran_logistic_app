@@ -310,6 +310,19 @@ This document records the implementation work completed across the repository an
   * Authentication, SessionManager, FinancialYear, Role authorization, Repositories, Database, Navigation, UI, Logout, Business modules, PermissionAuthorizationService public behavior, IPermissionProvider public behavior, consumer permission check methods
 * **Validation Status**: Build verified successfully with no errors. Runtime behavior unchanged. Permission evaluation remains entirely in memory using the existing runtime session.
 
+### Phase 1.10: Logout
+* **Goal**: Implement a centralized logout workflow that clears the runtime session and returns the user to the Login screen while keeping the application running.
+* **Included**:
+  * **Created** `Authentication/Contracts/ILogoutService.cs`: Contract defining the logout operation with single method `Task LogoutAsync(CancellationToken cancellationToken = default)`.
+  * **Created** `Authentication/Services/LogoutService.cs`: Implementation that injects ISessionManager, IApplicationContext, IFinancialYearContext, INavigationService, and ILogger. Performs 6-step logout process: (1) Clears SessionManager, (2) Resets AuthenticationState (IsAuthenticated = false, AuthenticatedAt = null), (3) Clears CurrentUser, (4) Clears FinancialYearContext, (5) Resets runtime application context (placeholder for future), (6) Navigates to LoginViewModel.
+  * **Created** `Authentication/DependencyInjection/AuthenticationLogoutServiceCollectionExtensions.cs`: DI extension method `AddAuthenticationLogout()` that registers ILogoutService as singleton.
+  * **Modified** `DependencyInjection/ServiceCollectionExtensions.cs`: Added `services.AddAuthenticationLogout()` call after `AddAuthenticationRememberMe()` to register logout services in the DI container.
+  * **Modified** `Desktop/Shell/ShellViewModel.cs`: Added ILogoutService injection to constructor, added `LogoutCommand` property (IAsyncRelayCommand), and added `ExecuteLogoutAsync()` method that calls `_logoutService.LogoutAsync()`. Added CommunityToolkit.Mvvm.Input using statement.
+* **Remember Me Preservation**: Logout clears only runtime session state and does NOT delete remember-me.json or clear Remember Me settings. The remembered username remains available for future logins.
+* **Explicitly Excluded**:
+  * Exit Application, Confirmation Dialog, Idle Timeout, Auto Logout, Database Updates, Audit History UI, Permission Cleanup, Role Cleanup, Remember Me Cleanup, Token Revocation, Session Persistence, Business modules
+* **Validation Status**: Build verified successfully with no errors. Logout clears runtime session state while preserving Remember Me settings.
+
 ## 3. Architecture & Design
 
 ### Dependency Injection and Composition
@@ -376,6 +389,7 @@ This document records the implementation work completed across the repository an
 * `Authentication/Contracts/IPasswordPolicy.cs`
 * `Authentication/Contracts/IAuthenticationAuditService.cs`
 * `Authentication/Contracts/IRememberMeService.cs`
+* `Authentication/Contracts/ILogoutService.cs` (Phase 1.10)
 * `Authentication/Models/AuthenticatedUser.cs`
 * `Authentication/Models/AuthenticationState.cs`
 * `Authentication/Models/UserSession.cs`
@@ -394,6 +408,7 @@ This document records the implementation work completed across the repository an
 * `Authentication/Services/AuthenticationService.cs`
 * `Authentication/Services/AuthenticationAuditService.cs`
 * `Authentication/Services/RememberMeService.cs`
+* `Authentication/Services/LogoutService.cs` (Phase 1.10)
 * `Authentication/Validation/LoginRequestValidator.cs`
 * `Authentication/ViewModels/LoginViewModel.cs`
 * `Authentication/Views/LoginView.xaml`
@@ -402,6 +417,7 @@ This document records the implementation work completed across the repository an
 * `Authentication/DependencyInjection/AuthenticationPersistenceServiceCollectionExtensions.cs`
 * `Authentication/DependencyInjection/AuthenticationWorkflowServiceCollectionExtensions.cs`
 * `Authentication/DependencyInjection/AuthenticationRememberMeServiceCollectionExtensions.cs`
+* `Authentication/DependencyInjection/AuthenticationLogoutServiceCollectionExtensions.cs` (Phase 1.10)
 
 ### Authorization
 * `Authorization/Contracts/IRoleAuthorizationService.cs` (Phase 1.8)
