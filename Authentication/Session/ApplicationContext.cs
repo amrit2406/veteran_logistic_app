@@ -14,16 +14,19 @@ public sealed class ApplicationContext : ObservableObject, IApplicationContext
     private AuthenticationState _authenticationState;
 
     private readonly IFinancialYearContext _financialYearContext;
+    private readonly ISessionManager _sessionManager;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ApplicationContext"/> class.
     /// </summary>
     /// <param name="authenticationState">The shared authentication state instance.</param>
     /// <param name="financialYearContext">The financial year context.</param>
-    public ApplicationContext(AuthenticationState authenticationState, IFinancialYearContext financialYearContext)
+    /// <param name="sessionManager">The session manager.</param>
+    public ApplicationContext(AuthenticationState authenticationState, IFinancialYearContext financialYearContext, ISessionManager sessionManager)
     {
         _authenticationState = authenticationState ?? throw new ArgumentNullException(nameof(authenticationState));
         _financialYearContext = financialYearContext ?? throw new ArgumentNullException(nameof(financialYearContext));
+        _sessionManager = sessionManager ?? throw new ArgumentNullException(nameof(sessionManager));
     }
 
     /// <summary>
@@ -48,4 +51,9 @@ public sealed class ApplicationContext : ObservableObject, IApplicationContext
     /// Gets the financial year context.
     /// </summary>
     public IFinancialYearContext FinancialYearContext => _financialYearContext;
+
+    /// <summary>
+    /// Gets the session manager.
+    /// </summary>
+    public ISessionManager SessionManager => _sessionManager;
 }

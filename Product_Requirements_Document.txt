@@ -234,6 +234,38 @@ This document records the implementation work completed across the repository an
   * Corrected missing `DataTemplate` mapping for `FinancialYearSelectionViewModel` in `DataTemplates.xaml` to ensure the correct View renders.
 * **Validation Status**: Build verified successfully with no errors. Application navigates cleanly: Login -> Financial Year Selection -> Shell.
 
+### Phase 1.7: Session Management
+* **Goal**: Strengthen the runtime session infrastructure with metadata, validation, lifecycle management, and events.
+* **Included**:
+  * **Created** `Authentication/Models/SessionInfo.cs`: Read-only model providing session metadata for external consumers (SessionId, LoginTime, LastActivity, AuthenticatedUser, FinancialYear).
+  * **Created** `Authentication/Events/SessionChangedEventArgs.cs`: Standard .NET event args for SessionChanged event with SessionInfo property.
+  * **Modified** `Authentication/Contracts/ISessionManager.cs`: Added properties (HasActiveSession, SessionId, LoginTime, LastActivity), event (SessionChanged), and methods (IsSessionValid, UpdateActivity, ClearSession).
+  * **Modified** `Authentication/Models/UserSession.cs`: Extended with new properties (LoginTime, LastActivity, AuthenticatedUser, FinancialYear) while preserving existing properties.
+  * **Modified** `Authentication/Session/SessionManager.cs`: Implemented all new contract members. CurrentSession setter now raises SessionChanged event. IsSessionValid checks active session state. UpdateActivity updates LastActivity timestamp and raises event. ClearSession nullifies CurrentSession. Private helper CreateSessionInfo builds read-only SessionInfo.
+  * **Modified** `Authentication/Session/ApplicationContext.cs`: Added ISessionManager dependency injection and exposed SessionManager property for runtime access without duplicating state.
+* **Explicitly Excluded**:
+  * Logout, Remember Me changes, Authorization, Permissions, JWT, Refresh Tokens, Idle timeout logout, Session persistence, Automatic login, Multi-device sessions, Business modules
+* **Validation Status**: Build verified successfully with no errors. SessionManager is now the single runtime authority for session state.
+
+### Phase 1.7A: UserSession Improvements
+* **Goal**: Harden UserSession model by making identity properties immutable and removing duplicate user state.
+* **Included**:
+  * **Modified** `Authentication/Models/UserSession.cs`:
+    * Made identity properties immutable (init-only): SessionId, LoginTime, AuthenticatedUser, FinancialYear, StartedAt, IsActive
+    * Removed duplicate user properties: UserId, Username (now available through AuthenticatedUser)
+    * LastActivity and LastActivityAt now use backing fields with init-only public setters and private setters for internal updates
+    * Added UpdateLastActivity() method for controlled access to update activity timestamps
+    * AuthenticatedUser is now the single source of truth for user identity
+  * **Modified** `Authentication/Services/AuthenticationService.cs`:
+    * Reordered session creation: AuthenticatedUser created first, then passed to UserSession
+    * UserSession now receives AuthenticatedUser instead of duplicating UserId and Username
+    * Removed duplicate user data assignment
+  * **Modified** `Authentication/Session/SessionManager.cs`:
+    * Updated UpdateActivity() to call UserSession.UpdateLastActivity() instead of direct property access
+* **Explicitly Unchanged**:
+  * Authentication workflow, login UI, startup flow, session creation, validation logic, authentication service, repository, password hasher, ApplicationContext, and FinancialYearContext
+* **Validation Status**: Build verified successfully with no errors. Runtime behavior unchanged. UserSession is now the canonical runtime session model without duplicated user state.
+
 ## 3. Architecture & Design
 
 ### Dependency Injection and Composition
@@ -302,11 +334,13 @@ This document records the implementation work completed across the repository an
 * `Authentication/Models/AuthenticatedUser.cs`
 * `Authentication/Models/AuthenticationState.cs`
 * `Authentication/Models/UserSession.cs`
+* `Authentication/Models/SessionInfo.cs` (Phase 1.7)
 * `Authentication/Models/PasswordHashResult.cs`
 * `Authentication/Models/AuthenticationAuditEntry.cs`
 * `Authentication/Models/LoginRequest.cs`
 * `Authentication/Models/AuthenticationResult.cs`
 * `Authentication/Models/RememberMeSettings.cs`
+* `Authentication/Events/SessionChangedEventArgs.cs` (Phase 1.7)
 * `Authentication/Session/ApplicationContext.cs`
 * `Authentication/Session/SessionManager.cs`
 * `Authentication/Security/PasswordHasher.cs`
@@ -423,4 +457,4 @@ This document records the implementation work completed across the repository an
 
 * **Created**: 2026-07-02
 * **Updated**: 2026-07-04
-* **Update Summary**: Aligned the document with the current folder structure, added the actual file inventory, and recorded the Phase 1.1 authentication scaffolding plus its DI registration and build-verification status. Added Phase 1.2 authentication persistence and security implementation including contracts, models, security classes, repository, validation, seeding, and DI registration. Updated Phase 1.2 to increase PBKDF2 iterations to 100,000, remove login request models (moved to Phase 1.4), and move default admin credentials to configuration. Added Phase 1.3 authentication UI implementation with LoginViewModel and LoginView. Added Phase 1.4 user authentication workflow implementation connecting Login UI with authentication infrastructure, including validation, services, converters, and startup flow changes. Added Phase 1.4A post-implementation cleanup (duplicate DI removal, debug comment cleanup) and Shell navigation fix to prevent infinite Shell nesting after login. Added Phase 1.5 Remember Me implementation with local JSON persistence for username and preference only, LoginView checkbox, and login workflow integration without automatic authentication. Added Phase 1.5A post-implementation architectural improvements: moved Remember Me loading to `InitializeAsync()`, invoked startup initialization from `MainWindow`, hardened `RememberMeService` directory and error handling, and removed dead code from `LoginView.xaml.cs`. Added Phase 1.6 Financial Year Selection implementation requiring users to select a financial year after login, including view, viewmodel, domain models, services, session context, and repository. Added Phase 1.6A post-implementation architectural improvements: decoupled Financial Year out of Authentication into its own top-level domain and corrected the DataTemplate mapping to ensure the Financial Year selection screen renders properly before Shell navigation.
+* **Update Summary**: Aligned the document with the current folder structure, added the actual file inventory, and recorded the Phase 1.1 authentication scaffolding plus its DI registration and build-verification status. Added Phase 1.2 authentication persistence and security implementation including contracts, models, security classes, repository, validation, seeding, and DI registration. Updated Phase 1.2 to increase PBKDF2 iterations to 100,000, remove login request models (moved to Phase 1.4), and move default admin credentials to configuration. Added Phase 1.3 authentication UI implementation with LoginViewModel and LoginView. Added Phase 1.4 user authentication workflow implementation connecting Login UI with authentication infrastructure, including validation, services, converters, and startup flow changes. Added Phase 1.4A post-implementation cleanup (duplicate DI removal, debug comment cleanup) and Shell navigation fix to prevent infinite Shell nesting after login. Added Phase 1.5 Remember Me implementation with local JSON persistence for username and preference only, LoginView checkbox, and login workflow integration without automatic authentication. Added Phase 1.5A post-implementation architectural improvements: moved Remember Me loading to `InitializeAsync()`, invoked startup initialization from `MainWindow`, hardened `RememberMeService` directory and error handling, and removed dead code from `LoginView.xaml.cs`. Added Phase 1.6 Financial Year Selection implementation requiring users to select a financial year after login, including view, viewmodel, domain models, services, session context, and repository. Added Phase 1.6A post-implementation architectural improvements: decoupled Financial Year out of Authentication into its own top-level domain and corrected the DataTemplate mapping to ensure the Financial Year selection screen renders properly before Shell navigation. Added Phase 1.7 Session Management implementation strengthening runtime session infrastructure with metadata, validation, lifecycle management, and events, including SessionInfo model, SessionChangedEventArgs event, extended ISessionManager contract, enhanced SessionManager with SessionChanged event and lifecycle methods, and ApplicationContext integration. Added Phase 1.7A UserSession improvements making identity properties immutable and removing duplicate user state, including init-only properties for SessionId, LoginTime, AuthenticatedUser, FinancialYear, StartedAt, IsActive, removal of UserId and Username duplicates, UpdateLastActivity() method, and AuthenticationService refactoring to use AuthenticatedUser as single source of truth.

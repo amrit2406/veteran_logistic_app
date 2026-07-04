@@ -91,21 +91,7 @@ public sealed class AuthenticationService : IAuthenticationService
         // Step 5: Record successful authentication attempt
         await LogAuditEntryAsync(request.Username, true, null, cancellationToken);
 
-        // Step 6: Create user session
-        var session = new UserSession
-        {
-            SessionId = Guid.NewGuid().ToString(),
-            UserId = user.Id.ToString(),
-            Username = user.Username,
-            StartedAt = DateTimeOffset.UtcNow,
-            LastActivityAt = DateTimeOffset.UtcNow,
-            IsActive = true
-        };
-
-        // Step 7: Store session in session manager
-        _sessionManager.CurrentSession = session;
-
-        // Step 8: Create authenticated user
+        // Step 6: Create authenticated user
         var authenticatedUser = new AuthenticatedUser
         {
             UserId = user.Id.ToString(),
@@ -114,6 +100,21 @@ public sealed class AuthenticationService : IAuthenticationService
             Email = user.Email,
             Role = user.Role
         };
+
+        // Step 7: Create user session
+        var session = new UserSession
+        {
+            SessionId = Guid.NewGuid().ToString(),
+            StartedAt = DateTimeOffset.UtcNow,
+            LastActivityAt = DateTimeOffset.UtcNow,
+            IsActive = true,
+            LoginTime = DateTimeOffset.UtcNow,
+            LastActivity = DateTimeOffset.UtcNow,
+            AuthenticatedUser = authenticatedUser
+        };
+
+        // Step 8: Store session in session manager
+        _sessionManager.CurrentSession = session;
 
         // Step 9: Update application context
         _applicationContext.CurrentUser = authenticatedUser;

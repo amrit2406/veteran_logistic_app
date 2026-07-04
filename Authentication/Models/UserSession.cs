@@ -5,33 +5,63 @@ namespace veteran_logistic.Authentication.Models;
 /// </summary>
 public sealed class UserSession
 {
-    /// <summary>
-    /// Gets or sets the session identifier.
-    /// </summary>
-    public string? SessionId { get; set; }
+    private DateTimeOffset _lastActivity;
+    private DateTimeOffset? _lastActivityAt;
 
     /// <summary>
-    /// Gets or sets the user identifier associated with the session.
+    /// Gets the session identifier.
     /// </summary>
-    public string? UserId { get; set; }
+    public string? SessionId { get; init; }
 
     /// <summary>
-    /// Gets or sets the username associated with the session.
+    /// Gets the time the session started.
     /// </summary>
-    public string? Username { get; set; }
+    public DateTimeOffset StartedAt { get; init; }
 
     /// <summary>
-    /// Gets or sets the time the session started.
+    /// Gets the last time the session was updated.
     /// </summary>
-    public DateTimeOffset StartedAt { get; set; }
+    public DateTimeOffset? LastActivityAt
+    {
+        get => _lastActivityAt;
+        init => _lastActivityAt = value;
+    }
 
     /// <summary>
-    /// Gets or sets the last time the session was updated.
+    /// Gets a value indicating whether the session is currently active.
     /// </summary>
-    public DateTimeOffset? LastActivityAt { get; set; }
+    public bool IsActive { get; init; }
 
     /// <summary>
-    /// Gets or sets a value indicating whether the session is currently active.
+    /// Gets the login time for the session.
     /// </summary>
-    public bool IsActive { get; set; }
+    public DateTimeOffset LoginTime { get; init; }
+
+    /// <summary>
+    /// Gets the last activity time for the session.
+    /// </summary>
+    public DateTimeOffset LastActivity
+    {
+        get => _lastActivity;
+        init => _lastActivity = value;
+    }
+
+    /// <summary>
+    /// Gets the authenticated user associated with the session.
+    /// </summary>
+    public AuthenticatedUser? AuthenticatedUser { get; init; }
+
+    /// <summary>
+    /// Gets the financial year associated with the session.
+    /// </summary>
+    public FinancialYear.Models.FinancialYear? FinancialYear { get; init; }
+
+    /// <summary>
+    /// Updates the last activity timestamp for the session.
+    /// </summary>
+    public void UpdateLastActivity()
+    {
+        _lastActivity = DateTimeOffset.UtcNow;
+        _lastActivityAt = DateTimeOffset.UtcNow;
+    }
 }
