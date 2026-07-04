@@ -1,4 +1,5 @@
 using veteran_logistic.Authentication.Models;
+using veteran_logistic.FinancialYear.Contracts;
 
 namespace veteran_logistic.Authentication.Contracts;
 
@@ -16,4 +17,9 @@ public interface IApplicationContext
     /// Gets or sets the current authentication state.
     /// </summary>
     AuthenticationState AuthenticationState { get; set; }
+
+    /// <summary>
+    /// Gets the financial year context.
+    /// </summary>
+    IFinancialYearContext FinancialYearContext { get; }
 }

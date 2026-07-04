@@ -3,13 +3,19 @@
                     xmlns:vm="clr-namespace:veteran_logistic.Shell"
                     xmlns:views="clr-namespace:veteran_logistic.Shell"
                     xmlns:authVm="clr-namespace:veteran_logistic.Authentication.ViewModels"
-                    xmlns:authViews="clr-namespace:veteran_logistic.Authentication.Views">
+                    xmlns:authViews="clr-namespace:veteran_logistic.Authentication.Views"
+                    xmlns:fyVm="clr-namespace:veteran_logistic.FinancialYear.ViewModels"
+                    xmlns:fyViews="clr-namespace:veteran_logistic.FinancialYear.Views">
   <DataTemplate DataType="{x:Type vm:ShellViewModel}">
     <views:ShellView />
   </DataTemplate>
 
   <DataTemplate DataType="{x:Type authVm:LoginViewModel}">
     <authViews:LoginView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type fyVm:FinancialYearSelectionViewModel}">
+    <fyViews:FinancialYearSelectionView />
   </DataTemplate>
 
   <DataTemplate DataType="{x:Type vm:PlaceholderViewModel}">

@@ -4,6 +4,7 @@ using veteran_logistic.Authentication.Contracts;
 using veteran_logistic.Authentication.Models;
 using veteran_logistic.MVVM;
 using veteran_logistic.Navigation;
+using veteran_logistic.FinancialYear.ViewModels;
 
 namespace veteran_logistic.Authentication.ViewModels;
 
@@ -136,8 +137,8 @@ public sealed partial class LoginViewModel : ViewModelBase
             {
                 await PersistRememberMeSettingsAsync();
 
-                // Navigate to the Shell on successful authentication
-                await _navigationService.NavigateAsync<Shell.ShellViewModel>();
+                // Navigate to Financial Year Selection on successful authentication
+                await _navigationService.NavigateAsync<FinancialYearSelectionViewModel>();
             }
             else
             {

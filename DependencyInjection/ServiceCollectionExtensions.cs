@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using veteran_logistic.Authentication.DependencyInjection;
+using veteran_logistic.FinancialYear.DependencyInjection;
 using veteran_logistic.Services.Dialog;
 using veteran_logistic.Services.Notification;
 using VeteranLogistics.Data.DependencyInjection;
@@ -45,6 +46,7 @@ public static class ServiceCollectionExtensions
         services.AddAuthenticationUI();
         services.AddAuthenticationWorkflow();
         services.AddAuthenticationRememberMe();
+        services.AddFinancialYearSelection();
 
         // Bind strongly-typed options from configuration so components can receive IOptions<T>
         if (configuration is not null)
