@@ -1,3 +1,5 @@
+using veteran_logistic.Authorization.Models;
+
 namespace veteran_logistic.Authentication.Models;
 
 /// <summary>
@@ -26,7 +28,7 @@ public sealed class AuthenticatedUser
     public string? Email { get; set; }
 
     /// <summary>
-    /// Gets or sets the user's current role label.
+    /// Gets or sets the user's current role.
     /// </summary>
-    public string? Role { get; set; }
+    public ApplicationRole Role { get; set; }
 }

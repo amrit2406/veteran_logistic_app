@@ -53,8 +53,7 @@ namespace veteran_logistic.FinancialYear.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/veteran_logistic;V1.0.0.0;component/financialyear/views/financialyearselectionvi" +
-                    "ew.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/veteran_logistic;component/financialyear/views/financialyearselectionview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\FinancialYear\Views\FinancialYearSelectionView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -1,6 +1,7 @@
 using veteran_logistic.Authentication.Contracts;
 using veteran_logistic.Authentication.Models;
 using veteran_logistic.Authentication.Validation;
+using veteran_logistic.Authorization.Models;
 using VeteranLogistics.Data.Entities.Administration;
 using VeteranLogistics.Shared.Validation;
 
@@ -98,7 +99,7 @@ public sealed class AuthenticationService : IAuthenticationService
             Username = user.Username,
             DisplayName = user.DisplayName,
             Email = user.Email,
-            Role = user.Role
+            Role = MapToApplicationRole(user.Role)
         };
 
         // Step 7: Create user session
@@ -138,5 +139,35 @@ public sealed class AuthenticationService : IAuthenticationService
         };
 
         await _authenticationAuditService.LogAuthenticationAttemptAsync(auditEntry, cancellationToken);
+    }
+
+    private static ApplicationRole MapToApplicationRole(string? roleString)
+    {
+        if (string.IsNullOrWhiteSpace(roleString))
+        {
+            return ApplicationRole.None;
+        }
+
+        if (string.Equals(roleString, "Administrator", StringComparison.OrdinalIgnoreCase))
+        {
+            return ApplicationRole.Administrator;
+        }
+
+        if (string.Equals(roleString, "Manager", StringComparison.OrdinalIgnoreCase))
+        {
+            return ApplicationRole.Manager;
+        }
+
+        if (string.Equals(roleString, "User", StringComparison.OrdinalIgnoreCase))
+        {
+            return ApplicationRole.User;
+        }
+
+        if (string.Equals(roleString, "Viewer", StringComparison.OrdinalIgnoreCase))
+        {
+            return ApplicationRole.Viewer;
+        }
+
+        return ApplicationRole.None;
     }
 }
