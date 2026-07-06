@@ -65,7 +65,7 @@ public sealed class LogoutService : ILogoutService
         _logger.LogDebug("Financial year context cleared");
 
         // Step 5: Navigate to LoginViewModel
-        await _navigationService.NavigateAsync<LoginViewModel>(cancellationToken: cancellationToken);
+        await _navigationService.NavigateAsync<LoginViewModel>();
         _logger.LogInformation("Logout completed and navigated to Login screen");
     }
 }
