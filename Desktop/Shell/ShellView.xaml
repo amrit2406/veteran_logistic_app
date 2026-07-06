@@ -93,7 +93,7 @@
                     <MenuItem Header="Inventory" />
                 </MenuItem>
                 <MenuItem Header="Administration" Style="{StaticResource TopMenuItemStyle}">
-                    <MenuItem Header="Users" />
+                    <MenuItem Header="Users" Command="{Binding NavigateToUsersCommand}" />
                     <MenuItem Header="Roles" />
                 </MenuItem>
                 <MenuItem Header="Settings" Style="{StaticResource TopMenuItemStyle}" />

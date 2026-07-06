@@ -5,7 +5,9 @@
                     xmlns:authVm="clr-namespace:veteran_logistic.Authentication.ViewModels"
                     xmlns:authViews="clr-namespace:veteran_logistic.Authentication.Views"
                     xmlns:fyVm="clr-namespace:veteran_logistic.FinancialYear.ViewModels"
-                    xmlns:fyViews="clr-namespace:veteran_logistic.FinancialYear.Views">
+                    xmlns:fyViews="clr-namespace:veteran_logistic.FinancialYear.Views"
+                    xmlns:adminUsersVm="clr-namespace:veteran_logistic.Administration.Users.ViewModels"
+                    xmlns:adminUsersViews="clr-namespace:veteran_logistic.Administration.Users.Views">
   <DataTemplate DataType="{x:Type vm:ShellViewModel}">
     <views:ShellView />
   </DataTemplate>
@@ -16,6 +18,10 @@
 
   <DataTemplate DataType="{x:Type fyVm:FinancialYearSelectionViewModel}">
     <fyViews:FinancialYearSelectionView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type adminUsersVm:UsersViewModel}">
+    <adminUsersViews:UsersView />
   </DataTemplate>
 
   <DataTemplate DataType="{x:Type vm:PlaceholderViewModel}">

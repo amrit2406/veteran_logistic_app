@@ -346,6 +346,31 @@ This document records the implementation work completed across the repository an
   * User List, Add User, Edit User, Delete User, Role Management, Permission Matrix, Financial Year CRUD, database tables, entities, repositories, CRUD logic, ViewModels for business screens, Views, XAML, Validators, Navigation UI, Commands related to business operations, menu items, shell integration, migrations, seed data, authorization rules, business services, Options classes, appsettings.json modifications, DbContext changes, Fluent API changes, placeholder methods, fake implementations, TODO business logic
 * **Validation Status**: Build verified successfully with no errors. Administration feature is now a minimal infrastructure foundation with no business functionality, no UI, no CRUD operations, no placeholder logic, and no unnecessary abstractions.
 
+### Phase 2.2: Administration → Users → User Listing
+* **Goal**: Implement a read-only User Listing module that allows viewing users without any CRUD operations. This screen serves as the foundation for future phases (Add User, Edit User, User Security).
+* **Included**:
+  * **Created** `Administration/Users/Contracts/IUserQueryService.cs`: Service contract for querying user data with methods for GetAllUsersAsync and SearchUsersAsync.
+  * **Created** `Administration/Users/Models/UserListItem.cs`: Read-only model for displaying users in the grid with properties: Id, Username, DisplayName, RoleName, IsActive, CreatedOn. Excludes password and security data.
+  * **Created** `Administration/Users/Services/UserQueryService.cs`: Implementation of IUserQueryService using EF Core with AsNoTracking(), projecting entities into UserListItem, supporting search by username, display name, and role name. Registered as Scoped.
+  * **Created** `Administration/Users/ViewModels/UsersViewModel.cs`: ViewModel with ObservableCollection<UserListItem>, SearchText, SelectedUser, IsLoading, RefreshCommand. Loads users on initialization, supports search filtering, no CRUD commands.
+  * **Created** `Administration/Users/Views/UsersView.xaml`: Read-only DataGrid view with page title, search TextBox, refresh button. DataGrid displays: Username, Display Name, Role, Active Status, Created Date. Grid is read-only with no action buttons, context menus, or double-click actions.
+  * **Created** `Administration/Users/Views/UsersView.xaml.cs`: Code-behind for UsersView with standard UserControl initialization.
+  * **Modified** `Administration/DependencyInjection/AdministrationServiceCollectionExtensions.cs`: Added DI registrations for IUserQueryService (Scoped), UsersViewModel (Transient), and UsersView (Transient).
+  * **Modified** `Resources/DataTemplates.xaml`: Added DataTemplate mapping for UsersViewModel to UsersView with namespace declarations for Administration.Users.ViewModels and Administration.Users.Views.
+* **Explicitly Excluded**:
+  * Add User, Edit User, Delete User, Reset Password, Change Password, Lock User, Unlock User, Activate User, Deactivate User, Role Assignment, Permission Assignment, Audit History, Import, Export, Printing, Dialogs, Confirmation Windows, Context Menus, Toolbar Actions, Business Rules, Validation Rules, Authorization Changes, Authentication Changes, Financial Year Changes, Dashboard Changes, Shell Changes, Database Schema Changes, DbContext Changes, Fluent API Changes, Migrations, Seeders, Repository Pattern, CQRS, MediatR
+* **Validation Status**: Build verified successfully with no errors. User Listing module is completely read-only with no CRUD functionality, no database schema modifications, and no business rules introduced.
+
+### Phase 2.2 A: User Listing Architectural & Quality Improvements
+* **Goal**: Refine the Phase 2.2 implementation by improving architecture, performance, maintainability, and enterprise readiness without altering business logic or application behavior.
+* **Included**:
+  * **Service Optimization (`UserQueryService.cs`)**: Centralized LINQ projection logic into a single method (`ProjectToListItem()`), removing duplicate `.Select(...)` statements.
+  * **ViewModel Enhancements (`UsersViewModel.cs`)**: Extracted the duplicate user collection population logic into a single `UpdateUsers()` method.
+  * **UI Refinements (`UsersView.xaml`)**: Removed hardcoded magic numbers (e.g., `Width="250"`, `Width="100"`) from TextBox and DataGrid columns, substituting with fluid alignments or standard dimensions. Removed the hardcoded emoji (`↻`) on the refresh button, replacing it with standard text ("Refresh").
+  * **Navigation Integration (`ShellViewModel.cs` & `ShellView.xaml`)**: Added `NavigateToUsersCommand` to the `ShellViewModel` and wired it into the Administration menu in `ShellView.xaml`, ensuring the Users screen can be accessed from the primary shell without redesigning the navigation framework.
+* **Explicitly Excluded**:
+  * Business rules, structural architectural redesigns, schema updates, backend CRUD operations, new UI functionality, and Phase 2.3 tasks.
+* **Validation Status**: UI behavior remains identical. Database query efficiency, codebase readability, and navigation robustness successfully verified.
 ## 3. Architecture & Design
 
 ### Dependency Injection and Composition
@@ -454,7 +479,13 @@ This document records the implementation work completed across the repository an
 * `Authorization/DependencyInjection/AuthorizationServiceCollectionExtensions.cs` (Phase 1.8, Phase 1.9)
 
 ### Administration
-* `Administration/DependencyInjection/AdministrationServiceCollectionExtensions.cs` (Phase 2.1 - Refactored)
+* `Administration/DependencyInjection/AdministrationServiceCollectionExtensions.cs` (Phase 2.1 - Refactored, Phase 2.2)
+* `Administration/Users/Contracts/IUserQueryService.cs` (Phase 2.2)
+* `Administration/Users/Models/UserListItem.cs` (Phase 2.2)
+* `Administration/Users/Services/UserQueryService.cs` (Phase 2.2)
+* `Administration/Users/ViewModels/UsersViewModel.cs` (Phase 2.2)
+* `Administration/Users/Views/UsersView.xaml` (Phase 2.2)
+* `Administration/Users/Views/UsersView.xaml.cs` (Phase 2.2)
 
 ### Desktop Shell
 * `Desktop\Shell\ShellView.xaml`
