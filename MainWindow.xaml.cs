@@ -39,7 +39,8 @@ namespace veteran_logistic
         private void OnCurrentViewModelChanged(object? newViewModel)
         {
             // Update DataContext when navigation occurs
-            DataContext = newViewModel;
+            // Must use Dispatcher to ensure UI thread access
+            Dispatcher.Invoke(() => DataContext = newViewModel);
         }
     }
 }

@@ -24,6 +24,10 @@
     <adminUsersViews:UsersView />
   </DataTemplate>
 
+  <DataTemplate DataType="{x:Type adminUsersVm:AddUserViewModel}">
+    <adminUsersViews:AddUserView />
+  </DataTemplate>
+
   <DataTemplate DataType="{x:Type vm:PlaceholderViewModel}">
     <Border Background="{DynamicResource BackgroundBrush}" Padding="{StaticResource ExtraLarge}">
       <Grid>

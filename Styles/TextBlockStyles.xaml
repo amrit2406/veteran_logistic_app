@@ -24,6 +24,11 @@
         <Setter Property="Foreground" Value="{DynamicResource TextSecondaryBrush}" />
     </Style>
 
+    <Style x:Key="BodyTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+        <Setter Property="FontSize" Value="{StaticResource NormalFontSize}" />
+        <Setter Property="FontWeight" Value="{StaticResource NormalFontWeight}" />
+    </Style>
+
     <Style x:Key="MutedTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
         <Setter Property="FontSize" Value="{StaticResource SmallFontSize}" />
         <Setter Property="Foreground" Value="{DynamicResource TextDisabledBrush}" />

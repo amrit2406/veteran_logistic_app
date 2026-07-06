@@ -405,6 +405,28 @@ This document records the implementation work completed across the repository an
   * Business rules, structural architectural redesigns, schema updates, backend CRUD operations, new UI functionality, Phase 2.4 tasks, authentication changes, authorization redesign, navigation redesign, shell redesign.
 * **Validation Status**: User experience remains identical. Validator is now DI-managed and ready for future enhancements. Code is production-ready with improved testability, maintainability, and enterprise readiness. No database schema changes, no authentication/authorization modifications, no new CRUD functionality.
 
+### Phase 2.3 B: Add User Navigation Integration Fix
+* **Goal**: Fix XAML parsing error preventing AddUserView from rendering when navigating from Users screen.
+* **Included**:
+  * **Modified** `Styles/TextBlockStyles.xaml`: Added missing `BodyTextBlockStyle` definition with normal font size and weight settings. The style was referenced in AddUserView.xaml but not defined in the resource dictionaries, causing a XAML parsing exception when the view was loaded.
+* **Root Cause**: The AddUserView.xaml referenced `BodyTextBlockStyle` which did not exist in the application's resource dictionaries. When the NavigationService navigated to AddUserViewModel, WPF attempted to render AddUserView via the DataTemplate mapping, but the missing resource caused a XAML parsing exception.
+* **Navigation Verification**: Confirmed that the navigation infrastructure was already correctly configured:
+  * DataTemplates.xaml already contained the correct ViewModel-to-View mapping for AddUserViewModel
+  * AdministrationServiceCollectionExtensions.cs already registered AddUserViewModel as Transient
+  * UsersViewModel.cs already had the correct navigation command calling NavigateAsync<AddUserViewModel>()
+* **Explicitly Excluded**:
+  * Navigation architecture redesign, Shell redesign, MainWindow redesign, DI redesign, ViewLocator redesign, DataTemplate mechanism changes, Edit User implementation, CRUD functionality, dialogs, windows, Phase 2.4 functionality.
+* **Validation Status**: Build verified successfully with no errors. AddUserView now renders correctly when clicking "Add User" instead of displaying the ViewModel type name. No navigation architecture was redesigned. No Phase 2.4 functionality has been introduced.
+
+### Phase 2.3 C: Threading Fix for Navigation DataContext Updates
+* **Goal**: Fix InvalidOperationException when navigating from Add User back to Users screen due to cross-thread DataContext assignment.
+* **Included**:
+  * **Modified** `MainWindow.xaml.cs`: Wrapped DataContext assignment in `OnCurrentViewModelChanged` with `Dispatcher.Invoke()` to ensure UI thread access. The navigation event was being raised on a background thread (due to ConfigureAwait(false) in async operations), causing WPF to throw "The calling thread cannot access this object because a different thread owns it" when updating the DataContext.
+* **Root Cause**: When AddUserViewModel.SaveAsync() completes successfully, it calls `_navigationService.GoBackAsync()`. The NavigationService raises the CurrentViewModelChanged event on the background thread where the async operation completed. MainWindow.OnCurrentViewModelChanged() attempts to set DataContext, which is a UI-owned property, causing a cross-thread exception and application crash.
+* **Explicitly Excluded**:
+  * Navigation architecture redesign, async/await pattern changes, ConfigureAwait usage changes, Shell redesign, Phase 2.4 functionality.
+* **Validation Status**: Build verified successfully with no errors. Navigation now completes without crashing, and the Users list correctly displays after adding a user. No navigation architecture was redesigned.
+
 ## 3. Architecture & Design
 
 ### Dependency Injection and Composition
