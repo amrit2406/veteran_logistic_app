@@ -43,6 +43,19 @@
                         </TextBox.Style>
                     </TextBox>
 
+                    <!-- Add User Button -->
+                    <Button Height="{StaticResource StandardControlHeight}"
+                            Command="{Binding AddUserCommand}"
+                            Style="{StaticResource IconButtonStyle}"
+                            ToolTip="Add User"
+                            VerticalAlignment="Center"
+                            Margin="{StaticResource Small}">
+                        <TextBlock Text="Add User"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Button>
+
                     <!-- Refresh Button -->
                     <Button Height="{StaticResource StandardControlHeight}"
                             Command="{Binding RefreshCommand}"

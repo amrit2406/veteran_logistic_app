@@ -4,7 +4,9 @@ using System.Collections.ObjectModel;
 using System.Threading;
 using veteran_logistic.Administration.Users.Contracts;
 using veteran_logistic.Administration.Users.Models;
+using veteran_logistic.Administration.Users.ViewModels;
 using veteran_logistic.MVVM;
+using veteran_logistic.Navigation;
 
 namespace veteran_logistic.Administration.Users.ViewModels;
 
@@ -14,6 +16,7 @@ namespace veteran_logistic.Administration.Users.ViewModels;
 public sealed partial class UsersViewModel : ViewModelBase
 {
     private readonly IUserQueryService _userQueryService;
+    private readonly INavigationService _navigationService;
     private string _searchText = string.Empty;
     private UserListItem? _selectedUser;
     private CancellationTokenSource? _searchCancellationTokenSource;
@@ -22,9 +25,11 @@ public sealed partial class UsersViewModel : ViewModelBase
     /// Initializes a new instance of the <see cref="UsersViewModel"/> class.
     /// </summary>
     /// <param name="userQueryService">The user query service.</param>
-    public UsersViewModel(IUserQueryService userQueryService)
+    /// <param name="navigationService">The navigation service.</param>
+    public UsersViewModel(IUserQueryService userQueryService, INavigationService navigationService)
     {
         _userQueryService = userQueryService ?? throw new ArgumentNullException(nameof(userQueryService));
+        _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
     }
 
     public override async Task InitializeAsync(CancellationToken cancellationToken = default)
@@ -74,6 +79,15 @@ public sealed partial class UsersViewModel : ViewModelBase
     private async Task RefreshAsync()
     {
         await LoadUsersAsync();
+    }
+
+    /// <summary>
+    /// Command to navigate to the Add User screen.
+    /// </summary>
+    [RelayCommand]
+    private async Task AddUserAsync()
+    {
+        await _navigationService.NavigateAsync<AddUserViewModel>().ConfigureAwait(false);
     }
 
     /// <summary>

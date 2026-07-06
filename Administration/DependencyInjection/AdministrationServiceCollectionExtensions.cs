@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using veteran_logistic.Administration.Users.Contracts;
 using veteran_logistic.Administration.Users.Services;
+using veteran_logistic.Administration.Users.Validators;
 using veteran_logistic.Administration.Users.ViewModels;
 
 namespace veteran_logistic.Administration.DependencyInjection;
@@ -19,11 +20,11 @@ public static class AdministrationServiceCollectionExtensions
     {
         ArgumentNullException.ThrowIfNull(services);
 
-        // Register User Query Service
         services.AddScoped<IUserQueryService, UserQueryService>();
-
-        // Register Users ViewModel (View is resolved through DataTemplate)
+        services.AddScoped<IUserCommandService, UserCommandService>();
+        services.AddScoped<ICreateUserValidator, CreateUserValidator>();
         services.AddTransient<UsersViewModel>();
+        services.AddTransient<AddUserViewModel>();
 
         return services;
     }

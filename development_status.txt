@@ -371,6 +371,40 @@ This document records the implementation work completed across the repository an
 * **Explicitly Excluded**:
   * Business rules, structural architectural redesigns, schema updates, backend CRUD operations, new UI functionality, and Phase 2.3 tasks.
 * **Validation Status**: UI behavior remains identical. Database query efficiency, codebase readability, and navigation robustness successfully verified.
+
+### Phase 2.3: Administration → Users → Add User
+* **Goal**: Implement the complete Add User workflow allowing administrators to create new users. Only user creation is implemented; no editing or user maintenance functionality.
+* **Included**:
+  * **Created** `Administration/Users/Contracts/IUserCommandService.cs`: Service contract for user command operations with CreateUserAsync method.
+  * **Created** `Administration/Users/Models/CreateUserRequest.cs`: Request model for user creation with properties: Username, DisplayName, Password, ConfirmPassword, Role, IsActive.
+  * **Created** `Administration/Users/Models/CreateUserResult.cs`: Result model for user creation operations with UserId, IsSuccess, ErrorMessage, and static factory methods for Success/Failure results.
+  * **Created** `Administration/Users/Validators/CreateUserValidator.cs`: Static validator for CreateUserRequest validating: Username (required, length 3-50), DisplayName (required), Password (required), ConfirmPassword (required, must match), Role (required). Uses existing ValidationResult infrastructure.
+  * **Created** `Administration/Users/Services/UserCommandService.cs`: Implementation of IUserCommandService that validates duplicate username, reuses Phase 1 IPasswordHasher (PBKDF2) for password hashing, creates User entity, persists via DbContext, and logs unexpected failures only (no sensitive data logged). Registered as Scoped.
+  * **Created** `Administration/Users/ViewModels/AddUserViewModel.cs`: ViewModel for Add User screen maintaining form state (Username, DisplayName, Password, ConfirmPassword, SelectedRole, IsActive, IsBusy), calls validation before service, executes Save and Cancel commands, navigates back after successful creation using NavigationService, loads roles from existing ApplicationRole enum. No database access, no DbContext, no password hashing, no business rules. Registered as Transient.
+  * **Created** `Administration/Users/Views/AddUserView.xaml`: MVVM-only view with no code-behind logic. Fields: Username, Display Name, Password, Confirm Password (PasswordBox with attached property for MVVM binding), Role (ComboBox), Active (CheckBox). Buttons: Save, Cancel. Uses existing Design System resources, no inline styling, no hardcoded colors/fonts.
+  * **Created** `Administration/Users/Views/AddUserView.xaml.cs`: Code-behind contains only InitializeComponent(), no business logic.
+  * **Created** `Desktop/Converters/StringToVisibilityConverter.cs`: Value converter for string-to-visibility binding (empty/null → Collapsed, non-empty → Visible).
+  * **Created** `Desktop/AttachedProperties/PasswordBoxHelper.cs`: Attached property helper for enabling MVVM binding on PasswordBox controls.
+  * **Modified** `Administration/DependencyInjection/AdministrationServiceCollectionExtensions.cs`: Added DI registrations for IUserCommandService (Scoped), UserCommandService (Scoped), and AddUserViewModel (Transient).
+  * **Modified** `Administration/Users/ViewModels/UsersViewModel.cs`: Added INavigationService dependency and AddUserCommand to navigate to AddUserViewModel.
+  * **Modified** `Administration/Users/Views/UsersView.xaml`: Added "Add User" button in header bound to AddUserCommand.
+  * **Modified** `Styles/TextBoxStyles.xaml`: Added BaseTextBoxStyle key to enable style inheritance for password fields.
+* **Explicitly Excluded**:
+  * Edit User, Delete User, Reset Password, Lock User, Unlock User, Activate User, Deactivate User, Permission Assignment, Role Management, Audit History, Import, Export, Printing, Bulk Insert, Bulk Update, Email Notifications, Password Expiry, Two-Factor Authentication, Profile Images, Business Rules outside user creation, Authentication changes, Authorization changes, Financial Year changes, Dashboard changes, Database schema changes, DbContext modifications, Fluent API modifications, Migrations.
+* **Validation Status**: Build verified successfully with no errors. User creation is fully implemented with complete workflow from UI to database, validation, duplicate checking, password hashing using Phase 1 infrastructure, and persistence. No CRUD other than Create has been implemented. No database schema changes were made. No authentication or authorization functionality was modified. No Phase 2.4 functionality has been introduced.
+
+### Phase 2.3 A: Add User Architectural & Quality Improvements
+* **Goal**: Refine the Phase 2.3 implementation by improving architecture, security, maintainability, and enterprise readiness while preserving 100% of existing behavior.
+* **Included**:
+  * **Validator DI Conversion (`ICreateUserValidator.cs` & `CreateUserValidator.cs`)**: Converted CreateUserValidator from static class to DI-managed service implementing ICreateUserValidator interface. Enables testability, extensibility for future dependencies (localization, password policy, configuration), and aligns with enterprise DI patterns. Validator remains focused only on validation with no database access or business logic.
+  * **Service Layer Validation Integration (`UserCommandService.cs`)**: Updated UserCommandService to inject ICreateUserValidator instead of calling static validator. Implements dependency inversion, separates validation logic from service logic, and improves maintainability. Removed redundant comments and simplified code structure.
+  * **ViewModel Simplification (`AddUserViewModel.cs`)**: Removed validation call from AddUserViewModel since validation is now handled in UserCommandService. Removed unused using statements (System.Windows, veteran_logistic.Administration.Users.Validators) and redundant comments. ViewModel now only maintains form state and handles navigation, with no business logic.
+  * **UI Hardcoded Value Removal (`AddUserView.xaml`)**: Removed MaxWidth="600" from StackPanel and Width="100" from both Save and Cancel buttons. Enables responsive design, follows existing pattern of avoiding magic numbers, improves maintainability, and provides better adaptation to different screen resolutions.
+  * **DI Registration Cleanup (`AdministrationServiceCollectionExtensions.cs`)**: Added ICreateUserValidator registration (Scoped) and removed redundant inline comments. Ensures complete service registration and maintains clean registration style.
+* **Explicitly Excluded**:
+  * Business rules, structural architectural redesigns, schema updates, backend CRUD operations, new UI functionality, Phase 2.4 tasks, authentication changes, authorization redesign, navigation redesign, shell redesign.
+* **Validation Status**: User experience remains identical. Validator is now DI-managed and ready for future enhancements. Code is production-ready with improved testability, maintainability, and enterprise readiness. No database schema changes, no authentication/authorization modifications, no new CRUD functionality.
+
 ## 3. Architecture & Design
 
 ### Dependency Injection and Composition

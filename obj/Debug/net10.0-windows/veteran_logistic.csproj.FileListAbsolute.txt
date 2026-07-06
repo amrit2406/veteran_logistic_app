@@ -355,3 +355,5 @@ D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\FinancialYear\Views\Financ
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\FinancialYear\Views\FinancialYearSelectionView.baml
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Administration\Users\Views\UsersView.baml
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Administration\Users\Views\UsersView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Administration\Users\Views\AddUserView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Administration\Users\Views\AddUserView.baml
