@@ -91,6 +91,25 @@ public sealed partial class UsersViewModel : ViewModelBase
     }
 
     /// <summary>
+    /// Command to navigate to the Edit User screen.
+    /// </summary>
+    [RelayCommand]
+    private async Task EditUserAsync()
+    {
+        if (SelectedUser is null)
+        {
+            return;
+        }
+
+        var parameter = new NavigationParameter
+        {
+            ["UserId"] = SelectedUser.Id
+        };
+
+        await _navigationService.NavigateAsync<EditUserViewModel>(parameter).ConfigureAwait(false);
+    }
+
+    /// <summary>
     /// Loads all users.
     /// </summary>
     private async Task LoadUsersAsync(CancellationToken cancellationToken = default)

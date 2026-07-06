@@ -357,3 +357,5 @@ D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\refint\veteran_logistic.dl
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\veteran_logistic.pdb
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\veteran_logistic.genruntimeconfig.cache
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\ref\veteran_logistic.dll
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Administration\Users\Views\EditUserView.baml
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Administration\Users\Views\EditUserView.g.cs

@@ -21,4 +21,12 @@ public interface IUserQueryService
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>A collection of user list items matching the search criteria.</returns>
     Task<IReadOnlyList<UserListItem>> SearchUsersAsync(string? search, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Gets a user for editing by user ID.
+    /// </summary>
+    /// <param name="userId">The user ID.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>The user edit model, or null if not found.</returns>
+    Task<EditUserModel?> GetUserForEditAsync(int userId, CancellationToken cancellationToken = default);
 }

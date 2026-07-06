@@ -50,9 +50,10 @@ public sealed class NavigationService : INavigationService
             _current = vm;
             CurrentViewModelChanged?.Invoke(_current);
 
-            // If the ViewModel is a ViewModelBase, call InitializeAsync()
+            // If the ViewModel is a ViewModelBase, set parameter and call InitializeAsync()
             if (vm is ViewModelBase lifecycle)
             {
+                lifecycle.NavigationParameter = parameter;
                 await lifecycle.InitializeAsync().ConfigureAwait(false);
             }
 

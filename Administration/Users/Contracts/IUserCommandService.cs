@@ -14,4 +14,12 @@ public interface IUserCommandService
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>A result containing the created user ID.</returns>
     Task<CreateUserResult> CreateUserAsync(CreateUserRequest request, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Updates an existing user.
+    /// </summary>
+    /// <param name="request">The user update request.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A result indicating success or failure.</returns>
+    Task<UpdateUserResult> UpdateUserAsync(UpdateUserRequest request, CancellationToken cancellationToken = default);
 }

@@ -55,6 +55,24 @@ public sealed class UserQueryService : IUserQueryService
             .ConfigureAwait(false);
     }
 
+    /// <inheritdoc />
+    public async Task<EditUserModel?> GetUserForEditAsync(int userId, CancellationToken cancellationToken = default)
+    {
+        return await _dbContext.Users
+            .AsNoTracking()
+            .Where(u => u.Id == userId)
+            .Select(u => new EditUserModel
+            {
+                UserId = u.Id,
+                Username = u.Username,
+                DisplayName = u.DisplayName ?? string.Empty,
+                Role = u.Role ?? string.Empty,
+                IsActive = u.IsActive
+            })
+            .FirstOrDefaultAsync(cancellationToken)
+            .ConfigureAwait(false);
+    }
+
     private static IQueryable<UserListItem> ProjectToListItem(IQueryable<User> query)
     {
         return query.Select(u => new UserListItem

@@ -427,6 +427,47 @@ This document records the implementation work completed across the repository an
   * Navigation architecture redesign, async/await pattern changes, ConfigureAwait usage changes, Shell redesign, Phase 2.4 functionality.
 * **Validation Status**: Build verified successfully with no errors. Navigation now completes without crashing, and the Users list correctly displays after adding a user. No navigation architecture was redesigned.
 
+### Phase 2.4: Administration → Users → Edit User
+* **Goal**: Implement complete Edit User workflow allowing administrators to edit existing user information (DisplayName, Role, IsActive) without modifying username or password.
+* **Included**:
+  * **Created** `Administration/Users/Contracts/IUpdateUserValidator.cs`: Interface for validating user update requests using the existing ValidationResult infrastructure from VeteranLogistics.Shared.Validation.
+  * **Created** `Administration/Users/Models/UpdateUserRequest.cs`: Request model containing UserId (for identification), DisplayName, Role, and IsActive. Excludes Username (immutable), Password, and ConfirmPassword.
+  * **Created** `Administration/Users/Models/UpdateUserResult.cs`: Result model with IsSuccess and ErrorMessage properties, providing static factory methods for Success() and Failure(errorMessage).
+  * **Created** `Administration/Users/Validators/UpdateUserValidator.cs`: Validator implementation that validates DisplayName (required) and Role (required). Uses the existing ValidationResult/ValidationError pattern. No database access, no business logic.
+  * **Created** `Administration/Users/ViewModels/EditUserViewModel.cs`: ViewModel for Edit User screen with properties for UserId, Username (read-only), DisplayName, SelectedRole, IsActive, ValidationError, IsBusy. Includes LoadUser(UserListItem) method to populate form from selected user, SaveCommand to validate and persist changes, CancelCommand to navigate back. No DbContext access, no password handling, no business logic.
+  * **Created** `Administration/Users/Views/EditUserView.xaml`: MVVM view matching AddUserView layout for UI consistency. Contains read-only Username field (with DisabledBrush background), editable DisplayName, Role ComboBox, Active CheckBox, Save/Cancel buttons, validation error display, and loading indicator. Uses existing Design System resources, no inline styling, no hardcoded values.
+  * **Created** `Administration/Users/Views/EditUserView.xaml.cs`: Standard UserControl code-behind with only InitializeComponent().
+  * **Modified** `Administration/Users/Contracts/IUserCommandService.cs`: Added UpdateUserAsync method signature: Task<UpdateUserResult> UpdateUserAsync(UpdateUserRequest request, CancellationToken cancellationToken = default).
+  * **Modified** `Administration/Users/Services/UserCommandService.cs`: Added IUpdateUserValidator injection (renamed existing validator to ICreateUserValidator for clarity). Implemented UpdateUserAsync method that validates request, locates user by UserId, updates only DisplayName, Role, and IsActive, persists changes, and returns appropriate result. Does NOT modify Username, Password, PasswordHash, SecurityStamp, CreatedDate, or CreatedBy.
+  * **Modified** `Administration/Users/ViewModels/UsersViewModel.cs`: Added EditUserCommand that navigates to EditUserViewModel and calls LoadUser on the created ViewModel with the selected user data. Uses NavigationService.CurrentViewModel to access the created ViewModel after navigation.
+  * **Modified** `Administration/Users/Views/UsersView.xaml`: Added "Edit User" button in the header toolbar next to "Add User" button, bound to EditUserCommand.
+  * **Modified** `Administration/DependencyInjection/AdministrationServiceCollectionExtensions.cs`: Registered IUpdateUserValidator as Scoped and EditUserViewModel as Transient.
+  * **Modified** `Resources/DataTemplates.xaml`: Added DataTemplate mapping EditUserViewModel → EditUserView using the same pattern as other ViewModels.
+* **Explicitly Excluded**:
+  * Username modification, password management, password reset, password change, security settings, audit history, bulk operations, import/export, printing, email notifications, two-factor authentication, profile images, authentication changes, authorization redesign, Phase 2.5 functionality, database schema changes, new entities, Fluent API modifications, migrations.
+* **Validation Status**: Build verified successfully with no errors. Edit User workflow is fully functional: select user from Users list, click Edit User, modify DisplayName/Role/IsActive, save changes, and return to Users screen. Username remains immutable. Passwords are untouched. Authentication data is unchanged. Only editable profile information is updated. No database schema changes were made. No Phase 2.5 functionality has been introduced.
+
+### Phase 2.4 A: Architecture Review - ViewModel Decoupling and Query Layer Integration
+* **Goal**: Improve Edit User implementation to follow enterprise-grade architecture by removing ViewModel coupling, implementing query layer integration, and ensuring proper CancellationToken propagation.
+* **Included**:
+  * **Created** `Administration/Users/Models/EditUserModel.cs`: Query model for edit user operations containing only UserId, Username, DisplayName, Role, and IsActive. Excludes password fields, security fields, and audit fields.
+  * **Modified** `Administration/Users/Contracts/IUserQueryService.cs`: Added GetUserForEditAsync method signature for loading a single user for editing.
+  * **Modified** `Administration/Users/Services/UserQueryService.cs`: Implemented GetUserForEditAsync with EF Core projection to EditUserModel using AsNoTracking for optimal performance.
+  * **Modified** `Administration/Users/ViewModels/EditUserViewModel.cs`: Removed LoadUser(UserListItem) method, added IUserQueryService injection, implemented InitializeAsync to extract UserId from NavigationParameter and load data via query service, removed public UserId property (now private field), fixed SaveAsync to use private _userId field and pass CancellationToken.None.
+  * **Modified** `Administration/Users/ViewModels/UsersViewModel.cs`: Modified EditUserAsync to pass UserId via NavigationParameter instead of accessing NavigationService.CurrentViewModel and calling LoadUser. Eliminated tight coupling between ViewModels.
+  * **Modified** `MVVM/ViewModelBase.cs`: Added NavigationParameter property (public) to support parameter passing during navigation. Provides standard mechanism for passing navigation parameters without relying on CurrentViewModel.
+  * **Modified** `Desktop/Navigation/NavigationService.cs`: Modified NavigateAsync to set NavigationParameter on ViewModelBase before calling InitializeAsync. Ensures parameters are available during initialization lifecycle.
+* **Architecture Improvements**:
+  * **ViewModel Decoupling**: EditUserViewModel no longer depends on NavigationService.CurrentViewModel or direct casting. UsersViewModel no longer depends on EditUserViewModel's internal structure (LoadUser method).
+  * **Query Layer Integration**: EditUserViewModel now loads fresh data from the database via IUserQueryService instead of receiving potentially stale UserListItem from parent ViewModel.
+  * **Data Minimization**: EditUserModel contains only the fields needed for editing (5 columns) instead of full entity or UserListItem with unnecessary fields.
+  * **Type Safety**: NavigationParameter provides type-safe parameter passing via TryGetValue<T>.
+  * **Lifecycle Consistency**: Parameters are available during InitializeAsync, following the established ViewModel lifecycle pattern.
+  * **CancellationToken Propagation**: All async EF Core operations (GetUserForEditAsync, UpdateUserAsync, CreateUserAsync) receive CancellationToken parameters. InitializeAsync receives CancellationToken and passes it to LoadUserAsync.
+* **Explicitly Excluded**:
+  * Navigation architecture redesign, authentication changes, authorization redesign, Phase 2.5 functionality, database schema changes, new CRUD operations (Delete, Reset Password, etc.).
+* **Validation Status**: Build verified successfully with no errors. User experience remains identical: select user, click Edit User, modify data, save, return. EditUserViewModel no longer depends on NavigationService.CurrentViewModel. UserListItem is no longer used as edit data source. Edit screen loads latest data from query layer. DbContext is never accessed from ViewModel. CancellationToken propagates correctly. No database schema changes. Code is production-ready.
+
 ## 3. Architecture & Design
 
 ### Dependency Injection and Composition

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET10_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NET10_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 D:\app\veteran_logistic_app\App.xaml
-231140376517
+24-2133871190
 
-141-1730772895
+148918275491
 278-630664606
-Administration\Users\Views\AddUserView.xaml;Administration\Users\Views\UsersView.xaml;Authentication\Views\LoginView.xaml;Desktop\Shell\ShellView.xaml;FinancialYear\Views\FinancialYearSelectionView.xaml;MainWindow.xaml;Resources\Brushes.xaml;Resources\Colors.xaml;Resources\DataTemplates.xaml;Resources\Icons.xaml;Resources\Spacing.xaml;Resources\Typography.xaml;Styles\ButtonStyles.xaml;Styles\CheckBoxStyles.xaml;Styles\ComboBoxStyles.xaml;Styles\DataGridStyles.xaml;Styles\DatePickerStyles.xaml;Styles\MenuStyles.xaml;Styles\StatusBarStyles.xaml;Styles\TextBlockStyles.xaml;Styles\TextBoxStyles.xaml;Styles\WindowStyles.xaml;Themes\LightTheme.xaml;
+Administration\Users\Views\AddUserView.xaml;Administration\Users\Views\EditUserView.xaml;Administration\Users\Views\UsersView.xaml;Authentication\Views\LoginView.xaml;Desktop\Shell\ShellView.xaml;FinancialYear\Views\FinancialYearSelectionView.xaml;MainWindow.xaml;Resources\Brushes.xaml;Resources\Colors.xaml;Resources\DataTemplates.xaml;Resources\Icons.xaml;Resources\Spacing.xaml;Resources\Typography.xaml;Styles\ButtonStyles.xaml;Styles\CheckBoxStyles.xaml;Styles\ComboBoxStyles.xaml;Styles\DataGridStyles.xaml;Styles\DatePickerStyles.xaml;Styles\MenuStyles.xaml;Styles\StatusBarStyles.xaml;Styles\TextBlockStyles.xaml;Styles\TextBoxStyles.xaml;Styles\WindowStyles.xaml;Themes\LightTheme.xaml;
 
 False
 

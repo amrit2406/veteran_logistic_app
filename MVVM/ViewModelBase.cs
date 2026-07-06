@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
+using veteran_logistic.Navigation;
 
 namespace veteran_logistic.MVVM;
 
@@ -12,6 +13,7 @@ public abstract class ViewModelBase : ObservableObject
     private string? _title;
     private string? _busyMessage;
     private bool _isInitialized;
+    private NavigationParameter? _navigationParameter;
 
     /// <summary>
     /// Indicates whether the ViewModel is in a busy state. Bind UI elements to this property.
@@ -47,6 +49,15 @@ public abstract class ViewModelBase : ObservableObject
     {
         get => _isInitialized;
         protected set => SetProperty(ref _isInitialized, value);
+    }
+
+    /// <summary>
+    /// Navigation parameter passed during navigation.
+    /// </summary>
+    public NavigationParameter? NavigationParameter
+    {
+        get => _navigationParameter;
+        set => SetProperty(ref _navigationParameter, value);
     }
 
     /// <summary>
