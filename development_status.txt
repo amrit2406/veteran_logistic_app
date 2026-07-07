@@ -468,6 +468,30 @@ This document records the implementation work completed across the repository an
   * Navigation architecture redesign, authentication changes, authorization redesign, Phase 2.5 functionality, database schema changes, new CRUD operations (Delete, Reset Password, etc.).
 * **Validation Status**: Build verified successfully with no errors. User experience remains identical: select user, click Edit User, modify data, save, return. EditUserViewModel no longer depends on NavigationService.CurrentViewModel. UserListItem is no longer used as edit data source. Edit screen loads latest data from query layer. DbContext is never accessed from ViewModel. CancellationToken propagates correctly. No database schema changes. Code is production-ready.
 
+### Phase 2.4 B: Navigation Parameter Lifecycle Refinement
+* **Goal**: Improve navigation parameter mechanism to pass parameters through the navigation lifecycle instead of storing them as permanent state on ViewModelBase, while maintaining 100% backward compatibility.
+* **Included**:
+  * **Created** `Desktop/Navigation/INavigationAware.cs`: Interface for ViewModels that need to receive navigation parameters. Provides OnNavigatedTo(NavigationParameter? parameter) method for receiving parameters during navigation lifecycle.
+  * **Modified** `Desktop/Navigation/NavigationService.cs`: Updated navigation flow to call INavigationAware.OnNavigatedTo() before InitializeAsync(). Removed unused using statement. Parameters are now passed through the lifecycle instead of being stored on ViewModelBase.
+  * **Modified** `MVVM/ViewModelBase.cs`: Removed NavigationParameter property and backing field. Removed using veteran_logistic.Navigation. ViewModelBase is now lighter and doesn't store navigation state.
+  * **Modified** `Administration/Users/ViewModels/EditUserViewModel.cs`: Implemented INavigationAware interface. Added OnNavigatedTo method to receive UserId parameter. Moved parameter extraction from InitializeAsync to OnNavigatedTo. InitializeAsync now focuses on loading data using the already-set _userId field.
+* **Architecture Improvements**:
+  * **Separation of Concerns**: Navigation parameters are now passed through the lifecycle method rather than stored as mutable state. ViewModels that don't need parameters remain clean and unpolluted.
+  * **Reduced State Pollution**: Only ViewModels that actually need navigation parameters implement INavigationAware. Eliminates unnecessary state pollution on ViewModels that don't need parameters.
+  * **Better Lifecycle Management**: Parameters are received at the point of navigation (OnNavigatedTo). Initialization (InitializeAsync) is separate and focuses on setup logic.
+  * **Extensibility**: The INavigationAware pattern can be extended for additional navigation lifecycle events. Flexible without being complex.
+  * **Testability**: ViewModels can be tested by directly calling OnNavigatedTo with test parameters. Clear, explicit input point for navigation parameters.
+* **Backward Compatibility**:
+  * Existing NavigateAsync<T>() still works - calls parameterized overload with null.
+  * New overload supports parameter passing - NavigateAsync<TViewModel>(NavigationParameter? parameter) continues to function.
+  * Existing ViewModels require no modification - ViewModels that don't implement INavigationAware simply don't receive OnNavigatedTo calls.
+  * Login, Financial Year, Shell, Users List, Add User work unchanged - these ViewModels don't implement INavigationAware.
+  * EditUserViewModel still receives UserId - now implements INavigationAware and receives parameter through OnNavigatedTo.
+  * EditUserViewModel still loads data through IUserQueryService - no changes to data loading logic.
+* **Explicitly Excluded**:
+  * Navigation architecture redesign, authentication changes, authorization redesign, Phase 2.5 functionality, database schema changes, new CRUD operations, UI changes, Shell redesign.
+* **Validation Status**: Build verified successfully with no errors. No UI changes. No breaking changes. Fully backward compatible. Phase 2 (Administration → Users) is now COMPLETE and FROZEN.
+
 ## 3. Architecture & Design
 
 ### Dependency Injection and Composition
@@ -577,12 +601,23 @@ This document records the implementation work completed across the repository an
 
 ### Administration
 * `Administration/DependencyInjection/AdministrationServiceCollectionExtensions.cs` (Phase 2.1 - Refactored, Phase 2.2)
-* `Administration/Users/Contracts/IUserQueryService.cs` (Phase 2.2)
+* `Administration/Users/Contracts/IUserCommandService.cs` (Phase 2.3)
+* `Administration/Users/Contracts/IUserQueryService.cs` (Phase 2.2, Phase 2.4A)
+* `Administration/Users/Models/CreateUserRequest.cs` (Phase 2.3)
+* `Administration/Users/Models/UpdateUserRequest.cs` (Phase 2.3)
 * `Administration/Users/Models/UserListItem.cs` (Phase 2.2)
-* `Administration/Users/Services/UserQueryService.cs` (Phase 2.2)
-* `Administration/Users/ViewModels/UsersViewModel.cs` (Phase 2.2)
+* `Administration/Users/Models/EditUserModel.cs` (Phase 2.4A)
+* `Administration/Users/Services/UserCommandService.cs` (Phase 2.3)
+* `Administration/Users/Services/UserQueryService.cs` (Phase 2.2, Phase 2.4A)
+* `Administration/Users/ViewModels/UsersViewModel.cs` (Phase 2.2, Phase 2.4A)
+* `Administration/Users/ViewModels/AddUserViewModel.cs` (Phase 2.3)
+* `Administration/Users/ViewModels/EditUserViewModel.cs` (Phase 2.4A, Phase 2.4B)
 * `Administration/Users/Views/UsersView.xaml` (Phase 2.2)
 * `Administration/Users/Views/UsersView.xaml.cs` (Phase 2.2)
+* `Administration/Users/Views/AddUserView.xaml` (Phase 2.3)
+* `Administration/Users/Views/AddUserView.xaml.cs` (Phase 2.3)
+* `Administration/Users/Views/EditUserView.xaml` (Phase 2.4)
+* `Administration/Users/Views/EditUserView.xaml.cs` (Phase 2.4)
 
 ### Desktop Shell
 * `Desktop\Shell\ShellView.xaml`
@@ -592,6 +627,7 @@ This document records the implementation work completed across the repository an
 ### Navigation
 * `Desktop\Navigation\INavigationService.cs`
 * `Desktop\Navigation\IViewModelFactory.cs`
+* `Desktop\Navigation\INavigationAware.cs` (Phase 2.4B)
 * `Desktop\Navigation\NavigationParameter.cs`
 * `Desktop\Navigation\NavigationResult.cs`
 * `Desktop\Navigation\NavigationService.cs`
@@ -615,7 +651,7 @@ This document records the implementation work completed across the repository an
 * `Desktop\Services\Notification\NotificationService.cs`
 
 ### MVVM Base Types
-* `MVVM\ViewModelBase.cs`
+* `MVVM\ViewModelBase.cs` (Phase 2.4B - NavigationParameter property removed)
 * `MVVM\ObservableValidatorBase.cs`
 
 ### Options
