@@ -26,6 +26,7 @@ public static class AdministrationServiceCollectionExtensions
         services.AddScoped<IUpdateUserValidator, UpdateUserValidator>();
         services.AddScoped<IUpdateUserStatusValidator, UpdateUserStatusValidator>();
         services.AddScoped<IResetPasswordValidator, ResetPasswordValidator>();
+        services.AddScoped<IDeleteUserValidator, DeleteUserValidator>();
         services.AddTransient<UsersViewModel>();
         services.AddTransient<AddUserViewModel>();
         services.AddTransient<EditUserViewModel>();

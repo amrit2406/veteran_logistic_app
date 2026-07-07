@@ -38,4 +38,12 @@ public interface IUserCommandService
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>A result indicating success or failure.</returns>
     Task<ResetPasswordResult> ResetPasswordAsync(ResetPasswordRequest request, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Deletes a user (soft delete).
+    /// </summary>
+    /// <param name="request">The delete user request.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A result indicating success or failure.</returns>
+    Task<DeleteUserResult> DeleteUserAsync(DeleteUserRequest request, CancellationToken cancellationToken = default);
 }

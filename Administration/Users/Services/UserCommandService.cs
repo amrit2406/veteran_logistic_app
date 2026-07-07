@@ -19,6 +19,7 @@ public sealed class UserCommandService : IUserCommandService
     private readonly IUpdateUserValidator _updateValidator;
     private readonly IUpdateUserStatusValidator _updateStatusValidator;
     private readonly IResetPasswordValidator _resetPasswordValidator;
+    private readonly IDeleteUserValidator _deleteValidator;
     private readonly ILogger<UserCommandService> _logger;
 
     /// <summary>
@@ -30,6 +31,7 @@ public sealed class UserCommandService : IUserCommandService
     /// <param name="updateValidator">The user update validator.</param>
     /// <param name="updateStatusValidator">The user status update validator.</param>
     /// <param name="resetPasswordValidator">The reset password validator.</param>
+    /// <param name="deleteValidator">The delete user validator.</param>
     /// <param name="logger">The logger.</param>
     public UserCommandService(
         VeteranLogisticsDbContext dbContext,
@@ -38,6 +40,7 @@ public sealed class UserCommandService : IUserCommandService
         IUpdateUserValidator updateValidator,
         IUpdateUserStatusValidator updateStatusValidator,
         IResetPasswordValidator resetPasswordValidator,
+        IDeleteUserValidator deleteValidator,
         ILogger<UserCommandService> logger)
     {
         _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
@@ -46,6 +49,7 @@ public sealed class UserCommandService : IUserCommandService
         _updateValidator = updateValidator ?? throw new ArgumentNullException(nameof(updateValidator));
         _updateStatusValidator = updateStatusValidator ?? throw new ArgumentNullException(nameof(updateStatusValidator));
         _resetPasswordValidator = resetPasswordValidator ?? throw new ArgumentNullException(nameof(resetPasswordValidator));
+        _deleteValidator = deleteValidator ?? throw new ArgumentNullException(nameof(deleteValidator));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
@@ -201,6 +205,41 @@ public sealed class UserCommandService : IUserCommandService
         {
             _logger.LogError(ex, "An unexpected error occurred while resetting password for user '{UserId}'", request.UserId);
             return ResetPasswordResult.Failure("An unexpected error occurred while resetting the password.");
+        }
+    }
+
+    /// <inheritdoc />
+    public async Task<DeleteUserResult> DeleteUserAsync(DeleteUserRequest request, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var validationResult = _deleteValidator.Validate(request);
+            if (!validationResult.IsValid)
+            {
+                var errorMessage = string.Join("; ", validationResult.Errors.Select(e => e.ErrorMessage));
+                return DeleteUserResult.Failure(errorMessage);
+            }
+
+            var user = await _dbContext.Users
+                .FirstOrDefaultAsync(u => u.Id == request.UserId, cancellationToken)
+                .ConfigureAwait(false);
+
+            if (user is null)
+            {
+                return DeleteUserResult.Failure("User not found.");
+            }
+
+            user.IsDeleted = true;
+            user.DeletedOn = DateTime.UtcNow;
+
+            await _dbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+
+            return DeleteUserResult.Success();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An unexpected error occurred while deleting user '{UserId}'", request.UserId);
+            return DeleteUserResult.Failure("An unexpected error occurred while deleting the user.");
         }
     }
 }

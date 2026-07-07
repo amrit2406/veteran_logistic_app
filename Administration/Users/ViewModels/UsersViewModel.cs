@@ -2,6 +2,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Threading;
+using System.Windows;
 using veteran_logistic.Administration.Users.Contracts;
 using veteran_logistic.Administration.Users.Models;
 using veteran_logistic.MVVM;
@@ -84,6 +85,7 @@ public sealed partial class UsersViewModel : ViewModelBase
                 ActivateUserCommand.NotifyCanExecuteChanged();
                 DeactivateUserCommand.NotifyCanExecuteChanged();
                 ResetPasswordCommand.NotifyCanExecuteChanged();
+                DeleteUserCommand.NotifyCanExecuteChanged();
             }
         }
     }
@@ -225,6 +227,51 @@ public sealed partial class UsersViewModel : ViewModelBase
         SelectedUser = null;
         ActivateUserCommand.NotifyCanExecuteChanged();
         DeactivateUserCommand.NotifyCanExecuteChanged();
+    }
+
+    /// <summary>
+    /// Command to delete the selected user.
+    /// </summary>
+    [RelayCommand(CanExecute = nameof(CanExecuteUserCommand))]
+    private async Task DeleteUserAsync()
+    {
+        if (SelectedUser is null)
+        {
+            return;
+        }
+
+        ValidationError = string.Empty;
+
+        var messageBoxResult = MessageBox.Show(
+            "Are you sure you want to delete this user?\n\nThis action hides the user from the application.",
+            "Delete User",
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Question);
+
+        if (messageBoxResult != MessageBoxResult.Yes)
+        {
+            return;
+        }
+
+        var request = new DeleteUserRequest
+        {
+            UserId = SelectedUser.Id
+        };
+
+        SetBusy("Deleting user...");
+        var result = await _userCommandService.DeleteUserAsync(request, CancellationToken.None);
+        ClearBusy();
+
+        if (result.IsSuccess)
+        {
+            await LoadUsersAsync();
+            SelectedUser = null;
+            DeleteUserCommand.NotifyCanExecuteChanged();
+        }
+        else
+        {
+            ValidationError = result.ErrorMessage ?? "Failed to delete user.";
+        }
     }
 
     private bool CanExecuteUserCommand()

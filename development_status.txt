@@ -675,6 +675,35 @@ This document records the implementation work completed across the repository an
   * Delete User service method, Delete User models, Delete User validators, Delete User command, Delete User button, Delete User dialog, Delete User navigation, Restore User, Permanent Delete, Bulk Delete, Recycle Bin, Deleted User Listing, Admin Restore, Any UI, Any ViewModel, Any Command, Any Navigation, Authentication changes, Authorization changes, Password hashing changes, Session Management changes, MVVM changes, Validation changes, Services unrelated to User queries.
 * **Validation Status**: Build verified successfully with no errors. Soft-delete infrastructure in place. Database schema ready (migration created). Global query filter configured. All existing queries automatically protected. No conflicts with existing functionality. Clean separation of concerns. Enterprise-grade implementation. No Delete User functionality implemented. No UI added. All previous phases remain unchanged. Application is now ready for Phase 2.8 (Delete User).
 
+### Phase 2.8: Delete User (Soft Delete)
+* **Goal**: Implement enterprise-grade Delete User functionality using the Soft Delete infrastructure introduced in Phase 2.7. Deleting a user MUST perform a soft delete. The record must remain in the database. The user must automatically disappear from the application because of the existing EF Core Global Query Filter.
+* **Included**:
+  * **Created** `Administration/Users/Models/DeleteUserRequest.cs`: Request model with UserId property.
+  * **Created** `Administration/Users/Models/DeleteUserResult.cs`: Result model with IsSuccess and ErrorMessage properties. Factory methods: Success() and Failure(string message).
+  * **Created** `Administration/Users/Contracts/IDeleteUserValidator.cs`: Validator interface using existing ValidationResult infrastructure.
+  * **Created** `Administration/Users/Validators/DeleteUserValidator.cs`: Validates request not null and UserId is positive. No DbContext, no business logic, no logging.
+  * **Modified** `Administration/Users/Contracts/IUserCommandService.cs`: Added DeleteUserAsync method signature.
+  * **Modified** `Administration/Users/Services/UserCommandService.cs`: Injected IDeleteUserValidator. Implemented DeleteUserAsync method that reuses existing DbContext, logging, and ValidationResult patterns. Performs soft delete by setting user.IsDeleted = true and user.DeletedOn = DateTime.UtcNow. No other user properties modified.
+  * **Modified** `Administration/Users/ViewModels/UsersViewModel.cs`: Added System.Windows import for MessageBox. Added DeleteUserCommand.NotifyCanExecuteChanged() to SelectedUser setter. Added DeleteUserAsync command with confirmation dialog. Command requires SelectedUser. Shows confirmation dialog before deleting. Reloads Users list on success. Clears SelectedUser on success. Displays validation errors on failure.
+  * **Modified** `Administration/Users/Views/UsersView.xaml`: Added Delete User button beside Deactivate button. Uses existing Design System resources (IconButtonStyle, CaptionTextBlockStyle). No icons, no emojis, no inline styling.
+  * **Modified** `Administration/DependencyInjection/AdministrationServiceCollectionExtensions.cs`: Registered IDeleteUserValidator as scoped service.
+* **Delete Workflow**:
+  1. User selects a user in the Users grid
+  2. User clicks Delete User button
+  3. MessageBox confirmation dialog appears: "Delete User - Are you sure you want to delete this user? This action hides the user from the application."
+  4. If user confirms, DeleteUserCommand executes
+  5. DeleteUserRequest is created with UserId
+  6. IDeleteUserValidator validates the request
+  7. UserCommandService.DeleteUserAsync locates the user
+  8. If user not found, returns failure
+  9. If user found, performs soft delete: Sets user.IsDeleted = true, Sets user.DeletedOn = DateTime.UtcNow
+  10. SaveChangesAsync() commits changes
+  11. Users list is reloaded
+  12. User disappears from grid automatically due to Global Query Filter
+* **Explicitly Excluded**:
+  * Permanent Delete, Physical DELETE statement, Restore User, Deleted Users screen, Recycle Bin, Bulk Delete, Audit History, Delete Reason, Delete Notes, Delete Permissions, Authentication changes, Authorization changes, Navigation redesign, Database schema changes, Migration, IgnoreQueryFilters(), Username modification, DisplayName modification, PasswordHash modification, PasswordSalt modification, Role modification, IsActive modification, CreatedOn modification, ModifiedOn modification.
+* **Validation Status**: Build verified successfully with no errors. Only IsDeleted and DeletedOn are modified during delete operation. User is NOT physically deleted. User disappears because of existing Global Query Filter. Authentication automatically blocks deleted users. No database schema changes were made. No authentication or authorization functionality was modified. No Restore User or Permanent Delete functionality introduced. Phase 2.8 is production-ready and ready to be frozen.
+
 ## 3. Architecture & Design
 
 ### Dependency Injection and Composition

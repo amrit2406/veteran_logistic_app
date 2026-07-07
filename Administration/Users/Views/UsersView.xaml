@@ -109,6 +109,19 @@
                                    VerticalAlignment="Center" />
                     </Button>
 
+                    <!-- Delete User Button -->
+                    <Button Height="{StaticResource StandardControlHeight}"
+                            Command="{Binding DeleteUserCommand}"
+                            Style="{StaticResource IconButtonStyle}"
+                            ToolTip="Delete User"
+                            VerticalAlignment="Center"
+                            Margin="{StaticResource Small}">
+                        <TextBlock Text="Delete User"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Button>
+
                     <!-- Refresh Button -->
                     <Button Height="{StaticResource StandardControlHeight}"
                             Command="{Binding RefreshCommand}"
