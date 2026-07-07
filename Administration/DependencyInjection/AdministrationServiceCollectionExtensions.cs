@@ -3,6 +3,9 @@ using veteran_logistic.Administration.Users.Contracts;
 using veteran_logistic.Administration.Users.Services;
 using veteran_logistic.Administration.Users.Validators;
 using veteran_logistic.Administration.Users.ViewModels;
+using veteran_logistic.Administration.Roles.Contracts;
+using veteran_logistic.Administration.Roles.Services;
+using veteran_logistic.Administration.Roles.ViewModels;
 
 namespace veteran_logistic.Administration.DependencyInjection;
 
@@ -31,6 +34,9 @@ public static class AdministrationServiceCollectionExtensions
         services.AddTransient<AddUserViewModel>();
         services.AddTransient<EditUserViewModel>();
         services.AddTransient<ResetPasswordViewModel>();
+
+        services.AddScoped<IRoleQueryService, RoleQueryService>();
+        services.AddTransient<RolesViewModel>();
 
         return services;
     }

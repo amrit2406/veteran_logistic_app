@@ -361,3 +361,5 @@ d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Administration\Users\Views
 d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Administration\Users\Views\EditUserView.g.cs
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Administration\Users\Views\ResetPasswordView.baml
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Administration\Users\Views\ResetPasswordView.g.cs
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Administration\Roles\Views\RolesView.baml
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Administration\Roles\Views\RolesView.g.cs

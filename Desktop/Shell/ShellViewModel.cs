@@ -46,6 +46,11 @@ public sealed class ShellViewModel : ObservableObject
     /// </summary>
     public IAsyncRelayCommand NavigateToUsersCommand { get; }
 
+    /// <summary>
+    /// Command to navigate to the Roles screen.
+    /// </summary>
+    public IAsyncRelayCommand NavigateToRolesCommand { get; }
+
     public ShellViewModel(INavigationService navigationService, ILogoutService logoutService)
     {
         if (navigationService is null) throw new ArgumentNullException(nameof(navigationService));
@@ -54,6 +59,7 @@ public sealed class ShellViewModel : ObservableObject
         _logoutService = logoutService;
         LogoutCommand = new AsyncRelayCommand(ExecuteLogoutAsync);
         NavigateToUsersCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Administration.Users.ViewModels.UsersViewModel>());
+        NavigateToRolesCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Administration.Roles.ViewModels.RolesViewModel>());
         navigationService.CurrentViewModelChanged += OnCurrentViewModelChanged;
         _currentViewModel = ResolveShellContent(navigationService.CurrentViewModel) ?? _placeholder;
     }

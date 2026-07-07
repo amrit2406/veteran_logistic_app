@@ -704,6 +704,28 @@ This document records the implementation work completed across the repository an
   * Permanent Delete, Physical DELETE statement, Restore User, Deleted Users screen, Recycle Bin, Bulk Delete, Audit History, Delete Reason, Delete Notes, Delete Permissions, Authentication changes, Authorization changes, Navigation redesign, Database schema changes, Migration, IgnoreQueryFilters(), Username modification, DisplayName modification, PasswordHash modification, PasswordSalt modification, Role modification, IsActive modification, CreatedOn modification, ModifiedOn modification.
 * **Validation Status**: Build verified successfully with no errors. Only IsDeleted and DeletedOn are modified during delete operation. User is NOT physically deleted. User disappears because of existing Global Query Filter. Authentication automatically blocks deleted users. No database schema changes were made. No authentication or authorization functionality was modified. No Restore User or Permanent Delete functionality introduced. Phase 2.8 is production-ready and ready to be frozen.
 
+### Phase 2.9.1: Administration → Role Management Foundation & Role Listing
+* **Goal**: Implement the foundation of the Role Management module together with the initial Role Listing screen. Create the complete database and domain foundation before implementing CRUD operations. This phase establishes the infrastructure for future Role Management features.
+* **Included**:
+  * **Created** `VeteranLogistics.Data/Entities/Administration/Role.cs`: Role entity with properties: Id, Name, Description, IsActive, IsSystemRole, CreatedOn, ModifiedOn, IsDeleted, DeletedOn. Inherits from BaseEntity. Name is required and unique. Description is optional. IsActive defaults to true. IsSystemRole defaults to false. IsDeleted defaults to false.
+  * **Created** `VeteranLogistics.Data/Configurations/RoleConfiguration.cs`: Fluent API configuration implementing IEntityTypeConfiguration<Role>. Configures Name as required with max length 100 and unique index. Configures Description as optional with max length 500. Configures global query filter: builder.HasQueryFilter(role => !role.IsDeleted). Automatically applies to all Role queries through EF Core.
+  * **Created** `Migrations/20260707XXXXXX_AddRoleTable.cs`: EF Core migration that adds Roles table with all required columns. No other schema changes.
+  * **Modified** `VeteranLogistics.Data/Context/VeteranLogisticsDbContext.cs`: Added Roles DbSet property.
+  * **Created** `Administration/Roles/Models/RoleListItem.cs`: Read-only model for displaying roles in the grid with properties: Id, Name, Description, IsActive, IsSystemRole, CreatedOn.
+  * **Created** `Administration/Roles/Models/RoleSearchModel.cs`: Placeholder model for future search functionality with SearchTerm property.
+  * **Created** `Administration/Roles/Contracts/IRoleQueryService.cs`: Service contract for querying role data with GetAllRolesAsync method. API designed so search can be added later without breaking consumers.
+  * **Created** `Administration/Roles/Services/RoleQueryService.cs`: Implementation of IRoleQueryService using EF Core with AsNoTracking(), projecting entities into RoleListItem, ordered by Name. Registered as Scoped.
+  * **Created** `Administration/Roles/ViewModels/RolesViewModel.cs`: ViewModel with ObservableCollection<RoleListItem>, SelectedRole, RefreshCommand. Loads roles on initialization and navigation. Uses existing navigation lifecycle (InitializeAsync, OnNavigatedToAsync). No Add/Edit/Delete commands.
+  * **Created** `Administration/Roles/Views/RolesView.xaml`: Read-only DataGrid view with page title, search textbox (disabled placeholder), Add Role button (disabled placeholder), Refresh button (functional), loading indicator, empty state. DataGrid displays: Name, Description, Active, System Role, Created Date. Grid is read-only with no action buttons. Layout matches Users module exactly.
+  * **Created** `Administration/Roles/Views/RolesView.xaml.cs`: Code-behind for RolesView with standard UserControl initialization.
+  * **Modified** `Administration/DependencyInjection/AdministrationServiceCollectionExtensions.cs`: Added DI registrations for IRoleQueryService (Scoped) and RolesViewModel (Transient).
+  * **Modified** `Resources/DataTemplates.xaml`: Added namespace declarations for Administration.Roles.ViewModels and Administration.Roles.Views. Added DataTemplate mapping for RolesViewModel to RolesView.
+  * **Modified** `Desktop/Shell/ShellViewModel.cs`: Added NavigateToRolesCommand property (IAsyncRelayCommand). Command navigates to RolesViewModel using INavigationService.
+  * **Modified** `Desktop/Shell/ShellView.xaml`: Added Roles menu item under Administration menu with Command binding to NavigateToRolesCommand.
+* **Explicitly Excluded**:
+  * Add Role, Edit Role, Delete Role, Activate/Deactivate Role, Permission Assignment, Search functionality, Role CRUD operations, Role Assignment, Permission Matrix, Repository Pattern, MediatR, CQRS, Business logic inside Views, DbContext inside ViewModels.
+* **Validation Status**: Build verified successfully with no errors. Roles table exists in SQL Server (migration created). EF Core migration executes successfully. Global Query Filter excludes soft-deleted roles. Roles page opens from Administration menu. Roles load from database. Loading indicator works correctly. Empty state displays when no roles exist. Query/Command separation maintained. No business logic in Views. No DbContext in ViewModels. Existing architecture fully reused. Implementation matches Users module quality and architecture. Phase 2.9.1 is production-ready and ready to be frozen.
+
 ## 3. Architecture & Design
 
 ### Dependency Injection and Composition

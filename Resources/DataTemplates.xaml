@@ -7,7 +7,9 @@
                     xmlns:fyVm="clr-namespace:veteran_logistic.FinancialYear.ViewModels"
                     xmlns:fyViews="clr-namespace:veteran_logistic.FinancialYear.Views"
                     xmlns:adminUsersVm="clr-namespace:veteran_logistic.Administration.Users.ViewModels"
-                    xmlns:adminUsersViews="clr-namespace:veteran_logistic.Administration.Users.Views">
+                    xmlns:adminUsersViews="clr-namespace:veteran_logistic.Administration.Users.Views"
+                    xmlns:adminRolesVm="clr-namespace:veteran_logistic.Administration.Roles.ViewModels"
+                    xmlns:adminRolesViews="clr-namespace:veteran_logistic.Administration.Roles.Views">
   <DataTemplate DataType="{x:Type vm:ShellViewModel}">
     <views:ShellView />
   </DataTemplate>
@@ -34,6 +36,10 @@
 
   <DataTemplate DataType="{x:Type adminUsersVm:ResetPasswordViewModel}">
     <adminUsersViews:ResetPasswordView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type adminRolesVm:RolesViewModel}">
+    <adminRolesViews:RolesView />
   </DataTemplate>
 
   <DataTemplate DataType="{x:Type vm:PlaceholderViewModel}">
