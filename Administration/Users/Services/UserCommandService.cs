@@ -17,6 +17,7 @@ public sealed class UserCommandService : IUserCommandService
     private readonly IPasswordHasher _passwordHasher;
     private readonly ICreateUserValidator _createValidator;
     private readonly IUpdateUserValidator _updateValidator;
+    private readonly IUpdateUserStatusValidator _updateStatusValidator;
     private readonly ILogger<UserCommandService> _logger;
 
     /// <summary>
@@ -26,18 +27,21 @@ public sealed class UserCommandService : IUserCommandService
     /// <param name="passwordHasher">The password hasher.</param>
     /// <param name="createValidator">The user creation validator.</param>
     /// <param name="updateValidator">The user update validator.</param>
+    /// <param name="updateStatusValidator">The user status update validator.</param>
     /// <param name="logger">The logger.</param>
     public UserCommandService(
         VeteranLogisticsDbContext dbContext,
         IPasswordHasher passwordHasher,
         ICreateUserValidator createValidator,
         IUpdateUserValidator updateValidator,
+        IUpdateUserStatusValidator updateStatusValidator,
         ILogger<UserCommandService> logger)
     {
         _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         _passwordHasher = passwordHasher ?? throw new ArgumentNullException(nameof(passwordHasher));
         _createValidator = createValidator ?? throw new ArgumentNullException(nameof(createValidator));
         _updateValidator = updateValidator ?? throw new ArgumentNullException(nameof(updateValidator));
+        _updateStatusValidator = updateStatusValidator ?? throw new ArgumentNullException(nameof(updateStatusValidator));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
@@ -121,6 +125,41 @@ public sealed class UserCommandService : IUserCommandService
         {
             _logger.LogError(ex, "An unexpected error occurred while updating user '{UserId}'", request.UserId);
             return UpdateUserResult.Failure("An unexpected error occurred while updating the user.");
+        }
+    }
+
+    /// <inheritdoc />
+    public async Task<UpdateUserStatusResult> UpdateUserStatusAsync(UpdateUserStatusRequest request, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var user = await _dbContext.Users
+                .FirstOrDefaultAsync(u => u.Id == request.UserId, cancellationToken)
+                .ConfigureAwait(false);
+
+            if (user is null)
+            {
+                return UpdateUserStatusResult.Failure("User not found.");
+            }
+
+            var validationResult = _updateStatusValidator.Validate(request, user.IsActive);
+            if (!validationResult.IsValid)
+            {
+                var errorMessage = string.Join("; ", validationResult.Errors.Select(e => e.ErrorMessage));
+                return UpdateUserStatusResult.Failure(errorMessage);
+            }
+
+            // Update the status on the tracked entity
+            user.IsActive = request.IsActive;
+
+            await _dbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+
+            return UpdateUserStatusResult.Success();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An unexpected error occurred while updating user status '{UserId}'", request.UserId);
+            return UpdateUserStatusResult.Failure("An unexpected error occurred while updating the user status.");
         }
     }
 }

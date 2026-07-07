@@ -22,4 +22,12 @@ public interface IUserCommandService
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>A result indicating success or failure.</returns>
     Task<UpdateUserResult> UpdateUserAsync(UpdateUserRequest request, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Updates a user's active status.
+    /// </summary>
+    /// <param name="request">The user status update request.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A result indicating success or failure.</returns>
+    Task<UpdateUserStatusResult> UpdateUserStatusAsync(UpdateUserStatusRequest request, CancellationToken cancellationToken = default);
 }

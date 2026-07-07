@@ -24,6 +24,7 @@ public static class AdministrationServiceCollectionExtensions
         services.AddScoped<IUserCommandService, UserCommandService>();
         services.AddScoped<ICreateUserValidator, CreateUserValidator>();
         services.AddScoped<IUpdateUserValidator, UpdateUserValidator>();
+        services.AddScoped<IUpdateUserStatusValidator, UpdateUserStatusValidator>();
         services.AddTransient<UsersViewModel>();
         services.AddTransient<AddUserViewModel>();
         services.AddTransient<EditUserViewModel>();

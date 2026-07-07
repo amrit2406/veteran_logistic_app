@@ -490,7 +490,39 @@ This document records the implementation work completed across the repository an
   * EditUserViewModel still loads data through IUserQueryService - no changes to data loading logic.
 * **Explicitly Excluded**:
   * Navigation architecture redesign, authentication changes, authorization redesign, Phase 2.5 functionality, database schema changes, new CRUD operations, UI changes, Shell redesign.
-* **Validation Status**: Build verified successfully with no errors. No UI changes. No breaking changes. Fully backward compatible. Phase 2 (Administration → Users) is now COMPLETE and FROZEN.
+* **Validation Status**: Build verified successfully with no errors. No UI changes. No breaking changes. Fully backward compatible.
+
+### Phase 2.5: Administration → Users → Activate/Deactivate User
+* **Goal**: Implement the ability for an administrator to activate or deactivate an existing user. This is a business operation, not a delete operation. Inactive users remain in the database.
+* **Included**:
+  * **Created** `Administration/Users/Models/UpdateUserStatusRequest.cs`: Request model for user status updates containing UserId and IsActive properties.
+  * **Created** `Administration/Users/Models/UpdateUserStatusResult.cs`: Result model for user status update operations with IsSuccess and ErrorMessage properties, plus static factory methods for Success() and Failure(errorMessage).
+  * **Created** `Administration/Users/Contracts/IUpdateUserStatusValidator.cs`: Interface for validating user status update requests. Validates that user exists and requested state differs from current state.
+  * **Created** `Administration/Users/Validators/UpdateUserStatusValidator.cs`: Implementation that validates request and current state to prevent redundant operations. Returns appropriate error messages for already-active or already-inactive scenarios.
+  * **Modified** `Administration/Users/Contracts/IUserCommandService.cs`: Added UpdateUserStatusAsync method signature taking UpdateUserStatusRequest and CancellationToken, returning UpdateUserStatusResult.
+  * **Modified** `Administration/Users/Services/UserCommandService.cs`: Added IUpdateUserStatusValidator dependency injection. Implemented UpdateUserStatusAsync method that validates user existence and state before update. Updates only the IsActive field. No other fields are modified. Logs only unexpected failures.
+  * **Modified** `Administration/Users/ViewModels/UsersViewModel.cs`: Added IUserCommandService dependency injection. Added ValidationError property for displaying validation errors. Added ActivateUserCommand and DeactivateUserCommand with CanExecute guards. Added CanExecuteUserCommand method to enable/disable buttons based on selection. Commands reload the grid after success and clear selection. Removed unused using statement.
+  * **Modified** `Administration/Users/Views/UsersView.xaml`: Added new Grid row for validation error display. Added Activate and Deactivate buttons in toolbar. Added validation error border using StringToVisibilityConverter. Buttons use existing Design System resources.
+  * **Modified** `Administration/DependencyInjection/AdministrationServiceCollectionExtensions.cs`: Added IUpdateUserStatusValidator registration as Scoped.
+* **Business Rules**:
+  * **User Existence**: User must exist in the database.
+  * **State Change**: Requested state must differ from current state (cannot activate an already-active user, cannot deactivate an already-inactive user).
+  * **Field Restrictions**: Only IsActive is updated. Username, Password, Role, CreatedDate, CreatedBy, and SecurityStamp never change.
+* **Architecture Improvements**:
+  * **Separation of Concerns**: Validation logic separated into dedicated validator. Service layer handles business logic and persistence. ViewModel handles UI state and user interaction.
+  * **Reusability**: Reuses existing User entity (no schema changes). Reuses existing DbContext. Reuses existing ValidationResult infrastructure. Reuses existing Design System resources.
+  * **Consistency**: Follows patterns established in Phase 2.3 (Create User) and Phase 2.4 (Edit User). Same validation approach, result pattern, command pattern, and error display mechanism.
+  * **Extensibility**: IUpdateUserStatusValidator can be extended for additional validation rules. Command pattern allows easy addition of bulk operations in future.
+* **Performance**:
+  * **Database Operations**: Two queries per status update (one for validation with AsNoTracking, one for update). Single SaveChangesAsync call. No N+1 query issues.
+  * **UI Performance**: Grid reload only after successful operation. Debounced search unchanged. CanExecute notifications on selection change only.
+  * **Threading Fix**: Removed ConfigureAwait(false) from UI async calls; now UI updates resume on Dispatcher thread, preventing NotSupportedException crashes on Activate/Deactivate.
+  * **Memory**: No memory leaks (CancellationTokenSource properly disposed). No unnecessary object retention.
+#### Post‑Fix Confirmation
+ok
+* **Explicitly Excluded**:
+  * Delete User, Reset Password, Lock User, Unlock User, Password Expiry, Audit History, Soft Delete, Bulk Activate, Bulk Deactivate, Role Management, Permission Management, Authentication changes, Authorization changes, Remember Me changes, database schema changes, migrations.
+* **Validation Status**: Build verified successfully with no errors. Only IsActive is modified (confirmed in service implementation). Username, Password, Role, CreatedDate, CreatedBy, and SecurityStamp never change. No authentication logic changed. No authorization logic changed. No database schema changes. No migrations required. Code is production-ready. Phase 2 (Administration → Users) is now COMPLETE and FROZEN.
 
 ## 3. Architecture & Design
 
@@ -600,19 +632,25 @@ This document records the implementation work completed across the repository an
 * `Authorization/DependencyInjection/AuthorizationServiceCollectionExtensions.cs` (Phase 1.8, Phase 1.9)
 
 ### Administration
-* `Administration/DependencyInjection/AdministrationServiceCollectionExtensions.cs` (Phase 2.1 - Refactored, Phase 2.2)
-* `Administration/Users/Contracts/IUserCommandService.cs` (Phase 2.3)
+* `Administration/DependencyInjection/AdministrationServiceCollectionExtensions.cs` (Phase 2.1 - Refactored, Phase 2.2, Phase 2.5)
+* `Administration/Users/Contracts/IUserCommandService.cs` (Phase 2.3, Phase 2.5)
 * `Administration/Users/Contracts/IUserQueryService.cs` (Phase 2.2, Phase 2.4A)
+* `Administration/Users/Contracts/IUpdateUserValidator.cs` (Phase 2.3)
+* `Administration/Users/Contracts/IUpdateUserStatusValidator.cs` (Phase 2.5)
 * `Administration/Users/Models/CreateUserRequest.cs` (Phase 2.3)
 * `Administration/Users/Models/UpdateUserRequest.cs` (Phase 2.3)
+* `Administration/Users/Models/UpdateUserStatusRequest.cs` (Phase 2.5)
 * `Administration/Users/Models/UserListItem.cs` (Phase 2.2)
 * `Administration/Users/Models/EditUserModel.cs` (Phase 2.4A)
-* `Administration/Users/Services/UserCommandService.cs` (Phase 2.3)
+* `Administration/Users/Services/UserCommandService.cs` (Phase 2.3, Phase 2.5)
 * `Administration/Users/Services/UserQueryService.cs` (Phase 2.2, Phase 2.4A)
-* `Administration/Users/ViewModels/UsersViewModel.cs` (Phase 2.2, Phase 2.4A)
+* `Administration/Users/Validators/CreateUserValidator.cs` (Phase 2.3A)
+* `Administration/Users/Validators/UpdateUserValidator.cs` (Phase 2.3)
+* `Administration/Users/Validators/UpdateUserStatusValidator.cs` (Phase 2.5)
+* `Administration/Users/ViewModels/UsersViewModel.cs` (Phase 2.2, Phase 2.4A, Phase 2.5)
 * `Administration/Users/ViewModels/AddUserViewModel.cs` (Phase 2.3)
 * `Administration/Users/ViewModels/EditUserViewModel.cs` (Phase 2.4A, Phase 2.4B)
-* `Administration/Users/Views/UsersView.xaml` (Phase 2.2)
+* `Administration/Users/Views/UsersView.xaml` (Phase 2.2, Phase 2.5)
 * `Administration/Users/Views/UsersView.xaml.cs` (Phase 2.2)
 * `Administration/Users/Views/AddUserView.xaml` (Phase 2.3)
 * `Administration/Users/Views/AddUserView.xaml.cs` (Phase 2.3)

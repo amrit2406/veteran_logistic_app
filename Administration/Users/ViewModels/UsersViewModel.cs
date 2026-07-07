@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Threading;
 using veteran_logistic.Administration.Users.Contracts;
 using veteran_logistic.Administration.Users.Models;
-using veteran_logistic.Administration.Users.ViewModels;
 using veteran_logistic.MVVM;
 using veteran_logistic.Navigation;
 
@@ -16,19 +15,23 @@ namespace veteran_logistic.Administration.Users.ViewModels;
 public sealed partial class UsersViewModel : ViewModelBase
 {
     private readonly IUserQueryService _userQueryService;
+    private readonly IUserCommandService _userCommandService;
     private readonly INavigationService _navigationService;
     private string _searchText = string.Empty;
     private UserListItem? _selectedUser;
+    private string _validationError = string.Empty;
     private CancellationTokenSource? _searchCancellationTokenSource;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="UsersViewModel"/> class.
     /// </summary>
     /// <param name="userQueryService">The user query service.</param>
+    /// <param name="userCommandService">The user command service.</param>
     /// <param name="navigationService">The navigation service.</param>
-    public UsersViewModel(IUserQueryService userQueryService, INavigationService navigationService)
+    public UsersViewModel(IUserQueryService userQueryService, IUserCommandService userCommandService, INavigationService navigationService)
     {
         _userQueryService = userQueryService ?? throw new ArgumentNullException(nameof(userQueryService));
+        _userCommandService = userCommandService ?? throw new ArgumentNullException(nameof(userCommandService));
         _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
     }
 
@@ -69,7 +72,23 @@ public sealed partial class UsersViewModel : ViewModelBase
     public UserListItem? SelectedUser
     {
         get => _selectedUser;
-        set => SetProperty(ref _selectedUser, value);
+        set
+        {
+            if (SetProperty(ref _selectedUser, value))
+            {
+                ActivateUserCommand.NotifyCanExecuteChanged();
+                DeactivateUserCommand.NotifyCanExecuteChanged();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Gets or sets the validation error message.
+    /// </summary>
+    public string ValidationError
+    {
+        get => _validationError;
+        set => SetProperty(ref _validationError, value);
     }
 
     /// <summary>
@@ -107,6 +126,85 @@ public sealed partial class UsersViewModel : ViewModelBase
         };
 
         await _navigationService.NavigateAsync<EditUserViewModel>(parameter).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// Command to activate the selected user.
+    /// </summary>
+    [RelayCommand(CanExecute = nameof(CanExecuteUserCommand))]
+    private async Task ActivateUserAsync()
+    {
+        if (SelectedUser is null)
+        {
+            return;
+        }
+
+        ValidationError = string.Empty;
+
+        var request = new UpdateUserStatusRequest
+        {
+            UserId = SelectedUser.Id,
+            IsActive = true
+        };
+
+        SetBusy("Activating user...");
+        var result = await _userCommandService.UpdateUserStatusAsync(request, CancellationToken.None);
+        ClearBusy();
+
+        if (result.IsSuccess)
+        {
+            await HandleUserStatusUpdateSuccess();
+        }
+        else
+        {
+            ValidationError = result.ErrorMessage ?? "Failed to activate user.";
+        }
+    }
+
+    /// <summary>
+    /// Command to deactivate the selected user.
+    /// </summary>
+    [RelayCommand(CanExecute = nameof(CanExecuteUserCommand))]
+    private async Task DeactivateUserAsync()
+    {
+        if (SelectedUser is null)
+        {
+            return;
+        }
+
+        ValidationError = string.Empty;
+
+        var request = new UpdateUserStatusRequest
+        {
+            UserId = SelectedUser.Id,
+            IsActive = false
+        };
+
+        SetBusy("Deactivating user...");
+        var result = await _userCommandService.UpdateUserStatusAsync(request, CancellationToken.None);
+        ClearBusy();
+
+        if (result.IsSuccess)
+        {
+            await HandleUserStatusUpdateSuccess();
+        }
+        else
+        {
+            ValidationError = result.ErrorMessage ?? "Failed to deactivate user.";
+        }
+    }
+
+    private async Task HandleUserStatusUpdateSuccess()
+    {
+        await LoadUsersAsync();
+        SelectedUser = null;
+        ActivateUserCommand.NotifyCanExecuteChanged();
+        DeactivateUserCommand.NotifyCanExecuteChanged();
+    }
+
+    private bool CanExecuteUserCommand()
+    {
+        return SelectedUser is not null;
     }
 
     /// <summary>
@@ -165,6 +263,21 @@ public sealed partial class UsersViewModel : ViewModelBase
     }
 
     private void UpdateUsers(IEnumerable<UserListItem> users)
+    {
+        var dispatcher = System.Windows.Application.Current?.Dispatcher;
+        if (dispatcher == null || dispatcher.CheckAccess())
+        {
+            // Already on UI thread or no dispatcher (fallback)
+            UpdateUsersInternal(users);
+        }
+        else
+        {
+            // Marshal to UI thread
+            dispatcher.Invoke(() => UpdateUsersInternal(users));
+        }
+    }
+
+    private void UpdateUsersInternal(IEnumerable<UserListItem> users)
     {
         Users.Clear();
         foreach (var user in users)
