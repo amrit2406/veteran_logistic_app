@@ -25,9 +25,11 @@ public static class AdministrationServiceCollectionExtensions
         services.AddScoped<ICreateUserValidator, CreateUserValidator>();
         services.AddScoped<IUpdateUserValidator, UpdateUserValidator>();
         services.AddScoped<IUpdateUserStatusValidator, UpdateUserStatusValidator>();
+        services.AddScoped<IResetPasswordValidator, ResetPasswordValidator>();
         services.AddTransient<UsersViewModel>();
         services.AddTransient<AddUserViewModel>();
         services.AddTransient<EditUserViewModel>();
+        services.AddTransient<ResetPasswordViewModel>();
 
         return services;
     }

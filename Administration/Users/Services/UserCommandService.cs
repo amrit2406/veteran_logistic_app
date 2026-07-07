@@ -18,6 +18,7 @@ public sealed class UserCommandService : IUserCommandService
     private readonly ICreateUserValidator _createValidator;
     private readonly IUpdateUserValidator _updateValidator;
     private readonly IUpdateUserStatusValidator _updateStatusValidator;
+    private readonly IResetPasswordValidator _resetPasswordValidator;
     private readonly ILogger<UserCommandService> _logger;
 
     /// <summary>
@@ -28,6 +29,7 @@ public sealed class UserCommandService : IUserCommandService
     /// <param name="createValidator">The user creation validator.</param>
     /// <param name="updateValidator">The user update validator.</param>
     /// <param name="updateStatusValidator">The user status update validator.</param>
+    /// <param name="resetPasswordValidator">The reset password validator.</param>
     /// <param name="logger">The logger.</param>
     public UserCommandService(
         VeteranLogisticsDbContext dbContext,
@@ -35,6 +37,7 @@ public sealed class UserCommandService : IUserCommandService
         ICreateUserValidator createValidator,
         IUpdateUserValidator updateValidator,
         IUpdateUserStatusValidator updateStatusValidator,
+        IResetPasswordValidator resetPasswordValidator,
         ILogger<UserCommandService> logger)
     {
         _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
@@ -42,6 +45,7 @@ public sealed class UserCommandService : IUserCommandService
         _createValidator = createValidator ?? throw new ArgumentNullException(nameof(createValidator));
         _updateValidator = updateValidator ?? throw new ArgumentNullException(nameof(updateValidator));
         _updateStatusValidator = updateStatusValidator ?? throw new ArgumentNullException(nameof(updateStatusValidator));
+        _resetPasswordValidator = resetPasswordValidator ?? throw new ArgumentNullException(nameof(resetPasswordValidator));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
@@ -160,6 +164,43 @@ public sealed class UserCommandService : IUserCommandService
         {
             _logger.LogError(ex, "An unexpected error occurred while updating user status '{UserId}'", request.UserId);
             return UpdateUserStatusResult.Failure("An unexpected error occurred while updating the user status.");
+        }
+    }
+
+    /// <inheritdoc />
+    public async Task<ResetPasswordResult> ResetPasswordAsync(ResetPasswordRequest request, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var user = await _dbContext.Users
+                .FirstOrDefaultAsync(u => u.Id == request.UserId, cancellationToken)
+                .ConfigureAwait(false);
+
+            if (user is null)
+            {
+                return ResetPasswordResult.Failure("User not found.");
+            }
+
+            var validationResult = _resetPasswordValidator.Validate(request, userExists: true);
+            if (!validationResult.IsValid)
+            {
+                var errorMessage = string.Join("; ", validationResult.Errors.Select(e => e.ErrorMessage));
+                return ResetPasswordResult.Failure(errorMessage);
+            }
+
+            var passwordHashResult = _passwordHasher.HashPassword(request.NewPassword);
+
+            user.PasswordHash = passwordHashResult.Hash;
+            user.PasswordSalt = passwordHashResult.Salt;
+
+            await _dbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+
+            return ResetPasswordResult.Success();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An unexpected error occurred while resetting password for user '{UserId}'", request.UserId);
+            return ResetPasswordResult.Failure("An unexpected error occurred while resetting the password.");
         }
     }
 }

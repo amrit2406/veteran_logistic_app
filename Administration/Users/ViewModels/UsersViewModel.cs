@@ -46,6 +46,11 @@ public sealed partial class UsersViewModel : ViewModelBase
         await base.InitializeAsync(cancellationToken);
     }
 
+    public override async Task OnNavigatedToAsync(CancellationToken cancellationToken = default)
+    {
+        await LoadUsersAsync(cancellationToken);
+    }
+
     /// <summary>
     /// Gets the collection of users to display.
     /// </summary>
@@ -78,6 +83,7 @@ public sealed partial class UsersViewModel : ViewModelBase
             {
                 ActivateUserCommand.NotifyCanExecuteChanged();
                 DeactivateUserCommand.NotifyCanExecuteChanged();
+                ResetPasswordCommand.NotifyCanExecuteChanged();
             }
         }
     }
@@ -126,6 +132,25 @@ public sealed partial class UsersViewModel : ViewModelBase
         };
 
         await _navigationService.NavigateAsync<EditUserViewModel>(parameter).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// Command to navigate to the Reset Password screen.
+    /// </summary>
+    [RelayCommand(CanExecute = nameof(CanExecuteUserCommand))]
+    private async Task ResetPasswordAsync()
+    {
+        if (SelectedUser is null)
+        {
+            return;
+        }
+
+        var parameter = new NavigationParameter
+        {
+            ["UserId"] = SelectedUser.Id
+        };
+
+        await _navigationService.NavigateAsync<ResetPasswordViewModel>(parameter).ConfigureAwait(false);
     }
 
     /// <summary>

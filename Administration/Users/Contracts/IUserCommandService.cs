@@ -30,4 +30,12 @@ public interface IUserCommandService
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>A result indicating success or failure.</returns>
     Task<UpdateUserStatusResult> UpdateUserStatusAsync(UpdateUserStatusRequest request, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Resets a user's password.
+    /// </summary>
+    /// <param name="request">The password reset request.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A result indicating success or failure.</returns>
+    Task<ResetPasswordResult> ResetPasswordAsync(ResetPasswordRequest request, CancellationToken cancellationToken = default);
 }

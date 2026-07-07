@@ -32,6 +32,10 @@
     <adminUsersViews:EditUserView />
   </DataTemplate>
 
+  <DataTemplate DataType="{x:Type adminUsersVm:ResetPasswordViewModel}">
+    <adminUsersViews:ResetPasswordView />
+  </DataTemplate>
+
   <DataTemplate DataType="{x:Type vm:PlaceholderViewModel}">
     <Border Background="{DynamicResource BackgroundBrush}" Padding="{StaticResource ExtraLarge}">
       <Grid>

@@ -61,6 +61,12 @@ public sealed class NavigationService : INavigationService
                 await lifecycle.InitializeAsync().ConfigureAwait(false);
             }
 
+            // If the ViewModel is a ViewModelBase, call OnNavigatedToAsync()
+            if (vm is ViewModelBase lifecycle)
+            {
+                await lifecycle.OnNavigatedToAsync().ConfigureAwait(false);
+            }
+
             return NavigationResult.Success();
         }
         catch (Exception ex)
@@ -69,16 +75,29 @@ public sealed class NavigationService : INavigationService
         }
     }
 
-    public Task<bool> GoBackAsync()
+    public async Task<bool> GoBackAsync()
     {
         if (!CanGoBack)
         {
-            return Task.FromResult(false);
+            return false;
         }
 
         var previous = _history.Pop();
         _current = previous;
         CurrentViewModelChanged?.Invoke(_current);
-        return Task.FromResult(true);
+
+        // If the ViewModel is navigation-aware, call OnNavigatedTo with null parameter
+        if (_current is INavigationAware navigationAware)
+        {
+            navigationAware.OnNavigatedTo(null);
+        }
+
+        // If the ViewModel is a ViewModelBase, call OnNavigatedToAsync()
+        if (_current is ViewModelBase lifecycle)
+        {
+            await lifecycle.OnNavigatedToAsync().ConfigureAwait(false);
+        }
+
+        return true;
     }
 }

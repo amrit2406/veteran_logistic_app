@@ -68,6 +68,16 @@ public abstract class ViewModelBase : ObservableObject
     }
 
     /// <summary>
+    /// Override to perform work when the ViewModel is navigated to.
+    /// Called by NavigationService after NavigateAsync and GoBackAsync.
+    /// </summary>
+    public virtual Task OnNavigatedToAsync(
+        CancellationToken cancellationToken = default)
+    {
+        return Task.CompletedTask;
+    }
+
+    /// <summary>
     /// Set the ViewModel into a busy state with an optional message.
     /// </summary>
     /// <param name="message">Optional busy message.</param>

@@ -70,6 +70,19 @@
                                    VerticalAlignment="Center" />
                     </Button>
 
+                    <!-- Reset Password Button -->
+                    <Button Height="{StaticResource StandardControlHeight}"
+                            Command="{Binding ResetPasswordCommand}"
+                            Style="{StaticResource IconButtonStyle}"
+                            ToolTip="Reset Password"
+                            VerticalAlignment="Center"
+                            Margin="{StaticResource Small}">
+                        <TextBlock Text="Reset Password"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Button>
+
                     <!-- Activate User Button -->
                     <Button Height="{StaticResource StandardControlHeight}"
                             Command="{Binding ActivateUserCommand}"

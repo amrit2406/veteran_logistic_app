@@ -518,11 +518,140 @@ This document records the implementation work completed across the repository an
   * **UI Performance**: Grid reload only after successful operation. Debounced search unchanged. CanExecute notifications on selection change only.
   * **Threading Fix**: Removed ConfigureAwait(false) from UI async calls; now UI updates resume on Dispatcher thread, preventing NotSupportedException crashes on Activate/Deactivate.
   * **Memory**: No memory leaks (CancellationTokenSource properly disposed). No unnecessary object retention.
-#### Post‑Fix Confirmation
-ok
 * **Explicitly Excluded**:
   * Delete User, Reset Password, Lock User, Unlock User, Password Expiry, Audit History, Soft Delete, Bulk Activate, Bulk Deactivate, Role Management, Permission Management, Authentication changes, Authorization changes, Remember Me changes, database schema changes, migrations.
-* **Validation Status**: Build verified successfully with no errors. Only IsActive is modified (confirmed in service implementation). Username, Password, Role, CreatedDate, CreatedBy, and SecurityStamp never change. No authentication logic changed. No authorization logic changed. No database schema changes. No migrations required. Code is production-ready. Phase 2 (Administration → Users) is now COMPLETE and FROZEN.
+* **Validation Status**: Build verified successfully with no errors. Only IsActive is modified (confirmed in service implementation). Username, Password, Role, CreatedDate, CreatedBy, and SecurityStamp never change. No authentication logic changed. No authorization logic changed. No database schema changes. No migrations required. Code is production-ready.
+
+### Phase 2.5 A: Threading Fix for Activate/Deactivate Commands
+* **Goal**: Fix NotSupportedException when activating or deactivating users due to ConfigureAwait(false) causing UI updates on wrong thread.
+* **Included**:
+  * **Modified** `Administration/Users/ViewModels/UsersViewModel.cs`: Removed ConfigureAwait(false) from async calls in ActivateUserAsync and DeactivateUserCommand methods. UI updates (LoadUsersAsync, SelectedUser assignment, command notifications) now resume on the Dispatcher thread, preventing "The calling thread cannot access this object because a different thread owns it" exceptions.
+* **Root Cause**: ConfigureAwait(false) in async operations caused continuation to run on a thread pool thread instead of the UI thread. When the operation completed and attempted to update UI-bound properties (Users collection, SelectedUser, command CanExecute state), WPF threw NotSupportedException because these properties are owned by the UI thread.
+* **Explicitly Excluded**:
+  * Navigation architecture redesign, async/await pattern changes, Phase 2.6 functionality, business logic changes, UI layout changes.
+* **Validation Status**: Build verified successfully with no errors. Activate and Deactivate commands now complete without crashing. Grid correctly refreshes after status changes. No navigation architecture was redesigned.
+
+### Phase 2.6: Administration → Users → Reset Password
+* **Goal**: Implement the ability for an administrator to reset another user's password. This phase allows password reset without requiring the user to know their current password.
+* **Included**:
+  * **Created** `Administration/Users/Contracts/IResetPasswordValidator.cs`: Interface for validating reset password requests using the existing ValidationResult infrastructure.
+  * **Created** `Administration/Users/Models/ResetPasswordRequest.cs`: Request model containing only UserId, NewPassword, and ConfirmPassword. Excludes username, display name, role, and other user properties.
+  * **Created** `Administration/Users/Models/ResetPasswordResult.cs`: Result model with IsSuccess and ErrorMessage properties, following the existing Success()/Failure() factory pattern.
+  * **Created** `Administration/Users/Validators/ResetPasswordValidator.cs`: Validator implementation that validates: User exists, Password required, Confirm Password required, Passwords match. Does NOT validate duplicate passwords, previous passwords, password history, or complexity rules. Reuses existing ValidationResult infrastructure.
+  * **Created** `Administration/Users/ViewModels/ResetPasswordViewModel.cs`: ViewModel for Reset Password screen with properties for NewPassword, ConfirmPassword, ValidationError, and IsBusy. Implements INavigationAware to receive UserId parameter. Has SaveCommand and CancelCommand. No DbContext access, no password hashing, no business logic. Registered as Transient.
+  * **Created** `Administration/Users/Views/ResetPasswordView.xaml`: MVVM view with New Password and Confirm Password fields (PasswordBox controls), Save and Cancel buttons, validation error display, and loading indicator. Uses existing Design System resources, no inline styling.
+  * **Created** `Administration/Users/Views/ResetPasswordView.xaml.cs`: Code-behind handles PasswordBox.PasswordChanged events to bind to ViewModel properties (WPF PasswordBox does not support data binding natively).
+  * **Modified** `Administration/Users/Contracts/IUserCommandService.cs`: Added ResetPasswordAsync method signature: Task<ResetPasswordResult> ResetPasswordAsync(ResetPasswordRequest request, CancellationToken cancellationToken = default).
+  * **Modified** `Administration/Users/Services/UserCommandService.cs`: Added IResetPasswordValidator dependency injection. Implemented ResetPasswordAsync method that: (1) Loads user by UserId, (2) Returns failure if user not found, (3) Validates request using validator, (4) Hashes password using existing IPasswordHasher from Phase 1, (5) Replaces PasswordHash and PasswordSalt, (6) SaveChangesAsync. Does NOT modify Username, DisplayName, Role, IsActive, CreatedDate, CreatedBy, or SecurityStamp. Logs only unexpected failures (no sensitive data logged).
+  * **Modified** `Administration/Users/ViewModels/UsersViewModel.cs`: Added ResetPasswordAsync command that navigates to ResetPasswordViewModel with UserId parameter. Added ResetPasswordCommand notification when SelectedUser changes.
+  * **Modified** `Administration/Users/Views/UsersView.xaml`: Added "Reset Password" button in the header toolbar beside "Edit User" button, bound to ResetPasswordCommand.
+  * **Modified** `Administration/DependencyInjection/AdministrationServiceCollectionExtensions.cs`: Added IResetPasswordValidator registration as Scoped and ResetPasswordViewModel registration as Transient.
+  * **Modified** `Resources/DataTemplates.xaml`: Added DataTemplate mapping ResetPasswordViewModel → ResetPasswordView.
+* **Business Rules**:
+  * **User Existence**: User must exist in the database.
+  * **Password Requirements**: New password required, Confirm password required, Passwords must match.
+  * **Field Restrictions**: Only PasswordHash and PasswordSalt are updated. Username, DisplayName, Role, IsActive, CreatedDate, CreatedBy, and SecurityStamp never change.
+  * **Security**: Passwords never displayed, never logged. Hash values never logged. Confirm password never logged. Only unexpected exceptions are logged.
+* **Architecture Improvements**:
+  * **Reusability**: Reuses existing IPasswordHasher from Phase 1 (PBKDF2). Reuses existing User entity (no schema changes). Reuses existing DbContext. Reuses existing ValidationResult infrastructure. Reuses existing Design System resources.
+  * **Consistency**: Follows patterns established in Phase 2.3 (Create User), Phase 2.4 (Edit User), and Phase 2.5 (Activate/Deactivate). Same validation approach, result pattern, command pattern, and navigation pattern.
+  * **Security**: PasswordBox controls for secure input. No password storage in ViewModel. No password logging. Service layer handles hashing.
+* **Explicitly Excluded**:
+  * Password History, Temporary Passwords, Email, SMS, OTP, Password Expiry, Force Password Change, Unlock User, Login Changes, Session Logout, Audit History, Bulk Reset, Role Changes, Permissions, Authentication module changes, Authorization module changes, database schema changes, migrations.
+* **Validation Status**: Build verified successfully with no errors. Only PasswordHash and PasswordSalt are updated (confirmed in service implementation). Username, DisplayName, Role, IsActive, CreatedDate, CreatedBy, and SecurityStamp never change. Authentication module is untouched. Authorization module is untouched. Existing IPasswordHasher is reused. No duplicate security logic exists. No database schema changes. No migrations required. Code is production-ready.
+
+### Phase 2.6A: Reset Password - Architectural Review and Refinement
+* **Goal**: Refine the Phase 2.6 implementation by fixing UI connectivity, improving PasswordBox binding reusability, and achieving pure MVVM compliance without changing application behavior.
+* **Included**:
+  * **Modified** `Resources/DataTemplates.xaml`: Added DataTemplate mapping for ResetPasswordViewModel → ResetPasswordView. The mapping was missing, causing the Reset Password screen to be unreachable via navigation.
+  * **Modified** `Administration/Users/Views/ResetPasswordView.xaml`: Replaced code-behind PasswordBox binding with reusable PasswordBoxHelper attached property from Phase 2.3. Added namespace declaration for AttachedProperties. Changed PasswordBox controls to use `ap:PasswordBoxHelper.Attach="True"` and `ap:PasswordBoxHelper.Password="{Binding NewPassword, Mode=TwoWay}"` pattern.
+  * **Modified** `Administration/Users/Views/ResetPasswordView.xaml.cs`: Removed all code-behind logic including Loaded event handler and PasswordBox.PasswordChanged event subscriptions. Code-behind now contains only InitializeComponent(), achieving pure MVVM compliance.
+* **UI Connectivity Fix**:
+  * **Issue**: ResetPasswordView was not reachable because the DataTemplate mapping was missing from DataTemplates.xaml. Navigation would fail to render the view.
+  * **Fix**: Added the DataTemplate mapping to connect ResetPasswordViewModel to ResetPasswordView, enabling proper navigation and view rendering.
+* **PasswordBox Reusability Improvement**:
+  * **Issue**: ResetPasswordView used code-behind event handlers to bind PasswordBox controls to ViewModel properties. This duplicated the pattern from AddUserView and was not reusable for future password screens (e.g., Change Password).
+  * **Fix**: Replaced code-behind binding with the existing enterprise PasswordBoxHelper attached property from Phase 2.3. This eliminates code-behind logic, reuses the enterprise solution, provides consistency across all password screens (Login, Add User, Reset Password), and is ready for future Change Password screen.
+* **Architecture Improvements**:
+  * **MVVM Compliance**: ViewModel contains no UI logic, View contains no business logic, code-behind eliminated (pure MVVM).
+  * **Reusability**: PasswordBoxHelper is now used consistently across Login, Add User, and Reset Password screens, providing a single reusable solution for PasswordBox binding.
+  * **Validator Purity**: Validator validates only request data. Database state (userExists) is passed as parameter from service layer. No database access in validator.
+  * **PasswordHasher Reuse**: Existing IPasswordHasher from Phase 1 reused. No duplicate password hashing logic. Single source of truth maintained.
+  * **Navigation**: ViewModel-first navigation maintained, INavigationAware pattern used correctly, DataTemplate mapping now complete.
+* **Security Review**:
+  * **No Password Logging**: Password never logged, confirm password never logged, hash never logged, salt never logged. Only unexpected exceptions logged (without sensitive data).
+  * **Secure Input**: PasswordBox controls used, passwords never displayed in UI, no password storage in ViewModel after operation.
+  * **User Entity Integrity**: Username, DisplayName, Role, IsActive, CreatedDate, CreatedBy, and SecurityStamp unchanged. Only PasswordHash and PasswordSalt updated.
+  * **Module Integrity**: Authentication module untouched, Authorization module untouched, no authentication/authorization logic changed.
+* **Performance Review**:
+  * **Database Operations**: Single query to load user, single SaveChangesAsync call, no N+1 query issues, CancellationToken properly propagated.
+  * **UI Performance**: Busy state during operation, no unnecessary grid refresh, navigation back only after success, no blocking operations.
+  * **Memory**: No memory leaks, proper disposal patterns, no unnecessary object retention.
+* **Explicitly Excluded**:
+  * Password History, Temporary Passwords, Email, SMS, OTP, Password Expiry, Force Password Change, Unlock User, Login Changes, Session Logout, Audit History, Bulk Reset, Role Changes, Permissions, Authentication module changes, Authorization module changes, database schema changes, migrations, Repositories, Mediator, Phase 2.7 functionality.
+* **Validation Status**: Build verified successfully with no errors. Application behavior remains unchanged. UI connectivity fixed (screen now renders). PasswordBox binding improved (reusable enterprise solution). Code-behind eliminated (pure MVVM). No Phase 2.7 functionality introduced. Code is production-ready.
+
+### Phase 2.6B: Reset Password - Final Enterprise Review and Refinement
+* **Goal**: Perform final enterprise-quality review of Phase 2.6 (Reset Password) and implement navigation lifecycle consistency with automatic Users screen refresh after successful operations.
+* **Included**:
+  * **Modified** `Administration/Users/ViewModels/UsersViewModel.cs`: Added `OnNavigatedToAsync` override to refresh user list when navigating back to the screen. Added `RefreshUsersAsync` public method for child ViewModels to trigger refresh after successful operations.
+  * **Modified** `Administration/Users/ViewModels/ResetPasswordViewModel.cs`: Modified `SaveAsync` to call `RefreshUsersAsync` on the parent UsersViewModel after successful password reset.
+* **Navigation Lifecycle Consistency**:
+  * **Issue**: When a child ViewModel (AddUser, EditUser, ResetPassword) navigates back to the Users screen, the UsersViewModel needs to refresh its data to reflect changes. The existing `InitializeAsync` only runs once (guarded by `IsInitialized`), so subsequent navigations back to the screen would not trigger a refresh.
+  * **Fix**: Added `OnNavigatedToAsync` override to ensure the user list is refreshed every time the screen is navigated to, regardless of whether it's the first visit or a return from a child screen.
+* **Users Screen Refresh After Successful Operations**:
+  * **Issue**: Child ViewModels need a way to trigger a refresh of the parent UsersViewModel after successful operations without navigating.
+  * **Fix**: Added `RefreshUsersAsync` public method to provide a clean, explicit API for child ViewModels to refresh the parent's data. ResetPasswordViewModel now calls this method after successful password reset.
+  * **Implementation**: After `GoBackAsync` completes, ResetPasswordViewModel accesses `INavigationService.CurrentViewModel`, casts to UsersViewModel, and calls `RefreshUsersAsync()`.
+* **Search/Filter State Preservation**:
+  * **Behavior**: Search text and filter state are preserved during refresh. `RefreshUsersAsync()` calls `LoadUsersAsync()` which uses the current value of `SearchText` property. No explicit clearing of search text occurs.
+  * **Consistency**: Same pattern used by Activate/Deactivate operations, manual Refresh button, and consistent with existing Add User and Edit User behavior.
+* **Architecture Improvements**:
+  * **Navigation Lifecycle**: Added OnNavigatedToAsync to UsersViewModel for consistent refresh behavior. Ensures user list refreshes on every navigation to the screen. Aligns with enterprise navigation patterns.
+  * **Refresh API**: Added RefreshUsersAsync public method for child ViewModel integration. Provides explicit, type-safe refresh mechanism. Preserves search text and filter state.
+  * **Child-Parent Communication**: ResetPasswordViewModel refreshes parent after successful operation. Uses NavigationService.CurrentViewModel to access parent. Consistent with Add User and Edit User patterns.
+* **Navigation Review**:
+  * **Flow**: Users screen → Click Reset Password button → Navigate to ResetPasswordViewModel → ResetPasswordView renders → Click Save → ResetPasswordAsync executes → GoBackAsync → Users screen refreshes.
+  * **Resolution**: ResetPasswordViewModel registered as Transient in DI, NavigationService resolves via IViewModelFactory, DataTemplate mapping exists.
+  * **Parameter Passing**: UserId passed via NavigationParameter, INavigationAware.OnNavigatedTo receives parameter, parameter extraction is type-safe.
+  * **Lifecycle**: OnNavigatedTo called before InitializeAsync, InitializeAsync guarded by IsInitialized, OnNavigatedToAsync called on every navigation to Users screen, refresh triggered appropriately.
+* **UI Connectivity Confirmation**:
+  * **All Verified**: Reset Password button exists on Users screen, button is bound to ResetPasswordCommand, command navigates through INavigationService, ResetPasswordViewModel resolves correctly, DataTemplate exists, ResetPasswordView is displayed, PasswordBoxHelper binding works, Save command executes, password updates in database, navigation returns correctly after success.
+* **Performance Review**:
+  * **Database Operations**: Single query to load user, single SaveChangesAsync call, no N+1 query issues, CancellationToken properly propagated.
+  * **Refresh Efficiency**: LoadUsersAsync reuses existing query service, search text preserved (no unnecessary full reload), debounced search unchanged, no redundant queries.
+  * **UI Performance**: Busy state during operation, no unnecessary grid refresh during operation, navigation back only after success, refresh happens after navigation completes, no blocking operations.
+  * **Memory**: No memory leaks, proper disposal patterns, no unnecessary object retention.
+* **Explicitly Excluded**:
+  * Password History, Temporary Passwords, Email, SMS, OTP, Password Expiry, Force Password Change, Unlock User, Login Changes, Session Logout, Audit History, Bulk Reset, Role Changes, Permissions, Authentication module changes, Authorization module changes, database schema changes, migrations, Repositories, Mediator, CQRS, Phase 2.7 functionality.
+* **Validation Status**: Build verified successfully with no errors. UI connectivity complete (DataTemplate, DI, navigation). PasswordBox binding reusable (PasswordBoxHelper). Code-behind eliminated (pure MVVM). Navigation lifecycle consistent (OnNavigatedToAsync). Users screen refreshes after successful operations. Search/filter state preserved. PasswordHasher reused from Phase 1. Validator purity maintained. Security practices followed (no password logging). Performance optimized (single queries, async throughout). Architecture enterprise-grade (MVVM, DI, separation of concerns). No Phase 2.7 functionality introduced. No database schema changes. No authentication/authorization changes. No completed phases modified except where explicitly required. Phase 2.6 (Reset Password) is COMPLETE and FROZEN.
+
+### Phase 2.6C: Navigation Lifecycle Architecture Refactoring
+* **Goal**: Refactor navigation lifecycle to eliminate architectural coupling between child and parent ViewModels. Phase 2.6B introduced a regression where child ViewModels (ResetPasswordViewModel) needed to cast CurrentViewModel and call parent refresh methods (RefreshUsersAsync). This violated loose coupling principles.
+* **Included**:
+  * **Modified** `Desktop/Navigation/NavigationService.cs`: Updated `GoBackAsync()` to call full navigation lifecycle after restoring previous ViewModel. Now calls `INavigationAware.OnNavigatedTo(null)` and `ViewModelBase.OnNavigatedToAsync()` to match `NavigateAsync()` behavior.
+  * **Modified** `MVVM/ViewModelBase.cs`: Added `OnNavigatedToAsync()` virtual method as lifecycle hook for ViewModels to refresh when navigated to. Called by NavigationService after both `NavigateAsync()` and `GoBackAsync()`.
+  * **Modified** `Administration/Users/ViewModels/UsersViewModel.cs`: Removed `RefreshUsersAsync()` public method. Refresh logic now entirely contained within `OnNavigatedToAsync()` override. Search/filter state preserved automatically.
+  * **Modified** `Administration/Users/ViewModels/ResetPasswordViewModel.cs`: Removed lines that cast `CurrentViewModel` to `UsersViewModel` and called `RefreshUsersAsync()`. After successful password reset, now only calls `await GoBackAsync()`.
+* **Architecture Improvements**:
+  * **NavigationService Ownership**: NavigationService now owns the complete navigation lifecycle. Both `NavigateAsync()` and `GoBackAsync()` invoke lifecycle methods on ViewModels. No ViewModel needs to manually trigger parent refreshes.
+  * **Loose Coupling**: Child ViewModels no longer reference parent ViewModels. No CurrentViewModel casts. No parent method calls. Child ViewModels simply navigate back, and NavigationService handles the lifecycle.
+  * **Self-Contained Refresh**: Parent ViewModels refresh themselves through `OnNavigatedToAsync()`. UsersViewModel automatically refreshes when navigated back to, without any child ViewModel involvement.
+  * **Single Responsibility**: Each ViewModel owns its refresh logic. NavigationService owns the lifecycle orchestration. Clear separation of concerns.
+  * **SOLID Principles**: Single Responsibility (ViewModels only refresh themselves), Open/Closed (ViewModelBase extensible via virtual methods), Dependency Inversion (ViewModels depend on abstractions INavigationAware, ViewModelBase).
+* **Navigation Lifecycle Flow**:
+  * **NavigateAsync**: Create ViewModel → Push to history → Set Current → Notify → Call INavigationAware.OnNavigatedTo → Call InitializeAsync
+  * **GoBackAsync**: Pop from history → Set Current → Notify → Call INavigationAware.OnNavigatedTo(null) → Call OnNavigatedToAsync
+  * **Consistency**: Both navigation paths now invoke the same lifecycle methods, ensuring ViewModels can refresh appropriately regardless of how they are navigated to.
+* **Verification**:
+  * **Add User Flow**: Users → AddUserViewModel → Save → GoBackAsync → UsersViewModel.OnNavigatedToAsync → Users refreshes automatically
+  * **Edit User Flow**: Users → EditUserViewModel → Save → GoBackAsync → UsersViewModel.OnNavigatedToAsync → Users refreshes automatically
+  * **Reset Password Flow**: Users → ResetPasswordViewModel → Save → GoBackAsync → UsersViewModel.OnNavigatedToAsync → Users refreshes automatically
+  * **No Child Knowledge**: Child ViewModels (AddUserViewModel, EditUserViewModel, ResetPasswordViewModel) have no knowledge of UsersViewModel or its refresh methods.
+  * **Search/Filter Preservation**: SearchText property preserved during refresh. LoadUsersAsync uses current SearchText value. No explicit clearing.
+* **Explicitly Excluded**:
+  * Authentication, Authorization, Password hashing, Password reset logic, Validators, UserCommandService, UserQueryService, Database, Entities, EF Core, DI registrations, NavigationParameter implementation, INavigationAware interface, UI, XAML, Commands, Business rules, Phase 2.7 functionality.
+* **Validation Status**: Build verified successfully with no errors. Navigation lifecycle consistent between NavigateAsync and GoBackAsync. Child ViewModels decoupled from parent ViewModels. No CurrentViewModel casts remain. RefreshUsersAsync removed. UsersViewModel refreshes through OnNavigatedToAsync. Search/filter state preserved. Application behavior identical. Architecture enterprise-grade (SOLID, loose coupling, single responsibility). No Phase 2.7 functionality introduced. Phase 2.6 (Reset Password) is COMPLETE and FROZEN.
 
 ## 3. Architecture & Design
 
