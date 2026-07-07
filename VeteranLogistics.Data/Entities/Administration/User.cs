@@ -41,4 +41,14 @@ public class User : BaseEntity
     /// Gets or sets whether the user is active.
     /// </summary>
     public bool IsActive { get; set; } = true;
+
+    /// <summary>
+    /// Gets or sets whether the user has been soft-deleted.
+    /// </summary>
+    public bool IsDeleted { get; set; } = false;
+
+    /// <summary>
+    /// Gets or sets the timestamp when the user was soft-deleted.
+    /// </summary>
+    public DateTime? DeletedOn { get; set; }
 }

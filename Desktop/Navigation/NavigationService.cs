@@ -55,15 +55,10 @@ public sealed class NavigationService : INavigationService
                 navigationAware.OnNavigatedTo(parameter);
             }
 
-            // If the ViewModel is a ViewModelBase, call InitializeAsync()
+            // If the ViewModel is a ViewModelBase, call InitializeAsync() and OnNavigatedToAsync()
             if (vm is ViewModelBase lifecycle)
             {
                 await lifecycle.InitializeAsync().ConfigureAwait(false);
-            }
-
-            // If the ViewModel is a ViewModelBase, call OnNavigatedToAsync()
-            if (vm is ViewModelBase lifecycle)
-            {
                 await lifecycle.OnNavigatedToAsync().ConfigureAwait(false);
             }
 

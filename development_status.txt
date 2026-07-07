@@ -653,6 +653,28 @@ This document records the implementation work completed across the repository an
   * Authentication, Authorization, Password hashing, Password reset logic, Validators, UserCommandService, UserQueryService, Database, Entities, EF Core, DI registrations, NavigationParameter implementation, INavigationAware interface, UI, XAML, Commands, Business rules, Phase 2.7 functionality.
 * **Validation Status**: Build verified successfully with no errors. Navigation lifecycle consistent between NavigateAsync and GoBackAsync. Child ViewModels decoupled from parent ViewModels. No CurrentViewModel casts remain. RefreshUsersAsync removed. UsersViewModel refreshes through OnNavigatedToAsync. Search/filter state preserved. Application behavior identical. Architecture enterprise-grade (SOLID, loose coupling, single responsibility). No Phase 2.7 functionality introduced. Phase 2.6 (Reset Password) is COMPLETE and FROZEN.
 
+### Phase 2.7: Soft Delete Infrastructure
+* **Goal**: Prepare the application for enterprise-grade soft delete by introducing the infrastructure required so that Delete User can be implemented safely in the next phase. This phase does NOT implement Delete User functionality.
+* **Included**:
+  * **Modified** `VeteranLogistics.Data/Entities/Administration/User.cs`: Added soft-delete fields to User entity: `IsDeleted` (bool, default: false) and `DeletedOn` (DateTime?, default: null). Both fields have sensible defaults ensuring existing records remain unaffected.
+  * **Created** `VeteranLogistics.Data/Configurations/UserConfiguration.cs`: Entity configuration implementing `IEntityTypeConfiguration<User>`. Configures global query filter: `builder.HasQueryFilter(user => !user.IsDeleted)`. Automatically applies to all User queries through EF Core.
+  * **Created** `Migrations/20260707114333_AddUserSoftDeleteFields.cs`: EF Core migration that adds `DeletedOn` column (datetime2, nullable) and `IsDeleted` column (bit, not null, default: false). No other schema changes. Existing records will have `IsDeleted = false` and `DeletedOn = null`.
+  * **Modified** `Desktop/Navigation/NavigationService.cs`: Fixed duplicate variable name error from previous architecture review. Combined InitializeAsync() and OnNavigatedToAsync() calls into single if block to resolve compilation error. This was a bug fix, not a Phase 2.7 change.
+* **Global Query Filter Explanation**:
+  * The global query filter is configured in UserConfiguration.cs: `builder.HasQueryFilter(user => !user.IsDeleted)`
+  * This filter is automatically applied by EF Core to all queries against the Users DbSet
+  * Applies to: UserQueryService.GetAllUsersAsync(), UserQueryService.SearchUsersAsync(), UserQueryService.GetUserForEditAsync(), AuthenticationRepository.GetByUsernameAsync()
+  * Benefits: No need to manually add `.Where(x => !x.IsDeleted)` in every query, consistent behavior across all services, future-proof (any new queries automatically inherit the filter), can be bypassed if needed using `IgnoreQueryFilters()`
+* **Existing Functionality Verification**:
+  * **Login**: AuthenticationRepository uses `_dbContext.Set<User>()` which automatically applies the global query filter. Deleted users cannot log in.
+  * **User Listing**: UserQueryService uses `_dbContext.Users` which automatically applies the global query filter. Deleted users won't appear.
+  * **Search**: UserQueryService uses `_dbContext.Users` which automatically applies the global query filter. Deleted users won't appear in search results.
+  * **Edit User**: UserQueryService uses `_dbContext.Users` which automatically applies the global query filter. Deleted users cannot be edited.
+  * All other features unchanged and will continue to work identically.
+* **Explicitly Excluded**:
+  * Delete User service method, Delete User models, Delete User validators, Delete User command, Delete User button, Delete User dialog, Delete User navigation, Restore User, Permanent Delete, Bulk Delete, Recycle Bin, Deleted User Listing, Admin Restore, Any UI, Any ViewModel, Any Command, Any Navigation, Authentication changes, Authorization changes, Password hashing changes, Session Management changes, MVVM changes, Validation changes, Services unrelated to User queries.
+* **Validation Status**: Build verified successfully with no errors. Soft-delete infrastructure in place. Database schema ready (migration created). Global query filter configured. All existing queries automatically protected. No conflicts with existing functionality. Clean separation of concerns. Enterprise-grade implementation. No Delete User functionality implemented. No UI added. All previous phases remain unchanged. Application is now ready for Phase 2.8 (Delete User).
+
 ## 3. Architecture & Design
 
 ### Dependency Injection and Composition
