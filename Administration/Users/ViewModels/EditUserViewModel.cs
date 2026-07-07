@@ -12,7 +12,7 @@ namespace veteran_logistic.Administration.Users.ViewModels;
 /// <summary>
 /// ViewModel for the Edit User screen.
 /// </summary>
-public sealed partial class EditUserViewModel : ViewModelBase
+public sealed partial class EditUserViewModel : ViewModelBase, INavigationAware
 {
     private readonly IUserCommandService _userCommandService;
     private readonly IUserQueryService _userQueryService;
@@ -40,16 +40,19 @@ public sealed partial class EditUserViewModel : ViewModelBase
         LoadRoles();
     }
 
+    public void OnNavigatedTo(NavigationParameter? parameter)
+    {
+        if (parameter is not null && parameter.TryGetValue<int>("UserId", out var userId))
+        {
+            _userId = userId;
+        }
+    }
+
     public override async Task InitializeAsync(CancellationToken cancellationToken = default)
     {
         if (IsInitialized)
         {
             return;
-        }
-
-        if (NavigationParameter is not null && NavigationParameter.TryGetValue<int>("UserId", out var userId))
-        {
-            _userId = userId;
         }
 
         await LoadUserAsync(cancellationToken);

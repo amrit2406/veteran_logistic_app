@@ -52,7 +52,7 @@ namespace veteran_logistic {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/veteran_logistic;V1.0.0.0;component/mainwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/veteran_logistic;component/mainwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\MainWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

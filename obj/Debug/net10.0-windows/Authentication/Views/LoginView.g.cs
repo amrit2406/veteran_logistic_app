@@ -59,7 +59,7 @@ namespace veteran_logistic.Authentication.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/veteran_logistic;V1.0.0.0;component/authentication/views/loginview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/veteran_logistic;component/authentication/views/loginview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Authentication\Views\LoginView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
