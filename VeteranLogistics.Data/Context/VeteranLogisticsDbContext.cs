@@ -29,6 +29,16 @@ public class VeteranLogisticsDbContext : DbContext
     public DbSet<Role> Roles => Set<Role>();
 
     /// <summary>
+    /// Gets or sets the Permissions DbSet.
+    /// </summary>
+    public DbSet<Permission> Permissions => Set<Permission>();
+
+    /// <summary>
+    /// Gets or sets the RolePermissions DbSet.
+    /// </summary>
+    public DbSet<RolePermission> RolePermissions => Set<RolePermission>();
+
+    /// <summary>
     /// Apply entity configurations discovered in this assembly.
     /// </summary>
     /// <param name="modelBuilder">Model builder.</param>

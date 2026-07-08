@@ -191,3 +191,5 @@ d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Administration\Roles\Views
 d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Administration\Roles\Views\AddRoleView.g.cs
 d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Administration\Roles\Views\EditRoleView.baml
 d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Administration\Roles\Views\EditRoleView.g.cs
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Administration\Permissions\Views\PermissionMatrixView.baml
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Administration\Permissions\Views\PermissionMatrixView.g.cs

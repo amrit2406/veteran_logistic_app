@@ -95,6 +95,7 @@
                 <MenuItem Header="Administration" Style="{StaticResource TopMenuItemStyle}">
                     <MenuItem Header="Users" Command="{Binding NavigateToUsersCommand}" />
                     <MenuItem Header="Roles" Command="{Binding NavigateToRolesCommand}" />
+                    <MenuItem Header="Permission Matrix" Command="{Binding NavigateToPermissionMatrixCommand}" />
                 </MenuItem>
                 <MenuItem Header="Settings" Style="{StaticResource TopMenuItemStyle}" />
                 <MenuItem Header="Help" Style="{StaticResource TopMenuItemStyle}" />
