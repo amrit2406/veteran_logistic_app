@@ -8,6 +8,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -44,11 +45,24 @@
                                    VerticalAlignment="Center" />
                     </Button>
 
-                    <!-- Save Button (Disabled - Placeholder for future phase) -->
+                    <!-- Cancel Button -->
                     <Button Height="{StaticResource StandardControlHeight}"
-                            IsEnabled="False"
+                            Command="{Binding CancelCommand}"
                             Style="{StaticResource IconButtonStyle}"
-                            ToolTip="Save (Not implemented yet)"
+                            ToolTip="Cancel"
+                            VerticalAlignment="Center"
+                            Margin="{StaticResource Small}">
+                        <TextBlock Text="Cancel"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Button>
+
+                    <!-- Save Button -->
+                    <Button Height="{StaticResource StandardControlHeight}"
+                            Command="{Binding SaveCommand}"
+                            Style="{StaticResource IconButtonStyle}"
+                            ToolTip="Save"
                             VerticalAlignment="Center"
                             Margin="{StaticResource Small}">
                         <TextBlock Text="Save"
@@ -60,13 +74,56 @@
             </Grid>
         </Border>
 
-        <!-- Loading Indicator -->
+        <!-- Role Selector -->
         <Border Grid.Row="1"
                 Background="{DynamicResource SurfaceBrush}"
                 BorderBrush="{DynamicResource BorderBrush}"
                 BorderThickness="{StaticResource StandardBorderThickness}"
+                Padding="{StaticResource Medium}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0"
+                           Text="Select Role:"
+                           Style="{StaticResource BodyTextBlockStyle}"
+                           VerticalAlignment="Center"
+                           Margin="{StaticResource Small}" />
+
+                <ComboBox Grid.Column="1"
+                          ItemsSource="{Binding Roles}"
+                          SelectedItem="{Binding SelectedRole, Mode=TwoWay}"
+                          DisplayMemberPath="RoleName"
+                          Height="{StaticResource StandardControlHeight}"
+                          Margin="{StaticResource Small}"
+                          IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}" />
+            </Grid>
+        </Border>
+
+        <!-- Validation Error -->
+        <Border Grid.Row="2"
+                Background="{DynamicResource ErrorBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="{StaticResource StandardBorderThickness}"
                 Padding="{StaticResource Medium}"
-                Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}">
+                Visibility="{Binding ValidationError, Converter={StaticResource StringToVisibilityConverter}}"
+                Margin="0,0,0,{StaticResource Small}">
+            <TextBlock Text="{Binding ValidationError}"
+                       Style="{StaticResource CaptionTextBlockStyle}"
+                       Foreground="{DynamicResource OnErrorBrush}"
+                       TextWrapping="Wrap" />
+        </Border>
+
+        <!-- Loading Indicator -->
+        <Border Grid.Row="2"
+                Background="{DynamicResource SurfaceBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="{StaticResource StandardBorderThickness}"
+                Padding="{StaticResource Medium}"
+                Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Margin="0,0,0,{StaticResource Small}">
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center">
                 <ProgressBar Height="{StaticResource StandardControlHeight}"
@@ -80,7 +137,7 @@
         </Border>
 
         <!-- Permission Matrix DataGrid -->
-        <DataGrid Grid.Row="2"
+        <DataGrid Grid.Row="3"
                   ItemsSource="{Binding Permissions}"
                   IsReadOnly="True"
                   AutoGenerateColumns="False"
@@ -110,6 +167,24 @@
                 <DataGridTextColumn Header="Description"
                                     Binding="{Binding Description}"
                                     Width="2*" />
+
+                <DataGridTemplateColumn Header="Granted"
+                                        Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding IsGranted, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      Command="{Binding DataContext.OnPermissionToggledCommand, 
+                                                        RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                      CommandParameter="{Binding}"
+                                      IsEnabled="{Binding DataContext.SelectedRole, 
+                                                        RelativeSource={RelativeSource AncestorType=UserControl}, 
+                                                        Converter={StaticResource NullToBooleanConverter}}"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Margin="{StaticResource Small}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

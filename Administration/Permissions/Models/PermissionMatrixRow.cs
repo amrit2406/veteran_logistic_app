@@ -1,9 +1,11 @@
+using CommunityToolkit.Mvvm.ComponentModel;
+
 namespace veteran_logistic.Administration.Permissions.Models;
 
 /// <summary>
 /// Represents a row in the permission matrix, showing a permission and its grant status across roles.
 /// </summary>
-public sealed class PermissionMatrixRow
+public sealed partial class PermissionMatrixRow : ObservableObject
 {
     /// <summary>
     /// Gets or sets the permission ID.
@@ -39,4 +41,10 @@ public sealed class PermissionMatrixRow
     /// Gets or sets the sort order for display purposes.
     /// </summary>
     public int SortOrder { get; set; }
+
+    /// <summary>
+    /// Gets or sets whether the permission is granted to the selected role.
+    /// </summary>
+    [ObservableProperty]
+    private bool _isGranted;
 }

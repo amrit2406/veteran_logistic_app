@@ -13,16 +13,24 @@ namespace veteran_logistic.Administration.Permissions.ViewModels;
 public sealed partial class PermissionMatrixViewModel : ViewModelBase
 {
     private readonly IPermissionQueryService _permissionQueryService;
+    private readonly IPermissionCommandService _permissionCommandService;
     private ObservableCollection<PermissionMatrixRow> _permissions = new();
     private ObservableCollection<RoleMatrixItem> _roles = new();
+    private RoleMatrixItem? _selectedRole;
+    private HashSet<int> _originalGrantedPermissionIds = new();
+    private HashSet<int> _currentGrantedPermissionIds = new();
+    private bool _hasUnsavedChanges;
+    private string? _validationError;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="PermissionMatrixViewModel"/> class.
     /// </summary>
     /// <param name="permissionQueryService">The permission query service.</param>
-    public PermissionMatrixViewModel(IPermissionQueryService permissionQueryService)
+    /// <param name="permissionCommandService">The permission command service.</param>
+    public PermissionMatrixViewModel(IPermissionQueryService permissionQueryService, IPermissionCommandService permissionCommandService)
     {
         _permissionQueryService = permissionQueryService ?? throw new ArgumentNullException(nameof(permissionQueryService));
+        _permissionCommandService = permissionCommandService ?? throw new ArgumentNullException(nameof(permissionCommandService));
         
         Title = "Permission Matrix";
     }
@@ -62,12 +70,188 @@ public sealed partial class PermissionMatrixViewModel : ViewModelBase
     }
 
     /// <summary>
+    /// Gets or sets the currently selected role.
+    /// </summary>
+    public RoleMatrixItem? SelectedRole
+    {
+        get => _selectedRole;
+        set
+        {
+            if (SetProperty(ref _selectedRole, value))
+            {
+                OnSelectedRoleChanged();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Gets whether there are unsaved changes.
+    /// </summary>
+    public bool HasUnsavedChanges
+    {
+        get => _hasUnsavedChanges;
+        private set => SetProperty(ref _hasUnsavedChanges, value);
+    }
+
+    /// <summary>
+    /// Gets whether the save command can execute.
+    /// </summary>
+    public bool CanSave => HasUnsavedChanges && SelectedRole is not null && !IsBusy;
+
+    /// <summary>
+    /// Gets or sets the validation error message.
+    /// </summary>
+    public string? ValidationError
+    {
+        get => _validationError;
+        private set => SetProperty(ref _validationError, value);
+    }
+
+    /// <summary>
     /// Command to refresh the permission matrix.
     /// </summary>
     [RelayCommand]
     private async Task RefreshAsync()
     {
         await LoadPermissionMatrixAsync();
+    }
+
+    /// <summary>
+    /// Command to save permission changes.
+    /// </summary>
+    [RelayCommand(CanExecute = nameof(CanSave))]
+    private async Task SaveAsync()
+    {
+        if (SelectedRole is null)
+        {
+            return;
+        }
+
+        SetBusy("Saving permissions...");
+        ValidationError = null;
+
+        try
+        {
+            var request = new AssignPermissionsRequest
+            {
+                RoleId = SelectedRole.RoleId,
+                PermissionAssignments = Permissions
+                    .Select(p => new PermissionAssignmentItem
+                    {
+                        PermissionId = p.PermissionId,
+                        IsGranted = _currentGrantedPermissionIds.Contains(p.PermissionId)
+                    })
+                    .ToList()
+            };
+
+            var result = await _permissionCommandService.AssignPermissionsAsync(request).ConfigureAwait(false);
+
+            if (!result.IsSuccess)
+            {
+                ValidationError = result.ErrorMessage;
+                return;
+            }
+
+            // Refresh the matrix to reflect saved changes
+            await LoadPermissionMatrixAsync().ConfigureAwait(false);
+
+            // Clear dirty state
+            _originalGrantedPermissionIds = new HashSet<int>(_currentGrantedPermissionIds);
+            HasUnsavedChanges = false;
+            SaveCommand.NotifyCanExecuteChanged();
+        }
+        catch
+        {
+            ValidationError = "An unexpected error occurred while saving permissions.";
+        }
+        finally
+        {
+            ClearBusy();
+        }
+    }
+
+    /// <summary>
+    /// Command to cancel unsaved changes and reload the matrix.
+    /// </summary>
+    [RelayCommand(CanExecute = nameof(HasUnsavedChanges))]
+    private async Task CancelAsync()
+    {
+        await LoadPermissionMatrixAsync().ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// Handles when a permission checkbox is toggled from the UI.
+    /// </summary>
+    /// <param name="permissionRow">The permission row that was toggled.</param>
+    [RelayCommand]
+    private void OnPermissionToggled(PermissionMatrixRow permissionRow)
+    {
+        if (SelectedRole is null)
+        {
+            return;
+        }
+
+        if (permissionRow.IsGranted)
+        {
+            _currentGrantedPermissionIds.Add(permissionRow.PermissionId);
+        }
+        else
+        {
+            _currentGrantedPermissionIds.Remove(permissionRow.PermissionId);
+        }
+
+        // Check if there are changes
+        HasUnsavedChanges = !_currentGrantedPermissionIds.SetEquals(_originalGrantedPermissionIds);
+        ValidationError = null;
+        SaveCommand.NotifyCanExecuteChanged();
+        CancelCommand.NotifyCanExecuteChanged();
+    }
+
+    /// <summary>
+    /// Checks if a permission is granted for the selected role.
+    /// </summary>
+    /// <param name="permissionId">The permission ID.</param>
+    /// <returns>True if the permission is granted, false otherwise.</returns>
+    public bool IsPermissionGranted(int permissionId)
+    {
+        return _currentGrantedPermissionIds.Contains(permissionId);
+    }
+
+    /// <summary>
+    /// Handles when the selected role changes.
+    /// </summary>
+    private void OnSelectedRoleChanged()
+    {
+        if (SelectedRole is null)
+        {
+            _currentGrantedPermissionIds.Clear();
+            _originalGrantedPermissionIds.Clear();
+            HasUnsavedChanges = false;
+            ValidationError = null;
+            
+            // Clear all IsGranted properties
+            foreach (var permission in Permissions)
+            {
+                permission.IsGranted = false;
+            }
+        }
+        else
+        {
+            // Load the current permissions for the selected role
+            _originalGrantedPermissionIds = new HashSet<int>(SelectedRole.GrantedPermissionIds);
+            _currentGrantedPermissionIds = new HashSet<int>(SelectedRole.GrantedPermissionIds);
+            HasUnsavedChanges = false;
+            ValidationError = null;
+            
+            // Update IsGranted properties for all permissions
+            foreach (var permission in Permissions)
+            {
+                permission.IsGranted = _currentGrantedPermissionIds.Contains(permission.PermissionId);
+            }
+        }
+
+        SaveCommand.NotifyCanExecuteChanged();
+        CancelCommand.NotifyCanExecuteChanged();
     }
 
     /// <summary>
