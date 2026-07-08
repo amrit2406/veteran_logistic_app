@@ -2,7 +2,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Threading;
-using System.Windows;
 using veteran_logistic.Administration.Roles.Contracts;
 using veteran_logistic.Administration.Roles.Models;
 using veteran_logistic.MVVM;
@@ -147,17 +146,6 @@ public sealed partial class RolesViewModel : ViewModelBase
 
         ValidationError = string.Empty;
 
-        var messageBoxResult = MessageBox.Show(
-            "Are you sure you want to activate this role?",
-            "Activate Role",
-            MessageBoxButton.YesNo,
-            MessageBoxImage.Question);
-
-        if (messageBoxResult != MessageBoxResult.Yes)
-        {
-            return;
-        }
-
         var request = new UpdateRoleStatusRequest
         {
             RoleId = SelectedRole.Id,
@@ -165,7 +153,7 @@ public sealed partial class RolesViewModel : ViewModelBase
         };
 
         SetBusy("Activating role...");
-        var result = await _roleCommandService.ActivateRoleAsync(request, CancellationToken.None);
+        var result = await _roleCommandService.UpdateRoleStatusAsync(request, CancellationToken.None);
         ClearBusy();
 
         if (result.IsSuccess)
@@ -191,17 +179,6 @@ public sealed partial class RolesViewModel : ViewModelBase
 
         ValidationError = string.Empty;
 
-        var messageBoxResult = MessageBox.Show(
-            "Are you sure you want to deactivate this role?",
-            "Deactivate Role",
-            MessageBoxButton.YesNo,
-            MessageBoxImage.Question);
-
-        if (messageBoxResult != MessageBoxResult.Yes)
-        {
-            return;
-        }
-
         var request = new UpdateRoleStatusRequest
         {
             RoleId = SelectedRole.Id,
@@ -209,7 +186,7 @@ public sealed partial class RolesViewModel : ViewModelBase
         };
 
         SetBusy("Deactivating role...");
-        var result = await _roleCommandService.DeactivateRoleAsync(request, CancellationToken.None);
+        var result = await _roleCommandService.UpdateRoleStatusAsync(request, CancellationToken.None);
         ClearBusy();
 
         if (result.IsSuccess)
