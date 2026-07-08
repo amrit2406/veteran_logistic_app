@@ -160,7 +160,6 @@ public sealed class RoleCommandService : IRoleCommandService
 
             // Update the status on the tracked entity
             role.IsActive = request.IsActive;
-            role.ModifiedOn = DateTime.UtcNow;
 
             await _dbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
