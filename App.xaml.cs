@@ -42,6 +42,7 @@ namespace veteran_logistic
                 var passwordHasher = _host.Services.GetRequiredService<IPasswordHasher>();
                 
                 await AuthenticationSeed.EnsureDefaultAdministratorAsync(dbContext, authenticationOptions, passwordHasher);
+                await PermissionSeed.EnsurePermissionsAsync(dbContext);
             }
             catch (Exception ex)
             {

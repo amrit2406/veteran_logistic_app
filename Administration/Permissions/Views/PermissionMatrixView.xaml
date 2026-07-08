@@ -111,8 +111,8 @@
                 Background="{DynamicResource ErrorBrush}"
                 BorderBrush="{DynamicResource BorderBrush}"
                 BorderThickness="{StaticResource StandardBorderThickness}"
-                Padding="{StaticResource Medium}"
-                Visibility="{Binding ValidationError, Converter={StaticResource StringToVisibilityConverter}}"
+                Padding="{DynamicResource Medium}"
+                Visibility="{Binding ValidationError, Converter={StaticResource StringToVisibilityConverter}, FallbackValue=Collapsed}"
                 Margin="{StaticResource Small}">
             <TextBlock Text="{Binding ValidationError}"
                        Style="{StaticResource CaptionTextBlockStyle}"

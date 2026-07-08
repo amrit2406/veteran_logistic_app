@@ -96,7 +96,7 @@ public sealed partial class PermissionMatrixViewModel : ViewModelBase
     /// <summary>
     /// Gets whether the save command can execute.
     /// </summary>
-    public bool CanSave => HasUnsavedChanges && SelectedRole is not null && !IsBusy;
+    // Removed CanSave method; button enable handled via XAML binding
 
     /// <summary>
     /// Gets or sets the validation error message.
@@ -119,7 +119,7 @@ public sealed partial class PermissionMatrixViewModel : ViewModelBase
     /// <summary>
     /// Command to save permission changes.
     /// </summary>
-    [RelayCommand(CanExecute = nameof(CanSave))]
+    [RelayCommand]
     private async Task SaveAsync()
     {
         if (SelectedRole is null)
@@ -160,9 +160,10 @@ public sealed partial class PermissionMatrixViewModel : ViewModelBase
             HasUnsavedChanges = false;
             SaveCommand.NotifyCanExecuteChanged();
         }
-        catch
+        catch (Exception ex)
         {
-            ValidationError = "An unexpected error occurred while saving permissions.";
+            // Surface the exception message for debugging
+            ValidationError = $"An unexpected error occurred while saving permissions: {ex.Message}";
         }
         finally
         {
@@ -173,11 +174,14 @@ public sealed partial class PermissionMatrixViewModel : ViewModelBase
     /// <summary>
     /// Command to cancel unsaved changes and reload the matrix.
     /// </summary>
-    [RelayCommand(CanExecute = nameof(HasUnsavedChanges))]
+    [RelayCommand]
     private async Task CancelAsync()
     {
         await LoadPermissionMatrixAsync().ConfigureAwait(false);
     }
+
+    // Determines if Cancel can execute
+    // Removed CanCancel method; button enable handled via XAML binding
 
     /// <summary>
     /// Handles when a permission checkbox is toggled from the UI.
