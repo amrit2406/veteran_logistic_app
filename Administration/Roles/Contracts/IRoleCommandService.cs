@@ -24,18 +24,10 @@ public interface IRoleCommandService
     Task<UpdateRoleResult> UpdateRoleAsync(UpdateRoleRequest request, CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// Activates a role.
+    /// Updates a role's active status.
     /// </summary>
     /// <param name="request">The role status update request.</param>
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>A result indicating success or failure.</returns>
-    Task<UpdateRoleStatusResult> ActivateRoleAsync(UpdateRoleStatusRequest request, CancellationToken cancellationToken = default);
-
-    /// <summary>
-    /// Deactivates a role.
-    /// </summary>
-    /// <param name="request">The role status update request.</param>
-    /// <param name="cancellationToken">The cancellation token.</param>
-    /// <returns>A result indicating success or failure.</returns>
-    Task<UpdateRoleStatusResult> DeactivateRoleAsync(UpdateRoleStatusRequest request, CancellationToken cancellationToken = default);
+    Task<UpdateRoleStatusResult> UpdateRoleStatusAsync(UpdateRoleStatusRequest request, CancellationToken cancellationToken = default);
 }
