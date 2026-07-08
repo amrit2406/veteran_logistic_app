@@ -933,6 +933,114 @@ This document records the implementation work completed across the repository an
   * **Code Quality**: Naming, documentation, and structure already consistent with the Users module.
 * **Validation Status**: Build verified successfully with no errors. Edit Role architecture matches Edit User exactly. Model naming is consistent with the Users module (Id vs UserId is domain-appropriate). Validation architecture is identical with constants for max lengths. Command layer follows the same patterns with duplicate check excluding current role. Navigation/Dialog behaviour matches the Users module. Query/Command separation is maintained. No DbContext exists in ViewModels. Dependency Injection follows existing conventions. Performance is optimal with AsNoTracking and ConfigureAwait(false). No duplicate queries. No duplicate code. No dead code. Existing phases remain unchanged. No regressions are introduced. The implementation is enterprise-grade and ready to be frozen.
 
+### Phase 2.9.5: Administration → Role Management → Activate / Deactivate Role
+* **Goal**: Implement complete Activate / Deactivate Role functionality following the exact architecture, patterns, behaviour, and quality established by the Users module.
+* **Included**:
+  * **Created** `Administration/Roles/Models/UpdateRoleStatusRequest.cs`: Request model for role status update containing RoleId and IsActive properties.
+  * **Created** `Administration/Roles/Models/UpdateRoleStatusResult.cs`: Result model with IsSuccess, ErrorMessage properties and Success/Failure factory methods.
+  * **Created** `Administration/Roles/Contracts/IUpdateRoleStatusValidator.cs`: Interface for validating role status update requests using existing ValidationResult infrastructure.
+  * **Created** `Administration/Roles/Validators/UpdateRoleStatusValidator.cs`: Implementation that validates RoleId and prevents duplicate state updates (already active/inactive).
+  * **Extended** `Administration/Roles/Contracts/IRoleCommandService.cs`: Added UpdateRoleStatusAsync method for role status update operations (single method handling both activate and deactivate based on IsActive property).
+  * **Extended** `Administration/Roles/Services/RoleCommandService.cs`: Added UpdateRoleStatusAsync implementation that validates request, verifies role exists, validates status change using validator, updates IsActive and ModifiedOn, persists changes, and returns appropriate result.
+  * **Modified** `Administration/Roles/ViewModels/RolesViewModel.cs`: Added ActivateRoleCommand and DeactivateRoleCommand that call UpdateRoleStatusAsync with appropriate IsActive value, handle busy state, refresh roles list after success, preserve search/filter state, and handle errors. Added ValidationError property. Updated SelectedRole property to notify command CanExecute changes.
+  * **Modified** `Administration/Roles/Views/RolesView.xaml`: Added Activate and Deactivate buttons in header toolbar with Command bindings. Added validation error display area below loading indicator.
+  * **Modified** `Administration/DependencyInjection/AdministrationServiceCollectionExtensions.cs`: Added IUpdateRoleStatusValidator (Scoped) registration.
+* **Architecture Review Results**:
+  * **MVVM Compliance**: PASS - RolesViewModel properly inherits from ViewModelBase, RolesView contains no business logic, clean separation of concerns, proper data binding.
+  * **SOLID Compliance**: PASS - Single Responsibility (each class has one purpose), Open/Closed (extensible without modification), Liskov Substitution (interfaces properly implemented), Interface Segregation (focused interfaces), Dependency Inversion (depends on abstractions).
+  * **Model Review**: PASS - UpdateRoleStatusRequest naming matches UpdateUserStatusRequest pattern, properties have appropriate types, XML documentation present, namespace consistent with Users module.
+  * **Validation Review**: PASS - UpdateRoleStatusValidator follows UpdateUserStatusValidator pattern exactly, uses existing ValidationResult infrastructure, validates RoleId and prevents duplicate state updates, provides friendly error messages, no validation in ViewModel.
+  * **Command Layer Review**: PASS - IRoleCommandService UpdateRoleStatusAsync matches IUserCommandService UpdateUserStatusAsync pattern (single method for both operations), RoleCommandService validates request, verifies role exists, validates status change, updates IsActive and ModifiedOn, uses ConfigureAwait(false), proper exception handling with logging, single SaveChangesAsync call.
+  * **Query/Command Separation**: PASS - Command layer performs updates only, no DbContext in ViewModels, clear separation of concerns, query layer unchanged.
+  * **ViewModel Review**: PASS - ActivateRoleCommand and DeactivateRoleCommand implemented with [RelayCommand], no confirmation dialogs (matches Users module), busy state managed correctly, error handling via ValidationError property, refreshes list after success, preserves search/filter state, no business logic, no DbContext.
+  * **View Review**: PASS - Activate/Deactivate buttons in header toolbar reusing existing IconButtonStyle, CaptionTextBlockStyle, Design System resources, spacing, typography. Validation error display added matching Users module pattern. No inline styling, no hardcoded colours or fonts.
+  * **Navigation Review**: PASS - No navigation changes, list refreshes via LoadRolesAsync after status change, search/filter state preserved, navigation lifecycle unchanged.
+  * **Dependency Injection Review**: PASS - IUpdateRoleStatusValidator registered as Scoped (matches IUpdateUserStatusValidator), constructor injection only, no manual object creation, no service locator pattern.
+  * **Performance Review**: PASS - Single database update with SaveChangesAsync, validator prevents unnecessary database writes (duplicate state), async throughout with ConfigureAwait(false) in service layer, CancellationToken support, no duplicate queries, no unnecessary UI refreshes.
+  * **Code Quality Review**: PASS - SOLID principles followed, DRY principle followed (no duplicate code), naming consistent with Users module (UpdateRoleStatusRequest, UpdateRoleStatusResult, IUpdateRoleStatusValidator), folder structure matches Users module, namespace consistent, XML documentation present on all public members, no dead code, no long methods, no magic strings, no magic numbers.
+  * **Security Review**: PASS - Role existence validation, soft delete respected, no sensitive logging (only role ID logged), no authentication changes, no authorization changes, no security regressions.
+* **Explicitly Unchanged**:
+  * Delete Role, Permission Assignment, database schema, Global Query Filter, Phase 0-2.8, Phase 2.9.1-2.9.4, existing functionality
+* **Files Modified**: IRoleCommandService.cs, RoleCommandService.cs, RolesViewModel.cs, RolesView.xaml, AdministrationServiceCollectionExtensions.cs.
+* **Justification for Changes**:
+  * **Model Consistency**: UpdateRoleStatusRequest and UpdateRoleStatusResult naming and structure match UpdateUserStatusRequest and UpdateUserStatusResult exactly.
+  * **Validation Architecture**: UpdateRoleStatusValidator follows the same pattern as UpdateUserStatusValidator with identical ValidationResult usage and error handling.
+  * **Command Layer**: IRoleCommandService uses single UpdateRoleStatusAsync method matching IUserCommandService pattern (not separate Activate/Deactivate methods). RoleCommandService implements the same async pattern, validation logic, ConfigureAwait(false) usage, and exception handling as UserCommandService.
+  * **ViewModel Pattern**: ActivateRoleCommand and DeactivateRoleCommand match Users module pattern with no confirmation dialogs, busy state handling, and list refresh.
+  * **View Consistency**: Activate/Deactivate buttons and validation error display reuse the same Design System resources, styles, and layout as Users module.
+  * **DI Registrations**: Service lifetimes match the Users module (Scoped for validators).
+  * **Performance**: Async/await pattern, ConfigureAwait(false), and validator preventing unnecessary database writes all implemented correctly.
+  * **Code Quality**: Naming, documentation, and structure consistent with the Users module.
+* **Validation Status**: Build verified successfully with no errors. Activate/Deactivate buttons are available. Commands execute successfully. Role status updates correctly. Validator prevents duplicate state updates. Roles list refreshes automatically. Search/filter state is preserved. Query/Command separation is maintained. No DbContext exists in ViewModels. Existing architecture is fully reused. No regressions are introduced. Implementation is enterprise-grade and ready for Phase 2.9.5A.
+
+### Phase 2.9.5A: Activate / Deactivate Role Architecture Review
+* **Goal**: Perform a comprehensive enterprise architecture review of the Activate / Deactivate Role implementation to ensure it matches the architecture, quality, and behaviour of the Users module. Refine code where necessary without introducing new features or redesigning existing architecture.
+* **Included**:
+  * **Architectural Inconsistency Fixed**: Command layer was using separate ActivateRoleAsync and DeactivateRoleAsync methods instead of a single UpdateRoleStatusAsync method matching the Users module pattern. Fixed by replacing with single UpdateRoleStatusAsync method.
+  * **Confirmation Dialogs Removed**: Confirmation dialogs were incorrectly added (Users module does not use them for activate/deactivate). Removed to match Users module pattern.
+  * **System.Windows Using Statement**: Removed from RolesViewModel after removing confirmation dialogs.
+* **Architecture Review Results**:
+  * **MVVM Compliance**: PASS - RolesViewModel properly inherits from ViewModelBase, RolesView contains no business logic, clean separation of concerns, proper data binding.
+  * **SOLID Compliance**: PASS - Single Responsibility (each class has one purpose), Open/Closed (extensible without modification), Liskov Substitution (interfaces properly implemented), Interface Segregation (focused interfaces), Dependency Inversion (depends on abstractions).
+  * **Command Layer Review**: PASS - IRoleCommandService now uses single UpdateRoleStatusAsync method matching IUserCommandService UpdateUserStatusAsync pattern exactly. RoleCommandService implementation matches Users module with single method handling both operations based on IsActive property.
+  * **ViewModel Review**: PASS - ActivateRoleCommand and DeactivateRoleCommand now match Users module pattern with no confirmation dialogs, direct calls to UpdateRoleStatusAsync, proper busy state handling, and list refresh.
+  * **Confirmation Dialog Review**: PASS - No confirmation dialogs for activate/deactivate (matches Users module exactly).
+  * **Query/Command Separation**: PASS - Command layer performs updates only, no DbContext in ViewModels, clear separation of concerns.
+  * **Navigation Review**: PASS - No navigation changes, list refreshes after status change, search/filter state preserved.
+  * **Dependency Injection Review**: PASS - IUpdateRoleStatusValidator registered as Scoped, constructor injection only, no service locator.
+  * **Performance Review**: PASS - Single database update, validator prevents unnecessary writes, ConfigureAwait(false) in service layer, CancellationToken support.
+  * **Code Quality Review**: PASS - SOLID principles followed, DRY principle followed, naming consistent with Users module, XML documentation present, no duplicate code.
+  * **Security Review**: PASS - Role existence validation, soft delete respected, no sensitive logging, no authentication/authorization changes.
+* **Explicitly Unchanged**:
+  * All other Phase 2.9.5 implementation files, database schema, Global Query Filter, Phase 0-2.8, Phase 2.9.1-2.9.4, existing functionality
+* **Files Modified**: IRoleCommandService.cs, RoleCommandService.cs, RolesViewModel.cs.
+* **Justification for Changes**:
+  * **Command Layer Consistency**: Replaced separate ActivateRoleAsync and DeactivateRoleAsync with single UpdateRoleStatusAsync to match IUserCommandService pattern exactly.
+  * **ViewModel Consistency**: Removed confirmation dialogs to match Users module (no confirmation for activate/deactivate operations).
+  * **Architecture Alignment**: Now exactly matches the Users module's activate/deactivate implementation pattern.
+* **Validation Status**: Build verified successfully with no errors. Activate/Deactivate Role architecture matches Activate/Deactivate User exactly. Command layer follows the same patterns (single UpdateRoleStatusAsync method). Confirmation dialog behaviour matches the Users module (none for activate/deactivate). Navigation behaviour is unchanged. Query/Command separation is maintained. No DbContext exists in ViewModels. Dependency Injection follows existing conventions. Performance is optimal. No unnecessary database writes occur. No duplicate queries. No duplicate code. No dead code. Existing phases remain unchanged. No regressions are introduced. The implementation is enterprise-grade and ready to be frozen.
+
+### Phase 2.9.6: Administration → Role Management → Delete Role (Soft Delete)
+* **Goal**: Implement complete Delete Role functionality using the existing Soft Delete Infrastructure established in Phase 2.7, following the exact implementation used by the Users module.
+* **Included**:
+  * **Created** `Administration/Roles/Models/DeleteRoleRequest.cs`: Request model for role deletion containing RoleId property.
+  * **Created** `Administration/Roles/Models/DeleteRoleResult.cs`: Result model with IsSuccess, ErrorMessage properties and Success/Failure factory methods.
+  * **Created** `Administration/Roles/Contracts/IDeleteRoleValidator.cs`: Interface for validating delete role requests using existing ValidationResult infrastructure.
+  * **Created** `Administration/Roles/Validators/DeleteRoleValidator.cs`: Implementation that validates RoleId (must be positive value) and provides friendly error messages.
+  * **Extended** `Administration/Roles/Contracts/IRoleCommandService.cs`: Added DeleteRoleAsync method for role soft delete operations.
+  * **Extended** `Administration/Roles/Services/RoleCommandService.cs`: Added IDeleteRoleValidator dependency and DeleteRoleAsync implementation that validates request, verifies role exists, sets IsDeleted = true, DeletedOn = DateTime.UtcNow, persists changes, and returns appropriate result. Does NOT update ModifiedOn (matches Users module pattern).
+  * **Modified** `Administration/Roles/ViewModels/RolesViewModel.cs`: Added DeleteRoleCommand with confirmation dialog ("Are you sure you want to delete this role?\n\nThis action hides the role from the application."), busy state handling, list refresh after success, and error handling. Updated SelectedRole property to notify DeleteRoleCommand of CanExecute changes. Added System.Windows using statement for MessageBox.
+  * **Modified** `Administration/Roles/Views/RolesView.xaml`: Added Delete Role button in header toolbar with Command binding to DeleteRoleCommand.
+  * **Modified** `Administration/DependencyInjection/AdministrationServiceCollectionExtensions.cs`: Added IDeleteRoleValidator (Scoped) registration.
+* **Architecture Review Results**:
+  * **MVVM Compliance**: PASS - RolesViewModel properly inherits from ViewModelBase, RolesView contains no business logic, clean separation of concerns, proper data binding.
+  * **SOLID Compliance**: PASS - Single Responsibility (each class has one purpose), Open/Closed (extensible without modification), Liskov Substitution (interfaces properly implemented), Interface Segregation (focused interfaces), Dependency Inversion (depends on abstractions).
+  * **Model Review**: PASS - DeleteRoleRequest naming matches DeleteUserRequest pattern, DeleteRoleResult matches DeleteUserResult pattern, properties have appropriate types, XML documentation present, namespace consistent with Users module.
+  * **Validation Review**: PASS - DeleteRoleValidator follows DeleteUserValidator pattern exactly, uses existing ValidationResult infrastructure, validates RoleId > 0, provides friendly error messages, no validation in ViewModel.
+  * **Command Layer Review**: PASS - IRoleCommandService DeleteRoleAsync matches IUserCommandService DeleteUserAsync pattern exactly, RoleCommandService validates request, verifies role exists, sets IsDeleted = true and DeletedOn = DateTime.UtcNow, does NOT update ModifiedOn (matches Users module), uses ConfigureAwait(false), proper exception handling with logging, single SaveChangesAsync call.
+  * **Query/Command Separation**: PASS - Command layer performs soft delete only, query layer unchanged (Global Query Filter automatically hides deleted roles), no DbContext in ViewModels, clear separation of concerns.
+  * **ViewModel Review**: PASS - DeleteRoleCommand implemented with [RelayCommand], confirmation dialog matches Users module pattern, busy state managed correctly, error handling via ValidationError property, refreshes list after success, preserves search/filter state, no business logic, no DbContext.
+  * **View Review**: PASS - Delete Role button in header toolbar reusing existing IconButtonStyle, CaptionTextBlockStyle, Design System resources, spacing, typography. No inline styling, no hardcoded colours or fonts.
+  * **Confirmation Dialog Review**: PASS - MessageBox.Show with Yes/No, message matches Users module pattern ("Are you sure you want to delete this role?\n\nThis action hides the role from the application."), cancel behaviour matches Users module.
+  * **Navigation Review**: PASS - No navigation changes, list refreshes via LoadRolesAsync after deletion, search/filter state preserved, navigation lifecycle unchanged.
+  * **Dependency Injection Review**: PASS - IDeleteRoleValidator registered as Scoped (matches IDeleteUserValidator), constructor injection only, no manual object creation, no service locator pattern.
+  * **Performance Review**: PASS - Single database update with SaveChangesAsync, async throughout with ConfigureAwait(false) in service layer, CancellationToken support, no duplicate queries, no unnecessary UI refreshes.
+  * **Code Quality Review**: PASS - SOLID principles followed, DRY principle followed (no duplicate code), naming consistent with Users module (DeleteRoleRequest, DeleteRoleResult, IDeleteRoleValidator), folder structure matches Users module, namespace consistent, XML documentation present on all public members, no dead code, no long methods, no magic strings, no magic numbers.
+  * **Security Review**: PASS - Soft delete only (no physical delete), Global Query Filter respected, role existence validation, no sensitive logging (only role ID logged), no authentication changes, no authorization changes, no security regressions.
+* **Explicitly Unchanged**:
+  * Permanent Delete, Restore Role, Permission Assignment, database schema, Global Query Filter, Phase 0-2.8, Phase 2.9.1-2.9.5, existing functionality
+* **Files Modified**: IRoleCommandService.cs, RoleCommandService.cs, RolesViewModel.cs, RolesView.xaml, AdministrationServiceCollectionExtensions.cs.
+* **Justification for Changes**:
+  * **Model Consistency**: DeleteRoleRequest and DeleteRoleResult naming and structure match DeleteUserRequest and DeleteUserResult exactly.
+  * **Validation Architecture**: DeleteRoleValidator follows the same pattern as DeleteUserValidator with identical ValidationResult usage and error handling.
+  * **Command Layer**: RoleCommandService DeleteRoleAsync implements the same async pattern, validation logic, soft delete logic (IsDeleted, DeletedOn only, no ModifiedOn), ConfigureAwait(false) usage, and exception handling as UserCommandService DeleteUserAsync.
+  * **ViewModel Pattern**: DeleteRoleCommand matches DeleteUserCommand pattern with confirmation dialog, busy state handling, and list refresh.
+  * **View Consistency**: Delete Role button reuses the same Design System resources, styles, and layout as Users module.
+  * **DI Registrations**: Service lifetimes match the Users module (Scoped for validators).
+  * **Performance**: Async/await pattern, ConfigureAwait(false), and single database update all implemented correctly.
+  * **Code Quality**: Naming, documentation, and structure consistent with the Users module.
+* **Validation Status**: Build verified successfully with no errors. Delete button is available. Confirmation dialog appears. DeleteRoleCommand executes successfully. Role is soft deleted. IsDeleted is set to true. DeletedOn is populated. ModifiedOn is NOT updated (matches Users module). Role disappears from Roles list (via Global Query Filter). Global Query Filter hides deleted roles. Search/filter state is preserved. Query/Command separation is maintained. No DbContext exists in ViewModels. Existing architecture is fully reused. No regressions are introduced. Implementation is enterprise-grade and ready for Phase 2.9.6A.
+
 ## 3. Architecture & Design
 
 ### Dependency Injection and Composition

@@ -42,6 +42,7 @@ public static class AdministrationServiceCollectionExtensions
         services.AddScoped<ICreateRoleValidator, CreateRoleValidator>();
         services.AddScoped<IUpdateRoleValidator, UpdateRoleValidator>();
         services.AddScoped<IUpdateRoleStatusValidator, UpdateRoleStatusValidator>();
+        services.AddScoped<IDeleteRoleValidator, DeleteRoleValidator>();
         services.AddTransient<RolesViewModel>();
         services.AddTransient<AddRoleViewModel>();
         services.AddTransient<EditRoleViewModel>();

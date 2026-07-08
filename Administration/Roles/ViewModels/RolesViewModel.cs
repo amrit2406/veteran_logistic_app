@@ -2,6 +2,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Threading;
+using System.Windows;
 using veteran_logistic.Administration.Roles.Contracts;
 using veteran_logistic.Administration.Roles.Models;
 using veteran_logistic.MVVM;
@@ -83,6 +84,7 @@ public sealed partial class RolesViewModel : ViewModelBase
             {
                 ActivateRoleCommand.NotifyCanExecuteChanged();
                 DeactivateRoleCommand.NotifyCanExecuteChanged();
+                DeleteRoleCommand.NotifyCanExecuteChanged();
             }
         }
     }
@@ -196,6 +198,51 @@ public sealed partial class RolesViewModel : ViewModelBase
         else
         {
             ValidationError = result.ErrorMessage ?? "Failed to deactivate role.";
+        }
+    }
+
+    /// <summary>
+    /// Command to delete the selected role.
+    /// </summary>
+    [RelayCommand(CanExecute = nameof(CanExecuteRoleCommand))]
+    private async Task DeleteRoleAsync()
+    {
+        if (SelectedRole is null)
+        {
+            return;
+        }
+
+        ValidationError = string.Empty;
+
+        var messageBoxResult = MessageBox.Show(
+            "Are you sure you want to delete this role?\n\nThis action hides the role from the application.",
+            "Delete Role",
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Question);
+
+        if (messageBoxResult != MessageBoxResult.Yes)
+        {
+            return;
+        }
+
+        var request = new DeleteRoleRequest
+        {
+            RoleId = SelectedRole.Id
+        };
+
+        SetBusy("Deleting role...");
+        var result = await _roleCommandService.DeleteRoleAsync(request, CancellationToken.None);
+        ClearBusy();
+
+        if (result.IsSuccess)
+        {
+            await LoadRolesAsync();
+            SelectedRole = null;
+            DeleteRoleCommand.NotifyCanExecuteChanged();
+        }
+        else
+        {
+            ValidationError = result.ErrorMessage ?? "Failed to delete role.";
         }
     }
 

@@ -30,4 +30,12 @@ public interface IRoleCommandService
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>A result indicating success or failure.</returns>
     Task<UpdateRoleStatusResult> UpdateRoleStatusAsync(UpdateRoleStatusRequest request, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Deletes a role (soft delete).
+    /// </summary>
+    /// <param name="request">The delete role request.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A result indicating success or failure.</returns>
+    Task<DeleteRoleResult> DeleteRoleAsync(DeleteRoleRequest request, CancellationToken cancellationToken = default);
 }

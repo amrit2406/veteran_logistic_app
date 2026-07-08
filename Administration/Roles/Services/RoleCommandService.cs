@@ -16,6 +16,7 @@ public sealed class RoleCommandService : IRoleCommandService
     private readonly ICreateRoleValidator _createValidator;
     private readonly IUpdateRoleValidator _updateValidator;
     private readonly IUpdateRoleStatusValidator _updateStatusValidator;
+    private readonly IDeleteRoleValidator _deleteValidator;
     private readonly ILogger<RoleCommandService> _logger;
 
     /// <summary>
@@ -25,18 +26,21 @@ public sealed class RoleCommandService : IRoleCommandService
     /// <param name="createValidator">The role creation validator.</param>
     /// <param name="updateValidator">The role update validator.</param>
     /// <param name="updateStatusValidator">The role status update validator.</param>
+    /// <param name="deleteValidator">The role delete validator.</param>
     /// <param name="logger">The logger.</param>
     public RoleCommandService(
         VeteranLogisticsDbContext dbContext,
         ICreateRoleValidator createValidator,
         IUpdateRoleValidator updateValidator,
         IUpdateRoleStatusValidator updateStatusValidator,
+        IDeleteRoleValidator deleteValidator,
         ILogger<RoleCommandService> logger)
     {
         _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         _createValidator = createValidator ?? throw new ArgumentNullException(nameof(createValidator));
         _updateValidator = updateValidator ?? throw new ArgumentNullException(nameof(updateValidator));
         _updateStatusValidator = updateStatusValidator ?? throw new ArgumentNullException(nameof(updateStatusValidator));
+        _deleteValidator = deleteValidator ?? throw new ArgumentNullException(nameof(deleteValidator));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
@@ -166,6 +170,41 @@ public sealed class RoleCommandService : IRoleCommandService
         {
             _logger.LogError(ex, "An unexpected error occurred while updating role status '{RoleId}'", request.RoleId);
             return UpdateRoleStatusResult.Failure("An unexpected error occurred while updating the role status.");
+        }
+    }
+
+    /// <inheritdoc />
+    public async Task<DeleteRoleResult> DeleteRoleAsync(DeleteRoleRequest request, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var validationResult = _deleteValidator.Validate(request);
+            if (!validationResult.IsValid)
+            {
+                var errorMessage = string.Join("; ", validationResult.Errors.Select(e => e.ErrorMessage));
+                return DeleteRoleResult.Failure(errorMessage);
+            }
+
+            var role = await _dbContext.Roles
+                .FirstOrDefaultAsync(r => r.Id == request.RoleId, cancellationToken)
+                .ConfigureAwait(false);
+
+            if (role is null)
+            {
+                return DeleteRoleResult.Failure("Role not found.");
+            }
+
+            role.IsDeleted = true;
+            role.DeletedOn = DateTime.UtcNow;
+
+            await _dbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+
+            return DeleteRoleResult.Success();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An unexpected error occurred while deleting role '{RoleId}'", request.RoleId);
+            return DeleteRoleResult.Failure("An unexpected error occurred while deleting the role.");
         }
     }
 }

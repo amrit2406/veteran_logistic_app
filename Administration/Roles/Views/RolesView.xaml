@@ -96,6 +96,19 @@
                                    VerticalAlignment="Center" />
                     </Button>
 
+                    <!-- Delete Role Button -->
+                    <Button Height="{StaticResource StandardControlHeight}"
+                            Command="{Binding DeleteRoleCommand}"
+                            Style="{StaticResource IconButtonStyle}"
+                            ToolTip="Delete Role"
+                            VerticalAlignment="Center"
+                            Margin="{StaticResource Small}">
+                        <TextBlock Text="Delete Role"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Button>
+
                     <!-- Refresh Button -->
                     <Button Height="{StaticResource StandardControlHeight}"
                             Command="{Binding RefreshCommand}"
