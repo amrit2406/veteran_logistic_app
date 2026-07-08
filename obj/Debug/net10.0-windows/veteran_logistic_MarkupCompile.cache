@@ -12,7 +12,7 @@ TRACE;DEBUG;NET;NET10_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_O
 D:\app\veteran_logistic_app\App.xaml
 261620520111
 
-174-1052488367
+175131066214
 278-630664606
 Administration\Roles\Views\RolesView.xaml;Administration\Users\Views\AddUserView.xaml;Administration\Users\Views\EditUserView.xaml;Administration\Users\Views\ResetPasswordView.xaml;Administration\Users\Views\UsersView.xaml;Authentication\Views\LoginView.xaml;Desktop\Shell\ShellView.xaml;FinancialYear\Views\FinancialYearSelectionView.xaml;MainWindow.xaml;Resources\Brushes.xaml;Resources\Colors.xaml;Resources\DataTemplates.xaml;Resources\Icons.xaml;Resources\Spacing.xaml;Resources\Typography.xaml;Styles\ButtonStyles.xaml;Styles\CheckBoxStyles.xaml;Styles\ComboBoxStyles.xaml;Styles\DataGridStyles.xaml;Styles\DatePickerStyles.xaml;Styles\MenuStyles.xaml;Styles\StatusBarStyles.xaml;Styles\TextBlockStyles.xaml;Styles\TextBoxStyles.xaml;Styles\WindowStyles.xaml;Themes\LightTheme.xaml;
 

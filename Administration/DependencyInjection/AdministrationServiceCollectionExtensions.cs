@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using veteran_logistic.Administration.Users.Contracts;
 using veteran_logistic.Administration.Users.Services;
 using veteran_logistic.Administration.Users.Validators;
@@ -36,7 +37,9 @@ public static class AdministrationServiceCollectionExtensions
         services.AddTransient<ResetPasswordViewModel>();
 
         services.AddScoped<IRoleQueryService, RoleQueryService>();
-        services.AddTransient<RolesViewModel>();
+        services.AddTransient<RolesViewModel>(sp => new RolesViewModel(
+            sp.GetRequiredService<IRoleQueryService>(),
+            sp.GetRequiredService<ILogger<RolesViewModel>>()));
 
         return services;
     }

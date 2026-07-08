@@ -31,9 +31,9 @@
                 <StackPanel Grid.Column="1"
                             Orientation="Horizontal"
                             HorizontalAlignment="Right">
-                    <!-- Search (placeholder) -->
+                    <!-- Search -->
                     <TextBox Height="{StaticResource StandardControlHeight}"
-                             IsEnabled="False"
+                             Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
                              Margin="{StaticResource Small}"
                              VerticalAlignment="Center">
                         <TextBox.Style>

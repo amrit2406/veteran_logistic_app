@@ -52,8 +52,7 @@ namespace veteran_logistic.Administration.Users.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/veteran_logistic;V1.0.0.0;component/administration/users/views/edituserview.xaml" +
-                    "", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/veteran_logistic;component/administration/users/views/edituserview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\Administration\Users\Views\EditUserView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

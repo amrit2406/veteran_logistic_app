@@ -726,6 +726,37 @@ This document records the implementation work completed across the repository an
   * Add Role, Edit Role, Delete Role, Activate/Deactivate Role, Permission Assignment, Search functionality, Role CRUD operations, Role Assignment, Permission Matrix, Repository Pattern, MediatR, CQRS, Business logic inside Views, DbContext inside ViewModels.
 * **Validation Status**: Build verified successfully with no errors. Roles table exists in SQL Server (migration created). EF Core migration executes successfully. Global Query Filter excludes soft-deleted roles. Roles page opens from Administration menu. Roles load from database. Loading indicator works correctly. Empty state displays when no roles exist. Query/Command separation maintained. No business logic in Views. No DbContext in ViewModels. Existing architecture fully reused. Implementation matches Users module quality and architecture. Phase 2.9.1 is production-ready and ready to be frozen.
 
+### Phase 2.9.2: Administration → Role Management → Search Roles
+* **Goal**: Implement Role Search functionality using the exact architecture and behaviour established in the Users module. This phase implements only search functionality without any CRUD operations.
+* **Included**:
+  * **Modified** `Administration/Roles/Contracts/IRoleQueryService.cs`: Added SearchRolesAsync method with search term and CancellationToken parameters. Returns IReadOnlyList<RoleListItem>.
+  * **Modified** `Administration/Roles/Services/RoleQueryService.cs`: Implemented SearchRolesAsync using EF.Functions.Like for case-insensitive search on Name and Description fields. Uses AsNoTracking(), reuses ProjectToListItem() projection, orders by Name, respects Global Query Filter, supports CancellationToken. Empty or whitespace-only search returns all roles.
+  * **Modified** `Administration/Roles/ViewModels/RolesViewModel.cs`: Added SearchText property with two-way binding. Added _searchCancellationTokenSource field for debouncing. Added DebouncedSearchAsync() method with 300ms delay and cancellation handling. Added SearchRolesAsync() method that calls query service and updates UI. SearchText property setter triggers debounced search on change. Loading indicator shows during search.
+  * **Modified** `Administration/Roles/Views/RolesView.xaml`: Enabled Search TextBox with Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" binding. Removed IsEnabled="False" placeholder. Maintains existing styling, layout, and placeholder structure.
+* **Search Behavior**:
+  * Debounced with 300ms delay to prevent excessive database queries
+  * Asynchronous with CancellationToken support
+  * Cancels previous search when user continues typing
+  * Case-insensitive search on Name and Description fields
+  * Empty or whitespace-only input automatically reloads all roles
+  * Respects soft delete via Global Query Filter
+  * Loading indicator displays during search operations
+* **Explicitly Excluded**:
+  * Add Role, Edit Role, Delete Role, Activate/Deactivate Role, Permission Assignment, Role CRUD operations, Role Assignment, Permission Matrix, Repository Pattern, MediatR, CQRS, Business logic inside Views, DbContext inside ViewModels, Unit tests, Integration tests, Configurable debounce delay, Exception logging beyond OperationCanceledException, Database index on Description.
+* **Architecture Compliance**:
+  * MVVM: ViewModel contains no business logic, View binds to ViewModel properties
+  * SOLID: Single Responsibility, Open/Closed, Dependency Inversion principles followed
+  * Query Layer: Uses AsNoTracking(), efficient LINQ with projection, ordered by Name, respects Global Query Filter, supports CancellationToken
+  * Performance: Debounced search (300ms), CancellationToken cancels previous searches, single query execution per search, ConfigureAwait(false) in query service
+  * Navigation: No navigation changes, reuses existing infrastructure
+  * Consistency: Identical debounce pattern to UsersViewModel, same CancellationToken handling, same loading indicator pattern, same case-insensitive search using EF.Functions.Like
+* **Known Limitations**:
+  * Database index exists on Name but not on Description (may impact performance on large datasets when searching by description)
+  * No unit tests or integration tests for search behavior
+  * Debounce delay is hard-coded to 300ms (not configurable)
+  * Exception handling only catches OperationCanceledException (other exceptions propagate uncaught and unlogged)
+* **Validation Status**: Build verified successfully with no errors. Search works identically to Users module. Search is debounced. Search is asynchronous. Search supports Name and Description. Search is case insensitive. Empty search reloads all roles. Search respects soft delete. Loading indicator behaves correctly. No duplicate queries occur. CancellationToken is correctly handled. Query/Command separation is maintained. No DbContext exists in the ViewModel. Existing architecture is fully reused. No regression introduced into previous phases. Phase 2.9.2 is complete and ready for Phase 2.9.2A.
+
 ## 3. Architecture & Design
 
 ### Dependency Injection and Composition

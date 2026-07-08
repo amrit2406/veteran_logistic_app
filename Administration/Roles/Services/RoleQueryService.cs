@@ -35,6 +35,25 @@ public sealed class RoleQueryService : IRoleQueryService
             .ConfigureAwait(false);
     }
 
+    /// <inheritdoc />
+    public async Task<IReadOnlyList<RoleListItem>> SearchRolesAsync(string? search, CancellationToken cancellationToken = default)
+    {
+        var query = _dbContext.Roles.AsNoTracking();
+
+        if (!string.IsNullOrWhiteSpace(search))
+        {
+            var searchPattern = $"%{search}%";
+            query = query.Where(r =>
+                EF.Functions.Like(r.Name, searchPattern) ||
+                (r.Description != null && EF.Functions.Like(r.Description, searchPattern)));
+        }
+
+        return await ProjectToListItem(query)
+            .OrderBy(r => r.Name)
+            .ToListAsync(cancellationToken)
+            .ConfigureAwait(false);
+    }
+
     private static IQueryable<RoleListItem> ProjectToListItem(IQueryable<Role> query)
     {
         return query.Select(r => new RoleListItem

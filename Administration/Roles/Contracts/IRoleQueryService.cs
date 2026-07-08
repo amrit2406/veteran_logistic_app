@@ -13,4 +13,12 @@ public interface IRoleQueryService
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>A collection of role list items.</returns>
     Task<IReadOnlyList<RoleListItem>> GetAllRolesAsync(CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Searches roles by name or description.
+    /// </summary>
+    /// <param name="search">The search term.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A collection of role list items matching the search criteria.</returns>
+    Task<IReadOnlyList<RoleListItem>> SearchRolesAsync(string? search, CancellationToken cancellationToken = default);
 }
