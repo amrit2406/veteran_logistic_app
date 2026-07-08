@@ -15,6 +15,7 @@ public sealed class RoleCommandService : IRoleCommandService
     private readonly VeteranLogisticsDbContext _dbContext;
     private readonly ICreateRoleValidator _createValidator;
     private readonly IUpdateRoleValidator _updateValidator;
+    private readonly IUpdateRoleStatusValidator _updateStatusValidator;
     private readonly ILogger<RoleCommandService> _logger;
 
     /// <summary>
@@ -23,16 +24,19 @@ public sealed class RoleCommandService : IRoleCommandService
     /// <param name="dbContext">The database context.</param>
     /// <param name="createValidator">The role creation validator.</param>
     /// <param name="updateValidator">The role update validator.</param>
+    /// <param name="updateStatusValidator">The role status update validator.</param>
     /// <param name="logger">The logger.</param>
     public RoleCommandService(
         VeteranLogisticsDbContext dbContext,
         ICreateRoleValidator createValidator,
         IUpdateRoleValidator updateValidator,
+        IUpdateRoleStatusValidator updateStatusValidator,
         ILogger<RoleCommandService> logger)
     {
         _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         _createValidator = createValidator ?? throw new ArgumentNullException(nameof(createValidator));
         _updateValidator = updateValidator ?? throw new ArgumentNullException(nameof(updateValidator));
+        _updateStatusValidator = updateStatusValidator ?? throw new ArgumentNullException(nameof(updateStatusValidator));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
@@ -126,6 +130,78 @@ public sealed class RoleCommandService : IRoleCommandService
         {
             _logger.LogError(ex, "An unexpected error occurred while updating role '{Id}'", request.Id);
             return UpdateRoleResult.Failure("An unexpected error occurred while updating the role.");
+        }
+    }
+
+    /// <inheritdoc />
+    public async Task<UpdateRoleStatusResult> ActivateRoleAsync(UpdateRoleStatusRequest request, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var role = await _dbContext.Roles
+                .FirstOrDefaultAsync(r => r.Id == request.RoleId, cancellationToken)
+                .ConfigureAwait(false);
+
+            if (role is null)
+            {
+                return UpdateRoleStatusResult.Failure("Role not found.");
+            }
+
+            var validationResult = _updateStatusValidator.Validate(request, role.IsActive);
+            if (!validationResult.IsValid)
+            {
+                var errorMessage = string.Join("; ", validationResult.Errors.Select(e => e.ErrorMessage));
+                return UpdateRoleStatusResult.Failure(errorMessage);
+            }
+
+            // Update the status on the tracked entity
+            role.IsActive = true;
+            role.ModifiedOn = DateTime.UtcNow;
+
+            await _dbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+
+            return UpdateRoleStatusResult.Success();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An unexpected error occurred while activating role '{RoleId}'", request.RoleId);
+            return UpdateRoleStatusResult.Failure("An unexpected error occurred while activating the role.");
+        }
+    }
+
+    /// <inheritdoc />
+    public async Task<UpdateRoleStatusResult> DeactivateRoleAsync(UpdateRoleStatusRequest request, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var role = await _dbContext.Roles
+                .FirstOrDefaultAsync(r => r.Id == request.RoleId, cancellationToken)
+                .ConfigureAwait(false);
+
+            if (role is null)
+            {
+                return UpdateRoleStatusResult.Failure("Role not found.");
+            }
+
+            var validationResult = _updateStatusValidator.Validate(request, role.IsActive);
+            if (!validationResult.IsValid)
+            {
+                var errorMessage = string.Join("; ", validationResult.Errors.Select(e => e.ErrorMessage));
+                return UpdateRoleStatusResult.Failure(errorMessage);
+            }
+
+            // Update the status on the tracked entity
+            role.IsActive = false;
+            role.ModifiedOn = DateTime.UtcNow;
+
+            await _dbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+
+            return UpdateRoleStatusResult.Success();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An unexpected error occurred while deactivating role '{RoleId}'", request.RoleId);
+            return UpdateRoleStatusResult.Failure("An unexpected error occurred while deactivating the role.");
         }
     }
 }

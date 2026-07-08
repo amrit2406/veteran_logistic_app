@@ -2,6 +2,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Threading;
+using System.Windows;
 using veteran_logistic.Administration.Roles.Contracts;
 using veteran_logistic.Administration.Roles.Models;
 using veteran_logistic.MVVM;
@@ -15,19 +16,23 @@ namespace veteran_logistic.Administration.Roles.ViewModels;
 public sealed partial class RolesViewModel : ViewModelBase
 {
     private readonly IRoleQueryService _roleQueryService;
+    private readonly IRoleCommandService _roleCommandService;
     private readonly INavigationService _navigationService;
     private string _searchText = string.Empty;
     private RoleListItem? _selectedRole;
+    private string _validationError = string.Empty;
     private CancellationTokenSource? _searchCancellationTokenSource;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="RolesViewModel"/> class.
     /// </summary>
     /// <param name="roleQueryService">The role query service.</param>
+    /// <param name="roleCommandService">The role command service.</param>
     /// <param name="navigationService">The navigation service.</param>
-    public RolesViewModel(IRoleQueryService roleQueryService, INavigationService navigationService)
+    public RolesViewModel(IRoleQueryService roleQueryService, IRoleCommandService roleCommandService, INavigationService navigationService)
     {
         _roleQueryService = roleQueryService ?? throw new ArgumentNullException(nameof(roleQueryService));
+        _roleCommandService = roleCommandService ?? throw new ArgumentNullException(nameof(roleCommandService));
         _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
     }
 
@@ -73,7 +78,23 @@ public sealed partial class RolesViewModel : ViewModelBase
     public RoleListItem? SelectedRole
     {
         get => _selectedRole;
-        set => SetProperty(ref _selectedRole, value);
+        set
+        {
+            if (SetProperty(ref _selectedRole, value))
+            {
+                ActivateRoleCommand.NotifyCanExecuteChanged();
+                DeactivateRoleCommand.NotifyCanExecuteChanged();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Gets or sets the validation error message.
+    /// </summary>
+    public string ValidationError
+    {
+        get => _validationError;
+        set => SetProperty(ref _validationError, value);
     }
 
     /// <summary>
@@ -111,6 +132,107 @@ public sealed partial class RolesViewModel : ViewModelBase
         };
 
         await _navigationService.NavigateAsync<ViewModels.EditRoleViewModel>(parameter).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// Command to activate the selected role.
+    /// </summary>
+    [RelayCommand(CanExecute = nameof(CanExecuteRoleCommand))]
+    private async Task ActivateRoleAsync()
+    {
+        if (SelectedRole is null)
+        {
+            return;
+        }
+
+        ValidationError = string.Empty;
+
+        var messageBoxResult = MessageBox.Show(
+            "Are you sure you want to activate this role?",
+            "Activate Role",
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Question);
+
+        if (messageBoxResult != MessageBoxResult.Yes)
+        {
+            return;
+        }
+
+        var request = new UpdateRoleStatusRequest
+        {
+            RoleId = SelectedRole.Id,
+            IsActive = true
+        };
+
+        SetBusy("Activating role...");
+        var result = await _roleCommandService.ActivateRoleAsync(request, CancellationToken.None);
+        ClearBusy();
+
+        if (result.IsSuccess)
+        {
+            await HandleRoleStatusUpdateSuccess();
+        }
+        else
+        {
+            ValidationError = result.ErrorMessage ?? "Failed to activate role.";
+        }
+    }
+
+    /// <summary>
+    /// Command to deactivate the selected role.
+    /// </summary>
+    [RelayCommand(CanExecute = nameof(CanExecuteRoleCommand))]
+    private async Task DeactivateRoleAsync()
+    {
+        if (SelectedRole is null)
+        {
+            return;
+        }
+
+        ValidationError = string.Empty;
+
+        var messageBoxResult = MessageBox.Show(
+            "Are you sure you want to deactivate this role?",
+            "Deactivate Role",
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Question);
+
+        if (messageBoxResult != MessageBoxResult.Yes)
+        {
+            return;
+        }
+
+        var request = new UpdateRoleStatusRequest
+        {
+            RoleId = SelectedRole.Id,
+            IsActive = false
+        };
+
+        SetBusy("Deactivating role...");
+        var result = await _roleCommandService.DeactivateRoleAsync(request, CancellationToken.None);
+        ClearBusy();
+
+        if (result.IsSuccess)
+        {
+            await HandleRoleStatusUpdateSuccess();
+        }
+        else
+        {
+            ValidationError = result.ErrorMessage ?? "Failed to deactivate role.";
+        }
+    }
+
+    private async Task HandleRoleStatusUpdateSuccess()
+    {
+        await LoadRolesAsync();
+        SelectedRole = null;
+        ActivateRoleCommand.NotifyCanExecuteChanged();
+        DeactivateRoleCommand.NotifyCanExecuteChanged();
+    }
+
+    private bool CanExecuteRoleCommand()
+    {
+        return SelectedRole is not null;
     }
 
     /// <summary>

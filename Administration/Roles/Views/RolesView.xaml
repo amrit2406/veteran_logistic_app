@@ -8,6 +8,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -69,6 +70,32 @@
                                    VerticalAlignment="Center" />
                     </Button>
 
+                    <!-- Activate Role Button -->
+                    <Button Height="{StaticResource StandardControlHeight}"
+                            Command="{Binding ActivateRoleCommand}"
+                            Style="{StaticResource IconButtonStyle}"
+                            ToolTip="Activate Role"
+                            VerticalAlignment="Center"
+                            Margin="{StaticResource Small}">
+                        <TextBlock Text="Activate"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Button>
+
+                    <!-- Deactivate Role Button -->
+                    <Button Height="{StaticResource StandardControlHeight}"
+                            Command="{Binding DeactivateRoleCommand}"
+                            Style="{StaticResource IconButtonStyle}"
+                            ToolTip="Deactivate Role"
+                            VerticalAlignment="Center"
+                            Margin="{StaticResource Small}">
+                        <TextBlock Text="Deactivate"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Button>
+
                     <!-- Refresh Button -->
                     <Button Height="{StaticResource StandardControlHeight}"
                             Command="{Binding RefreshCommand}"
@@ -104,8 +131,21 @@
             </StackPanel>
         </Border>
 
+        <!-- Validation Error -->
+        <Border Grid.Row="2"
+                Background="{DynamicResource ErrorBrush}"
+                BorderBrush="{DynamicResource ErrorBrush}"
+                BorderThickness="{StaticResource StandardBorderThickness}"
+                Padding="{StaticResource Medium}"
+                Visibility="{Binding ValidationError, Converter={StaticResource StringToVisibilityConverter}}">
+            <TextBlock Text="{Binding ValidationError}"
+                       Style="{StaticResource BodyTextBlockStyle}"
+                       Foreground="{DynamicResource OnErrorBrush}"
+                       TextWrapping="Wrap" />
+        </Border>
+
         <!-- DataGrid -->
-        <DataGrid Grid.Row="2"
+        <DataGrid Grid.Row="3"
                   ItemsSource="{Binding Roles}"
                   SelectedItem="{Binding SelectedRole}"
                   IsReadOnly="True"
