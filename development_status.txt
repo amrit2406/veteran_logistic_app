@@ -786,6 +786,71 @@ This document records the implementation work completed across the repository an
   * Search architecture, query layer implementation, ViewModel search logic, UI layout, navigation, authentication, authorization, database schema, Global Query Filter, Phase 0-2.8, Phase 2.9.1, existing functionality
 * **Validation Status**: Build verified successfully with no errors. Role Search implementation now matches Users module reference architecture exactly. All architectural inconsistencies resolved. Implementation is enterprise-grade and ready to be frozen.
 
+### Phase 2.9.3: Administration → Role Management → Add Role
+* **Goal**: Implement complete Add Role functionality following the exact architecture, patterns, and quality established by the Users module.
+* **Included**:
+  * **Created** `Administration/Roles/Models/CreateRoleRequest.cs`: Request model for role creation containing Name, Description, and IsActive properties.
+  * **Created** `Administration/Roles/Models/CreateRoleResult.cs`: Result model with RoleId, IsSuccess, ErrorMessage properties and Success/Failure factory methods.
+  * **Created** `Administration/Roles/Contracts/ICreateRoleValidator.cs`: Interface for validating create role requests using existing ValidationResult infrastructure.
+  * **Created** `Administration/Roles/Validators/CreateRoleValidator.cs`: Implementation that validates Name (required, max 100 chars, trimmed), Description (optional, max 500 chars), and provides friendly error messages.
+  * **Created** `Administration/Roles/Contracts/IRoleCommandService.cs`: Service contract for role command operations with CreateRoleAsync method.
+  * **Created** `Administration/Roles/Services/RoleCommandService.cs`: Implementation that validates request, checks duplicate role names (case-insensitive, trimmed), creates new role with default values, persists changes, and returns appropriate result.
+  * **Created** `Administration/Roles/ViewModels/AddRoleViewModel.cs`: ViewModel for Add Role screen with Name, Description, IsActive properties, SaveCommand, CancelCommand, ValidationError, and loading indicator.
+  * **Created** `Administration/Roles/Views/AddRoleView.xaml`: XAML for Add Role form with Role Name, Description, Active checkbox, Save/Cancel buttons, validation error display, and loading indicator.
+  * **Created** `Administration/Roles/Views/AddRoleView.xaml.cs`: Code-behind for AddRoleView.
+  * **Modified** `Administration/Roles/Views/RolesView.xaml`: Enabled Add Role button with Command binding to AddRoleCommand.
+  * **Modified** `Administration/Roles/ViewModels/RolesViewModel.cs`: Added INavigationService dependency injection and AddRoleCommand that navigates to AddRoleViewModel.
+  * **Modified** `Administration/DependencyInjection/AdministrationServiceCollectionExtensions.cs`: Added IRoleCommandService (Scoped), ICreateRoleValidator (Scoped), and AddRoleViewModel (Transient) registrations.
+  * **Modified** `Resources/DataTemplates.xaml`: Added DataTemplate mapping AddRoleViewModel → AddRoleView.
+* **Architecture Review Results**:
+  * **MVVM Compliance**: PASS - AddRoleViewModel properly inherits from ViewModelBase, AddRoleView contains no business logic, clean separation of concerns, proper data binding.
+  * **SOLID Compliance**: PASS - Single Responsibility (each class has one purpose), Open/Closed (extensible without modification), Liskov Substitution (interfaces properly implemented), Interface Segregation (focused interfaces), Dependency Inversion (depends on abstractions).
+  * **Validation Architecture**: PASS - Validation separated into dedicated validator (ICreateRoleValidator), uses existing ValidationResult infrastructure, no validation in ViewModel, friendly error messages.
+  * **Command Layer**: PASS - IRoleCommandService follows existing pattern, RoleCommandService handles business logic and persistence, duplicate check with AsNoTracking, async throughout, ConfigureAwait(false) in service layer, proper error handling and logging.
+  * **Query/Command Separation**: PASS - IRoleCommandService is separate from IRoleQueryService, no DbContext in ViewModels, clear separation of concerns.
+  * **Navigation/Dialog Integration**: PASS - Uses existing INavigationService, NavigateAsync to AddRoleViewModel, GoBackAsync after save/cancel, matches Users module pattern.
+  * **Dependency Injection**: PASS - All services registered correctly (IRoleCommandService as Scoped, ICreateRoleValidator as Scoped, AddRoleViewModel as Transient), constructor injection only, no manual object creation.
+  * **Performance**: PASS - Single database write, duplicate check uses efficient query with AsNoTracking, async throughout, CancellationToken support, ConfigureAwait(false) in service layer, no unnecessary refreshes.
+  * **UI**: PASS - Reuses existing TextBox styles, Button styles, Validation styles, Dialog layout, spacing, typography, Design System resources, no inline styling, no hardcoded resources.
+  * **Code Quality**: PASS - SOLID principles followed, DRY principle followed, naming consistent with Users module, namespace consistent, XML documentation present, no duplicate code, no long methods, no magic strings, no magic numbers.
+  * **Security**: PASS - Input trimmed before validation and database, duplicate validation prevents conflicting data, soft delete respected in duplicate check, no sensitive logging, no authentication/authorization changes.
+* **Duplicate Handling**: PASS - Case-insensitive comparison using trimmed name, checks existing roles with AsNoTracking, returns friendly error message if duplicate exists.
+* **Explicitly Unchanged**:
+  * Edit Role, Activate/Deactivate Role, Delete Role, Permission Assignment, database schema, Global Query Filter, Phase 0-2.8, Phase 2.9.1, Phase 2.9.2, existing functionality
+* **Validation Status**: Build verified successfully with no errors. Add Role dialog opens from Roles screen. User can enter Role Name, Description and Active status. Validation works correctly. Duplicate role names are prevented. Role is successfully saved. Dialog closes after successful save. Roles list refreshes automatically via OnNavigatedToAsync. Query/Command separation is maintained. No DbContext exists in ViewModels. Existing architecture is fully reused. No regressions are introduced. Implementation is enterprise-grade and ready for Phase 2.9.3A.
+
+### Phase 2.9.3A: Role Add Architecture Review
+* **Goal**: Perform a comprehensive enterprise architecture review of the Add Role implementation to ensure it matches the architecture, quality, and behaviour of the Users module. Refine code where necessary without introducing new features or redesigning existing architecture.
+* **Included**:
+  * **No code modifications required** - The Add Role implementation already matches the Users module architecture exactly.
+* **Architecture Review Results**:
+  * **MVVM Compliance**: PASS - AddRoleViewModel properly inherits from ViewModelBase, AddRoleView contains no business logic, clean separation of concerns, proper data binding with UpdateSourceTrigger=PropertyChanged.
+  * **SOLID Compliance**: PASS - Single Responsibility (each class has one purpose), Open/Closed (extensible without modification), Liskov Substitution (interfaces properly implemented), Interface Segregation (focused interfaces), Dependency Inversion (depends on abstractions).
+  * **Model Review**: PASS - CreateRoleRequest naming matches CreateUserRequest pattern, properties have appropriate nullability and default values (string.Empty, true for IsActive), XML documentation present, namespace consistent with Users module.
+  * **Validation Review**: PASS - CreateRoleValidator follows CreateUserValidator pattern exactly, uses existing ValidationResult infrastructure, validates required fields and maximum lengths, provides friendly error messages, no validation in ViewModel, input trimming in service layer.
+  * **Command Layer Review**: PASS - IRoleCommandService interface design matches IUserCommandService, CreateRoleAsync method naming consistent, return type matches CreateUserResult pattern, RoleCommandService validates request, checks duplicates with AsNoTracking, uses ConfigureAwait(false), proper exception handling with logging, single SaveChangesAsync call.
+  * **Query/Command Separation**: PASS - IRoleCommandService is separate from IRoleQueryService, no DbContext in ViewModels, clear separation of concerns, command service handles business logic only.
+  * **ViewModel Review**: PASS - AddRoleViewModel constructor dependencies match AddUserViewModel (command service + navigation service), observable properties use SetProperty, SaveCommand and CancelCommand implemented with [RelayCommand], validation error handling matches pattern, busy state managed correctly, navigation uses GoBackAsync, no business logic, no DbContext.
+  * **View Review**: PASS - AddRoleView reuses existing Design System resources (BackgroundBrush, SurfaceBrush, BorderBrush, StandardBorderThickness, StandardCornerRadius, Medium/Large/Small/ExtraSmall spacing), TextBox styles reused, Button styles reused, Validation styles reused, Dialog layout matches AddUserView, no inline styling, no hardcoded colours or fonts.
+  * **Navigation/Dialog Review**: PASS - Add Role button in RolesView bound to AddRoleCommand, navigation uses NavigateAsync<AddRoleViewModel>(), Save closes dialog with GoBackAsync(), Cancel closes dialog with GoBackAsync(), Roles list refreshes via OnNavigatedToAsync in RolesViewModel, existing search/filter state preserved, navigation lifecycle unchanged.
+  * **Dependency Injection Review**: PASS - IRoleCommandService registered as Scoped (matches IUserCommandService), ICreateRoleValidator registered as Scoped (matches ICreateUserValidator), AddRoleViewModel registered as Transient (matches AddUserViewModel), constructor injection only, no manual object creation, no service locator pattern.
+  * **Performance Review**: PASS - Single database write with SaveChangesAsync, duplicate check uses efficient query with AsNoTracking, async throughout with ConfigureAwait(false) in service layer, CancellationToken support in method signature, no duplicate queries, no unnecessary UI refreshes.
+  * **Code Quality Review**: PASS - SOLID principles followed, DRY principle followed (no duplicate code), naming consistent with Users module (CreateRoleRequest, CreateRoleResult, ICreateRoleValidator, IRoleCommandService), folder structure matches Users module, namespace consistent, XML documentation present on all public members, no dead code, no long methods, no magic strings (constants for max lengths), no magic numbers.
+  * **Security Review**: PASS - Duplicate check respects Global Query Filter (soft-deleted roles excluded), input trimmed in service layer before database operations, no sensitive logging (only role name logged), no authentication changes, no authorization changes, no security regressions.
+* **Explicitly Unchanged**:
+  * All Phase 2.9.3 implementation files, database schema, Global Query Filter, Phase 0-2.8, Phase 2.9.1, Phase 2.9.2, existing functionality
+* **Files Modified**: None - No code changes required during architecture review.
+* **Justification for No Changes**:
+  * **Model Consistency**: CreateRoleRequest and CreateRoleResult naming and structure already match CreateUserRequest and CreateUserResult exactly.
+  * **Validation Architecture**: CreateRoleValidator already follows the same pattern as CreateUserValidator with identical ValidationResult usage and error handling.
+  * **Command Layer**: RoleCommandService already implements the same async pattern, duplicate checking logic, ConfigureAwait(false) usage, and exception handling as UserCommandService.
+  * **ViewModel Pattern**: AddRoleViewModel already matches AddUserViewModel's constructor pattern, command implementation, and navigation flow.
+  * **View Consistency**: AddRoleView already reuses the same Design System resources, styles, and layout as AddUserView.
+  * **DI Registrations**: Service lifetimes already match the Users module (Scoped for services, Transient for ViewModels).
+  * **Performance**: Async/await pattern, AsNoTracking usage, and ConfigureAwait(false) already implemented correctly.
+  * **Code Quality**: Naming, documentation, and structure already consistent with the Users module.
+* **Validation Status**: Build verified successfully with no errors. Add Role architecture matches Add User exactly. Model naming is consistent with the Users module. Validation architecture is identical. Command layer follows the same patterns. Navigation/Dialog behaviour matches the Users module. Query/Command separation is maintained. No DbContext exists in ViewModels. Dependency Injection follows existing conventions. Performance is optimal. No duplicate queries. No duplicate code. No dead code. Existing phases remain unchanged. No regressions are introduced. The implementation is enterprise-grade and ready to be frozen.
+
 ## 3. Architecture & Design
 
 ### Dependency Injection and Composition

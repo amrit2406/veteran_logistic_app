@@ -5,6 +5,7 @@ using System.Threading;
 using veteran_logistic.Administration.Roles.Contracts;
 using veteran_logistic.Administration.Roles.Models;
 using veteran_logistic.MVVM;
+using veteran_logistic.Navigation;
 
 namespace veteran_logistic.Administration.Roles.ViewModels;
 
@@ -14,6 +15,7 @@ namespace veteran_logistic.Administration.Roles.ViewModels;
 public sealed partial class RolesViewModel : ViewModelBase
 {
     private readonly IRoleQueryService _roleQueryService;
+    private readonly INavigationService _navigationService;
     private string _searchText = string.Empty;
     private RoleListItem? _selectedRole;
     private CancellationTokenSource? _searchCancellationTokenSource;
@@ -22,9 +24,11 @@ public sealed partial class RolesViewModel : ViewModelBase
     /// Initializes a new instance of the <see cref="RolesViewModel"/> class.
     /// </summary>
     /// <param name="roleQueryService">The role query service.</param>
-    public RolesViewModel(IRoleQueryService roleQueryService)
+    /// <param name="navigationService">The navigation service.</param>
+    public RolesViewModel(IRoleQueryService roleQueryService, INavigationService navigationService)
     {
         _roleQueryService = roleQueryService ?? throw new ArgumentNullException(nameof(roleQueryService));
+        _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
     }
 
     public override async Task InitializeAsync(CancellationToken cancellationToken = default)
@@ -79,6 +83,15 @@ public sealed partial class RolesViewModel : ViewModelBase
     private async Task RefreshAsync()
     {
         await LoadRolesAsync();
+    }
+
+    /// <summary>
+    /// Command to add a new role.
+    /// </summary>
+    [RelayCommand]
+    private async Task AddRoleAsync()
+    {
+        await _navigationService.NavigateAsync<ViewModels.AddRoleViewModel>().ConfigureAwait(false);
     }
 
     /// <summary>

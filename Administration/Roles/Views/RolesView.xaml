@@ -43,9 +43,9 @@
                         </TextBox.Style>
                     </TextBox>
 
-                    <!-- Add Role Button (disabled) -->
+                    <!-- Add Role Button -->
                     <Button Height="{StaticResource StandardControlHeight}"
-                            IsEnabled="False"
+                            Command="{Binding AddRoleCommand}"
                             Style="{StaticResource IconButtonStyle}"
                             ToolTip="Add Role"
                             VerticalAlignment="Center"
