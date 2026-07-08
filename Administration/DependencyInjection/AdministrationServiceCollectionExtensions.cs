@@ -37,9 +37,7 @@ public static class AdministrationServiceCollectionExtensions
         services.AddTransient<ResetPasswordViewModel>();
 
         services.AddScoped<IRoleQueryService, RoleQueryService>();
-        services.AddTransient<RolesViewModel>(sp => new RolesViewModel(
-            sp.GetRequiredService<IRoleQueryService>(),
-            sp.GetRequiredService<ILogger<RolesViewModel>>()));
+        services.AddTransient<RolesViewModel>();
 
         return services;
     }

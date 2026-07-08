@@ -1,9 +1,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Extensions.Logging;
 using System.Collections.ObjectModel;
 using System.Threading;
-using VeteranLogistics.Shared.Constants;
 using veteran_logistic.Administration.Roles.Contracts;
 using veteran_logistic.Administration.Roles.Models;
 using veteran_logistic.MVVM;
@@ -16,7 +14,6 @@ namespace veteran_logistic.Administration.Roles.ViewModels;
 public sealed partial class RolesViewModel : ViewModelBase
 {
     private readonly IRoleQueryService _roleQueryService;
-    private readonly ILogger<RolesViewModel> _logger;
     private string _searchText = string.Empty;
     private RoleListItem? _selectedRole;
     private CancellationTokenSource? _searchCancellationTokenSource;
@@ -25,11 +22,9 @@ public sealed partial class RolesViewModel : ViewModelBase
     /// Initializes a new instance of the <see cref="RolesViewModel"/> class.
     /// </summary>
     /// <param name="roleQueryService">The role query service.</param>
-    /// <param name="logger">The logger.</param>
-    public RolesViewModel(IRoleQueryService roleQueryService, ILogger<RolesViewModel> logger)
+    public RolesViewModel(IRoleQueryService roleQueryService)
     {
         _roleQueryService = roleQueryService ?? throw new ArgumentNullException(nameof(roleQueryService));
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
     public override async Task InitializeAsync(CancellationToken cancellationToken = default)
@@ -116,8 +111,8 @@ public sealed partial class RolesViewModel : ViewModelBase
 
         try
         {
-            // Wait debounce delay to allow user to finish typing
-            await Task.Delay(ApplicationConstants.SearchDebounceDelayMilliseconds, token);
+            // Wait 300ms to allow user to finish typing
+            await Task.Delay(300, token);
 
             // Re-check cancellation before network/db call
             token.ThrowIfCancellationRequested();
@@ -129,37 +124,17 @@ public sealed partial class RolesViewModel : ViewModelBase
         {
             // Search was cancelled by new input, ignore
         }
-        catch (Exception ex)
-        {
-            // Log unexpected exceptions to prevent UI crashes
-            _logger.LogError(ex, "An unexpected error occurred during role search debouncing");
-        }
     }
 
     /// <summary>
     /// Searches roles based on the current search text.
     /// </summary>
-    /// <param name="cancellationToken">The cancellation token.</param>
     private async Task SearchRolesAsync(CancellationToken cancellationToken)
     {
-        try
-        {
-            SetBusy("Searching roles...");
-            var roles = await _roleQueryService.SearchRolesAsync(SearchText, cancellationToken);
-            UpdateRoles(roles);
-            ClearBusy();
-        }
-        catch (OperationCanceledException)
-        {
-            // Search was cancelled, ignore and clear busy state
-            ClearBusy();
-        }
-        catch (Exception ex)
-        {
-            // Log unexpected exceptions and clear busy state to prevent UI crashes
-            _logger.LogError(ex, "An unexpected error occurred during role search");
-            ClearBusy();
-        }
+        SetBusy("Searching roles...");
+        var roles = await _roleQueryService.SearchRolesAsync(SearchText, cancellationToken);
+        UpdateRoles(roles);
+        ClearBusy();
     }
 
     /// <summary>
