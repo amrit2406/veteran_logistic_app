@@ -95,6 +95,25 @@ public sealed partial class RolesViewModel : ViewModelBase
     }
 
     /// <summary>
+    /// Command to navigate to the Edit Role screen.
+    /// </summary>
+    [RelayCommand]
+    private async Task EditRoleAsync()
+    {
+        if (SelectedRole is null)
+        {
+            return;
+        }
+
+        var parameter = new NavigationParameter
+        {
+            ["RoleId"] = SelectedRole.Id
+        };
+
+        await _navigationService.NavigateAsync<ViewModels.EditRoleViewModel>(parameter).ConfigureAwait(false);
+    }
+
+    /// <summary>
     /// Loads all roles.
     /// </summary>
     /// <param name="cancellationToken">The cancellation token.</param>

@@ -54,6 +54,23 @@ public sealed class RoleQueryService : IRoleQueryService
             .ConfigureAwait(false);
     }
 
+    /// <inheritdoc />
+    public async Task<EditRoleModel?> GetRoleForEditAsync(int roleId, CancellationToken cancellationToken = default)
+    {
+        return await _dbContext.Roles
+            .AsNoTracking()
+            .Where(r => r.Id == roleId)
+            .Select(r => new EditRoleModel
+            {
+                Id = r.Id,
+                Name = r.Name,
+                Description = r.Description ?? string.Empty,
+                IsActive = r.IsActive
+            })
+            .FirstOrDefaultAsync(cancellationToken)
+            .ConfigureAwait(false);
+    }
+
     private static IQueryable<RoleListItem> ProjectToListItem(IQueryable<Role> query)
     {
         return query.Select(r => new RoleListItem

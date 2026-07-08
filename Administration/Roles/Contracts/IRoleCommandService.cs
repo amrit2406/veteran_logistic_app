@@ -14,4 +14,12 @@ public interface IRoleCommandService
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>A result containing the created role ID.</returns>
     Task<CreateRoleResult> CreateRoleAsync(CreateRoleRequest request, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Updates an existing role.
+    /// </summary>
+    /// <param name="request">The role update request.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A result indicating success or failure.</returns>
+    Task<UpdateRoleResult> UpdateRoleAsync(UpdateRoleRequest request, CancellationToken cancellationToken = default);
 }

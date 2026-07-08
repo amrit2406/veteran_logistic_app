@@ -56,6 +56,19 @@
                                    VerticalAlignment="Center" />
                     </Button>
 
+                    <!-- Edit Role Button -->
+                    <Button Height="{StaticResource StandardControlHeight}"
+                            Command="{Binding EditRoleCommand}"
+                            Style="{StaticResource IconButtonStyle}"
+                            ToolTip="Edit Role"
+                            VerticalAlignment="Center"
+                            Margin="{StaticResource Small}">
+                        <TextBlock Text="Edit Role"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Button>
+
                     <!-- Refresh Button -->
                     <Button Height="{StaticResource StandardControlHeight}"
                             Command="{Binding RefreshCommand}"

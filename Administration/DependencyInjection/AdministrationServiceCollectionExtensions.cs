@@ -40,8 +40,10 @@ public static class AdministrationServiceCollectionExtensions
         services.AddScoped<IRoleQueryService, RoleQueryService>();
         services.AddScoped<IRoleCommandService, RoleCommandService>();
         services.AddScoped<ICreateRoleValidator, CreateRoleValidator>();
+        services.AddScoped<IUpdateRoleValidator, UpdateRoleValidator>();
         services.AddTransient<RolesViewModel>();
         services.AddTransient<AddRoleViewModel>();
+        services.AddTransient<EditRoleViewModel>();
 
         return services;
     }

@@ -46,6 +46,10 @@
     <adminRolesViews:AddRoleView />
   </DataTemplate>
 
+  <DataTemplate DataType="{x:Type adminRolesVm:EditRoleViewModel}">
+    <adminRolesViews:EditRoleView />
+  </DataTemplate>
+
   <DataTemplate DataType="{x:Type vm:PlaceholderViewModel}">
     <Border Background="{DynamicResource BackgroundBrush}" Padding="{StaticResource ExtraLarge}">
       <Grid>
