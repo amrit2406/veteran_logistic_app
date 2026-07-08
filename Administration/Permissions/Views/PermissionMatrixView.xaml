@@ -3,7 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:veteran_logistic.Converters"
              mc:Ignorable="d">
+<UserControl.Resources>
+    <converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter" />
+</UserControl.Resources>
     <Grid Background="{DynamicResource BackgroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -109,7 +113,7 @@
                 BorderThickness="{StaticResource StandardBorderThickness}"
                 Padding="{StaticResource Medium}"
                 Visibility="{Binding ValidationError, Converter={StaticResource StringToVisibilityConverter}}"
-                Margin="0,0,0,{StaticResource Small}">
+                Margin="{StaticResource Small}">
             <TextBlock Text="{Binding ValidationError}"
                        Style="{StaticResource CaptionTextBlockStyle}"
                        Foreground="{DynamicResource OnErrorBrush}"
@@ -123,7 +127,7 @@
                 BorderThickness="{StaticResource StandardBorderThickness}"
                 Padding="{StaticResource Medium}"
                 Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"
-                Margin="0,0,0,{StaticResource Small}">
+                Margin="{StaticResource Small}">
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center">
                 <ProgressBar Height="{StaticResource StandardControlHeight}"
