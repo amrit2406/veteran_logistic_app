@@ -38,4 +38,12 @@ public interface IFinancialYearCommandService
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>A result indicating success or failure.</returns>
     Task<CloseFinancialYearResult> CloseFinancialYearAsync(CloseFinancialYearRequest request, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Deletes a financial year (soft delete).
+    /// </summary>
+    /// <param name="request">The delete financial year request.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A result indicating success or failure.</returns>
+    Task<DeleteFinancialYearResult> DeleteFinancialYearAsync(DeleteFinancialYearRequest request, CancellationToken cancellationToken = default);
 }

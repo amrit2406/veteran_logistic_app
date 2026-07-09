@@ -17,6 +17,7 @@ public sealed class FinancialYearCommandService : IFinancialYearCommandService
     private readonly IUpdateFinancialYearValidator _updateValidator;
     private readonly ISetCurrentFinancialYearValidator _setCurrentValidator;
     private readonly ICloseFinancialYearValidator _closeValidator;
+    private readonly IDeleteFinancialYearValidator _deleteValidator;
     private readonly ILogger<FinancialYearCommandService> _logger;
 
     /// <summary>
@@ -27,6 +28,7 @@ public sealed class FinancialYearCommandService : IFinancialYearCommandService
     /// <param name="updateValidator">The financial year update validator.</param>
     /// <param name="setCurrentValidator">The set current financial year validator.</param>
     /// <param name="closeValidator">The close financial year validator.</param>
+    /// <param name="deleteValidator">The delete financial year validator.</param>
     /// <param name="logger">The logger.</param>
     public FinancialYearCommandService(
         VeteranLogisticsDbContext dbContext,
@@ -34,6 +36,7 @@ public sealed class FinancialYearCommandService : IFinancialYearCommandService
         IUpdateFinancialYearValidator updateValidator,
         ISetCurrentFinancialYearValidator setCurrentValidator,
         ICloseFinancialYearValidator closeValidator,
+        IDeleteFinancialYearValidator deleteValidator,
         ILogger<FinancialYearCommandService> logger)
     {
         _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
@@ -41,6 +44,7 @@ public sealed class FinancialYearCommandService : IFinancialYearCommandService
         _updateValidator = updateValidator ?? throw new ArgumentNullException(nameof(updateValidator));
         _setCurrentValidator = setCurrentValidator ?? throw new ArgumentNullException(nameof(setCurrentValidator));
         _closeValidator = closeValidator ?? throw new ArgumentNullException(nameof(closeValidator));
+        _deleteValidator = deleteValidator ?? throw new ArgumentNullException(nameof(deleteValidator));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
@@ -241,6 +245,54 @@ public sealed class FinancialYearCommandService : IFinancialYearCommandService
         {
             _logger.LogError(ex, "An unexpected error occurred while closing financial year '{FinancialYearId}'", request.FinancialYearId);
             return CloseFinancialYearResult.Failure("An unexpected error occurred while closing the financial year.");
+        }
+    }
+
+    /// <inheritdoc />
+    public async Task<DeleteFinancialYearResult> DeleteFinancialYearAsync(DeleteFinancialYearRequest request, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var validationResult = _deleteValidator.Validate(request);
+            if (!validationResult.IsValid)
+            {
+                var errorMessage = string.Join("; ", validationResult.Errors.Select(e => e.ErrorMessage));
+                return DeleteFinancialYearResult.Failure(errorMessage);
+            }
+
+            var financialYear = await _dbContext.FinancialYears
+                .FirstOrDefaultAsync(fy => fy.Id == request.FinancialYearId, cancellationToken)
+                .ConfigureAwait(false);
+
+            if (financialYear is null)
+            {
+                return DeleteFinancialYearResult.Failure("Financial year not found.");
+            }
+
+            // If already deleted, return success without updating
+            if (financialYear.IsDeleted)
+            {
+                return DeleteFinancialYearResult.Success();
+            }
+
+            // Cannot delete the current financial year
+            if (financialYear.IsCurrent)
+            {
+                return DeleteFinancialYearResult.Failure("Current Financial Year cannot be deleted.");
+            }
+
+            // Soft delete the financial year
+            financialYear.IsDeleted = true;
+            financialYear.DeletedOn = DateTime.UtcNow;
+
+            await _dbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+
+            return DeleteFinancialYearResult.Success();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An unexpected error occurred while deleting financial year '{FinancialYearId}'", request.FinancialYearId);
+            return DeleteFinancialYearResult.Failure("An unexpected error occurred while deleting the financial year.");
         }
     }
 }

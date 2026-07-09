@@ -81,6 +81,7 @@ public sealed partial class FinancialYearsViewModel : ViewModelBase
                 EditFinancialYearCommand.NotifyCanExecuteChanged();
                 SetCurrentFinancialYearCommand.NotifyCanExecuteChanged();
                 CloseFinancialYearCommand.NotifyCanExecuteChanged();
+                DeleteFinancialYearCommand.NotifyCanExecuteChanged();
             }
         }
     }
@@ -221,6 +222,54 @@ public sealed partial class FinancialYearsViewModel : ViewModelBase
     private bool CanExecuteCloseFinancialYear()
     {
         return SelectedFinancialYear is not null && !SelectedFinancialYear.IsClosed;
+    }
+
+    /// <summary>
+    /// Command to delete the selected financial year.
+    /// </summary>
+    [RelayCommand(CanExecute = nameof(CanExecuteDeleteFinancialYear))]
+    private async Task DeleteFinancialYearAsync()
+    {
+        if (SelectedFinancialYear is null)
+        {
+            return;
+        }
+
+        ValidationError = string.Empty;
+
+        var messageBoxResult = MessageBox.Show(
+            "Are you sure you want to delete this Financial Year?\n\nThis action cannot be undone.",
+            "Delete Financial Year",
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Question);
+
+        if (messageBoxResult != MessageBoxResult.Yes)
+        {
+            return;
+        }
+
+        var request = new DeleteFinancialYearRequest
+        {
+            FinancialYearId = SelectedFinancialYear.Id
+        };
+
+        SetBusy("Deleting financial year...");
+        var result = await _financialYearCommandService.DeleteFinancialYearAsync(request, CancellationToken.None);
+        ClearBusy();
+
+        if (result.IsSuccess)
+        {
+            await LoadFinancialYearsAsync();
+        }
+        else
+        {
+            ValidationError = result.ErrorMessage ?? "Failed to delete financial year.";
+        }
+    }
+
+    private bool CanExecuteDeleteFinancialYear()
+    {
+        return SelectedFinancialYear is not null;
     }
 
     /// <summary>
