@@ -68,7 +68,13 @@ public sealed partial class FinancialYearsViewModel : ViewModelBase
     public FinancialYearListItem? SelectedFinancialYear
     {
         get => _selectedFinancialYear;
-        set => SetProperty(ref _selectedFinancialYear, value);
+        set
+        {
+            if (SetProperty(ref _selectedFinancialYear, value))
+            {
+                EditFinancialYearCommand.NotifyCanExecuteChanged();
+            }
+        }
     }
 
     /// <summary>
@@ -92,7 +98,7 @@ public sealed partial class FinancialYearsViewModel : ViewModelBase
     /// <summary>
     /// Command to navigate to the Edit Financial Year screen.
     /// </summary>
-    [RelayCommand]
+    [RelayCommand(CanExecute = nameof(CanExecuteEditFinancialYear))]
     private async Task EditFinancialYearAsync()
     {
         if (SelectedFinancialYear is null)
@@ -106,6 +112,11 @@ public sealed partial class FinancialYearsViewModel : ViewModelBase
         };
 
         await _navigationService.NavigateAsync<EditFinancialYearViewModel>(parameter).ConfigureAwait(false);
+    }
+
+    private bool CanExecuteEditFinancialYear()
+    {
+        return SelectedFinancialYear is not null;
     }
 
     /// <summary>
