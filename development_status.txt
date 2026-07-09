@@ -1146,6 +1146,20 @@ This document records the implementation work completed across the repository an
 * **Files Modified**: None - No code modifications required.
 * **Final Verdict**: Phase 2.10 is COMPLETE and officially FROZEN.
 
+### Phase 2.11.1: Administration → Financial Year Management Foundation
+* **Goal**: Implement the Financial Year Management module foundation as a read-only listing screen.
+* **Included**:
+  * **Database Layer**: Created `FinancialYear` entity with Name, StartDate, EndDate, IsCurrent, IsClosed, IsDeleted, DeletedOn properties inheriting from BaseEntity. Created `FinancialYearConfiguration` with Fluent API configuration including required fields, column lengths, unique index on Name, and global query filter for soft delete. Created EF Core migration `AddFinancialYearEntity` for the FinancialYear table. Updated `VeteranLogisticsDbContext` with DbSet<FinancialYear>.
+  * **Models**: Created `FinancialYearListItem` for grid display, `FinancialYearModel` for detailed editing, and `FinancialYearSearchModel` for filtering.
+  * **Query Layer**: Created `IFinancialYearQueryService` contract with GetAllFinancialYearsAsync and GetFinancialYearAsync methods. Implemented `FinancialYearQueryService` with AsNoTracking(), projection, ConfigureAwait(false), CancellationToken support, and proper ordering by StartDate.
+  * **ViewModel**: Created `FinancialYearsViewModel` with InitializeAsync, OnNavigatedToAsync, RefreshCommand, busy state management, ValidationError property, ObservableCollection<FinancialYearListItem>, and thread-safe UI updates via Dispatcher.Invoke. No DbContext, no business logic.
+  * **View**: Created `FinancialYearsView.xaml` with header, disabled search textbox (placeholder), disabled Add Financial Year button (placeholder), refresh button, loading indicator, validation error display, and DataGrid with columns for Name, Start Date, End Date, Current, and Closed. Uses Design System resources with no inline styles, no hardcoded colors, no hardcoded fonts. Created minimal code-behind `FinancialYearsView.xaml.cs`.
+  * **Navigation**: Added DataTemplate mapping in `DataTemplates.xaml` for FinancialYearsViewModel to FinancialYearsView with namespace declarations. Added `NavigateToFinancialYearsCommand` to `ShellViewModel`. Added Financial Years menu item under Administration in `ShellView.xaml`.
+  * **Dependency Injection**: Registered `IFinancialYearQueryService` as Scoped and `FinancialYearsViewModel` as Transient in `AdministrationServiceCollectionExtensions.cs`.
+* **Explicitly Excluded**:
+  * Add Financial Year, Edit Financial Year, Activate Financial Year, Close Financial Year, Delete Financial Year, Search functionality, Command layer, Validators, Seed data.
+* **Validation Status**: Build verified successfully with no errors. Architecture follows the exact patterns established by Users, Roles, and Permission Matrix modules. MVVM, SOLID, Query/Command separation, Dependency Injection, Navigation, Design System, Busy State, Logging, Performance, and Security all implemented correctly.
+
 ## 3. Architecture & Design
 
 ### Dependency Injection and Composition

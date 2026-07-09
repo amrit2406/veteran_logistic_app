@@ -11,7 +11,9 @@
                     xmlns:adminRolesVm="clr-namespace:veteran_logistic.Administration.Roles.ViewModels"
                     xmlns:adminRolesViews="clr-namespace:veteran_logistic.Administration.Roles.Views"
                     xmlns:adminPermissionsVm="clr-namespace:veteran_logistic.Administration.Permissions.ViewModels"
-                    xmlns:adminPermissionsViews="clr-namespace:veteran_logistic.Administration.Permissions.Views">
+                    xmlns:adminPermissionsViews="clr-namespace:veteran_logistic.Administration.Permissions.Views"
+                    xmlns:adminFinancialYearsVm="clr-namespace:veteran_logistic.Administration.FinancialYears.ViewModels"
+                    xmlns:adminFinancialYearsViews="clr-namespace:veteran_logistic.Administration.FinancialYears.Views">
   <DataTemplate DataType="{x:Type vm:ShellViewModel}">
     <views:ShellView />
   </DataTemplate>
@@ -54,6 +56,10 @@
 
   <DataTemplate DataType="{x:Type adminPermissionsVm:PermissionMatrixViewModel}">
     <adminPermissionsViews:PermissionMatrixView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type adminFinancialYearsVm:FinancialYearsViewModel}">
+    <adminFinancialYearsViews:FinancialYearsView />
   </DataTemplate>
 
   <DataTemplate DataType="{x:Type vm:PlaceholderViewModel}">

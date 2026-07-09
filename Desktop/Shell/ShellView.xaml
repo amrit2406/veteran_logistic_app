@@ -96,6 +96,7 @@
                     <MenuItem Header="Users" Command="{Binding NavigateToUsersCommand}" />
                     <MenuItem Header="Roles" Command="{Binding NavigateToRolesCommand}" />
                     <MenuItem Header="Permission Matrix" Command="{Binding NavigateToPermissionMatrixCommand}" />
+                    <MenuItem Header="Financial Years" Command="{Binding NavigateToFinancialYearsCommand}" />
                 </MenuItem>
                 <MenuItem Header="Settings" Style="{StaticResource TopMenuItemStyle}" />
                 <MenuItem Header="Help" Style="{StaticResource TopMenuItemStyle}" />

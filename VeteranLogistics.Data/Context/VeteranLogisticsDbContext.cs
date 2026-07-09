@@ -39,6 +39,11 @@ public class VeteranLogisticsDbContext : DbContext
     public DbSet<RolePermission> RolePermissions => Set<RolePermission>();
 
     /// <summary>
+    /// Gets or sets the FinancialYears DbSet.
+    /// </summary>
+    public DbSet<FinancialYear> FinancialYears => Set<FinancialYear>();
+
+    /// <summary>
     /// Apply entity configurations discovered in this assembly.
     /// </summary>
     /// <param name="modelBuilder">Model builder.</param>
