@@ -19,6 +19,22 @@ public sealed partial class FinancialYearsViewModel : ViewModelBase
     private readonly INavigationService _navigationService;
     private FinancialYearListItem? _selectedFinancialYear;
     private string _validationError = string.Empty;
+    private bool _isBusy;
+
+    /// <summary>
+    /// Gets or sets whether the ViewModel is in a busy state.
+    /// </summary>
+    public new bool IsBusy
+    {
+        get => _isBusy;
+        set
+        {
+            if (SetProperty(ref _isBusy, value))
+            {
+                CloseFinancialYearCommand.NotifyCanExecuteChanged();
+            }
+        }
+    }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="FinancialYearsViewModel"/> class.
@@ -80,6 +96,7 @@ public sealed partial class FinancialYearsViewModel : ViewModelBase
             {
                 EditFinancialYearCommand.NotifyCanExecuteChanged();
                 SetCurrentFinancialYearCommand.NotifyCanExecuteChanged();
+                CloseFinancialYearCommand.NotifyCanExecuteChanged();
             }
         }
     }
@@ -175,15 +192,67 @@ public sealed partial class FinancialYearsViewModel : ViewModelBase
     }
 
     /// <summary>
+    /// Command to close the selected financial year.
+    /// </summary>
+    [RelayCommand(CanExecute = nameof(CanExecuteCloseFinancialYear))]
+    private async Task CloseFinancialYearAsync()
+    {
+        if (SelectedFinancialYear is null)
+        {
+            return;
+        }
+
+        ValidationError = string.Empty;
+
+        var messageBoxResult = MessageBox.Show(
+            "Are you sure you want to close this Financial Year?\n\nThis action cannot be undone.",
+            "Close Financial Year",
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Question);
+
+        if (messageBoxResult != MessageBoxResult.Yes)
+        {
+            return;
+        }
+
+        var request = new CloseFinancialYearRequest
+        {
+            FinancialYearId = SelectedFinancialYear.Id
+        };
+
+        BusyMessage = "Closing financial year...";
+        IsBusy = true;
+        var result = await _financialYearCommandService.CloseFinancialYearAsync(request, CancellationToken.None);
+        BusyMessage = null;
+        IsBusy = false;
+
+        if (result.IsSuccess)
+        {
+            await LoadFinancialYearsAsync();
+        }
+        else
+        {
+            ValidationError = result.ErrorMessage ?? "Failed to close financial year.";
+        }
+    }
+
+    private bool CanExecuteCloseFinancialYear()
+    {
+        return SelectedFinancialYear is not null && !SelectedFinancialYear.IsClosed && !IsBusy;
+    }
+
+    /// <summary>
     /// Loads all financial years.
     /// </summary>
     /// <param name="cancellationToken">The cancellation token.</param>
     private async Task LoadFinancialYearsAsync(CancellationToken cancellationToken = default)
     {
-        SetBusy("Loading financial years...");
+        BusyMessage = "Loading financial years...";
+        IsBusy = true;
         var financialYears = await _financialYearQueryService.GetAllFinancialYearsAsync(cancellationToken);
         UpdateFinancialYears(financialYears);
-        ClearBusy();
+        BusyMessage = null;
+        IsBusy = false;
     }
 
     /// <summary>

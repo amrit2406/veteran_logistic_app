@@ -16,6 +16,7 @@ public sealed class FinancialYearCommandService : IFinancialYearCommandService
     private readonly ICreateFinancialYearValidator _createValidator;
     private readonly IUpdateFinancialYearValidator _updateValidator;
     private readonly ISetCurrentFinancialYearValidator _setCurrentValidator;
+    private readonly ICloseFinancialYearValidator _closeValidator;
     private readonly ILogger<FinancialYearCommandService> _logger;
 
     /// <summary>
@@ -25,18 +26,21 @@ public sealed class FinancialYearCommandService : IFinancialYearCommandService
     /// <param name="createValidator">The financial year creation validator.</param>
     /// <param name="updateValidator">The financial year update validator.</param>
     /// <param name="setCurrentValidator">The set current financial year validator.</param>
+    /// <param name="closeValidator">The close financial year validator.</param>
     /// <param name="logger">The logger.</param>
     public FinancialYearCommandService(
         VeteranLogisticsDbContext dbContext,
         ICreateFinancialYearValidator createValidator,
         IUpdateFinancialYearValidator updateValidator,
         ISetCurrentFinancialYearValidator setCurrentValidator,
+        ICloseFinancialYearValidator closeValidator,
         ILogger<FinancialYearCommandService> logger)
     {
         _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         _createValidator = createValidator ?? throw new ArgumentNullException(nameof(createValidator));
         _updateValidator = updateValidator ?? throw new ArgumentNullException(nameof(updateValidator));
         _setCurrentValidator = setCurrentValidator ?? throw new ArgumentNullException(nameof(setCurrentValidator));
+        _closeValidator = closeValidator ?? throw new ArgumentNullException(nameof(closeValidator));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
@@ -190,6 +194,53 @@ public sealed class FinancialYearCommandService : IFinancialYearCommandService
         {
             _logger.LogError(ex, "An unexpected error occurred while setting financial year '{FinancialYearId}' as current", request.FinancialYearId);
             return SetCurrentFinancialYearResult.Failure("An unexpected error occurred while setting the financial year as current.");
+        }
+    }
+
+    /// <inheritdoc />
+    public async Task<CloseFinancialYearResult> CloseFinancialYearAsync(CloseFinancialYearRequest request, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var validationResult = _closeValidator.Validate(request);
+            if (!validationResult.IsValid)
+            {
+                var errorMessage = string.Join("; ", validationResult.Errors.Select(e => e.ErrorMessage));
+                return CloseFinancialYearResult.Failure(errorMessage);
+            }
+
+            var financialYear = await _dbContext.FinancialYears
+                .FirstOrDefaultAsync(fy => fy.Id == request.FinancialYearId, cancellationToken)
+                .ConfigureAwait(false);
+
+            if (financialYear is null)
+            {
+                return CloseFinancialYearResult.Failure("Financial year not found.");
+            }
+
+            // If already closed, return success without updating
+            if (financialYear.IsClosed)
+            {
+                return CloseFinancialYearResult.Success();
+            }
+
+            // Cannot close the current financial year
+            if (financialYear.IsCurrent)
+            {
+                return CloseFinancialYearResult.Failure("Current Financial Year cannot be closed.");
+            }
+
+            // Set the financial year as closed
+            financialYear.IsClosed = true;
+
+            await _dbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+
+            return CloseFinancialYearResult.Success();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An unexpected error occurred while closing financial year '{FinancialYearId}'", request.FinancialYearId);
+            return CloseFinancialYearResult.Failure("An unexpected error occurred while closing the financial year.");
         }
     }
 }

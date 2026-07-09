@@ -67,6 +67,7 @@ public static class AdministrationServiceCollectionExtensions
         services.AddScoped<ICreateFinancialYearValidator, CreateFinancialYearValidator>();
         services.AddScoped<IUpdateFinancialYearValidator, UpdateFinancialYearValidator>();
         services.AddScoped<ISetCurrentFinancialYearValidator, SetCurrentFinancialYearValidator>();
+        services.AddScoped<ICloseFinancialYearValidator, CloseFinancialYearValidator>();
         services.AddTransient<AddFinancialYearViewModel>();
         services.AddTransient<EditFinancialYearViewModel>();
 

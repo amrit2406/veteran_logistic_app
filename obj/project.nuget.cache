@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3F1BnIDUQq4=",
+  "dgSpecHash": "PLuenglPerA=",
   "success": true,
-  "projectFilePath": "D:\\app\\veteran_logistic_app\\veteran_logistic.csproj",
+  "projectFilePath": "d:\\app\\veteran_logistic_app\\veteran_logistic.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\infov\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\infov\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
@@ -88,9 +88,9 @@
       "code": "NU1603",
       "level": "Warning",
       "message": "veteran_logistic depends on Serilog.Extensions.Logging (>= 4.0.0) but Serilog.Extensions.Logging 4.0.0 was not found. Serilog.Extensions.Logging 7.0.0 was resolved instead.",
-      "projectPath": "D:\\app\\veteran_logistic_app\\veteran_logistic.csproj",
+      "projectPath": "d:\\app\\veteran_logistic_app\\veteran_logistic.csproj",
       "warningLevel": 1,
-      "filePath": "D:\\app\\veteran_logistic_app\\veteran_logistic.csproj",
+      "filePath": "d:\\app\\veteran_logistic_app\\veteran_logistic.csproj",
       "libraryId": "Serilog.Extensions.Logging",
       "targetGraphs": [
         "net10.0-windows"
@@ -100,9 +100,9 @@
       "code": "NU1603",
       "level": "Warning",
       "message": "veteran_logistic depends on Serilog.Settings.Configuration (>= 4.0.0) but Serilog.Settings.Configuration 4.0.0 was not found. Serilog.Settings.Configuration 7.0.0 was resolved instead.",
-      "projectPath": "D:\\app\\veteran_logistic_app\\veteran_logistic.csproj",
+      "projectPath": "d:\\app\\veteran_logistic_app\\veteran_logistic.csproj",
       "warningLevel": 1,
-      "filePath": "D:\\app\\veteran_logistic_app\\veteran_logistic.csproj",
+      "filePath": "d:\\app\\veteran_logistic_app\\veteran_logistic.csproj",
       "libraryId": "Serilog.Settings.Configuration",
       "targetGraphs": [
         "net10.0-windows"
@@ -112,9 +112,9 @@
       "code": "NU1603",
       "level": "Warning",
       "message": "veteran_logistic depends on Serilog.Sinks.Async (>= 1.6.0) but Serilog.Sinks.Async 1.6.0 was not found. Serilog.Sinks.Async 2.0.0 was resolved instead.",
-      "projectPath": "D:\\app\\veteran_logistic_app\\veteran_logistic.csproj",
+      "projectPath": "d:\\app\\veteran_logistic_app\\veteran_logistic.csproj",
       "warningLevel": 1,
-      "filePath": "D:\\app\\veteran_logistic_app\\veteran_logistic.csproj",
+      "filePath": "d:\\app\\veteran_logistic_app\\veteran_logistic.csproj",
       "libraryId": "Serilog.Sinks.Async",
       "targetGraphs": [
         "net10.0-windows"
@@ -124,9 +124,9 @@
       "code": "NU1903",
       "level": "Warning",
       "message": "Package 'Microsoft.Extensions.Caching.Memory' 8.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-qj66-m88j-hmgj",
-      "projectPath": "D:\\app\\veteran_logistic_app\\veteran_logistic.csproj",
+      "projectPath": "d:\\app\\veteran_logistic_app\\veteran_logistic.csproj",
       "warningLevel": 1,
-      "filePath": "D:\\app\\veteran_logistic_app\\veteran_logistic.csproj",
+      "filePath": "d:\\app\\veteran_logistic_app\\veteran_logistic.csproj",
       "libraryId": "Microsoft.Extensions.Caching.Memory",
       "targetGraphs": [
         "net10.0-windows"

@@ -87,6 +87,19 @@
                                    VerticalAlignment="Center" />
                     </Button>
 
+                    <!-- Close Financial Year Button -->
+                    <Button Height="{StaticResource StandardControlHeight}"
+                            Command="{Binding CloseFinancialYearCommand}"
+                            Style="{StaticResource IconButtonStyle}"
+                            ToolTip="Close Financial Year"
+                            VerticalAlignment="Center"
+                            Margin="{StaticResource Small}">
+                        <TextBlock Text="Close"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Button>
+
                     <!-- Refresh Button -->
                     <Button Height="{StaticResource StandardControlHeight}"
                             Command="{Binding RefreshCommand}"
