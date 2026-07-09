@@ -1160,6 +1160,35 @@ This document records the implementation work completed across the repository an
   * Add Financial Year, Edit Financial Year, Activate Financial Year, Close Financial Year, Delete Financial Year, Search functionality, Command layer, Validators, Seed data.
 * **Validation Status**: Build verified successfully with no errors. Architecture follows the exact patterns established by Users, Roles, and Permission Matrix modules. MVVM, SOLID, Query/Command separation, Dependency Injection, Navigation, Design System, Busy State, Logging, Performance, and Security all implemented correctly.
 
+### Phase 2.11.2: Administration → Financial Year Management → Add Financial Year
+* **Goal**: Implement Add Financial Year functionality following the exact architecture used by Add User and Add Role.
+* **Included**:
+  * **Models**: Created `AddFinancialYearModel`, `CreateFinancialYearRequest`, `CreateFinancialYearResult` with properties for Name, StartDate, EndDate. IsCurrent and IsClosed are set to false by default.
+  * **Validation**: Created `ICreateFinancialYearValidator` and `CreateFinancialYearValidator` with validation rules: Name required, max length 100, StartDate required, EndDate required, EndDate > StartDate, trim Name, friendly validation messages.
+  * **Command Layer**: Extended `IFinancialYearCommandService` with `CreateFinancialYearAsync`. Implemented in `FinancialYearCommandService` with validation, duplicate name check, single SaveChangesAsync, ConfigureAwait(false), logging, success/failure result pattern.
+  * **ViewModel**: Created `AddFinancialYearViewModel` with InitializeAsync, INavigationAware, SaveCommand, CancelCommand, busy state, ValidationError, GoBackAsync on success. Constructor injection only, no DbContext, no business logic.
+  * **View**: Created `AddFinancialYearView.xaml` with fields for Name, StartDate, EndDate, Save/Cancel buttons, validation area, loading indicator. Uses existing Design System completely with no inline styling.
+  * **Navigation**: Enabled Add button from Financial Years list. Registered DataTemplate for AddFinancialYearViewModel. After successful save, GoBackAsync and automatic list refresh.
+  * **Dependency Injection**: Registered `IFinancialYearCommandService` as Scoped, `ICreateFinancialYearValidator` as Scoped, `AddFinancialYearViewModel` as Transient.
+* **Explicitly Excluded**:
+  * Activate, Close Financial Year, Delete, Set Current Financial Year, Permission Enforcement, Advanced business rules.
+* **Validation Status**: Build verified successfully. Architecture matches Add User and Add Role exactly. MVVM, SOLID, Query/Command separation, Dependency Injection, Validation outside ViewModels, No DbContext in ViewModels all maintained.
+
+### Phase 2.11.3: Administration → Financial Year Management → Edit Financial Year
+* **Goal**: Implement Edit Financial Year functionality following the exact architecture used by Edit User and Edit Role.
+* **Included**:
+  * **Models**: Created `EditFinancialYearModel`, `UpdateFinancialYearRequest`, `UpdateFinancialYearResult` with properties for FinancialYearId, Name, StartDate, EndDate, IsCurrent, IsClosed.
+  * **Validation**: Created `IUpdateFinancialYearValidator` and `UpdateFinancialYearValidator` with validation rules: FinancialYearId > 0, Name required, max length 100, StartDate required, EndDate required, EndDate > StartDate, trim Name, friendly validation messages.
+  * **Query Layer**: Extended `IFinancialYearQueryService` with `GetFinancialYearForEditAsync`. Implemented in `FinancialYearQueryService` with AsNoTracking(), projection to EditFinancialYearModel, ConfigureAwait(false), CancellationToken, null handling, efficient query.
+  * **Command Layer**: Extended `IFinancialYearCommandService` with `UpdateFinancialYearAsync`. Implemented in `FinancialYearCommandService` with validation, verify Financial Year exists, duplicate Name check excluding current, trim Name, update editable fields only, single SaveChangesAsync, ConfigureAwait(false), logging, success/failure result pattern.
+  * **ViewModel**: Created `EditFinancialYearViewModel` with InitializeAsync, INavigationAware, Load Financial Year, SaveCommand, CancelCommand, busy state, ValidationError, NavigationParameter handling, GoBackAsync on success. Constructor injection only, no DbContext, no business logic.
+  * **View**: Created `EditFinancialYearView.xaml` with fields for Name, StartDate, EndDate, Is Current, Is Closed, Save/Cancel buttons, validation area, loading indicator. Uses existing Design System completely with no inline styling.
+  * **Navigation**: Enabled Edit button from Financial Years list. Pass selected Financial Year ID through NavigationParameter. Registered DataTemplate. After successful save, GoBackAsync and automatic list refresh.
+  * **Dependency Injection**: Registered `IUpdateFinancialYearValidator` as Scoped, `EditFinancialYearViewModel` as Transient.
+* **Explicitly Excluded**:
+  * Activate, Close Financial Year, Delete, Set Current Financial Year, Permission Enforcement, Advanced business rules.
+* **Validation Status**: Build verified successfully. Architecture matches Edit User and Edit Role exactly. MVVM, SOLID, Query/Command separation, Dependency Injection, Validation outside ViewModels, No DbContext in ViewModels all maintained.
+
 ## 3. Architecture & Design
 
 ### Dependency Injection and Composition

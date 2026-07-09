@@ -21,4 +21,12 @@ public interface IFinancialYearQueryService
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>The financial year model, or null if not found.</returns>
     Task<FinancialYearModel?> GetFinancialYearAsync(int id, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Gets a financial year for editing by financial year ID.
+    /// </summary>
+    /// <param name="financialYearId">The financial year ID.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>The financial year edit model, or null if not found.</returns>
+    Task<EditFinancialYearModel?> GetFinancialYearForEditAsync(int financialYearId, CancellationToken cancellationToken = default);
 }

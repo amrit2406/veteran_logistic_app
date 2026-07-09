@@ -14,4 +14,12 @@ public interface IFinancialYearCommandService
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>A result containing the created financial year ID.</returns>
     Task<CreateFinancialYearResult> CreateFinancialYearAsync(CreateFinancialYearRequest request, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Updates an existing financial year.
+    /// </summary>
+    /// <param name="request">The financial year update request.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A result indicating success or failure.</returns>
+    Task<UpdateFinancialYearResult> UpdateFinancialYearAsync(UpdateFinancialYearRequest request, CancellationToken cancellationToken = default);
 }

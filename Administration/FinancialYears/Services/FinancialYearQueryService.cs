@@ -54,6 +54,25 @@ public sealed class FinancialYearQueryService : IFinancialYearQueryService
             .ConfigureAwait(false);
     }
 
+    /// <inheritdoc />
+    public async Task<EditFinancialYearModel?> GetFinancialYearForEditAsync(int financialYearId, CancellationToken cancellationToken = default)
+    {
+        return await _dbContext.FinancialYears
+            .AsNoTracking()
+            .Where(fy => fy.Id == financialYearId)
+            .Select(fy => new EditFinancialYearModel
+            {
+                Id = fy.Id,
+                Name = fy.Name,
+                StartDate = fy.StartDate,
+                EndDate = fy.EndDate,
+                IsCurrent = fy.IsCurrent,
+                IsClosed = fy.IsClosed
+            })
+            .FirstOrDefaultAsync(cancellationToken)
+            .ConfigureAwait(false);
+    }
+
     private static IQueryable<FinancialYearListItem> ProjectToListItem(IQueryable<FinancialYearEntity> query)
     {
         return query.Select(fy => new FinancialYearListItem

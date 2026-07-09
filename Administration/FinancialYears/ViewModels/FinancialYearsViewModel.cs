@@ -16,6 +16,7 @@ public sealed partial class FinancialYearsViewModel : ViewModelBase
 {
     private readonly IFinancialYearQueryService _financialYearQueryService;
     private readonly INavigationService _navigationService;
+    private FinancialYearListItem? _selectedFinancialYear;
     private string _validationError = string.Empty;
 
     /// <summary>
@@ -62,6 +63,15 @@ public sealed partial class FinancialYearsViewModel : ViewModelBase
     }
 
     /// <summary>
+    /// Gets or sets the selected financial year.
+    /// </summary>
+    public FinancialYearListItem? SelectedFinancialYear
+    {
+        get => _selectedFinancialYear;
+        set => SetProperty(ref _selectedFinancialYear, value);
+    }
+
+    /// <summary>
     /// Command to refresh the financial year list.
     /// </summary>
     [RelayCommand]
@@ -77,6 +87,25 @@ public sealed partial class FinancialYearsViewModel : ViewModelBase
     private async Task AddFinancialYearAsync()
     {
         await _navigationService.NavigateAsync<AddFinancialYearViewModel>().ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// Command to navigate to the Edit Financial Year screen.
+    /// </summary>
+    [RelayCommand]
+    private async Task EditFinancialYearAsync()
+    {
+        if (SelectedFinancialYear is null)
+        {
+            return;
+        }
+
+        var parameter = new NavigationParameter
+        {
+            ["FinancialYearId"] = SelectedFinancialYear.Id
+        };
+
+        await _navigationService.NavigateAsync<EditFinancialYearViewModel>(parameter).ConfigureAwait(false);
     }
 
     /// <summary>
