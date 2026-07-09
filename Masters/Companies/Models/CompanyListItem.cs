@@ -1,4 +1,4 @@
-namespace veteran_logistic.Administration.Companies.Models;
+namespace veteran_logistic.Masters.Companies.Models;
 
 /// <summary>
 /// Represents a company item for display in the company listing grid.

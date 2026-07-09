@@ -1,6 +1,6 @@
-using veteran_logistic.Administration.Companies.Models;
+using veteran_logistic.Masters.Companies.Models;
 
-namespace veteran_logistic.Administration.Companies.Contracts;
+namespace veteran_logistic.Masters.Companies.Contracts;
 
 /// <summary>
 /// Service contract for querying company data.

@@ -1,11 +1,11 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
-using veteran_logistic.Administration.Companies.Contracts;
-using veteran_logistic.Administration.Companies.Models;
+using veteran_logistic.Masters.Companies.Contracts;
+using veteran_logistic.Masters.Companies.Models;
 using veteran_logistic.MVVM;
 
-namespace veteran_logistic.Administration.Companies.ViewModels;
+namespace veteran_logistic.Masters.Companies.ViewModels;
 
 /// <summary>
 /// ViewModel for the Companies listing screen.

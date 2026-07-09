@@ -1,4 +1,4 @@
-namespace veteran_logistic.Administration.Companies.Models;
+namespace veteran_logistic.Masters.Companies.Models;
 
 /// <summary>
 /// Represents a search model for filtering companies.

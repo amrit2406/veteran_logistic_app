@@ -2,10 +2,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using VeteranLogistics.Data.Context;
 using CompanyEntity = VeteranLogistics.Data.Entities.Administration.Company;
-using veteran_logistic.Administration.Companies.Contracts;
-using veteran_logistic.Administration.Companies.Models;
+using veteran_logistic.Masters.Companies.Contracts;
+using veteran_logistic.Masters.Companies.Models;
 
-namespace veteran_logistic.Administration.Companies.Services;
+namespace veteran_logistic.Masters.Companies.Services;
 
 /// <summary>
 /// Implementation of the company query service.

@@ -81,7 +81,7 @@
                     <MenuItem Header="KPIs" />
                 </MenuItem>
                 <MenuItem Header="Masters" Style="{StaticResource TopMenuItemStyle}">
-                    <MenuItem Header="Companies" />
+                    <MenuItem Header="Companies" Command="{Binding NavigateToCompaniesCommand}" />
                     <MenuItem Header="Customers" />
                 </MenuItem>
                 <MenuItem Header="Transactions" Style="{StaticResource TopMenuItemStyle}">
