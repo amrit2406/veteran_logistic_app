@@ -44,6 +44,11 @@ public class VeteranLogisticsDbContext : DbContext
     public DbSet<FinancialYear> FinancialYears => Set<FinancialYear>();
 
     /// <summary>
+    /// Gets or sets the Companies DbSet.
+    /// </summary>
+    public DbSet<Company> Companies => Set<Company>();
+
+    /// <summary>
     /// Apply entity configurations discovered in this assembly.
     /// </summary>
     /// <param name="modelBuilder">Model builder.</param>

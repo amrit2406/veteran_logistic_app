@@ -61,6 +61,11 @@ public sealed class ShellViewModel : ObservableObject
     /// </summary>
     public IAsyncRelayCommand NavigateToFinancialYearsCommand { get; }
 
+    /// <summary>
+    /// Command to navigate to the Companies screen.
+    /// </summary>
+    public IAsyncRelayCommand NavigateToCompaniesCommand { get; }
+
     public ShellViewModel(INavigationService navigationService, ILogoutService logoutService)
     {
         if (navigationService is null) throw new ArgumentNullException(nameof(navigationService));
@@ -72,6 +77,7 @@ public sealed class ShellViewModel : ObservableObject
         NavigateToRolesCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Administration.Roles.ViewModels.RolesViewModel>());
         NavigateToPermissionMatrixCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Administration.Permissions.ViewModels.PermissionMatrixViewModel>());
         NavigateToFinancialYearsCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Administration.FinancialYears.ViewModels.FinancialYearsViewModel>());
+        NavigateToCompaniesCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Administration.Companies.ViewModels.CompaniesViewModel>());
         navigationService.CurrentViewModelChanged += OnCurrentViewModelChanged;
         _currentViewModel = ResolveShellContent(navigationService.CurrentViewModel) ?? _placeholder;
     }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VeteranLogistics.Data.Context;
 
@@ -11,9 +12,11 @@ using VeteranLogistics.Data.Context;
 namespace veteran_logistic.Migrations
 {
     [DbContext(typeof(VeteranLogisticsDbContext))]
-    partial class VeteranLogisticsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260709112025_AddCompanyEntity")]
+    partial class AddCompanyEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
