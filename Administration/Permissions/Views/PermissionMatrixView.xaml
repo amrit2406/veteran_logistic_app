@@ -177,9 +177,6 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <CheckBox IsChecked="{Binding IsGranted, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                      Command="{Binding DataContext.OnPermissionToggledCommand, 
-                                                        RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                      CommandParameter="{Binding}"
                                       IsEnabled="{Binding DataContext.SelectedRole, 
                                                         RelativeSource={RelativeSource AncestorType=UserControl}, 
                                                         Converter={StaticResource NullToBooleanConverter}}"

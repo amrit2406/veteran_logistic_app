@@ -102,6 +102,7 @@ public sealed class PermissionCommandService : IPermissionCommandService
                         {
                             // Revoked -> Granted: Update existing record
                             existingRolePermission.IsGranted = true;
+                            existingRolePermission.ModifiedOn = DateTime.UtcNow;
                         }
                         else
                         {

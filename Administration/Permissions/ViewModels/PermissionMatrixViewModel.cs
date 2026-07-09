@@ -1,3 +1,4 @@
+using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
@@ -152,13 +153,27 @@ public sealed partial class PermissionMatrixViewModel : ViewModelBase
                 return;
             }
 
+            // Remember which role was selected so we can restore it after reload
+            var savedRoleId = SelectedRole.RoleId;
+
             // Refresh the matrix to reflect saved changes
             await LoadPermissionMatrixAsync().ConfigureAwait(false);
 
-            // Clear dirty state
-            _originalGrantedPermissionIds = new HashSet<int>(_currentGrantedPermissionIds);
-            HasUnsavedChanges = false;
-            SaveCommand.NotifyCanExecuteChanged();
+            // Restore the selected role from the newly loaded collection so
+            // checkboxes reflect the saved state without requiring the user
+            // to re-select the role manually.
+            var dispatcher = System.Windows.Application.Current?.Dispatcher;
+            if (dispatcher != null)
+            {
+                dispatcher.Invoke(() =>
+                {
+                    RestoreSelectedRole(savedRoleId);
+                });
+            }
+            else
+            {
+                RestoreSelectedRole(savedRoleId);
+            }
         }
         catch (Exception ex)
         {
@@ -177,39 +192,26 @@ public sealed partial class PermissionMatrixViewModel : ViewModelBase
     [RelayCommand]
     private async Task CancelAsync()
     {
+        var currentRoleId = SelectedRole?.RoleId;
         await LoadPermissionMatrixAsync().ConfigureAwait(false);
+
+        // Restore the selected role so checkboxes reflect the original saved state
+        if (currentRoleId.HasValue)
+        {
+            var dispatcher = System.Windows.Application.Current?.Dispatcher;
+            if (dispatcher != null)
+            {
+                dispatcher.Invoke(() => RestoreSelectedRole(currentRoleId.Value));
+            }
+            else
+            {
+                RestoreSelectedRole(currentRoleId.Value);
+            }
+        }
     }
 
     // Determines if Cancel can execute
     // Removed CanCancel method; button enable handled via XAML binding
-
-    /// <summary>
-    /// Handles when a permission checkbox is toggled from the UI.
-    /// </summary>
-    /// <param name="permissionRow">The permission row that was toggled.</param>
-    [RelayCommand]
-    private void OnPermissionToggled(PermissionMatrixRow permissionRow)
-    {
-        if (SelectedRole is null)
-        {
-            return;
-        }
-
-        if (permissionRow.IsGranted)
-        {
-            _currentGrantedPermissionIds.Add(permissionRow.PermissionId);
-        }
-        else
-        {
-            _currentGrantedPermissionIds.Remove(permissionRow.PermissionId);
-        }
-
-        // Check if there are changes
-        HasUnsavedChanges = !_currentGrantedPermissionIds.SetEquals(_originalGrantedPermissionIds);
-        ValidationError = null;
-        SaveCommand.NotifyCanExecuteChanged();
-        CancelCommand.NotifyCanExecuteChanged();
-    }
 
     /// <summary>
     /// Checks if a permission is granted for the selected role.
@@ -256,6 +258,21 @@ public sealed partial class PermissionMatrixViewModel : ViewModelBase
 
         SaveCommand.NotifyCanExecuteChanged();
         CancelCommand.NotifyCanExecuteChanged();
+    }
+
+    /// <summary>
+    /// Restores the selected role from the current Roles collection by RoleId.
+    /// This triggers <see cref="OnSelectedRoleChanged"/> which refreshes the
+    /// permission checkboxes to match the role's saved grants.
+    /// </summary>
+    /// <param name="roleId">The role ID to restore.</param>
+    private void RestoreSelectedRole(int roleId)
+    {
+        var restoredRole = Roles.FirstOrDefault(r => r.RoleId == roleId);
+        // Temporarily null _selectedRole so SetProperty detects a change
+        // even if the same RoleId maps to an object that compares equal.
+        _selectedRole = null;
+        SelectedRole = restoredRole;
     }
 
     /// <summary>
@@ -333,6 +350,24 @@ public sealed partial class PermissionMatrixViewModel : ViewModelBase
         Permissions.Clear();
         foreach (var permission in permissions)
         {
+            // Subscribe to property changes to track IsGranted changes
+            permission.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == nameof(PermissionMatrixRow.IsGranted) && SelectedRole != null)
+                {
+                    if (permission.IsGranted)
+                    {
+                        _currentGrantedPermissionIds.Add(permission.PermissionId);
+                    }
+                    else
+                    {
+                        _currentGrantedPermissionIds.Remove(permission.PermissionId);
+                    }
+                    HasUnsavedChanges = !_currentGrantedPermissionIds.SetEquals(_originalGrantedPermissionIds);
+                    SaveCommand.NotifyCanExecuteChanged();
+                    CancelCommand.NotifyCanExecuteChanged();
+                }
+            };
             Permissions.Add(permission);
         }
     }
