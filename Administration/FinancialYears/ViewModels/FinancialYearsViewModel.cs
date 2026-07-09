@@ -15,6 +15,7 @@ namespace veteran_logistic.Administration.FinancialYears.ViewModels;
 public sealed partial class FinancialYearsViewModel : ViewModelBase
 {
     private readonly IFinancialYearQueryService _financialYearQueryService;
+    private readonly IFinancialYearCommandService _financialYearCommandService;
     private readonly INavigationService _navigationService;
     private FinancialYearListItem? _selectedFinancialYear;
     private string _validationError = string.Empty;
@@ -23,12 +24,17 @@ public sealed partial class FinancialYearsViewModel : ViewModelBase
     /// Initializes a new instance of the <see cref="FinancialYearsViewModel"/> class.
     /// </summary>
     /// <param name="financialYearQueryService">The financial year query service.</param>
+    /// <param name="financialYearCommandService">The financial year command service.</param>
     /// <param name="navigationService">The navigation service.</param>
-    public FinancialYearsViewModel(IFinancialYearQueryService financialYearQueryService, INavigationService navigationService)
+    public FinancialYearsViewModel(
+        IFinancialYearQueryService financialYearQueryService,
+        IFinancialYearCommandService financialYearCommandService,
+        INavigationService navigationService)
     {
         _financialYearQueryService = financialYearQueryService ?? throw new ArgumentNullException(nameof(financialYearQueryService));
+        _financialYearCommandService = financialYearCommandService ?? throw new ArgumentNullException(nameof(financialYearCommandService));
         _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
-        
+
         Title = "Financial Years";
     }
 
@@ -73,6 +79,7 @@ public sealed partial class FinancialYearsViewModel : ViewModelBase
             if (SetProperty(ref _selectedFinancialYear, value))
             {
                 EditFinancialYearCommand.NotifyCanExecuteChanged();
+                SetCurrentFinancialYearCommand.NotifyCanExecuteChanged();
             }
         }
     }
@@ -117,6 +124,54 @@ public sealed partial class FinancialYearsViewModel : ViewModelBase
     private bool CanExecuteEditFinancialYear()
     {
         return SelectedFinancialYear is not null;
+    }
+
+    /// <summary>
+    /// Command to set the selected financial year as current.
+    /// </summary>
+    [RelayCommand(CanExecute = nameof(CanExecuteSetCurrentFinancialYear))]
+    private async Task SetCurrentFinancialYearAsync()
+    {
+        if (SelectedFinancialYear is null)
+        {
+            return;
+        }
+
+        ValidationError = string.Empty;
+
+        var messageBoxResult = MessageBox.Show(
+            $"Are you sure you want to set '{SelectedFinancialYear.Name}' as the current financial year?",
+            "Set Current Financial Year",
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Question);
+
+        if (messageBoxResult != MessageBoxResult.Yes)
+        {
+            return;
+        }
+
+        var request = new SetCurrentFinancialYearRequest
+        {
+            FinancialYearId = SelectedFinancialYear.Id
+        };
+
+        SetBusy("Setting current financial year...");
+        var result = await _financialYearCommandService.SetCurrentFinancialYearAsync(request, CancellationToken.None);
+        ClearBusy();
+
+        if (result.IsSuccess)
+        {
+            await LoadFinancialYearsAsync();
+        }
+        else
+        {
+            ValidationError = result.ErrorMessage ?? "Failed to set current financial year.";
+        }
+    }
+
+    private bool CanExecuteSetCurrentFinancialYear()
+    {
+        return SelectedFinancialYear is not null && !SelectedFinancialYear.IsCurrent;
     }
 
     /// <summary>

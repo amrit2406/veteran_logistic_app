@@ -22,4 +22,12 @@ public interface IFinancialYearCommandService
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>A result indicating success or failure.</returns>
     Task<UpdateFinancialYearResult> UpdateFinancialYearAsync(UpdateFinancialYearRequest request, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Sets a financial year as the current financial year.
+    /// </summary>
+    /// <param name="request">The set current financial year request.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A result indicating success or failure.</returns>
+    Task<SetCurrentFinancialYearResult> SetCurrentFinancialYearAsync(SetCurrentFinancialYearRequest request, CancellationToken cancellationToken = default);
 }

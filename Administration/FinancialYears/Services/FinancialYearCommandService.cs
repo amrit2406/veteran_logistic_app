@@ -15,6 +15,7 @@ public sealed class FinancialYearCommandService : IFinancialYearCommandService
     private readonly VeteranLogisticsDbContext _dbContext;
     private readonly ICreateFinancialYearValidator _createValidator;
     private readonly IUpdateFinancialYearValidator _updateValidator;
+    private readonly ISetCurrentFinancialYearValidator _setCurrentValidator;
     private readonly ILogger<FinancialYearCommandService> _logger;
 
     /// <summary>
@@ -23,16 +24,19 @@ public sealed class FinancialYearCommandService : IFinancialYearCommandService
     /// <param name="dbContext">The database context.</param>
     /// <param name="createValidator">The financial year creation validator.</param>
     /// <param name="updateValidator">The financial year update validator.</param>
+    /// <param name="setCurrentValidator">The set current financial year validator.</param>
     /// <param name="logger">The logger.</param>
     public FinancialYearCommandService(
         VeteranLogisticsDbContext dbContext,
         ICreateFinancialYearValidator createValidator,
         IUpdateFinancialYearValidator updateValidator,
+        ISetCurrentFinancialYearValidator setCurrentValidator,
         ILogger<FinancialYearCommandService> logger)
     {
         _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         _createValidator = createValidator ?? throw new ArgumentNullException(nameof(createValidator));
         _updateValidator = updateValidator ?? throw new ArgumentNullException(nameof(updateValidator));
+        _setCurrentValidator = setCurrentValidator ?? throw new ArgumentNullException(nameof(setCurrentValidator));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
@@ -130,6 +134,62 @@ public sealed class FinancialYearCommandService : IFinancialYearCommandService
         {
             _logger.LogError(ex, "An unexpected error occurred while updating financial year '{Id}'", request.Id);
             return UpdateFinancialYearResult.Failure("An unexpected error occurred while updating the financial year.");
+        }
+    }
+
+    /// <inheritdoc />
+    public async Task<SetCurrentFinancialYearResult> SetCurrentFinancialYearAsync(SetCurrentFinancialYearRequest request, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var validationResult = _setCurrentValidator.Validate(request);
+            if (!validationResult.IsValid)
+            {
+                var errorMessage = string.Join("; ", validationResult.Errors.Select(e => e.ErrorMessage));
+                return SetCurrentFinancialYearResult.Failure(errorMessage);
+            }
+
+            var financialYear = await _dbContext.FinancialYears
+                .FirstOrDefaultAsync(fy => fy.Id == request.FinancialYearId, cancellationToken)
+                .ConfigureAwait(false);
+
+            if (financialYear is null)
+            {
+                return SetCurrentFinancialYearResult.Failure("Financial year not found.");
+            }
+
+            if (financialYear.IsDeleted)
+            {
+                return SetCurrentFinancialYearResult.Failure("Cannot set a deleted financial year as current.");
+            }
+
+            // If already current, return success without updating
+            if (financialYear.IsCurrent)
+            {
+                return SetCurrentFinancialYearResult.Success();
+            }
+
+            // Clear the current flag from the existing current financial year (if any)
+            var currentFinancialYear = await _dbContext.FinancialYears
+                .FirstOrDefaultAsync(fy => fy.IsCurrent && !fy.IsDeleted, cancellationToken)
+                .ConfigureAwait(false);
+
+            if (currentFinancialYear is not null)
+            {
+                currentFinancialYear.IsCurrent = false;
+            }
+
+            // Set the requested financial year as current
+            financialYear.IsCurrent = true;
+
+            await _dbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+
+            return SetCurrentFinancialYearResult.Success();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An unexpected error occurred while setting financial year '{FinancialYearId}' as current", request.FinancialYearId);
+            return SetCurrentFinancialYearResult.Failure("An unexpected error occurred while setting the financial year as current.");
         }
     }
 }

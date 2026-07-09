@@ -74,6 +74,19 @@
                                    VerticalAlignment="Center" />
                     </Button>
 
+                    <!-- Set Current Financial Year Button -->
+                    <Button Height="{StaticResource StandardControlHeight}"
+                            Command="{Binding SetCurrentFinancialYearCommand}"
+                            Style="{StaticResource IconButtonStyle}"
+                            ToolTip="Set Current Financial Year"
+                            VerticalAlignment="Center"
+                            Margin="{StaticResource Small}">
+                        <TextBlock Text="Set Current"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Button>
+
                     <!-- Refresh Button -->
                     <Button Height="{StaticResource StandardControlHeight}"
                             Command="{Binding RefreshCommand}"
