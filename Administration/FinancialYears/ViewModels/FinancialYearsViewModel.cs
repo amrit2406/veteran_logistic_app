@@ -19,22 +19,6 @@ public sealed partial class FinancialYearsViewModel : ViewModelBase
     private readonly INavigationService _navigationService;
     private FinancialYearListItem? _selectedFinancialYear;
     private string _validationError = string.Empty;
-    private bool _isBusy;
-
-    /// <summary>
-    /// Gets or sets whether the ViewModel is in a busy state.
-    /// </summary>
-    public new bool IsBusy
-    {
-        get => _isBusy;
-        set
-        {
-            if (SetProperty(ref _isBusy, value))
-            {
-                CloseFinancialYearCommand.NotifyCanExecuteChanged();
-            }
-        }
-    }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="FinancialYearsViewModel"/> class.
@@ -220,11 +204,9 @@ public sealed partial class FinancialYearsViewModel : ViewModelBase
             FinancialYearId = SelectedFinancialYear.Id
         };
 
-        BusyMessage = "Closing financial year...";
-        IsBusy = true;
+        SetBusy("Closing financial year...");
         var result = await _financialYearCommandService.CloseFinancialYearAsync(request, CancellationToken.None);
-        BusyMessage = null;
-        IsBusy = false;
+        ClearBusy();
 
         if (result.IsSuccess)
         {
@@ -238,7 +220,7 @@ public sealed partial class FinancialYearsViewModel : ViewModelBase
 
     private bool CanExecuteCloseFinancialYear()
     {
-        return SelectedFinancialYear is not null && !SelectedFinancialYear.IsClosed && !IsBusy;
+        return SelectedFinancialYear is not null && !SelectedFinancialYear.IsClosed;
     }
 
     /// <summary>
@@ -247,12 +229,10 @@ public sealed partial class FinancialYearsViewModel : ViewModelBase
     /// <param name="cancellationToken">The cancellation token.</param>
     private async Task LoadFinancialYearsAsync(CancellationToken cancellationToken = default)
     {
-        BusyMessage = "Loading financial years...";
-        IsBusy = true;
+        SetBusy("Loading financial years...");
         var financialYears = await _financialYearQueryService.GetAllFinancialYearsAsync(cancellationToken);
         UpdateFinancialYears(financialYears);
-        BusyMessage = null;
-        IsBusy = false;
+        ClearBusy();
     }
 
     /// <summary>

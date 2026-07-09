@@ -1189,6 +1189,60 @@ This document records the implementation work completed across the repository an
   * Activate, Close Financial Year, Delete, Set Current Financial Year, Permission Enforcement, Advanced business rules.
 * **Validation Status**: Build verified successfully. Architecture matches Edit User and Edit Role exactly. MVVM, SOLID, Query/Command separation, Dependency Injection, Validation outside ViewModels, No DbContext in ViewModels all maintained.
 
+### Phase 2.11.4: Administration → Financial Year Management → Set Current Financial Year
+* **Goal**: Implement Set Current Financial Year functionality following the exact architecture used by the existing Administration module.
+* **Included**:
+  * **Models**: Created `SetCurrentFinancialYearRequest` with FinancialYearId property. Created `SetCurrentFinancialYearResult` with IsSuccess, ErrorMessage properties and Success/Failure factory methods.
+  * **Validation**: Created `ISetCurrentFinancialYearValidator` and `SetCurrentFinancialYearValidator` with validation rules: request not null, FinancialYearId > 0, friendly validation messages.
+  * **Command Layer**: Extended `IFinancialYearCommandService` with `SetCurrentFinancialYearAsync`. Implemented in `FinancialYearCommandService` with validation, verify Financial Year exists, check if deleted, return Success if already current, clear current flag from existing current financial year, set requested financial year as current, single SaveChangesAsync, ConfigureAwait(false), logging, success/failure result pattern.
+  * **ViewModel**: Modified `FinancialYearsViewModel` to add `SetCurrentFinancialYearCommand` with confirmation dialog, busy state handling, ValidationError, list refresh after success, CanExecute logic (not null and not already current). Updated SelectedFinancialYear property to notify SetCurrentFinancialYearCommand of CanExecute changes.
+  * **View**: Modified `FinancialYearsView.xaml` to add Set Current button in header toolbar with Command binding to SetCurrentFinancialYearCommand.
+  * **Dependency Injection**: Registered `ISetCurrentFinancialYearValidator` as Scoped in `AdministrationServiceCollectionExtensions.cs`.
+* **Explicitly Excluded**:
+  * Close Financial Year, Delete, Permission Enforcement, Advanced business rules.
+* **Validation Status**: Build verified successfully. Architecture follows the exact patterns established by Users, Roles, and Permission Matrix modules. MVVM, SOLID, Query/Command separation, Dependency Injection, Validation outside ViewModels, No DbContext in ViewModels all maintained.
+
+### Phase 2.11.5: Administration → Financial Year Management → Close Financial Year
+* **Goal**: Implement Close Financial Year functionality following the exact architecture used by the existing Administration module. Closing a Financial Year means setting IsClosed = true. A Closed Financial Year cannot be edited or become Current. Closing is irreversible (no Reopen functionality in Phase 2).
+* **Included**:
+  * **Models**: Created `CloseFinancialYearRequest` with FinancialYearId property. Created `CloseFinancialYearResult` with IsSuccess, ErrorMessage properties and Success/Failure factory methods.
+  * **Validation**: Created `ICloseFinancialYearValidator` and `CloseFinancialYearValidator` with validation rules: request not null, FinancialYearId > 0, friendly validation messages.
+  * **Command Layer**: Extended `IFinancialYearCommandService` with `CloseFinancialYearAsync`. Implemented in `FinancialYearCommandService` with validation, verify Financial Year exists, return Success if already closed, return Failure if Current Financial Year, set IsClosed = true, single SaveChangesAsync, ConfigureAwait(false), logging, success/failure result pattern.
+  * **ViewModel**: Modified `FinancialYearsViewModel` to add `CloseFinancialYearCommand` with confirmation dialog ("Are you sure you want to close this Financial Year?\n\nThis action cannot be undone."), busy state handling using SetBusy/ClearBusy base class methods, ValidationError, list refresh after success, CanExecute logic (not null and not already closed). Updated SelectedFinancialYear property to notify CloseFinancialYearCommand of CanExecute changes.
+  * **View**: Modified `FinancialYearsView.xaml` to add Close button in header toolbar with Command binding to CloseFinancialYearCommand.
+  * **Dependency Injection**: Registered `ICloseFinancialYearValidator` as Scoped in `AdministrationServiceCollectionExtensions.cs`.
+* **Explicitly Excluded**:
+  * Reopen Financial Year, Delete, Permission Enforcement, Advanced business rules.
+* **Validation Status**: Build verified successfully. Architecture follows the exact patterns established by Users, Roles, and Permission Matrix modules. MVVM, SOLID, Query/Command separation, Dependency Injection, Validation outside ViewModels, No DbContext in ViewModels all maintained.
+
+### Phase 2.11.5A: Close Financial Year Architecture Review & Refinement
+* **Goal**: Perform a complete architecture review of the entire Phase 2.11.5 (Close Financial Year) implementation and refine code where necessary without introducing new features.
+* **Included**:
+  * **Architecture Review**: Comprehensive review of MVVM, SOLID, Models, Validation, Command Layer, ViewModel, View, Navigation, Dependency Injection, Query/Command Separation, Performance, Code Quality, Security, Existing Functionality, and Cross-Module Consistency.
+  * **Code Refinement**: Modified `FinancialYearsViewModel` to remove IsBusy property override and use base class SetBusy/ClearBusy methods instead, matching the pattern used in UsersViewModel and RolesViewModel. Removed IsBusy check from CanExecuteCloseFinancialYear to match Users/Roles pattern.
+* **Architecture Review Results**:
+  * **MVVM Compliance**: PASS - FinancialYearsViewModel properly inherits from ViewModelBase, FinancialYearsView contains no business logic, clean separation of concerns, proper data binding.
+  * **SOLID Compliance**: PASS - Single Responsibility (each class has one purpose), Open/Closed (extensible without modification), Liskov Substitution (interfaces properly implemented), Interface Segregation (focused interfaces), Dependency Inversion (depends on abstractions).
+  * **Model Review**: PASS - CloseFinancialYearRequest and CloseFinancialYearResult naming and structure match SetCurrentFinancialYearResult, UpdateUserStatusResult, UpdateRoleStatusResult exactly. Success/Failure factory pattern consistent.
+  * **Validation Review**: PASS - CloseFinancialYearValidator follows SetCurrentFinancialYearValidator pattern exactly, uses existing ValidationResult infrastructure, validates FinancialYearId > 0, provides friendly error messages, no validation in ViewModel.
+  * **Command Layer Review**: PASS - CloseFinancialYearAsync validates request, verifies Financial Year exists, returns Success if already closed, returns Failure if Current Financial Year, sets IsClosed = true, single SaveChangesAsync, ConfigureAwait(false), proper exception handling with logging.
+  * **ViewModel Review**: PASS - CloseFinancialYearCommand implemented with [RelayCommand], confirmation dialog matches existing pattern, busy state managed via base class methods, error handling via ValidationError property, refreshes list after success, no business logic, no DbContext.
+  * **View Review**: PASS - Close button reuses existing IconButtonStyle, CaptionTextBlockStyle, Design System resources, spacing, typography. No inline styling, no hardcoded colours or fonts.
+  * **Navigation Review**: PASS - No navigation changes, list refreshes via LoadFinancialYearsAsync after close, navigation lifecycle unchanged.
+  * **Dependency Injection Review**: PASS - ICloseFinancialYearValidator registered as Scoped (matches other validators), constructor injection only, no service locator pattern.
+  * **Performance Review**: PASS - Single database update with SaveChangesAsync, async throughout with ConfigureAwait(false), CancellationToken support, no duplicate queries.
+  * **Code Quality Review**: PASS - SOLID principles followed, DRY principle followed, naming consistent with existing modules, folder structure matches existing modules, namespace consistent, XML documentation present.
+  * **Security Review**: PASS - Financial Year existence validation, Current Financial Year protection, no sensitive logging, no authentication changes, no authorization changes, no security regressions.
+  * **Cross-Module Consistency**: PASS - Folder structure matches Users/Roles/Permission Matrix modules, service architecture matches, validation architecture matches, ViewModel lifecycle matches, navigation matches, result pattern matches, request models match, dependency injection patterns match, logging matches, error handling matches, busy state management matches (after fix), coding style matches.
+* **Explicitly Unchanged**:
+  * Reopen Financial Year, database schema, Global Query Filter, Phase 0-2.11.4, existing functionality
+* **Files Modified**: FinancialYearsViewModel.cs (removed IsBusy override, updated to use base class methods).
+* **Justification for Changes**:
+  * **ViewModel Consistency**: Removed IsBusy property override to match UsersViewModel and RolesViewModel pattern, which both use base ViewModelBase.IsBusy property directly without overriding.
+  * **Busy State Management**: Updated CloseFinancialYearAsync and LoadFinancialYearsAsync to use SetBusy/ClearBusy base class methods instead of directly setting IsBusy, ensuring architectural consistency.
+  * **CanExecute Logic**: Removed IsBusy check from CanExecuteCloseFinancialYear to match UsersViewModel and RolesViewModel pattern (which don't check IsBusy in their CanExecute methods).
+* **Validation Status**: Build verified successfully with no errors. Close button is available. Confirmation dialog appears. CloseFinancialYearCommand executes successfully. Financial Year is closed. IsClosed is set to true. Current Financial Year cannot be closed. Already closed Financial Year returns Success without updating. Query/Command separation is maintained. No DbContext exists in ViewModels. Existing architecture is fully reused. No regressions are introduced. Implementation is enterprise-grade and ready to be frozen.
+
 ## 3. Architecture & Design
 
 ### Dependency Injection and Composition
