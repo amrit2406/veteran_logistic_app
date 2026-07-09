@@ -62,6 +62,10 @@
     <adminFinancialYearsViews:FinancialYearsView />
   </DataTemplate>
 
+  <DataTemplate DataType="{x:Type adminFinancialYearsVm:AddFinancialYearViewModel}">
+    <adminFinancialYearsViews:AddFinancialYearView />
+  </DataTemplate>
+
   <DataTemplate DataType="{x:Type vm:PlaceholderViewModel}">
     <Border Background="{DynamicResource BackgroundBrush}" Padding="{StaticResource ExtraLarge}">
       <Grid>

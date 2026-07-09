@@ -195,3 +195,5 @@ d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Administration\Permissions
 d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Administration\Permissions\Views\PermissionMatrixView.g.cs
 d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Administration\FinancialYears\Views\FinancialYearsView.g.cs
 d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Administration\FinancialYears\Views\FinancialYearsView.baml
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Administration\FinancialYears\Views\AddFinancialYearView.g.cs
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Administration\FinancialYears\Views\AddFinancialYearView.baml

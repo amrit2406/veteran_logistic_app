@@ -48,9 +48,9 @@
                         </TextBox.Style>
                     </TextBox>
 
-                    <!-- Add Financial Year Button (placeholder - disabled) -->
+                    <!-- Add Financial Year Button -->
                     <Button Height="{StaticResource StandardControlHeight}"
-                            IsEnabled="False"
+                            Command="{Binding AddFinancialYearCommand}"
                             Style="{StaticResource IconButtonStyle}"
                             ToolTip="Add Financial Year"
                             VerticalAlignment="Center"

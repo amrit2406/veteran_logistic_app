@@ -5,6 +5,7 @@ using System.Windows;
 using veteran_logistic.Administration.FinancialYears.Contracts;
 using veteran_logistic.Administration.FinancialYears.Models;
 using veteran_logistic.MVVM;
+using veteran_logistic.Navigation;
 
 namespace veteran_logistic.Administration.FinancialYears.ViewModels;
 
@@ -14,15 +15,18 @@ namespace veteran_logistic.Administration.FinancialYears.ViewModels;
 public sealed partial class FinancialYearsViewModel : ViewModelBase
 {
     private readonly IFinancialYearQueryService _financialYearQueryService;
+    private readonly INavigationService _navigationService;
     private string _validationError = string.Empty;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="FinancialYearsViewModel"/> class.
     /// </summary>
     /// <param name="financialYearQueryService">The financial year query service.</param>
-    public FinancialYearsViewModel(IFinancialYearQueryService financialYearQueryService)
+    /// <param name="navigationService">The navigation service.</param>
+    public FinancialYearsViewModel(IFinancialYearQueryService financialYearQueryService, INavigationService navigationService)
     {
         _financialYearQueryService = financialYearQueryService ?? throw new ArgumentNullException(nameof(financialYearQueryService));
+        _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
         
         Title = "Financial Years";
     }
@@ -64,6 +68,15 @@ public sealed partial class FinancialYearsViewModel : ViewModelBase
     private async Task RefreshAsync()
     {
         await LoadFinancialYearsAsync();
+    }
+
+    /// <summary>
+    /// Command to navigate to the Add Financial Year screen.
+    /// </summary>
+    [RelayCommand]
+    private async Task AddFinancialYearAsync()
+    {
+        await _navigationService.NavigateAsync<AddFinancialYearViewModel>().ConfigureAwait(false);
     }
 
     /// <summary>

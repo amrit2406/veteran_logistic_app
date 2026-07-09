@@ -14,6 +14,7 @@ using veteran_logistic.Administration.Permissions.Validators;
 using veteran_logistic.Administration.Permissions.ViewModels;
 using veteran_logistic.Administration.FinancialYears.Contracts;
 using veteran_logistic.Administration.FinancialYears.Services;
+using veteran_logistic.Administration.FinancialYears.Validators;
 using veteran_logistic.Administration.FinancialYears.ViewModels;
 
 namespace veteran_logistic.Administration.DependencyInjection;
@@ -61,6 +62,10 @@ public static class AdministrationServiceCollectionExtensions
 
         services.AddScoped<IFinancialYearQueryService, FinancialYearQueryService>();
         services.AddTransient<FinancialYearsViewModel>();
+
+        services.AddScoped<IFinancialYearCommandService, FinancialYearCommandService>();
+        services.AddScoped<ICreateFinancialYearValidator, CreateFinancialYearValidator>();
+        services.AddTransient<AddFinancialYearViewModel>();
 
         return services;
     }
