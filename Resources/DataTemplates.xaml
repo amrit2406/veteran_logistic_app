@@ -76,6 +76,14 @@
     <mastersCompaniesViews:CompaniesView />
   </DataTemplate>
 
+  <DataTemplate DataType="{x:Type mastersCompaniesVm:AddCompanyViewModel}">
+    <mastersCompaniesViews:AddCompanyView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type mastersCompaniesVm:EditCompanyViewModel}">
+    <mastersCompaniesViews:EditCompanyView />
+  </DataTemplate>
+
   <DataTemplate DataType="{x:Type vm:PlaceholderViewModel}">
     <Border Background="{DynamicResource BackgroundBrush}" Padding="{StaticResource ExtraLarge}">
       <Grid>

@@ -36,9 +36,9 @@
                 <StackPanel Grid.Column="1"
                             Orientation="Horizontal"
                             HorizontalAlignment="Right">
-                    <!-- Search (placeholder - disabled) -->
+                    <!-- Search -->
                     <TextBox Height="{StaticResource StandardControlHeight}"
-                             IsEnabled="False"
+                             Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
                              Margin="{StaticResource Small}"
                              VerticalAlignment="Center">
                         <TextBox.Style>
@@ -48,14 +48,66 @@
                         </TextBox.Style>
                     </TextBox>
 
-                    <!-- Add Company Button (placeholder - disabled) -->
+                    <!-- Add Company Button -->
                     <Button Height="{StaticResource StandardControlHeight}"
-                            IsEnabled="False"
+                            Command="{Binding AddCompanyCommand}"
                             Style="{StaticResource IconButtonStyle}"
                             ToolTip="Add Company"
                             VerticalAlignment="Center"
                             Margin="{StaticResource Small}">
                         <TextBlock Text="Add Company"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Button>
+
+                    <!-- Edit Company Button -->
+                    <Button Height="{StaticResource StandardControlHeight}"
+                            Command="{Binding EditCompanyCommand}"
+                            Style="{StaticResource IconButtonStyle}"
+                            ToolTip="Edit Company"
+                            VerticalAlignment="Center"
+                            Margin="{StaticResource Small}">
+                        <TextBlock Text="Edit Company"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Button>
+
+                    <!-- Activate Company Button -->
+                    <Button Height="{StaticResource StandardControlHeight}"
+                            Command="{Binding ActivateCompanyCommand}"
+                            Style="{StaticResource IconButtonStyle}"
+                            ToolTip="Activate Company"
+                            VerticalAlignment="Center"
+                            Margin="{StaticResource Small}">
+                        <TextBlock Text="Activate"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Button>
+
+                    <!-- Deactivate Company Button -->
+                    <Button Height="{StaticResource StandardControlHeight}"
+                            Command="{Binding DeactivateCompanyCommand}"
+                            Style="{StaticResource IconButtonStyle}"
+                            ToolTip="Deactivate Company"
+                            VerticalAlignment="Center"
+                            Margin="{StaticResource Small}">
+                        <TextBlock Text="Deactivate"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Button>
+
+                    <!-- Delete Company Button -->
+                    <Button Height="{StaticResource StandardControlHeight}"
+                            Command="{Binding DeleteCompanyCommand}"
+                            Style="{StaticResource IconButtonStyle}"
+                            ToolTip="Delete Company"
+                            VerticalAlignment="Center"
+                            Margin="{StaticResource Small}">
+                        <TextBlock Text="Delete Company"
                                    Style="{StaticResource CaptionTextBlockStyle}"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center" />
@@ -113,6 +165,7 @@
         <!-- DataGrid -->
         <DataGrid Grid.Row="3"
                   ItemsSource="{Binding Companies}"
+                  SelectedItem="{Binding SelectedCompany}"
                   IsReadOnly="True"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"

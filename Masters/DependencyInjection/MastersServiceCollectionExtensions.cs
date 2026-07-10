@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using veteran_logistic.Masters.Companies.Contracts;
 using veteran_logistic.Masters.Companies.Services;
+using veteran_logistic.Masters.Companies.Validators;
 using veteran_logistic.Masters.Companies.ViewModels;
 
 namespace veteran_logistic.Masters.DependencyInjection;
@@ -20,7 +21,14 @@ public static class MastersServiceCollectionExtensions
         ArgumentNullException.ThrowIfNull(services);
 
         services.AddScoped<ICompanyQueryService, CompanyQueryService>();
+        services.AddScoped<ICompanyCommandService, CompanyCommandService>();
+        services.AddScoped<ICreateCompanyValidator, CreateCompanyValidator>();
+        services.AddScoped<IUpdateCompanyValidator, UpdateCompanyValidator>();
+        services.AddScoped<IUpdateCompanyStatusValidator, UpdateCompanyStatusValidator>();
+        services.AddScoped<IDeleteCompanyValidator, DeleteCompanyValidator>();
         services.AddTransient<CompaniesViewModel>();
+        services.AddTransient<AddCompanyViewModel>();
+        services.AddTransient<EditCompanyViewModel>();
 
         return services;
     }

@@ -36,7 +36,28 @@ public sealed class CompanyQueryService : ICompanyQueryService
     }
 
     /// <inheritdoc />
-    public async Task<CompanyModel?> GetCompanyAsync(int id, CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<CompanyListItem>> SearchCompaniesAsync(string? search, CancellationToken cancellationToken = default)
+    {
+        var query = _dbContext.Companies.AsNoTracking();
+
+        if (!string.IsNullOrWhiteSpace(search))
+        {
+            var searchPattern = $"%{search}%";
+            query = query.Where(c =>
+                EF.Functions.Like(c.CompanyCode, searchPattern) ||
+                EF.Functions.Like(c.CompanyName, searchPattern) ||
+                EF.Functions.Like(c.City, searchPattern) ||
+                EF.Functions.Like(c.State, searchPattern));
+        }
+
+        return await ProjectToListItem(query)
+            .OrderBy(c => c.CompanyName)
+            .ToListAsync(cancellationToken)
+            .ConfigureAwait(false);
+    }
+
+    /// <inheritdoc />
+    public async Task<CompanyModel?> GetCompanyForEditAsync(int id, CancellationToken cancellationToken = default)
     {
         return await _dbContext.Companies
             .AsNoTracking()
