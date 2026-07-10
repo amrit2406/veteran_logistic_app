@@ -82,7 +82,7 @@
                 </MenuItem>
                 <MenuItem Header="Masters" Style="{StaticResource TopMenuItemStyle}">
                     <MenuItem Header="Companies" Command="{Binding NavigateToCompaniesCommand}" />
-                    <MenuItem Header="Customers" />
+                    <MenuItem Header="Customers" Command="{Binding NavigateToCustomersCommand}" />
                 </MenuItem>
                 <MenuItem Header="Transactions" Style="{StaticResource TopMenuItemStyle}">
                     <MenuItem Header="Orders" />

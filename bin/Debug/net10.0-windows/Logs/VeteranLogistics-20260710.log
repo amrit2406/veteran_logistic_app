@@ -26,3 +26,24 @@ Company '1' status updated to false
 [Thread: 2]
 
 Company '1' status updated to true
+[2026-07-10 16:42:21 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Customer '12' created successfully with ID 1
+[2026-07-10 16:42:25 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Customer '1' status updated to false
+[2026-07-10 16:42:26 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Customer '1' status updated to true

@@ -205,3 +205,9 @@ d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Companies\Views\Ad
 d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Companies\Views\EditCompanyView.baml
 d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Companies\Views\AddCompanyView.g.cs
 d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Companies\Views\EditCompanyView.g.cs
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Customers\Views\AddCustomerView.baml
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Customers\Views\EditCustomerView.baml
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Customers\Views\AddCustomerView.g.cs
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Customers\Views\CustomersView.g.cs
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Customers\Views\EditCustomerView.g.cs
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Customers\Views\CustomersView.baml
