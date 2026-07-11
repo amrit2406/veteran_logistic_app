@@ -217,3 +217,9 @@ D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Vendors\Views\AddV
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Vendors\Views\EditVendorView.g.cs
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Vendors\Views\VendorsView.g.cs
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Vendors\Views\VendorsView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Sources\Views\AddSourceView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Sources\Views\EditSourceView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Sources\Views\AddSourceView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Sources\Views\EditSourceView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Sources\Views\SourcesView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Sources\Views\SourcesView.baml

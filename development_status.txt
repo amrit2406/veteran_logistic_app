@@ -1375,6 +1375,45 @@ This document records the implementation work completed across the repository an
   * Bulk operations
 * **Validation Status**: Build verified successfully with 0 errors, 4 unrelated package warnings (Serilog version mismatches). All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer with ValidationResult, Result pattern, Dependency injection with proper lifetimes, Navigation with INavigationAware, Async/await with CancellationToken and ConfigureAwait(false), Logging with ILogger, Busy state management. Vendor module is architecturally identical to Company and Customer modules and is production-ready. Demonstrates that established patterns can be successfully replicated for future Master modules (Vehicle, etc.).
 
+### Phase 3.5: Source Management
+* **Goal**: Implement the Source module following the Company, Customer, and Vendor modules as reference implementations. Create a complete production-ready Source module with full CRUD functionality, search, validation, and UI integration, using the exact same architectural patterns as Company, Customer, and Vendor.
+* **Included**:
+  * **Database Layer**:
+    - Source Entity: All required fields (SourceCode, SourceName, AddressLine1, AddressLine2, City, State, Country, PostalCode, ContactPerson, PhoneNumber, Email, GSTNumber, Latitude, Longitude, Remarks), soft delete support (IsDeleted, DeletedOn), audit fields (CreatedBy, ModifiedBy, CreatedOn, ModifiedOn), active status (IsActive)
+    - SourceConfiguration: Required field constraints, max length constraints, unique index on SourceCode, global query filter for soft deletion, precision configuration for Latitude/Longitude
+    - DbSet Registration: Added DbSet<Source> Sources to VeteranLogisticsDbContext
+    - Migration: AddSourceEntity created and applied
+  * **Query Layer**:
+    - ISourceQueryService interface with GetAllSourcesAsync, SearchSourcesAsync, GetSourceForEditAsync methods
+    - SourceQueryService implementation with AsNoTracking, EF.Functions.Like, projection to DTOs, CancellationToken support, ConfigureAwait(false)
+    - SourceListItem and SourceModel DTOs for listing and detail views
+  * **Command Layer**:
+    - Request Models: CreateSourceRequest, UpdateSourceRequest, UpdateSourceStatusRequest, DeleteSourceRequest
+    - Result Models: CreateSourceResult, UpdateSourceResult, UpdateSourceStatusResult, DeleteSourceResult (with Success/Failure factory methods)
+    - Validator Interfaces: ICreateSourceValidator, IUpdateSourceValidator, IUpdateSourceStatusValidator, IDeleteSourceValidator
+    - Validator Implementations: CreateSourceValidator, UpdateSourceValidator, UpdateSourceStatusValidator, DeleteSourceValidator
+    - Command Service: ISourceCommandService and SourceCommandService with full CRUD operations, duplicate checking, validation, logging, soft delete
+  * **UI Layer**:
+    - SourcesViewModel: Search with debouncing (300ms), Add/Edit/Activate/Deactivate/Delete/Refresh commands, selected item tracking, busy state management
+    - AddSourceViewModel: Full form with all source fields including Latitude, Longitude, Remarks, save/cancel commands, validation, busy state management
+    - EditSourceViewModel: INavigationAware for parameter passing, load on navigation, full form with all source fields including Latitude, Longitude, Remarks, save/cancel commands, validation
+    - SourcesView: Search textbox enabled, all action buttons (Add Source, Edit Source, Activate, Deactivate, Delete Source, Refresh), DataGrid with selection, loading/error indicators
+    - AddSourceView: Complete form with all fields including Latitude, Longitude, Remarks, save/cancel buttons, validation display, loading indicator
+    - EditSourceView: Complete form with all fields including Latitude, Longitude, Remarks, save/cancel buttons, validation display, loading indicator
+  * **Infrastructure Updates**:
+    - DI Registration: MastersServiceCollectionExtensions updated with all Source services (ISourceQueryService, ISourceCommandService, all validators, all ViewModels)
+    - DataTemplates: DataTemplates.xaml updated with SourcesViewModel, AddSourceViewModel, and EditSourceViewModel mappings
+    - Navigation: ShellView.xaml updated with Sources menu item, ShellViewModel.cs updated with NavigateToSourcesCommand
+* **Explicitly Excluded**:
+  * New architectural patterns or redesigns (strictly following Company/Customer/Vendor module patterns)
+  * Repository pattern, MediatR, or generic frameworks
+  * Business logic in ViewModels (only in services)
+  * DbContext access in ViewModels
+  * Advanced search with multiple filter criteria (simple LIKE pattern implemented)
+  * Export functionality
+  * Bulk operations
+* **Validation Status**: Build verified successfully with 0 errors, 4 unrelated package warnings (Serilog version mismatches). All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer with ValidationResult, Result pattern, Dependency injection with proper lifetimes, Navigation with INavigationAware, Async/await with CancellationToken and ConfigureAwait(false), Logging with ILogger, Busy state management. Source module is architecturally identical to Company, Customer, and Vendor modules and is production-ready. Demonstrates that established patterns can be successfully replicated for future Master modules (Vehicle, etc.).
+
 ## 3. Architecture & Design
 
 ### Dependency Injection and Composition
