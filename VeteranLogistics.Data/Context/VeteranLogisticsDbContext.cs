@@ -74,6 +74,11 @@ public class VeteranLogisticsDbContext : DbContext
     public DbSet<Material> Materials => Set<Material>();
 
     /// <summary>
+    /// Gets or sets the FuelPumps DbSet.
+    /// </summary>
+    public DbSet<FuelPump> FuelPumps => Set<FuelPump>();
+
+    /// <summary>
     /// Apply entity configurations discovered in this assembly.
     /// </summary>
     /// <param name="modelBuilder">Model builder.</param>

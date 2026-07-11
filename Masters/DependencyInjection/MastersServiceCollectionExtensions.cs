@@ -23,6 +23,10 @@ using veteran_logistic.Masters.Materials.Contracts;
 using veteran_logistic.Masters.Materials.Services;
 using veteran_logistic.Masters.Materials.Validators;
 using veteran_logistic.Masters.Materials.ViewModels;
+using veteran_logistic.Masters.FuelPumps.Contracts;
+using veteran_logistic.Masters.FuelPumps.Services;
+using veteran_logistic.Masters.FuelPumps.Validators;
+using veteran_logistic.Masters.FuelPumps.ViewModels;
 
 namespace veteran_logistic.Masters.DependencyInjection;
 
@@ -105,6 +109,17 @@ public static class MastersServiceCollectionExtensions
         services.AddTransient<MaterialsViewModel>();
         services.AddTransient<AddMaterialViewModel>();
         services.AddTransient<EditMaterialViewModel>();
+
+        // Fuel Pump services
+        services.AddScoped<IFuelPumpQueryService, FuelPumpQueryService>();
+        services.AddScoped<IFuelPumpCommandService, FuelPumpCommandService>();
+        services.AddScoped<ICreateFuelPumpValidator, CreateFuelPumpValidator>();
+        services.AddScoped<IUpdateFuelPumpValidator, UpdateFuelPumpValidator>();
+        services.AddScoped<IUpdateFuelPumpStatusValidator, UpdateFuelPumpStatusValidator>();
+        services.AddScoped<IDeleteFuelPumpValidator, DeleteFuelPumpValidator>();
+        services.AddTransient<FuelPumpsViewModel>();
+        services.AddTransient<AddFuelPumpViewModel>();
+        services.AddTransient<EditFuelPumpViewModel>();
 
         return services;
     }

@@ -235,3 +235,9 @@ D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Materials\Views\Ad
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Materials\Views\EditMaterialView.g.cs
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Materials\Views\MaterialsView.g.cs
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Materials\Views\MaterialsView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\FuelPumps\Views\AddFuelPumpView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\FuelPumps\Views\EditFuelPumpView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\FuelPumps\Views\AddFuelPumpView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\FuelPumps\Views\EditFuelPumpView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\FuelPumps\Views\FuelPumpsView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\FuelPumps\Views\FuelPumpsView.baml

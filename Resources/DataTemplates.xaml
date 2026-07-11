@@ -25,7 +25,9 @@
                     xmlns:mastersDestinationsVm="clr-namespace:veteran_logistic.Masters.Destinations.ViewModels"
                     xmlns:mastersDestinationsViews="clr-namespace:veteran_logistic.Masters.Destinations.Views"
                     xmlns:mastersMaterialsVm="clr-namespace:veteran_logistic.Masters.Materials.ViewModels"
-                    xmlns:mastersMaterialsViews="clr-namespace:veteran_logistic.Masters.Materials.Views">
+                    xmlns:mastersMaterialsViews="clr-namespace:veteran_logistic.Masters.Materials.Views"
+                    xmlns:mastersFuelPumpsVm="clr-namespace:veteran_logistic.Masters.FuelPumps.ViewModels"
+                    xmlns:mastersFuelPumpsViews="clr-namespace:veteran_logistic.Masters.FuelPumps.Views">
   <DataTemplate DataType="{x:Type vm:ShellViewModel}">
     <views:ShellView />
   </DataTemplate>
@@ -152,6 +154,18 @@
 
   <DataTemplate DataType="{x:Type mastersMaterialsVm:EditMaterialViewModel}">
     <mastersMaterialsViews:EditMaterialView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type mastersFuelPumpsVm:FuelPumpsViewModel}">
+    <mastersFuelPumpsViews:FuelPumpsView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type mastersFuelPumpsVm:AddFuelPumpViewModel}">
+    <mastersFuelPumpsViews:AddFuelPumpView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type mastersFuelPumpsVm:EditFuelPumpViewModel}">
+    <mastersFuelPumpsViews:EditFuelPumpView />
   </DataTemplate>
 
   <DataTemplate DataType="{x:Type vm:PlaceholderViewModel}">

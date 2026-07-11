@@ -91,6 +91,11 @@ public sealed class ShellViewModel : ObservableObject
     /// </summary>
     public IAsyncRelayCommand NavigateToMaterialsCommand { get; }
 
+    /// <summary>
+    /// Command to navigate to the Fuel Pumps screen.
+    /// </summary>
+    public IAsyncRelayCommand NavigateToFuelPumpsCommand { get; }
+
     public ShellViewModel(INavigationService navigationService, ILogoutService logoutService)
     {
         if (navigationService is null) throw new ArgumentNullException(nameof(navigationService));
@@ -108,6 +113,7 @@ public sealed class ShellViewModel : ObservableObject
         NavigateToSourcesCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.Sources.ViewModels.SourcesViewModel>());
         NavigateToDestinationsCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.Destinations.ViewModels.DestinationsViewModel>());
         NavigateToMaterialsCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.Materials.ViewModels.MaterialsViewModel>());
+        NavigateToFuelPumpsCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.FuelPumps.ViewModels.FuelPumpsViewModel>());
         navigationService.CurrentViewModelChanged += OnCurrentViewModelChanged;
         _currentViewModel = ResolveShellContent(navigationService.CurrentViewModel) ?? _placeholder;
     }
