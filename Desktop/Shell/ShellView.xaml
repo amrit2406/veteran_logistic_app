@@ -86,6 +86,7 @@
                     <MenuItem Header="Vendors" Command="{Binding NavigateToVendorsCommand}" />
                     <MenuItem Header="Sources" Command="{Binding NavigateToSourcesCommand}" />
                     <MenuItem Header="Destinations" Command="{Binding NavigateToDestinationsCommand}" />
+                    <MenuItem Header="Materials" Command="{Binding NavigateToMaterialsCommand}" />
                 </MenuItem>
                 <MenuItem Header="Transactions" Style="{StaticResource TopMenuItemStyle}">
                     <MenuItem Header="Orders" />

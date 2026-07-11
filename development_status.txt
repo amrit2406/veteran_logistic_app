@@ -1414,6 +1414,88 @@ This document records the implementation work completed across the repository an
   * Bulk operations
 * **Validation Status**: Build verified successfully with 0 errors, 4 unrelated package warnings (Serilog version mismatches). All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer with ValidationResult, Result pattern, Dependency injection with proper lifetimes, Navigation with INavigationAware, Async/await with CancellationToken and ConfigureAwait(false), Logging with ILogger, Busy state management. Source module is architecturally identical to Company, Customer, and Vendor modules and is production-ready. Demonstrates that established patterns can be successfully replicated for future Master modules (Vehicle, etc.).
 
+### Phase 3.6: Destination Management
+* **Goal**: Implement the Destination module as the counterpart to the Source module. Create a complete production-ready Destination module with full CRUD functionality, search, validation, and UI integration, using the exact same architectural patterns as Source.
+* **Included**:
+  * **Database Layer**:
+    - Destination Entity: All required fields (DestinationCode, DestinationName, AddressLine1, AddressLine2, City, State, Country, PostalCode, ContactPerson, PhoneNumber, Email, GSTNumber, Latitude, Longitude, Remarks), soft delete support (IsDeleted, DeletedOn), audit fields (CreatedBy, ModifiedBy, CreatedOn, ModifiedOn), active status (IsActive)
+    - DestinationConfiguration: Required field constraints, max length constraints, unique index on DestinationCode, global query filter for soft deletion, precision configuration for Latitude/Longitude
+    - DbSet Registration: Added DbSet<Destination> Destinations to VeteranLogisticsDbContext
+    - Migration: AddDestinationEntity created and applied
+  * **Query Layer**:
+    - IDestinationQueryService interface with GetAllDestinationsAsync, SearchDestinationsAsync, GetDestinationForEditAsync methods
+    - DestinationQueryService implementation with AsNoTracking, EF.Functions.Like, projection to DTOs, CancellationToken support, ConfigureAwait(false)
+    - DestinationListItem and DestinationModel DTOs for listing and detail views
+  * **Command Layer**:
+    - Request Models: CreateDestinationRequest, UpdateDestinationRequest, UpdateDestinationStatusRequest, DeleteDestinationRequest
+    - Result Models: CreateDestinationResult, UpdateDestinationResult, UpdateDestinationStatusResult, DeleteDestinationResult (with Success/Failure factory methods)
+    - Validator Interfaces: ICreateDestinationValidator, IUpdateDestinationValidator, IUpdateDestinationStatusValidator, IDeleteDestinationValidator
+    - Validator Implementations: CreateDestinationValidator, UpdateDestinationValidator, UpdateDestinationStatusValidator, DeleteDestinationValidator
+    - Command Service: IDestinationCommandService and DestinationCommandService with full CRUD operations, duplicate checking, validation, logging, soft delete
+  * **UI Layer**:
+    - DestinationsViewModel: Search with debouncing (300ms), Add/Edit/Activate/Deactivate/Delete/Refresh commands, selected item tracking, busy state management
+    - AddDestinationViewModel: Full form with all destination fields including Latitude, Longitude, Remarks, save/cancel commands, validation, busy state management
+    - EditDestinationViewModel: INavigationAware for parameter passing, load on navigation, full form with all destination fields including Latitude, Longitude, Remarks, save/cancel commands, validation
+    - DestinationsView: Search textbox enabled, all action buttons (Add Destination, Edit Destination, Activate, Deactivate, Delete Destination, Refresh), DataGrid with selection, loading/error indicators
+    - AddDestinationView: Complete form with all fields including Latitude, Longitude, Remarks, save/cancel buttons, validation display, loading indicator
+    - EditDestinationView: Complete form with all fields including Latitude, Longitude, Remarks, save/cancel buttons, validation display, loading indicator
+  * **Infrastructure Updates**:
+    - DI Registration: MastersServiceCollectionExtensions updated with all Destination services (IDestinationQueryService, IDestinationCommandService, all validators, all ViewModels)
+    - DataTemplates: DataTemplates.xaml updated with DestinationsViewModel, AddDestinationViewModel, and EditDestinationViewModel mappings
+    - Navigation: ShellView.xaml updated with Destinations menu item, ShellViewModel.cs updated with NavigateToDestinationsCommand
+* **Explicitly Excluded**:
+  * New architectural patterns or redesigns (strictly following Source module patterns)
+  * Repository pattern, MediatR, or generic frameworks
+  * Business logic in ViewModels (only in services)
+  * DbContext access in ViewModels
+  * Advanced search with multiple filter criteria (simple LIKE pattern implemented)
+  * Export functionality
+  * Bulk operations
+* **Validation Status**: Build verified successfully with 0 errors, 4 unrelated package warnings (Serilog version mismatches). All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer with ValidationResult, Result pattern, Dependency injection with proper lifetimes, Navigation with INavigationAware, Async/await with CancellationToken and ConfigureAwait(false), Logging with ILogger, Busy state management. Destination module is architecturally identical to Source module and is production-ready.
+
+### Phase 3.7: Material Management
+* **Goal**: Implement the Material module as a simplified Master module with minimal business fields. Create a complete production-ready Material module with full CRUD functionality, search, validation, and UI integration, using the exact same architectural patterns as previous Master modules but with intentionally minimal business model.
+* **Included**:
+  * **Database Layer**:
+    - Material Entity: Minimal fields (MaterialName only), soft delete support (IsDeleted, DeletedOn), audit fields (CreatedBy, ModifiedBy, CreatedOn, ModifiedOn), active status (IsActive)
+    - MaterialConfiguration: Required field constraints, max length constraints, unique index on MaterialName, global query filter for soft deletion
+    - DbSet Registration: Added DbSet<Material> Materials to VeteranLogisticsDbContext
+    - Migration: AddMaterialEntity created and applied
+  * **Query Layer**:
+    - IMaterialQueryService interface with GetAllMaterialsAsync, SearchMaterialsAsync, GetMaterialForEditAsync methods
+    - MaterialQueryService implementation with AsNoTracking, EF.Functions.Like, projection to DTOs, CancellationToken support, ConfigureAwait(false)
+    - MaterialListItem and MaterialModel DTOs for listing and detail views
+  * **Command Layer**:
+    - Request Models: CreateMaterialRequest, UpdateMaterialRequest, UpdateMaterialStatusRequest, DeleteMaterialRequest
+    - Result Models: CreateMaterialResult, UpdateMaterialResult, UpdateMaterialStatusResult, DeleteMaterialResult (with Success/Failure factory methods)
+    - Validator Interfaces: ICreateMaterialValidator, IUpdateMaterialValidator, IUpdateMaterialStatusValidator, IDeleteMaterialValidator
+    - Validator Implementations: CreateMaterialValidator, UpdateMaterialValidator, UpdateMaterialStatusValidator, DeleteMaterialValidator
+    - Command Service: IMaterialCommandService and MaterialCommandService with full CRUD operations, duplicate checking, validation, logging, soft delete
+  * **UI Layer**:
+    - MaterialsViewModel: Search with debouncing (300ms), Add/Edit/Activate/Deactivate/Delete/Refresh commands, selected item tracking, busy state management
+    - AddMaterialViewModel: Minimal form with MaterialName and IsActive, save/cancel commands, validation, busy state management
+    - EditMaterialViewModel: INavigationAware for parameter passing, load on navigation, minimal form with MaterialName and IsActive, save/cancel commands, validation
+    - MaterialsView: Search textbox enabled, all action buttons (Add Material, Edit Material, Activate, Deactivate, Delete Material, Refresh), DataGrid with selection, loading/error indicators
+    - AddMaterialView: Minimal form with MaterialName and IsActive, save/cancel buttons, validation display, loading indicator
+    - EditMaterialView: Minimal form with MaterialName and IsActive, save/cancel buttons, validation display, loading indicator
+  * **Infrastructure Updates**:
+    - DI Registration: MastersServiceCollectionExtensions updated with all Material services (IMaterialQueryService, IMaterialCommandService, all validators, all ViewModels)
+    - DataTemplates: DataTemplates.xaml updated with MaterialsViewModel, AddMaterialViewModel, and EditMaterialViewModel mappings
+    - Navigation: ShellView.xaml updated with Materials menu item, ShellViewModel.cs updated with NavigateToMaterialsCommand
+* **Explicitly Excluded**:
+  * New architectural patterns or redesigns (strictly following previous Master module patterns)
+  * Repository pattern, MediatR, or generic frameworks
+  * Business logic in ViewModels (only in services)
+  * DbContext access in ViewModels
+  * MaterialCode field (not required per business requirements)
+  * Address fields (not required per business requirements)
+  * Contact fields (not required per business requirements)
+  * Tax fields (not required per business requirements)
+  * Advanced search with multiple filter criteria (simple LIKE pattern implemented)
+  * Export functionality
+  * Bulk operations
+* **Validation Status**: Build verified successfully with 0 errors, 4 unrelated package warnings (Serilog version mismatches). All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer with ValidationResult, Result pattern, Dependency injection with proper lifetimes, Navigation with INavigationAware, Async/await with CancellationToken and ConfigureAwait(false), Logging with ILogger, Busy state management. Material module is architecturally identical to previous Master modules with intentionally minimal business model and is production-ready. Demonstrates that established patterns can be successfully adapted for both complex and simple Master implementations.
+
 ## 3. Architecture & Design
 
 ### Dependency Injection and Composition
