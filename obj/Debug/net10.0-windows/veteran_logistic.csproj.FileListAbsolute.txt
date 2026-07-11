@@ -223,3 +223,9 @@ D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Sources\Views\AddS
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Sources\Views\EditSourceView.g.cs
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Sources\Views\SourcesView.g.cs
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Sources\Views\SourcesView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Destinations\Views\AddDestinationView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Destinations\Views\EditDestinationView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Destinations\Views\AddDestinationView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Destinations\Views\DestinationsView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Destinations\Views\EditDestinationView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Destinations\Views\DestinationsView.baml

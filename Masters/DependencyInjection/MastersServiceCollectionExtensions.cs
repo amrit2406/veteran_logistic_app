@@ -15,6 +15,10 @@ using veteran_logistic.Masters.Sources.Contracts;
 using veteran_logistic.Masters.Sources.Services;
 using veteran_logistic.Masters.Sources.Validators;
 using veteran_logistic.Masters.Sources.ViewModels;
+using veteran_logistic.Masters.Destinations.Contracts;
+using veteran_logistic.Masters.Destinations.Services;
+using veteran_logistic.Masters.Destinations.Validators;
+using veteran_logistic.Masters.Destinations.ViewModels;
 
 namespace veteran_logistic.Masters.DependencyInjection;
 
@@ -75,6 +79,17 @@ public static class MastersServiceCollectionExtensions
         services.AddTransient<SourcesViewModel>();
         services.AddTransient<AddSourceViewModel>();
         services.AddTransient<EditSourceViewModel>();
+
+        // Destination services
+        services.AddScoped<IDestinationQueryService, DestinationQueryService>();
+        services.AddScoped<IDestinationCommandService, DestinationCommandService>();
+        services.AddScoped<ICreateDestinationValidator, CreateDestinationValidator>();
+        services.AddScoped<IUpdateDestinationValidator, UpdateDestinationValidator>();
+        services.AddScoped<IUpdateDestinationStatusValidator, UpdateDestinationStatusValidator>();
+        services.AddScoped<IDeleteDestinationValidator, DeleteDestinationValidator>();
+        services.AddTransient<DestinationsViewModel>();
+        services.AddTransient<AddDestinationViewModel>();
+        services.AddTransient<EditDestinationViewModel>();
 
         return services;
     }

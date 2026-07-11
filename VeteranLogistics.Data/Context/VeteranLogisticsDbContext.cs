@@ -64,6 +64,11 @@ public class VeteranLogisticsDbContext : DbContext
     public DbSet<Source> Sources => Set<Source>();
 
     /// <summary>
+    /// Gets or sets the Destinations DbSet.
+    /// </summary>
+    public DbSet<Destination> Destinations => Set<Destination>();
+
+    /// <summary>
     /// Apply entity configurations discovered in this assembly.
     /// </summary>
     /// <param name="modelBuilder">Model builder.</param>
