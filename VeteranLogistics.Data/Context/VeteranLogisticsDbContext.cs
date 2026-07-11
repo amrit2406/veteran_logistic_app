@@ -54,6 +54,11 @@ public class VeteranLogisticsDbContext : DbContext
     public DbSet<Customer> Customers => Set<Customer>();
 
     /// <summary>
+    /// Gets or sets the Vendors DbSet.
+    /// </summary>
+    public DbSet<Vendor> Vendors => Set<Vendor>();
+
+    /// <summary>
     /// Apply entity configurations discovered in this assembly.
     /// </summary>
     /// <param name="modelBuilder">Model builder.</param>

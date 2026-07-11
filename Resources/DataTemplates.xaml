@@ -17,7 +17,9 @@
                     xmlns:mastersCompaniesVm="clr-namespace:veteran_logistic.Masters.Companies.ViewModels"
                     xmlns:mastersCompaniesViews="clr-namespace:veteran_logistic.Masters.Companies.Views"
                     xmlns:mastersCustomersVm="clr-namespace:veteran_logistic.Masters.Customers.ViewModels"
-                    xmlns:mastersCustomersViews="clr-namespace:veteran_logistic.Masters.Customers.Views">
+                    xmlns:mastersCustomersViews="clr-namespace:veteran_logistic.Masters.Customers.Views"
+                    xmlns:mastersVendorsVm="clr-namespace:veteran_logistic.Masters.Vendors.ViewModels"
+                    xmlns:mastersVendorsViews="clr-namespace:veteran_logistic.Masters.Vendors.Views">
   <DataTemplate DataType="{x:Type vm:ShellViewModel}">
     <views:ShellView />
   </DataTemplate>
@@ -96,6 +98,18 @@
 
   <DataTemplate DataType="{x:Type mastersCustomersVm:EditCustomerViewModel}">
     <mastersCustomersViews:EditCustomerView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type mastersVendorsVm:VendorsViewModel}">
+    <mastersVendorsViews:VendorsView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type mastersVendorsVm:AddVendorViewModel}">
+    <mastersVendorsViews:AddVendorView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type mastersVendorsVm:EditVendorViewModel}">
+    <mastersVendorsViews:EditVendorView />
   </DataTemplate>
 
   <DataTemplate DataType="{x:Type vm:PlaceholderViewModel}">

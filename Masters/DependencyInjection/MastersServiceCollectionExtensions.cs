@@ -7,6 +7,10 @@ using veteran_logistic.Masters.Customers.Contracts;
 using veteran_logistic.Masters.Customers.Services;
 using veteran_logistic.Masters.Customers.Validators;
 using veteran_logistic.Masters.Customers.ViewModels;
+using veteran_logistic.Masters.Vendors.Contracts;
+using veteran_logistic.Masters.Vendors.Services;
+using veteran_logistic.Masters.Vendors.Validators;
+using veteran_logistic.Masters.Vendors.ViewModels;
 
 namespace veteran_logistic.Masters.DependencyInjection;
 
@@ -45,6 +49,17 @@ public static class MastersServiceCollectionExtensions
         services.AddTransient<CustomersViewModel>();
         services.AddTransient<AddCustomerViewModel>();
         services.AddTransient<EditCustomerViewModel>();
+
+        // Vendor services
+        services.AddScoped<IVendorQueryService, VendorQueryService>();
+        services.AddScoped<IVendorCommandService, VendorCommandService>();
+        services.AddScoped<ICreateVendorValidator, CreateVendorValidator>();
+        services.AddScoped<IUpdateVendorValidator, UpdateVendorValidator>();
+        services.AddScoped<IUpdateVendorStatusValidator, UpdateVendorStatusValidator>();
+        services.AddScoped<IDeleteVendorValidator, DeleteVendorValidator>();
+        services.AddTransient<VendorsViewModel>();
+        services.AddTransient<AddVendorViewModel>();
+        services.AddTransient<EditVendorViewModel>();
 
         return services;
     }

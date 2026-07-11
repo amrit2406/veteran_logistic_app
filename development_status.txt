@@ -1336,6 +1336,45 @@ This document records the implementation work completed across the repository an
   * Bulk operations
 * **Validation Status**: Build verified successfully with 0 errors, 4 unrelated package warnings (Serilog version mismatches). All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer with ValidationResult, Result pattern, Dependency injection with proper lifetimes, Navigation with INavigationAware, Async/await with CancellationToken and ConfigureAwait(false), Logging with ILogger, Busy state management. Customer module is architecturally identical to Company module and is production-ready. Demonstrates that established patterns can be successfully replicated for future Master modules (Vendor, Vehicle, etc.).
 
+### Phase 3.4: Vendor Management
+* **Goal**: Implement the Vendor module following the Company and Customer modules as reference implementations. Create a complete production-ready Vendor module with full CRUD functionality, search, validation, and UI integration, using the exact same architectural patterns as Company and Customer.
+* **Included**:
+  * **Database Layer**:
+    - Vendor Entity: All required fields (VendorCode, VendorName, AddressLine1, AddressLine2, City, State, Country, PostalCode, PhoneNumber, Email, GSTNumber, PANNumber, ContactPerson), soft delete support (IsDeleted, DeletedOn), audit fields (CreatedBy, ModifiedBy, CreatedOn, ModifiedOn), active status (IsActive)
+    - VendorConfiguration: Required field constraints, max length constraints, unique indexes on VendorCode and GSTNumber, global query filter for soft deletion
+    - DbSet Registration: Added DbSet<Vendor> Vendors to VeteranLogisticsDbContext
+    - Migration: AddVendorEntity created and applied
+  * **Query Layer**:
+    - IVendorQueryService interface with GetAllVendorsAsync, SearchVendorsAsync, GetVendorForEditAsync methods
+    - VendorQueryService implementation with AsNoTracking, EF.Functions.Like, projection to DTOs, CancellationToken support, ConfigureAwait(false)
+    - VendorListItem and VendorModel DTOs for listing and detail views
+  * **Command Layer**:
+    - Request Models: CreateVendorRequest, UpdateVendorRequest, UpdateVendorStatusRequest, DeleteVendorRequest
+    - Result Models: CreateVendorResult, UpdateVendorResult, UpdateVendorStatusResult, DeleteVendorResult (with Success/Failure factory methods)
+    - Validator Interfaces: ICreateVendorValidator, IUpdateVendorValidator, IUpdateVendorStatusValidator, IDeleteVendorValidator
+    - Validator Implementations: CreateVendorValidator, UpdateVendorValidator, UpdateVendorStatusValidator, DeleteVendorValidator
+    - Command Service: IVendorCommandService and VendorCommandService with full CRUD operations, duplicate checking, validation, logging, soft delete
+  * **UI Layer**:
+    - VendorsViewModel: Search with debouncing (300ms), Add/Edit/Activate/Deactivate/Delete/Refresh commands, selected item tracking, busy state management
+    - AddVendorViewModel: Full form with all vendor fields including ContactPerson, save/cancel commands, validation, busy state management
+    - EditVendorViewModel: INavigationAware for parameter passing, load on navigation, full form with all vendor fields including ContactPerson, save/cancel commands, validation
+    - VendorsView: Search textbox enabled, all action buttons (Add Vendor, Edit Vendor, Activate, Deactivate, Delete Vendor, Refresh), DataGrid with selection, loading/error indicators
+    - AddVendorView: Complete form with all fields including ContactPerson, save/cancel buttons, validation display, loading indicator
+    - EditVendorView: Complete form with all fields including ContactPerson, save/cancel buttons, validation display, loading indicator
+  * **Infrastructure Updates**:
+    - DI Registration: MastersServiceCollectionExtensions updated with all Vendor services (IVendorQueryService, IVendorCommandService, all validators, all ViewModels)
+    - DataTemplates: DataTemplates.xaml updated with VendorsViewModel, AddVendorViewModel, and EditVendorViewModel mappings
+    - Navigation: ShellView.xaml updated with Vendors menu item, ShellViewModel.cs updated with NavigateToVendorsCommand
+* **Explicitly Excluded**:
+  * New architectural patterns or redesigns (strictly following Company/Customer module patterns)
+  * Repository pattern, MediatR, or generic frameworks
+  * Business logic in ViewModels (only in services)
+  * DbContext access in ViewModels
+  * Advanced search with multiple filter criteria (simple LIKE pattern implemented)
+  * Export functionality
+  * Bulk operations
+* **Validation Status**: Build verified successfully with 0 errors, 4 unrelated package warnings (Serilog version mismatches). All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer with ValidationResult, Result pattern, Dependency injection with proper lifetimes, Navigation with INavigationAware, Async/await with CancellationToken and ConfigureAwait(false), Logging with ILogger, Busy state management. Vendor module is architecturally identical to Company and Customer modules and is production-ready. Demonstrates that established patterns can be successfully replicated for future Master modules (Vehicle, etc.).
+
 ## 3. Architecture & Design
 
 ### Dependency Injection and Composition
