@@ -1579,6 +1579,47 @@ This document records the implementation work completed across the repository an
   * Bulk operations
 * **Validation Status**: Build verified successfully with 0 errors, 4 unrelated package warnings (Serilog version mismatches). All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer with ValidationResult, Result pattern, Dependency injection with proper lifetimes, Navigation with INavigationAware, Async/await with CancellationToken and ConfigureAwait(false), Logging with ILogger, Busy state management. HSD Rate module is architecturally identical to previous Master modules and is production-ready. Supports maintaining historical HSD rates for each Fuel Pump, enabling future Fuel Entry, Trip, and Expense modules to automatically determine applicable diesel rates based on both Fuel Pump and Date.
 
+### Phase 3.10 - Payment Location Management (COMPLETED)
+* **Business Requirements**: Manage payment locations for tracking where payments are processed. Minimal master module with only PaymentLocationName field plus standard audit fields (IsActive, CreatedOn, CreatedBy, ModifiedOn, ModifiedBy, IsDeleted, DeletedOn). No additional business fields or features beyond basic CRUD operations.
+* **Database Layer**:
+  - PaymentLocation Entity: VeteranLogistics.Data/Entities/Administration/PaymentLocation.cs with PaymentLocationName (required, unique, max 200), IsActive, and standard audit fields
+  - PaymentLocationConfiguration: VeteranLogistics.Data/Configurations/PaymentLocationConfiguration.cs with Fluent API configuration for required, unique, max length, and global soft delete filter
+  - DbContext: VeteranLogisticsDbContext.cs updated with DbSet<PaymentLocation> PaymentLocations
+  - Migration: Created EF Core migration for PaymentLocation table
+* **Query Layer**:
+  - IPaymentLocationQueryService: Masters/PaymentLocations/Contracts/IPaymentLocationQueryService.cs with GetAllPaymentLocationsAsync, SearchPaymentLocationsAsync, GetPaymentLocationForEditAsync methods
+  - PaymentLocationQueryService: Masters/PaymentLocations/Services/PaymentLocationQueryService.cs with EF Core queries using AsNoTracking, EF.Functions.Like, projection to DTOs, logging, async patterns
+  - DTOs: PaymentLocationListItem (Id, PaymentLocationName, IsActive) and PaymentLocationModel (Id, PaymentLocationName, IsActive)
+* **Command Layer**:
+  - IPaymentLocationCommandService: Masters/PaymentLocations/Contracts/IPaymentLocationCommandService.cs with CreatePaymentLocationAsync, UpdatePaymentLocationAsync, UpdatePaymentLocationStatusAsync, DeletePaymentLocationAsync methods
+  - PaymentLocationCommandService: Masters/PaymentLocations/Services/PaymentLocationCommandService.cs with validation, duplicate name checking, logging, Result pattern, single SaveChangesAsync call
+  - Request Models: CreatePaymentLocationRequest, UpdatePaymentLocationRequest, UpdatePaymentLocationStatusRequest, DeletePaymentLocationRequest
+  - Result Models: CreatePaymentLocationResult (with PaymentLocationId), UpdatePaymentLocationResult, UpdatePaymentLocationStatusResult, DeletePaymentLocationResult
+  - Validators: CreatePaymentLocationValidator, UpdatePaymentLocationValidator, UpdatePaymentLocationStatusValidator, DeletePaymentLocationValidator enforcing required fields, max length, positive IDs, meaningful status changes
+* **UI Layer**:
+  - PaymentLocationsViewModel: Search with debouncing (300ms), Add/Edit/Activate/Deactivate/Delete/Refresh commands, selected item tracking, busy state management
+  - AddPaymentLocationViewModel: Form with PaymentLocationName input, IsActive checkbox, save/cancel commands, validation, busy state management
+  - EditPaymentLocationViewModel: INavigationAware for parameter passing, load on navigation, form with PaymentLocationName input, IsActive checkbox, save/cancel commands, validation
+  - PaymentLocationsView: Search textbox, all action buttons (Add Payment Location, Edit Payment Location, Activate, Deactivate, Delete Payment Location, Refresh), DataGrid with Payment Location Name, Active columns, loading/error indicators
+  - AddPaymentLocationView: Form with TextBox, CheckBox, save/cancel buttons, validation display, loading indicator
+  - EditPaymentLocationView: Form with TextBox, CheckBox, save/cancel buttons, validation display, loading indicator
+* **Infrastructure Updates**:
+  - DI Registration: MastersServiceCollectionExtensions updated with all Payment Location services (IPaymentLocationQueryService, IPaymentLocationCommandService, all validators, all ViewModels)
+  - DataTemplates: DataTemplates.xaml updated with PaymentLocationsViewModel, AddPaymentLocationViewModel, and EditPaymentLocationViewModel mappings
+  - Navigation: ShellView.xaml updated with Payment Locations menu item, ShellViewModel.cs updated with NavigateToPaymentLocationsCommand
+* **Explicitly Excluded**:
+  * New architectural patterns or redesigns (strictly following previous Master module patterns)
+  * Repository pattern, MediatR, or generic frameworks
+  * Business logic in ViewModels (only in services)
+  * DbContext access in ViewModels
+  * Additional business fields beyond PaymentLocationName and standard audit fields
+  * Payment location hierarchy or categorization
+  * Payment method association (not required per business requirements)
+  * Advanced search with multiple filter criteria (simple LIKE pattern implemented)
+  * Export functionality
+  * Bulk operations
+* **Validation Status**: Build verified successfully with 0 errors, 4 unrelated package warnings (Serilog version mismatches). All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer with ValidationResult, Result pattern, Dependency injection with proper lifetimes, Navigation with INavigationAware, Async/await with CancellationToken and ConfigureAwait(false), Logging with ILogger, Busy state management. Payment Location module is architecturally identical to previous Master modules and is production-ready. Minimal implementation with only PaymentLocationName business field as specified, enabling future modules to reference payment locations for transaction processing.
+
 ## 3. Architecture & Design
 
 ### Dependency Injection and Composition

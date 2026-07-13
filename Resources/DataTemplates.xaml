@@ -29,7 +29,9 @@
                     xmlns:mastersFuelPumpsVm="clr-namespace:veteran_logistic.Masters.FuelPumps.ViewModels"
                     xmlns:mastersFuelPumpsViews="clr-namespace:veteran_logistic.Masters.FuelPumps.Views"
                     xmlns:mastersHsdRatesVm="clr-namespace:veteran_logistic.Masters.HsdRates.ViewModels"
-                    xmlns:mastersHsdRatesViews="clr-namespace:veteran_logistic.Masters.HsdRates.Views">
+                    xmlns:mastersHsdRatesViews="clr-namespace:veteran_logistic.Masters.HsdRates.Views"
+                    xmlns:mastersPaymentLocationsVm="clr-namespace:veteran_logistic.Masters.PaymentLocations.ViewModels"
+                    xmlns:mastersPaymentLocationsViews="clr-namespace:veteran_logistic.Masters.PaymentLocations.Views">
   <DataTemplate DataType="{x:Type vm:ShellViewModel}">
     <views:ShellView />
   </DataTemplate>
@@ -180,6 +182,18 @@
 
   <DataTemplate DataType="{x:Type mastersHsdRatesVm:EditHsdRateViewModel}">
     <mastersHsdRatesViews:EditHsdRateView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type mastersPaymentLocationsVm:PaymentLocationsViewModel}">
+    <mastersPaymentLocationsViews:PaymentLocationsView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type mastersPaymentLocationsVm:AddPaymentLocationViewModel}">
+    <mastersPaymentLocationsViews:AddPaymentLocationView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type mastersPaymentLocationsVm:EditPaymentLocationViewModel}">
+    <mastersPaymentLocationsViews:EditPaymentLocationView />
   </DataTemplate>
 
   <DataTemplate DataType="{x:Type vm:PlaceholderViewModel}">

@@ -89,6 +89,7 @@
                     <MenuItem Header="Materials" Command="{Binding NavigateToMaterialsCommand}" />
                     <MenuItem Header="Fuel Pumps" Command="{Binding NavigateToFuelPumpsCommand}" />
                     <MenuItem Header="HSD Rates" Command="{Binding NavigateToHsdRatesCommand}" />
+                    <MenuItem Header="Payment Locations" Command="{Binding NavigateToPaymentLocationsCommand}" />
                 </MenuItem>
                 <MenuItem Header="Transactions" Style="{StaticResource TopMenuItemStyle}">
                     <MenuItem Header="Orders" />

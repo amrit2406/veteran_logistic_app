@@ -31,6 +31,10 @@ using veteran_logistic.Masters.HsdRates.Contracts;
 using veteran_logistic.Masters.HsdRates.Services;
 using veteran_logistic.Masters.HsdRates.Validators;
 using veteran_logistic.Masters.HsdRates.ViewModels;
+using veteran_logistic.Masters.PaymentLocations.Contracts;
+using veteran_logistic.Masters.PaymentLocations.Services;
+using veteran_logistic.Masters.PaymentLocations.Validators;
+using veteran_logistic.Masters.PaymentLocations.ViewModels;
 
 namespace veteran_logistic.Masters.DependencyInjection;
 
@@ -135,6 +139,17 @@ public static class MastersServiceCollectionExtensions
         services.AddTransient<HsdRatesViewModel>();
         services.AddTransient<AddHsdRateViewModel>();
         services.AddTransient<EditHsdRateViewModel>();
+
+        // Payment Location services
+        services.AddScoped<IPaymentLocationQueryService, PaymentLocationQueryService>();
+        services.AddScoped<IPaymentLocationCommandService, PaymentLocationCommandService>();
+        services.AddScoped<ICreatePaymentLocationValidator, CreatePaymentLocationValidator>();
+        services.AddScoped<IUpdatePaymentLocationValidator, UpdatePaymentLocationValidator>();
+        services.AddScoped<IUpdatePaymentLocationStatusValidator, UpdatePaymentLocationStatusValidator>();
+        services.AddScoped<IDeletePaymentLocationValidator, DeletePaymentLocationValidator>();
+        services.AddTransient<PaymentLocationsViewModel>();
+        services.AddTransient<AddPaymentLocationViewModel>();
+        services.AddTransient<EditPaymentLocationViewModel>();
 
         return services;
     }

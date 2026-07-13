@@ -84,6 +84,11 @@ public class VeteranLogisticsDbContext : DbContext
     public DbSet<HsdRate> HsdRates => Set<HsdRate>();
 
     /// <summary>
+    /// Gets or sets the PaymentLocations DbSet.
+    /// </summary>
+    public DbSet<PaymentLocation> PaymentLocations => Set<PaymentLocation>();
+
+    /// <summary>
     /// Apply entity configurations discovered in this assembly.
     /// </summary>
     /// <param name="modelBuilder">Model builder.</param>

@@ -247,3 +247,9 @@ D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\HsdRates\Views\Add
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\HsdRates\Views\EditHsdRateView.g.cs
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\HsdRates\Views\HsdRatesView.g.cs
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\HsdRates\Views\HsdRatesView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\PaymentLocations\Views\AddPaymentLocationView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\PaymentLocations\Views\EditPaymentLocationView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\PaymentLocations\Views\AddPaymentLocationView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\PaymentLocations\Views\EditPaymentLocationView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\PaymentLocations\Views\PaymentLocationsView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\PaymentLocations\Views\PaymentLocationsView.baml
