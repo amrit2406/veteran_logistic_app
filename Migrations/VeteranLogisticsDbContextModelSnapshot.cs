@@ -435,6 +435,58 @@ namespace veteran_logistic.Migrations
                     b.ToTable("FuelPumps");
                 });
 
+            modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.HsdRate", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("ApplicableDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FuelPumpId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("RatePerLitre")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FuelPumpId", "ApplicableDate")
+                        .IsUnique()
+                        .HasFilter("[IsDeleted] = 0");
+
+                    b.ToTable("HsdRates");
+                });
+
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.Material", b =>
                 {
                     b.Property<int>("Id")
@@ -887,6 +939,17 @@ namespace veteran_logistic.Migrations
                         .IsUnique();
 
                     b.ToTable("Vendors");
+                });
+
+            modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.HsdRate", b =>
+                {
+                    b.HasOne("VeteranLogistics.Data.Entities.Administration.FuelPump", "FuelPump")
+                        .WithMany()
+                        .HasForeignKey("FuelPumpId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("FuelPump");
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.RolePermission", b =>

@@ -27,7 +27,9 @@
                     xmlns:mastersMaterialsVm="clr-namespace:veteran_logistic.Masters.Materials.ViewModels"
                     xmlns:mastersMaterialsViews="clr-namespace:veteran_logistic.Masters.Materials.Views"
                     xmlns:mastersFuelPumpsVm="clr-namespace:veteran_logistic.Masters.FuelPumps.ViewModels"
-                    xmlns:mastersFuelPumpsViews="clr-namespace:veteran_logistic.Masters.FuelPumps.Views">
+                    xmlns:mastersFuelPumpsViews="clr-namespace:veteran_logistic.Masters.FuelPumps.Views"
+                    xmlns:mastersHsdRatesVm="clr-namespace:veteran_logistic.Masters.HsdRates.ViewModels"
+                    xmlns:mastersHsdRatesViews="clr-namespace:veteran_logistic.Masters.HsdRates.Views">
   <DataTemplate DataType="{x:Type vm:ShellViewModel}">
     <views:ShellView />
   </DataTemplate>
@@ -166,6 +168,18 @@
 
   <DataTemplate DataType="{x:Type mastersFuelPumpsVm:EditFuelPumpViewModel}">
     <mastersFuelPumpsViews:EditFuelPumpView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type mastersHsdRatesVm:HsdRatesViewModel}">
+    <mastersHsdRatesViews:HsdRatesView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type mastersHsdRatesVm:AddHsdRateViewModel}">
+    <mastersHsdRatesViews:AddHsdRateView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type mastersHsdRatesVm:EditHsdRateViewModel}">
+    <mastersHsdRatesViews:EditHsdRateView />
   </DataTemplate>
 
   <DataTemplate DataType="{x:Type vm:PlaceholderViewModel}">

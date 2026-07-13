@@ -27,6 +27,10 @@ using veteran_logistic.Masters.FuelPumps.Contracts;
 using veteran_logistic.Masters.FuelPumps.Services;
 using veteran_logistic.Masters.FuelPumps.Validators;
 using veteran_logistic.Masters.FuelPumps.ViewModels;
+using veteran_logistic.Masters.HsdRates.Contracts;
+using veteran_logistic.Masters.HsdRates.Services;
+using veteran_logistic.Masters.HsdRates.Validators;
+using veteran_logistic.Masters.HsdRates.ViewModels;
 
 namespace veteran_logistic.Masters.DependencyInjection;
 
@@ -120,6 +124,17 @@ public static class MastersServiceCollectionExtensions
         services.AddTransient<FuelPumpsViewModel>();
         services.AddTransient<AddFuelPumpViewModel>();
         services.AddTransient<EditFuelPumpViewModel>();
+
+        // HSD Rate services
+        services.AddScoped<IHsdRateQueryService, HsdRateQueryService>();
+        services.AddScoped<IHsdRateCommandService, HsdRateCommandService>();
+        services.AddScoped<ICreateHsdRateValidator, CreateHsdRateValidator>();
+        services.AddScoped<IUpdateHsdRateValidator, UpdateHsdRateValidator>();
+        services.AddScoped<IUpdateHsdRateStatusValidator, UpdateHsdRateStatusValidator>();
+        services.AddScoped<IDeleteHsdRateValidator, DeleteHsdRateValidator>();
+        services.AddTransient<HsdRatesViewModel>();
+        services.AddTransient<AddHsdRateViewModel>();
+        services.AddTransient<EditHsdRateViewModel>();
 
         return services;
     }

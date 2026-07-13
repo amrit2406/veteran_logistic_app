@@ -1496,6 +1496,89 @@ This document records the implementation work completed across the repository an
   * Bulk operations
 * **Validation Status**: Build verified successfully with 0 errors, 4 unrelated package warnings (Serilog version mismatches). All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer with ValidationResult, Result pattern, Dependency injection with proper lifetimes, Navigation with INavigationAware, Async/await with CancellationToken and ConfigureAwait(false), Logging with ILogger, Busy state management. Material module is architecturally identical to previous Master modules with intentionally minimal business model and is production-ready. Demonstrates that established patterns can be successfully adapted for both complex and simple Master implementations.
 
+### Phase 3.8: Fuel Pump Management
+* **Goal**: Implement the Fuel Pump module as a Master module for managing fuel pump locations. Create a complete production-ready Fuel Pump module with full CRUD functionality, search, validation, and UI integration, using the exact same architectural patterns as previous Master modules.
+* **Included**:
+  * **Database Layer**:
+    - FuelPump Entity: FuelPumpName field, soft delete support (IsDeleted, DeletedOn), audit fields (CreatedBy, ModifiedBy, CreatedOn, ModifiedOn), active status (IsActive)
+    - FuelPumpConfiguration: Required field constraints, max length constraints (200), unique index on FuelPumpName, global query filter for soft deletion
+    - DbSet Registration: Added DbSet<FuelPump> FuelPumps to VeteranLogisticsDbContext
+    - Migration: AddFuelPumpEntity created and applied
+  * **Query Layer**:
+    - IFuelPumpQueryService interface with GetAllFuelPumpsAsync, SearchFuelPumpsAsync, GetFuelPumpForEditAsync methods
+    - FuelPumpQueryService implementation with AsNoTracking, EF.Functions.Like, projection to DTOs, CancellationToken support, ConfigureAwait(false)
+    - FuelPumpListItem and FuelPumpModel DTOs for listing and detail views
+  * **Command Layer**:
+    - Request Models: CreateFuelPumpRequest, UpdateFuelPumpRequest, UpdateFuelPumpStatusRequest, DeleteFuelPumpRequest
+    - Result Models: CreateFuelPumpResult, UpdateFuelPumpResult, UpdateFuelPumpStatusResult, DeleteFuelPumpResult (with Success/Failure factory methods)
+    - Validator Interfaces: ICreateFuelPumpValidator, IUpdateFuelPumpValidator, IUpdateFuelPumpStatusValidator, IDeleteFuelPumpValidator
+    - Validator Implementations: CreateFuelPumpValidator, UpdateFuelPumpValidator, UpdateFuelPumpStatusValidator, DeleteFuelPumpValidator
+    - Command Service: IFuelPumpCommandService and FuelPumpCommandService with full CRUD operations, duplicate checking, validation, logging, soft delete
+  * **UI Layer**:
+    - FuelPumpsViewModel: Search with debouncing (300ms), Add/Edit/Activate/Deactivate/Delete/Refresh commands, selected item tracking, busy state management
+    - AddFuelPumpViewModel: Form with FuelPumpName and IsActive, save/cancel commands, validation, busy state management
+    - EditFuelPumpViewModel: INavigationAware for parameter passing, load on navigation, form with FuelPumpName and IsActive, save/cancel commands, validation
+    - FuelPumpsView: Search textbox, all action buttons (Add Fuel Pump, Edit Fuel Pump, Activate, Deactivate, Delete Fuel Pump, Refresh), DataGrid with selection, loading/error indicators
+    - AddFuelPumpView: Form with FuelPumpName and IsActive, save/cancel buttons, validation display, loading indicator
+    - EditFuelPumpView: Form with FuelPumpName and IsActive, save/cancel buttons, validation display, loading indicator
+  * **Infrastructure Updates**:
+    - DI Registration: MastersServiceCollectionExtensions updated with all Fuel Pump services (IFuelPumpQueryService, IFuelPumpCommandService, all validators, all ViewModels)
+    - DataTemplates: DataTemplates.xaml updated with FuelPumpsViewModel, AddFuelPumpViewModel, and EditFuelPumpViewModel mappings
+    - Navigation: ShellView.xaml updated with Fuel Pumps menu item, ShellViewModel.cs updated with NavigateToFuelPumpsCommand
+* **Explicitly Excluded**:
+  * New architectural patterns or redesigns (strictly following previous Master module patterns)
+  * Repository pattern, MediatR, or generic frameworks
+  * Business logic in ViewModels (only in services)
+  * DbContext access in ViewModels
+  * Address fields (not required per business requirements)
+  * Contact fields (not required per business requirements)
+  * GPS coordinates (not required per business requirements)
+  * Advanced search with multiple filter criteria (simple LIKE pattern implemented)
+  * Export functionality
+  * Bulk operations
+* **Validation Status**: Build verified successfully with 0 errors, 4 unrelated package warnings (Serilog version mismatches). All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer with ValidationResult, Result pattern, Dependency injection with proper lifetimes, Navigation with INavigationAware, Async/await with CancellationToken and ConfigureAwait(false), Logging with ILogger, Busy state management. Fuel Pump module is architecturally identical to previous Master modules and is production-ready. Serves as reference implementation for future modules requiring dropdown lookup functionality.
+
+### Phase 3.9: HSD Rate Management
+* **Goal**: Implement the HSD Rate module for maintaining diesel rates for each Fuel Pump over time. Create a complete production-ready HSD Rate module with full CRUD functionality, search, validation, and UI integration, using the exact same architectural patterns as previous Master modules (Fuel Pump and Material).
+* **Included**:
+  * **Database Layer**:
+    - HsdRate Entity: FuelPumpId (FK to FuelPump), ApplicableDate, RatePerLitre (Decimal 18,2), soft delete support (IsDeleted, DeletedOn), audit fields (CreatedBy, ModifiedBy, CreatedOn, ModifiedOn), active status (IsActive)
+    - HsdRateConfiguration: Foreign Key constraint to FuelPump with Restrict delete, required field constraints, decimal precision 18,2, unique index on FuelPumpId + ApplicableDate (with soft delete filter), global query filter for soft deletion
+    - DbSet Registration: Added DbSet<HsdRate> HsdRates to VeteranLogisticsDbContext
+    - Migration: AddHsdRateEntity created and applied
+  * **Query Layer**:
+    - IHsdRateQueryService interface with GetAllHsdRatesAsync, SearchHsdRatesAsync, GetHsdRateForEditAsync, GetFuelPumpsForDropdownAsync methods
+    - HsdRateQueryService implementation with AsNoTracking, Include for FuelPump navigation, EF.Functions.Like, projection to DTOs, CancellationToken support, ConfigureAwait(false)
+    - HsdRateListItem, HsdRateModel, and FuelPumpDropdownItem DTOs for listing, detail views, and dropdown
+  * **Command Layer**:
+    - Request Models: CreateHsdRateRequest, UpdateHsdRateRequest, UpdateHsdRateStatusRequest, DeleteHsdRateRequest
+    - Result Models: CreateHsdRateResult, UpdateHsdRateResult, UpdateHsdRateStatusResult, DeleteHsdRateResult (with Success/Failure factory methods)
+    - Validator Interfaces: ICreateHsdRateValidator, IUpdateHsdRateValidator, IUpdateHsdRateStatusValidator, IDeleteHsdRateValidator
+    - Validator Implementations: CreateHsdRateValidator, UpdateHsdRateValidator, UpdateHsdRateStatusValidator, DeleteHsdRateValidator
+    - Command Service: IHsdRateCommandService and HsdRateCommandService with full CRUD operations, duplicate FuelPump + ApplicableDate checking, validation, logging, soft delete
+  * **UI Layer**:
+    - HsdRatesViewModel: Search with debouncing (300ms), Add/Edit/Activate/Deactivate/Delete/Refresh commands, selected item tracking, busy state management
+    - AddHsdRateViewModel: Form with Fuel Pump dropdown (from Fuel Pump Master), Applicable Date picker, Rate Per Litre input, IsActive checkbox, save/cancel commands, validation, busy state management
+    - EditHsdRateViewModel: INavigationAware for parameter passing, load on navigation, form with Fuel Pump dropdown, Applicable Date picker, Rate Per Litre input, IsActive checkbox, save/cancel commands, validation
+    - HsdRatesView: Search textbox, all action buttons (Add HSD Rate, Edit HSD Rate, Activate, Deactivate, Delete HSD Rate, Refresh), DataGrid with Fuel Pump, Applicable Date, Rate/Litre, Active columns, loading/error indicators
+    - AddHsdRateView: Form with Fuel Pump ComboBox, DatePicker, TextBox, CheckBox, save/cancel buttons, validation display, loading indicator
+    - EditHsdRateView: Form with Fuel Pump ComboBox, DatePicker, TextBox, CheckBox, save/cancel buttons, validation display, loading indicator
+  * **Infrastructure Updates**:
+    - DI Registration: MastersServiceCollectionExtensions updated with all HSD Rate services (IHsdRateQueryService, IHsdRateCommandService, all validators, all ViewModels)
+    - DataTemplates: DataTemplates.xaml updated with HsdRatesViewModel, AddHsdRateViewModel, and EditHsdRateViewModel mappings
+    - Navigation: ShellView.xaml updated with HSD Rates menu item, ShellViewModel.cs updated with NavigateToHsdRatesCommand
+* **Explicitly Excluded**:
+  * New architectural patterns or redesigns (strictly following previous Master module patterns)
+  * Repository pattern, MediatR, or generic frameworks
+  * Business logic in ViewModels (only in services)
+  * DbContext access in ViewModels
+  * Rate history tracking UI (not required per business requirements)
+  * Rate comparison charts (not required per business requirements)
+  * Advanced search with multiple filter criteria (simple LIKE pattern implemented)
+  * Export functionality
+  * Bulk operations
+* **Validation Status**: Build verified successfully with 0 errors, 4 unrelated package warnings (Serilog version mismatches). All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer with ValidationResult, Result pattern, Dependency injection with proper lifetimes, Navigation with INavigationAware, Async/await with CancellationToken and ConfigureAwait(false), Logging with ILogger, Busy state management. HSD Rate module is architecturally identical to previous Master modules and is production-ready. Supports maintaining historical HSD rates for each Fuel Pump, enabling future Fuel Entry, Trip, and Expense modules to automatically determine applicable diesel rates based on both Fuel Pump and Date.
+
 ## 3. Architecture & Design
 
 ### Dependency Injection and Composition

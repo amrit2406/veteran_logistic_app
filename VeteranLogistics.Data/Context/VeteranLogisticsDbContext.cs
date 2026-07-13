@@ -79,6 +79,11 @@ public class VeteranLogisticsDbContext : DbContext
     public DbSet<FuelPump> FuelPumps => Set<FuelPump>();
 
     /// <summary>
+    /// Gets or sets the HsdRates DbSet.
+    /// </summary>
+    public DbSet<HsdRate> HsdRates => Set<HsdRate>();
+
+    /// <summary>
     /// Apply entity configurations discovered in this assembly.
     /// </summary>
     /// <param name="modelBuilder">Model builder.</param>
