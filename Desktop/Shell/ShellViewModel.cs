@@ -106,6 +106,11 @@ public sealed class ShellViewModel : ObservableObject
     /// </summary>
     public IAsyncRelayCommand NavigateToPaymentLocationsCommand { get; }
 
+    /// <summary>
+    /// Command to navigate to the Vehicle Owners screen.
+    /// </summary>
+    public IAsyncRelayCommand NavigateToVehicleOwnersCommand { get; }
+
     public ShellViewModel(INavigationService navigationService, ILogoutService logoutService)
     {
         if (navigationService is null) throw new ArgumentNullException(nameof(navigationService));
@@ -126,6 +131,7 @@ public sealed class ShellViewModel : ObservableObject
         NavigateToFuelPumpsCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.FuelPumps.ViewModels.FuelPumpsViewModel>());
         NavigateToHsdRatesCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.HsdRates.ViewModels.HsdRatesViewModel>());
         NavigateToPaymentLocationsCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.PaymentLocations.ViewModels.PaymentLocationsViewModel>());
+        NavigateToVehicleOwnersCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.VehicleOwners.ViewModels.VehicleOwnersViewModel>());
         navigationService.CurrentViewModelChanged += OnCurrentViewModelChanged;
         _currentViewModel = ResolveShellContent(navigationService.CurrentViewModel) ?? _placeholder;
     }

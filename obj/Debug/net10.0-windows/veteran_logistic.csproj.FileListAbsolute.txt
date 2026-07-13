@@ -253,3 +253,9 @@ D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\PaymentLocations\V
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\PaymentLocations\Views\EditPaymentLocationView.g.cs
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\PaymentLocations\Views\PaymentLocationsView.g.cs
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\PaymentLocations\Views\PaymentLocationsView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\VehicleOwners\Views\AddVehicleOwnerView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\VehicleOwners\Views\EditVehicleOwnerView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\VehicleOwners\Views\AddVehicleOwnerView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\VehicleOwners\Views\EditVehicleOwnerView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\VehicleOwners\Views\VehicleOwnersView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\VehicleOwners\Views\VehicleOwnersView.baml

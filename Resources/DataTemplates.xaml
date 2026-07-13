@@ -31,7 +31,9 @@
                     xmlns:mastersHsdRatesVm="clr-namespace:veteran_logistic.Masters.HsdRates.ViewModels"
                     xmlns:mastersHsdRatesViews="clr-namespace:veteran_logistic.Masters.HsdRates.Views"
                     xmlns:mastersPaymentLocationsVm="clr-namespace:veteran_logistic.Masters.PaymentLocations.ViewModels"
-                    xmlns:mastersPaymentLocationsViews="clr-namespace:veteran_logistic.Masters.PaymentLocations.Views">
+                    xmlns:mastersPaymentLocationsViews="clr-namespace:veteran_logistic.Masters.PaymentLocations.Views"
+                    xmlns:mastersVehicleOwnersVm="clr-namespace:veteran_logistic.Masters.VehicleOwners.ViewModels"
+                    xmlns:mastersVehicleOwnersViews="clr-namespace:veteran_logistic.Masters.VehicleOwners.Views">
   <DataTemplate DataType="{x:Type vm:ShellViewModel}">
     <views:ShellView />
   </DataTemplate>
@@ -194,6 +196,18 @@
 
   <DataTemplate DataType="{x:Type mastersPaymentLocationsVm:EditPaymentLocationViewModel}">
     <mastersPaymentLocationsViews:EditPaymentLocationView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type mastersVehicleOwnersVm:VehicleOwnersViewModel}">
+    <mastersVehicleOwnersViews:VehicleOwnersView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type mastersVehicleOwnersVm:AddVehicleOwnerViewModel}">
+    <mastersVehicleOwnersViews:AddVehicleOwnerView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type mastersVehicleOwnersVm:EditVehicleOwnerViewModel}">
+    <mastersVehicleOwnersViews:EditVehicleOwnerView />
   </DataTemplate>
 
   <DataTemplate DataType="{x:Type vm:PlaceholderViewModel}">

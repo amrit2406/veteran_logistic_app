@@ -1620,6 +1620,143 @@ This document records the implementation work completed across the repository an
   * Bulk operations
 * **Validation Status**: Build verified successfully with 0 errors, 4 unrelated package warnings (Serilog version mismatches). All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer with ValidationResult, Result pattern, Dependency injection with proper lifetimes, Navigation with INavigationAware, Async/await with CancellationToken and ConfigureAwait(false), Logging with ILogger, Busy state management. Payment Location module is architecturally identical to previous Master modules and is production-ready. Minimal implementation with only PaymentLocationName business field as specified, enabling future modules to reference payment locations for transaction processing.
 
+## Phase 3.11 - Vehicle Owner Management (COMPLETED)
+
+### Business Requirements
+* Full Master module for managing vehicle owners with comprehensive business fields
+* Auto-generated unique Owner Code (format: VO0001, VO0002, etc.)
+* Unique PAN Number constraint
+* PAN Type dropdown with fixed options: Individual, AOP, AOP (Trust), Cooperative, Company Not Public Interested, Firm, HUF
+* Business fields: PAN Type, PAN Number, First Name, Middle Name, Last Name, Company Name, City, State, Address, Phone, Mobile, Email, Fax
+* Standard audit fields: IsActive, CreatedOn, CreatedBy, ModifiedOn, ModifiedBy, IsDeleted, DeletedOn
+* Full CRUD operations: Create, Read (list with search), Update, Update Status, Delete (soft delete)
+* Owner Code must be auto-generated and read-only in UI (not entered manually)
+* PAN Type must be implemented as a dropdown with specified options
+
+### Database Layer
+* **Entity**: `VeteranLogistics.Data/Entities/Administration/VehicleOwner.cs`
+  - All business fields with appropriate max lengths
+  - OwnerCode (string, 50, required, unique)
+  - PANType (string, 50, required)
+  - PANNumber (string, 10, required, unique)
+  - FirstName (string, 100, required)
+  - MiddleName (string, 100, optional)
+  - LastName (string, 100, optional)
+  - CompanyName (string, 200, optional)
+  - City (string, 100, required)
+  - State (string, 100, required)
+  - Address (string, 500, optional)
+  - Phone (string, 20, optional)
+  - Mobile (string, 20, required)
+  - Email (string, 150, optional)
+  - Fax (string, 50, optional)
+  - Standard audit fields (IsActive, IsDeleted, DeletedOn, CreatedOn, CreatedBy, ModifiedOn, ModifiedBy)
+* **Configuration**: `VeteranLogistics.Data/Configurations/VehicleOwnerConfiguration.cs`
+  - Fluent API configuration for all properties
+  - Unique index on OwnerCode
+  - Unique index on PANNumber
+  - Global query filter for soft deletion (!IsDeleted)
+  - Max length constraints for all fields
+* **DbContext**: `VeteranLogistics.Data/Context/VeteranLogisticsDbContext.cs`
+  - DbSet<VehicleOwner> VehicleOwners added
+* **Migration**: `AddVehicleOwnerEntity` created successfully
+
+### Query Layer
+* **Interface**: `Masters/VehicleOwners/Contracts/IVehicleOwnerQueryService.cs`
+  - GetAllVehicleOwnersAsync: Returns all vehicle owners as VehicleOwnerListItem
+  - SearchVehicleOwnersAsync: Multi-field search (Owner Code, First Name, Last Name, Company Name, PAN Number, Mobile, City) using LIKE pattern
+  - GetVehicleOwnerForEditAsync: Returns full VehicleOwnerModel for editing by ID
+* **Service**: `Masters/VehicleOwners/Services/VehicleOwnerQueryService.cs`
+  - Uses AsNoTracking for read operations
+  - Uses EF.Functions.Like for search
+  - Projection to DTOs (VehicleOwnerListItem, VehicleOwnerModel)
+  - CancellationToken and ConfigureAwait(false)
+  - ILogger for logging
+* **Models**:
+  - `Masters/VehicleOwners/Models/VehicleOwnerListItem.cs`: DTO for listing (Id, OwnerCode, PANType, PANNumber, FirstName, LastName, CompanyName, Mobile, City, State, IsActive)
+  - `Masters/VehicleOwners/Models/VehicleOwnerModel.cs`: DTO for editing (all business fields)
+
+### Command Layer
+* **Request Models**:
+  - `Masters/VehicleOwners/Models/CreateVehicleOwnerRequest.cs`: All business fields except OwnerCode (auto-generated)
+  - `Masters/VehicleOwners/Models/UpdateVehicleOwnerRequest.cs`: All business fields including VehicleOwnerId
+  - `Masters/VehicleOwners/Models/UpdateVehicleOwnerStatusRequest.cs`: VehicleOwnerId and IsActive
+  - `Masters/VehicleOwners/Models/DeleteVehicleOwnerRequest.cs`: VehicleOwnerId
+* **Result Models**:
+  - `Masters/VehicleOwners/Models/CreateVehicleOwnerResult.cs`: IsSuccess, VehicleOwnerId, ErrorMessage with static Success/Failure methods
+  - `Masters/VehicleOwners/Models/UpdateVehicleOwnerResult.cs`: IsSuccess, ErrorMessage with static Success/Failure methods
+  - `Masters/VehicleOwners/Models/UpdateVehicleOwnerStatusResult.cs`: IsSuccess, ErrorMessage with static Success/Failure methods
+  - `Masters/VehicleOwners/Models/DeleteVehicleOwnerResult.cs`: IsSuccess, ErrorMessage with static Success/Failure methods
+* **Validator Interfaces**:
+  - `Masters/VehicleOwners/Contracts/ICreateVehicleOwnerValidator.cs`: Validates create requests
+  - `Masters/VehicleOwners/Contracts/IUpdateVehicleOwnerValidator.cs`: Validates update requests
+  - `Masters/VehicleOwners/Contracts/IUpdateVehicleOwnerStatusValidator.cs`: Validates status updates with current status check
+  - `Masters/VehicleOwners/Contracts/IDeleteVehicleOwnerValidator.cs`: Validates delete requests
+* **Validators**:
+  - `Masters/VehicleOwners/Validators/CreateVehicleOwnerValidator.cs`: Validates required fields, max lengths, PAN Type from fixed list
+  - `Masters/VehicleOwners/Validators/UpdateVehicleOwnerValidator.cs`: Validates VehicleOwnerId > 0, required fields, max lengths, PAN Type from fixed list
+  - `Masters/VehicleOwners/Validators/UpdateVehicleOwnerStatusValidator.cs`: Validates VehicleOwnerId > 0, meaningful status change
+  - `Masters/VehicleOwners/Validators/DeleteVehicleOwnerValidator.cs`: Validates VehicleOwnerId > 0
+  - All validators use ValidationResult.AddError pattern with property names
+* **Command Service**:
+  - `Masters/VehicleOwners/Contracts/IVehicleOwnerCommandService.cs`: Interface for Create, Update, UpdateStatus, Delete operations
+  - `Masters/VehicleOwners/Services/VehicleOwnerCommandService.cs`: Implementation with:
+    - Validation before operations
+    - Duplicate PAN Number check (excluding current record on update)
+    - Auto-generation of Owner Code (format: VO0001, VO0002, etc.)
+    - Audit field population (CreatedOn, CreatedBy, ModifiedOn, ModifiedBy, IsDeleted, DeletedOn)
+    - Single SaveChangesAsync call
+    - Result pattern for operation outcomes
+    - ILogger for logging
+    - Async/await with CancellationToken and ConfigureAwait(false)
+
+### UI Layer
+* **ViewModels**:
+  - `Masters/VehicleOwners/ViewModels/VehicleOwnersViewModel.cs`: List screen with search (debounced 300ms), Add/Edit/Activate/Deactivate/Delete/Refresh commands, selected item tracking, busy state management, validation error display
+  - `Masters/VehicleOwners/ViewModels/AddVehicleOwnerViewModel.cs`: Add screen with PANTypes ObservableCollection (dropdown), all business fields, save/cancel commands, validation, busy state management
+  - `Masters/VehicleOwners/ViewModels/EditVehicleOwnerViewModel.cs`: Edit screen implementing INavigationAware, loads VehicleOwner by ID, OwnerCode read-only, PANTypes ObservableCollection (dropdown), all business fields, save/cancel commands, validation, busy state management
+* **Views**:
+  - `Masters/VehicleOwners/Views/VehicleOwnersView.xaml`: List screen with search textbox, all action buttons (Add Vehicle Owner, Edit Vehicle Owner, Activate, Deactivate, Delete Vehicle Owner, Refresh), DataGrid with columns: Owner Code, PAN Type, PAN Number, First Name, Last Name, Company Name, Mobile, City, State, Active, loading/error indicators
+  - `Masters/VehicleOwners/Views/VehicleOwnersView.xaml.cs`: Code-behind with InitializeComponent
+  - `Masters/VehicleOwners/Views/AddVehicleOwnerView.xaml`: Form with ComboBox for PAN Type (bound to PANTypes), TextBoxes for all fields, CheckBox for IsActive, save/cancel buttons, validation display, loading indicator
+  - `Masters/VehicleOwners/Views/AddVehicleOwnerView.xaml.cs`: Code-behind with InitializeComponent
+  - `Masters/VehicleOwners/Views/EditVehicleOwnerView.xaml`: Form with read-only TextBox for OwnerCode, ComboBox for PAN Type (bound to PANTypes), TextBoxes for all fields, CheckBox for IsActive, save/cancel buttons, validation display, loading indicator
+  - `Masters/VehicleOwners/Views/EditVehicleOwnerView.xaml.cs`: Code-behind with InitializeComponent
+
+### Infrastructure Updates
+* **DI Registration**: `Masters/DependencyInjection/MastersServiceCollectionExtensions.cs` updated with Vehicle Owner services:
+  - IVehicleOwnerQueryService, VehicleOwnerQueryService (Scoped)
+  - IVehicleOwnerCommandService, VehicleOwnerCommandService (Scoped)
+  - ICreateVehicleOwnerValidator, CreateVehicleOwnerValidator (Scoped)
+  - IUpdateVehicleOwnerValidator, UpdateVehicleOwnerValidator (Scoped)
+  - IUpdateVehicleOwnerStatusValidator, UpdateVehicleOwnerStatusValidator (Scoped)
+  - IDeleteVehicleOwnerValidator, DeleteVehicleOwnerValidator (Scoped)
+  - VehicleOwnersViewModel, AddVehicleOwnerViewModel, EditVehicleOwnerViewModel (Transient)
+* **DataTemplates**: `Resources/DataTemplates.xaml` updated with Vehicle Owner ViewModel/View mappings:
+  - VehicleOwnersViewModel → VehicleOwnersView
+  - AddVehicleOwnerViewModel → AddVehicleOwnerView
+  - EditVehicleOwnerViewModel → EditVehicleOwnerView
+* **Navigation**: 
+  - `Desktop/Shell/ShellView.xaml` updated with Vehicle Owners menu item under Masters
+  - `Desktop/Shell/ShellViewModel.cs` updated with NavigateToVehicleOwnersCommand
+
+### Explicitly Excluded
+* New architectural patterns or redesigns (strictly following Company module patterns)
+* Repository pattern, MediatR, or generic frameworks
+* Business logic in ViewModels (only in services)
+* DbContext access in ViewModels
+* Manual Owner Code entry (auto-generated only)
+* PAN Type as free-text field (dropdown with fixed options only)
+* Additional business fields beyond specified requirements
+* Vehicle hierarchy or categorization
+* Vehicle association (not required per business requirements)
+* Advanced search with multiple filter criteria (simple LIKE pattern implemented)
+* Export functionality
+* Bulk operations
+
+### Validation Status
+Build verified successfully with 0 errors, 4 unrelated package warnings (Serilog version mismatches). All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer with ValidationResult.AddError pattern, Result pattern, Dependency injection with proper lifetimes, Navigation with INavigationAware, Async/await with CancellationToken and ConfigureAwait(false), Logging with ILogger, Busy state management. Vehicle Owner module is architecturally identical to the Company module (reference Master) and is production-ready. Full implementation with all specified business fields, auto-generated Owner Code, unique PAN Number constraint, PAN Type dropdown with fixed options, and comprehensive CRUD operations. The module is ready for Phase 3.11A — Architecture Review & Freeze and will serve as the reference module for all Vehicle-related phases.
+
 ## 3. Architecture & Design
 
 ### Dependency Injection and Composition
