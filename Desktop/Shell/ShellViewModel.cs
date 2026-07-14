@@ -14,12 +14,8 @@ public sealed class ShellViewModel : ObservableObject
 {
     private readonly PlaceholderViewModel _placeholder = new();
     private readonly ILogoutService _logoutService;
+    private readonly INavigationService _navigationService;
     private object? _currentViewModel;
-
-    private void OnCurrentViewModelChanged(object? vm)
-    {
-        CurrentViewModel = ResolveShellContent(vm) ?? _placeholder;
-    }
 
     private static object? ResolveShellContent(object? vm) => vm switch
     {
@@ -111,11 +107,22 @@ public sealed class ShellViewModel : ObservableObject
     /// </summary>
     public IAsyncRelayCommand NavigateToVehicleOwnersCommand { get; }
 
+    /// <summary>
+    /// Command to navigate back to the previous screen.
+    /// </summary>
+    public IAsyncRelayCommand GoBackCommand { get; }
+
+    /// <summary>
+    /// Whether it's possible to go back in navigation history.
+    /// </summary>
+    public bool CanGoBack => _navigationService.CanGoBack;
+
     public ShellViewModel(INavigationService navigationService, ILogoutService logoutService)
     {
         if (navigationService is null) throw new ArgumentNullException(nameof(navigationService));
         if (logoutService is null) throw new ArgumentNullException(nameof(logoutService));
 
+        _navigationService = navigationService;
         _logoutService = logoutService;
         LogoutCommand = new AsyncRelayCommand(ExecuteLogoutAsync);
         NavigateToUsersCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Administration.Users.ViewModels.UsersViewModel>());
@@ -132,8 +139,21 @@ public sealed class ShellViewModel : ObservableObject
         NavigateToHsdRatesCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.HsdRates.ViewModels.HsdRatesViewModel>());
         NavigateToPaymentLocationsCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.PaymentLocations.ViewModels.PaymentLocationsViewModel>());
         NavigateToVehicleOwnersCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.VehicleOwners.ViewModels.VehicleOwnersViewModel>());
+        GoBackCommand = new AsyncRelayCommand(ExecuteGoBackAsync);
         navigationService.CurrentViewModelChanged += OnCurrentViewModelChanged;
         _currentViewModel = ResolveShellContent(navigationService.CurrentViewModel) ?? _placeholder;
+    }
+
+    private async Task ExecuteGoBackAsync()
+    {
+        await _navigationService.GoBackAsync();
+        OnPropertyChanged(nameof(CanGoBack));
+    }
+
+    private void OnCurrentViewModelChanged(object? vm)
+    {
+        CurrentViewModel = ResolveShellContent(vm) ?? _placeholder;
+        OnPropertyChanged(nameof(CanGoBack));
     }
 
     private async Task ExecuteLogoutAsync()

@@ -21,6 +21,16 @@ public sealed partial class FinancialYearsViewModel : ViewModelBase
     private string _validationError = string.Empty;
 
     /// <summary>
+    /// Command to navigate back to the previous screen.
+    /// </summary>
+    public IAsyncRelayCommand GoBackCommand { get; }
+
+    /// <summary>
+    /// Whether it's possible to go back in navigation history.
+    /// </summary>
+    public bool CanGoBack => _navigationService.CanGoBack;
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="FinancialYearsViewModel"/> class.
     /// </summary>
     /// <param name="financialYearQueryService">The financial year query service.</param>
@@ -36,6 +46,13 @@ public sealed partial class FinancialYearsViewModel : ViewModelBase
         _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
 
         Title = "Financial Years";
+        GoBackCommand = new AsyncRelayCommand(ExecuteGoBackAsync, () => CanGoBack);
+    }
+
+    private async Task ExecuteGoBackAsync()
+    {
+        await _navigationService.GoBackAsync();
+        GoBackCommand.NotifyCanExecuteChanged();
     }
 
     public override async Task InitializeAsync(CancellationToken cancellationToken = default)
@@ -52,6 +69,8 @@ public sealed partial class FinancialYearsViewModel : ViewModelBase
     public override async Task OnNavigatedToAsync(CancellationToken cancellationToken = default)
     {
         await LoadFinancialYearsAsync(cancellationToken);
+        GoBackCommand.NotifyCanExecuteChanged();
+        OnPropertyChanged(nameof(CanGoBack));
     }
 
     /// <summary>

@@ -24,6 +24,16 @@ public sealed partial class FuelPumpsViewModel : ViewModelBase
     private CancellationTokenSource? _searchCancellationTokenSource;
 
     /// <summary>
+    /// Command to navigate back to the previous screen.
+    /// </summary>
+    public IAsyncRelayCommand GoBackCommand { get; }
+
+    /// <summary>
+    /// Whether it's possible to go back in navigation history.
+    /// </summary>
+    public bool CanGoBack => _navigationService.CanGoBack;
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="FuelPumpsViewModel"/> class.
     /// </summary>
     /// <param name="fuelPumpQueryService">The fuel pump query service.</param>
@@ -36,6 +46,13 @@ public sealed partial class FuelPumpsViewModel : ViewModelBase
         _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
 
         Title = "Fuel Pumps";
+        GoBackCommand = new AsyncRelayCommand(ExecuteGoBackAsync, () => CanGoBack);
+    }
+
+    private async Task ExecuteGoBackAsync()
+    {
+        await _navigationService.GoBackAsync();
+        GoBackCommand.NotifyCanExecuteChanged();
     }
 
     public override async Task InitializeAsync(CancellationToken cancellationToken = default)
@@ -52,6 +69,8 @@ public sealed partial class FuelPumpsViewModel : ViewModelBase
     public override async Task OnNavigatedToAsync(CancellationToken cancellationToken = default)
     {
         await LoadFuelPumpsAsync(cancellationToken);
+        GoBackCommand.NotifyCanExecuteChanged();
+        OnPropertyChanged(nameof(CanGoBack));
     }
 
     /// <summary>

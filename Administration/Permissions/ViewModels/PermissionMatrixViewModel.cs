@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using veteran_logistic.Administration.Permissions.Contracts;
 using veteran_logistic.Administration.Permissions.Models;
 using veteran_logistic.MVVM;
+using veteran_logistic.Navigation;
 
 namespace veteran_logistic.Administration.Permissions.ViewModels;
 
@@ -15,6 +16,7 @@ public sealed partial class PermissionMatrixViewModel : ViewModelBase
 {
     private readonly IPermissionQueryService _permissionQueryService;
     private readonly IPermissionCommandService _permissionCommandService;
+    private readonly INavigationService _navigationService;
     private ObservableCollection<PermissionMatrixRow> _permissions = new();
     private ObservableCollection<RoleMatrixItem> _roles = new();
     private RoleMatrixItem? _selectedRole;
@@ -24,16 +26,34 @@ public sealed partial class PermissionMatrixViewModel : ViewModelBase
     private string? _validationError;
 
     /// <summary>
+    /// Command to navigate back to the previous screen.
+    /// </summary>
+    public IAsyncRelayCommand GoBackCommand { get; }
+
+    /// <summary>
+    /// Whether it's possible to go back in navigation history.
+    /// </summary>
+    public bool CanGoBack => _navigationService.CanGoBack;
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="PermissionMatrixViewModel"/> class.
     /// </summary>
     /// <param name="permissionQueryService">The permission query service.</param>
     /// <param name="permissionCommandService">The permission command service.</param>
-    public PermissionMatrixViewModel(IPermissionQueryService permissionQueryService, IPermissionCommandService permissionCommandService)
+    public PermissionMatrixViewModel(IPermissionQueryService permissionQueryService, IPermissionCommandService permissionCommandService, INavigationService navigationService)
     {
         _permissionQueryService = permissionQueryService ?? throw new ArgumentNullException(nameof(permissionQueryService));
         _permissionCommandService = permissionCommandService ?? throw new ArgumentNullException(nameof(permissionCommandService));
+        _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
         
         Title = "Permission Matrix";
+        GoBackCommand = new AsyncRelayCommand(ExecuteGoBackAsync, () => CanGoBack);
+    }
+
+    private async Task ExecuteGoBackAsync()
+    {
+        await _navigationService.GoBackAsync();
+        GoBackCommand.NotifyCanExecuteChanged();
     }
 
     public override async Task InitializeAsync(CancellationToken cancellationToken = default)
@@ -50,6 +70,8 @@ public sealed partial class PermissionMatrixViewModel : ViewModelBase
     public override async Task OnNavigatedToAsync(CancellationToken cancellationToken = default)
     {
         await LoadPermissionMatrixAsync(cancellationToken);
+        GoBackCommand.NotifyCanExecuteChanged();
+        OnPropertyChanged(nameof(CanGoBack));
     }
 
     /// <summary>

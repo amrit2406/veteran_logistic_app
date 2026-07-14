@@ -24,6 +24,16 @@ public sealed partial class CompaniesViewModel : ViewModelBase
     private CancellationTokenSource? _searchCancellationTokenSource;
 
     /// <summary>
+    /// Command to navigate back to the previous screen.
+    /// </summary>
+    public IAsyncRelayCommand GoBackCommand { get; }
+
+    /// <summary>
+    /// Whether it's possible to go back in navigation history.
+    /// </summary>
+    public bool CanGoBack => _navigationService.CanGoBack;
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="CompaniesViewModel"/> class.
     /// </summary>
     /// <param name="companyQueryService">The company query service.</param>
@@ -36,6 +46,13 @@ public sealed partial class CompaniesViewModel : ViewModelBase
         _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
 
         Title = "Companies";
+        GoBackCommand = new AsyncRelayCommand(ExecuteGoBackAsync, () => CanGoBack);
+    }
+
+    private async Task ExecuteGoBackAsync()
+    {
+        await _navigationService.GoBackAsync();
+        GoBackCommand.NotifyCanExecuteChanged();
     }
 
     public override async Task InitializeAsync(CancellationToken cancellationToken = default)
@@ -52,6 +69,8 @@ public sealed partial class CompaniesViewModel : ViewModelBase
     public override async Task OnNavigatedToAsync(CancellationToken cancellationToken = default)
     {
         await LoadCompaniesAsync(cancellationToken);
+        GoBackCommand.NotifyCanExecuteChanged();
+        OnPropertyChanged(nameof(CanGoBack));
     }
 
     /// <summary>

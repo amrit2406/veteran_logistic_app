@@ -53,6 +53,19 @@
                     <Button Width="36"
                             Height="36"
                             Style="{StaticResource IconButtonStyle}"
+                            Command="{Binding GoBackCommand}"
+                            IsEnabled="{Binding CanGoBack}"
+                            ToolTip="Go Back"
+                            Margin="0,0,8,0">
+                        <Viewbox Width="16" Height="16">
+                            <Path Data="{StaticResource BackIconGeometry}"
+                                  Fill="{DynamicResource TextPrimaryBrush}" />
+                        </Viewbox>
+                    </Button>
+
+                    <Button Width="36"
+                            Height="36"
+                            Style="{StaticResource IconButtonStyle}"
                             ToolTip="Notifications">
                         <Viewbox Width="16" Height="16">
                             <Path Data="{StaticResource BellIconGeometry}"

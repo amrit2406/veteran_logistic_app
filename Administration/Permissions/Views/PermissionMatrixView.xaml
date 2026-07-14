@@ -36,6 +36,20 @@
                 <StackPanel Grid.Column="1"
                             Orientation="Horizontal"
                             HorizontalAlignment="Right">
+                    <!-- Back Button -->
+                    <Button Height="{StaticResource StandardControlHeight}"
+                            Command="{Binding GoBackCommand}"
+                            IsEnabled="{Binding CanGoBack}"
+                            Style="{StaticResource IconButtonStyle}"
+                            ToolTip="Go Back"
+                            VerticalAlignment="Center"
+                            Margin="{StaticResource Small}">
+                        <Viewbox Width="16" Height="16">
+                            <Path Data="{StaticResource BackIconGeometry}"
+                                  Fill="{DynamicResource TextPrimaryBrush}" />
+                        </Viewbox>
+                    </Button>
+
                     <!-- Refresh Button -->
                     <Button Height="{StaticResource StandardControlHeight}"
                             Command="{Binding RefreshCommand}"

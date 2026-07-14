@@ -34,6 +34,13 @@ public sealed partial class UsersViewModel : ViewModelBase
         _userQueryService = userQueryService ?? throw new ArgumentNullException(nameof(userQueryService));
         _userCommandService = userCommandService ?? throw new ArgumentNullException(nameof(userCommandService));
         _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
+        GoBackCommand = new AsyncRelayCommand(ExecuteGoBackAsync, () => CanGoBack);
+    }
+
+    private async Task ExecuteGoBackAsync()
+    {
+        await _navigationService.GoBackAsync();
+        GoBackCommand.NotifyCanExecuteChanged();
     }
 
     public override async Task InitializeAsync(CancellationToken cancellationToken = default)
@@ -50,6 +57,8 @@ public sealed partial class UsersViewModel : ViewModelBase
     public override async Task OnNavigatedToAsync(CancellationToken cancellationToken = default)
     {
         await LoadUsersAsync(cancellationToken);
+        GoBackCommand.NotifyCanExecuteChanged();
+        OnPropertyChanged(nameof(CanGoBack));
     }
 
     /// <summary>
@@ -98,6 +107,16 @@ public sealed partial class UsersViewModel : ViewModelBase
         get => _validationError;
         set => SetProperty(ref _validationError, value);
     }
+
+    /// <summary>
+    /// Command to navigate back to the previous screen.
+    /// </summary>
+    public IAsyncRelayCommand GoBackCommand { get; }
+
+    /// <summary>
+    /// Whether it's possible to go back in navigation history.
+    /// </summary>
+    public bool CanGoBack => _navigationService.CanGoBack;
 
     /// <summary>
     /// Command to refresh the user list.

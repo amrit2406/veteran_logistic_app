@@ -24,6 +24,16 @@ public sealed partial class RolesViewModel : ViewModelBase
     private CancellationTokenSource? _searchCancellationTokenSource;
 
     /// <summary>
+    /// Command to navigate back to the previous screen.
+    /// </summary>
+    public IAsyncRelayCommand GoBackCommand { get; }
+
+    /// <summary>
+    /// Whether it's possible to go back in navigation history.
+    /// </summary>
+    public bool CanGoBack => _navigationService.CanGoBack;
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="RolesViewModel"/> class.
     /// </summary>
     /// <param name="roleQueryService">The role query service.</param>
@@ -34,6 +44,13 @@ public sealed partial class RolesViewModel : ViewModelBase
         _roleQueryService = roleQueryService ?? throw new ArgumentNullException(nameof(roleQueryService));
         _roleCommandService = roleCommandService ?? throw new ArgumentNullException(nameof(roleCommandService));
         _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
+        GoBackCommand = new AsyncRelayCommand(ExecuteGoBackAsync, () => CanGoBack);
+    }
+
+    private async Task ExecuteGoBackAsync()
+    {
+        await _navigationService.GoBackAsync();
+        GoBackCommand.NotifyCanExecuteChanged();
     }
 
     public override async Task InitializeAsync(CancellationToken cancellationToken = default)
@@ -50,6 +67,8 @@ public sealed partial class RolesViewModel : ViewModelBase
     public override async Task OnNavigatedToAsync(CancellationToken cancellationToken = default)
     {
         await LoadRolesAsync(cancellationToken);
+        GoBackCommand.NotifyCanExecuteChanged();
+        OnPropertyChanged(nameof(CanGoBack));
     }
 
     /// <summary>
