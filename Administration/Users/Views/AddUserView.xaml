@@ -85,7 +85,8 @@
                                Style="{StaticResource BodyTextBlockStyle}"
                                Margin="{StaticResource ExtraSmall}" />
                     <ComboBox ItemsSource="{Binding Roles}"
-                              SelectedItem="{Binding SelectedRole}"
+                              SelectedItem="{Binding SelectedRoleItem}"
+                              DisplayMemberPath="Name"
                               Height="{StaticResource StandardControlHeight}" />
                 </StackPanel>
 

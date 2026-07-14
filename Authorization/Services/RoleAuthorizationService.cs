@@ -71,6 +71,13 @@ public sealed class RoleAuthorizationService : IRoleAuthorizationService
             return ApplicationRole.None;
         }
 
-        return currentUser.Role;
+        // Parse the role name string to ApplicationRole enum for backward compatibility
+        if (Enum.TryParse<ApplicationRole>(currentUser.Role, out var role))
+        {
+            return role;
+        }
+
+        _logger.LogDebug("User role '{Role}' does not match ApplicationRole enum. Defaulting to None.", currentUser.Role);
+        return ApplicationRole.None;
     }
 }

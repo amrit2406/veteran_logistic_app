@@ -70,8 +70,21 @@ public sealed partial class PermissionMatrixViewModel : ViewModelBase
     public override async Task OnNavigatedToAsync(CancellationToken cancellationToken = default)
     {
         await LoadPermissionMatrixAsync(cancellationToken);
-        GoBackCommand.NotifyCanExecuteChanged();
-        OnPropertyChanged(nameof(CanGoBack));
+        
+        var dispatcher = System.Windows.Application.Current?.Dispatcher;
+        if (dispatcher != null && !dispatcher.CheckAccess())
+        {
+            dispatcher.Invoke(() =>
+            {
+                GoBackCommand.NotifyCanExecuteChanged();
+                OnPropertyChanged(nameof(CanGoBack));
+            });
+        }
+        else
+        {
+            GoBackCommand.NotifyCanExecuteChanged();
+            OnPropertyChanged(nameof(CanGoBack));
+        }
     }
 
     /// <summary>

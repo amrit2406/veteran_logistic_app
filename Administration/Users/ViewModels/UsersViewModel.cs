@@ -5,6 +5,8 @@ using System.Threading;
 using System.Windows;
 using veteran_logistic.Administration.Users.Contracts;
 using veteran_logistic.Administration.Users.Models;
+using veteran_logistic.Authorization.Contracts;
+using veteran_logistic.Authorization.Models;
 using veteran_logistic.MVVM;
 using veteran_logistic.Navigation;
 
@@ -18,6 +20,7 @@ public sealed partial class UsersViewModel : ViewModelBase
     private readonly IUserQueryService _userQueryService;
     private readonly IUserCommandService _userCommandService;
     private readonly INavigationService _navigationService;
+    private readonly IPermissionAuthorizationService _permissionAuthorizationService;
     private string _searchText = string.Empty;
     private UserListItem? _selectedUser;
     private string _validationError = string.Empty;
@@ -29,11 +32,13 @@ public sealed partial class UsersViewModel : ViewModelBase
     /// <param name="userQueryService">The user query service.</param>
     /// <param name="userCommandService">The user command service.</param>
     /// <param name="navigationService">The navigation service.</param>
-    public UsersViewModel(IUserQueryService userQueryService, IUserCommandService userCommandService, INavigationService navigationService)
+    /// <param name="permissionAuthorizationService">The permission authorization service.</param>
+    public UsersViewModel(IUserQueryService userQueryService, IUserCommandService userCommandService, INavigationService navigationService, IPermissionAuthorizationService permissionAuthorizationService)
     {
         _userQueryService = userQueryService ?? throw new ArgumentNullException(nameof(userQueryService));
         _userCommandService = userCommandService ?? throw new ArgumentNullException(nameof(userCommandService));
         _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
+        _permissionAuthorizationService = permissionAuthorizationService ?? throw new ArgumentNullException(nameof(permissionAuthorizationService));
         GoBackCommand = new AsyncRelayCommand(ExecuteGoBackAsync, () => CanGoBack);
     }
 
@@ -57,8 +62,23 @@ public sealed partial class UsersViewModel : ViewModelBase
     public override async Task OnNavigatedToAsync(CancellationToken cancellationToken = default)
     {
         await LoadUsersAsync(cancellationToken);
-        GoBackCommand.NotifyCanExecuteChanged();
-        OnPropertyChanged(nameof(CanGoBack));
+        
+        var dispatcher = System.Windows.Application.Current?.Dispatcher;
+        if (dispatcher != null && !dispatcher.CheckAccess())
+        {
+            dispatcher.Invoke(() =>
+            {
+                GoBackCommand.NotifyCanExecuteChanged();
+                OnPropertyChanged(nameof(CanGoBack));
+                AddUserCommand.NotifyCanExecuteChanged();
+            });
+        }
+        else
+        {
+            GoBackCommand.NotifyCanExecuteChanged();
+            OnPropertyChanged(nameof(CanGoBack));
+            AddUserCommand.NotifyCanExecuteChanged();
+        }
     }
 
     /// <summary>
@@ -91,9 +111,10 @@ public sealed partial class UsersViewModel : ViewModelBase
         {
             if (SetProperty(ref _selectedUser, value))
             {
+                EditUserCommand.NotifyCanExecuteChanged();
+                ResetPasswordCommand.NotifyCanExecuteChanged();
                 ActivateUserCommand.NotifyCanExecuteChanged();
                 DeactivateUserCommand.NotifyCanExecuteChanged();
-                ResetPasswordCommand.NotifyCanExecuteChanged();
                 DeleteUserCommand.NotifyCanExecuteChanged();
             }
         }
@@ -130,7 +151,7 @@ public sealed partial class UsersViewModel : ViewModelBase
     /// <summary>
     /// Command to navigate to the Add User screen.
     /// </summary>
-    [RelayCommand]
+    [RelayCommand(CanExecute = nameof(CanAddUser))]
     private async Task AddUserAsync()
     {
         await _navigationService.NavigateAsync<AddUserViewModel>().ConfigureAwait(false);
@@ -139,7 +160,7 @@ public sealed partial class UsersViewModel : ViewModelBase
     /// <summary>
     /// Command to navigate to the Edit User screen.
     /// </summary>
-    [RelayCommand]
+    [RelayCommand(CanExecute = nameof(CanEditUser))]
     private async Task EditUserAsync()
     {
         if (SelectedUser is null)
@@ -158,7 +179,7 @@ public sealed partial class UsersViewModel : ViewModelBase
     /// <summary>
     /// Command to navigate to the Reset Password screen.
     /// </summary>
-    [RelayCommand(CanExecute = nameof(CanExecuteUserCommand))]
+    [RelayCommand(CanExecute = nameof(CanResetPassword))]
     private async Task ResetPasswordAsync()
     {
         if (SelectedUser is null)
@@ -177,7 +198,7 @@ public sealed partial class UsersViewModel : ViewModelBase
     /// <summary>
     /// Command to activate the selected user.
     /// </summary>
-    [RelayCommand(CanExecute = nameof(CanExecuteUserCommand))]
+    [RelayCommand(CanExecute = nameof(CanActivateUser))]
     private async Task ActivateUserAsync()
     {
         if (SelectedUser is null)
@@ -210,7 +231,7 @@ public sealed partial class UsersViewModel : ViewModelBase
     /// <summary>
     /// Command to deactivate the selected user.
     /// </summary>
-    [RelayCommand(CanExecute = nameof(CanExecuteUserCommand))]
+    [RelayCommand(CanExecute = nameof(CanDeactivateUser))]
     private async Task DeactivateUserAsync()
     {
         if (SelectedUser is null)
@@ -251,7 +272,7 @@ public sealed partial class UsersViewModel : ViewModelBase
     /// <summary>
     /// Command to delete the selected user.
     /// </summary>
-    [RelayCommand(CanExecute = nameof(CanExecuteUserCommand))]
+    [RelayCommand(CanExecute = nameof(CanDeleteUser))]
     private async Task DeleteUserAsync()
     {
         if (SelectedUser is null)
@@ -293,9 +314,34 @@ public sealed partial class UsersViewModel : ViewModelBase
         }
     }
 
-    private bool CanExecuteUserCommand()
+    private bool CanAddUser()
     {
-        return SelectedUser is not null;
+        return _permissionAuthorizationService.HasPermission(ApplicationPermission.AddUsers);
+    }
+
+    private bool CanEditUser()
+    {
+        return SelectedUser is not null && _permissionAuthorizationService.HasPermission(ApplicationPermission.EditUsers);
+    }
+
+    private bool CanResetPassword()
+    {
+        return SelectedUser is not null && _permissionAuthorizationService.HasPermission(ApplicationPermission.EditUsers);
+    }
+
+    private bool CanActivateUser()
+    {
+        return SelectedUser is not null && _permissionAuthorizationService.HasPermission(ApplicationPermission.ActivateUsers);
+    }
+
+    private bool CanDeactivateUser()
+    {
+        return SelectedUser is not null && _permissionAuthorizationService.HasPermission(ApplicationPermission.ActivateUsers);
+    }
+
+    private bool CanDeleteUser()
+    {
+        return SelectedUser is not null && _permissionAuthorizationService.HasPermission(ApplicationPermission.DeleteUsers);
     }
 
     /// <summary>

@@ -1,6 +1,8 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using veteran_logistic.Administration.Roles.Contracts;
+using veteran_logistic.Administration.Roles.Models;
 using veteran_logistic.Administration.Users.Contracts;
 using veteran_logistic.Administration.Users.Models;
 using veteran_logistic.Authorization.Models;
@@ -16,11 +18,13 @@ public sealed partial class EditUserViewModel : ViewModelBase, INavigationAware
 {
     private readonly IUserCommandService _userCommandService;
     private readonly IUserQueryService _userQueryService;
+    private readonly IRoleQueryService _roleQueryService;
     private readonly INavigationService _navigationService;
     private int _userId;
     private string _username = string.Empty;
     private string _displayName = string.Empty;
     private string _selectedRole = string.Empty;
+    private RoleListItem? _selectedRoleItem;
     private bool _isActive;
     private string _validationError = string.Empty;
 
@@ -30,14 +34,14 @@ public sealed partial class EditUserViewModel : ViewModelBase, INavigationAware
     /// <param name="userCommandService">The user command service.</param>
     /// <param name="userQueryService">The user query service.</param>
     /// <param name="navigationService">The navigation service.</param>
-    public EditUserViewModel(IUserCommandService userCommandService, IUserQueryService userQueryService, INavigationService navigationService)
+    public EditUserViewModel(IUserCommandService userCommandService, IUserQueryService userQueryService, IRoleQueryService roleQueryService, INavigationService navigationService)
     {
         _userCommandService = userCommandService ?? throw new ArgumentNullException(nameof(userCommandService));
         _userQueryService = userQueryService ?? throw new ArgumentNullException(nameof(userQueryService));
+        _roleQueryService = roleQueryService ?? throw new ArgumentNullException(nameof(roleQueryService));
         _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
         
         Title = "Edit User";
-        LoadRoles();
     }
 
     public void OnNavigatedTo(NavigationParameter? parameter)
@@ -55,6 +59,7 @@ public sealed partial class EditUserViewModel : ViewModelBase, INavigationAware
             return;
         }
 
+        await LoadRolesAsync(cancellationToken);
         await LoadUserAsync(cancellationToken);
         await base.InitializeAsync(cancellationToken);
     }
@@ -78,12 +83,27 @@ public sealed partial class EditUserViewModel : ViewModelBase, INavigationAware
     }
 
     /// <summary>
-    /// Gets or sets the selected role.
+    /// Gets or sets the selected role name (for API).
     /// </summary>
     public string SelectedRole
     {
         get => _selectedRole;
         set => SetProperty(ref _selectedRole, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the selected role item (for UI binding).
+    /// </summary>
+    public RoleListItem? SelectedRoleItem
+    {
+        get => _selectedRoleItem;
+        set
+        {
+            if (SetProperty(ref _selectedRoleItem, value))
+            {
+                SelectedRole = value?.Name ?? string.Empty;
+            }
+        }
     }
 
     /// <summary>
@@ -98,7 +118,7 @@ public sealed partial class EditUserViewModel : ViewModelBase, INavigationAware
     /// <summary>
     /// Gets the collection of available roles.
     /// </summary>
-    public ObservableCollection<string> Roles { get; } = new();
+    public ObservableCollection<RoleListItem> Roles { get; } = new();
 
     /// <summary>
     /// Gets or sets the validation error message.
@@ -133,6 +153,7 @@ public sealed partial class EditUserViewModel : ViewModelBase, INavigationAware
         Username = user.Username;
         DisplayName = user.DisplayName;
         SelectedRole = user.Role;
+        SelectedRoleItem = Roles.FirstOrDefault(r => r.Name == user.Role);
         IsActive = user.IsActive;
     }
 
@@ -176,17 +197,38 @@ public sealed partial class EditUserViewModel : ViewModelBase, INavigationAware
     }
 
     /// <summary>
-    /// Loads roles from the existing authorization infrastructure.
+    /// Loads roles from the database.
     /// </summary>
-    private void LoadRoles()
+    private async Task LoadRolesAsync(CancellationToken cancellationToken = default)
     {
-        Roles.Clear();
-        
-        foreach (var role in Enum.GetValues<ApplicationRole>())
+        SetBusy("Loading roles...");
+        var roles = await _roleQueryService.GetAllRolesAsync(cancellationToken).ConfigureAwait(false);
+        ClearBusy();
+
+        var dispatcher = System.Windows.Application.Current?.Dispatcher;
+        if (dispatcher != null && !dispatcher.CheckAccess())
         {
-            if (role != ApplicationRole.None)
+            dispatcher.Invoke(() =>
             {
-                Roles.Add(role.ToString());
+                Roles.Clear();
+                foreach (var role in roles)
+                {
+                    if (role.IsActive)
+                    {
+                        Roles.Add(role);
+                    }
+                }
+            });
+        }
+        else
+        {
+            Roles.Clear();
+            foreach (var role in roles)
+            {
+                if (role.IsActive)
+                {
+                    Roles.Add(role);
+                }
             }
         }
     }

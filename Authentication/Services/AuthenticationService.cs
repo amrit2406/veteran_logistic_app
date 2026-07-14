@@ -99,7 +99,7 @@ public sealed class AuthenticationService : IAuthenticationService
             Username = user.Username,
             DisplayName = user.DisplayName,
             Email = user.Email,
-            Role = MapToApplicationRole(user.Role)
+            Role = user.Role ?? string.Empty
         };
 
         // Step 7: Create user session
@@ -139,35 +139,5 @@ public sealed class AuthenticationService : IAuthenticationService
         };
 
         await _authenticationAuditService.LogAuthenticationAttemptAsync(auditEntry, cancellationToken);
-    }
-
-    private static ApplicationRole MapToApplicationRole(string? roleString)
-    {
-        if (string.IsNullOrWhiteSpace(roleString))
-        {
-            return ApplicationRole.None;
-        }
-
-        if (string.Equals(roleString, "Administrator", StringComparison.OrdinalIgnoreCase))
-        {
-            return ApplicationRole.Administrator;
-        }
-
-        if (string.Equals(roleString, "Manager", StringComparison.OrdinalIgnoreCase))
-        {
-            return ApplicationRole.Manager;
-        }
-
-        if (string.Equals(roleString, "User", StringComparison.OrdinalIgnoreCase))
-        {
-            return ApplicationRole.User;
-        }
-
-        if (string.Equals(roleString, "Viewer", StringComparison.OrdinalIgnoreCase))
-        {
-            return ApplicationRole.Viewer;
-        }
-
-        return ApplicationRole.None;
     }
 }

@@ -8,9 +8,9 @@ namespace veteran_logistic.Authorization.Contracts;
 public interface IPermissionProvider
 {
     /// <summary>
-    /// Gets the permissions associated with the specified role.
+    /// Gets the permissions associated with the specified role name.
     /// </summary>
-    /// <param name="role">The application role.</param>
+    /// <param name="roleName">The role name.</param>
     /// <returns>A collection of permissions for the role.</returns>
-    IEnumerable<ApplicationPermission> GetPermissions(ApplicationRole role);
+    IEnumerable<ApplicationPermission> GetPermissions(string roleName);
 }

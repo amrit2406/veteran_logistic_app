@@ -9,16 +9,28 @@ namespace veteran_logistic.Authorization.Providers;
 public sealed class DefaultPermissionProvider : IPermissionProvider
 {
     /// <inheritdoc />
-    public IEnumerable<ApplicationPermission> GetPermissions(ApplicationRole role)
+    public IEnumerable<ApplicationPermission> GetPermissions(string roleName)
     {
-        return role switch
+        if (string.IsNullOrWhiteSpace(roleName))
         {
-            ApplicationRole.Administrator => GetAdministratorPermissions(),
-            ApplicationRole.Manager => GetManagerPermissions(),
-            ApplicationRole.User => GetUserPermissions(),
-            ApplicationRole.Viewer => GetViewerPermissions(),
-            _ => Enumerable.Empty<ApplicationPermission>()
-        };
+            return Enumerable.Empty<ApplicationPermission>();
+        }
+
+        // Try to parse the role name to ApplicationRole enum for backward compatibility
+        if (Enum.TryParse<ApplicationRole>(roleName, out var role))
+        {
+            return role switch
+            {
+                ApplicationRole.Administrator => GetAdministratorPermissions(),
+                ApplicationRole.Manager => GetManagerPermissions(),
+                ApplicationRole.User => GetUserPermissions(),
+                ApplicationRole.Viewer => GetViewerPermissions(),
+                _ => Enumerable.Empty<ApplicationPermission>()
+            };
+        }
+
+        // If role name doesn't match enum, return no permissions
+        return Enumerable.Empty<ApplicationPermission>();
     }
 
     private static IEnumerable<ApplicationPermission> GetAdministratorPermissions()

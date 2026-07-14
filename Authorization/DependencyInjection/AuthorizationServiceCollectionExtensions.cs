@@ -23,7 +23,7 @@ public static class AuthorizationServiceCollectionExtensions
         }
 
         services.AddSingleton<IRoleAuthorizationService, RoleAuthorizationService>();
-        services.AddSingleton<IPermissionProvider, DefaultPermissionProvider>();
+        services.AddScoped<IPermissionProvider, DatabasePermissionProvider>();
         services.AddSingleton<IPermissionAuthorizationService, PermissionAuthorizationService>();
 
         return services;

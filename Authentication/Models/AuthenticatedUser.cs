@@ -28,7 +28,7 @@ public sealed class AuthenticatedUser
     public string? Email { get; set; }
 
     /// <summary>
-    /// Gets or sets the user's current role.
+    /// Gets or sets the user's current role name.
     /// </summary>
-    public ApplicationRole Role { get; set; }
+    public string Role { get; set; } = string.Empty;
 }

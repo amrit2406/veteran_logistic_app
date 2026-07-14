@@ -1,6 +1,8 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using veteran_logistic.Administration.Roles.Contracts;
+using veteran_logistic.Administration.Roles.Models;
 using veteran_logistic.Administration.Users.Contracts;
 using veteran_logistic.Administration.Users.Models;
 using veteran_logistic.Authorization.Models;
@@ -15,12 +17,14 @@ namespace veteran_logistic.Administration.Users.ViewModels;
 public sealed partial class AddUserViewModel : ViewModelBase
 {
     private readonly IUserCommandService _userCommandService;
+    private readonly IRoleQueryService _roleQueryService;
     private readonly INavigationService _navigationService;
     private string _username = string.Empty;
     private string _displayName = string.Empty;
     private string _password = string.Empty;
     private string _confirmPassword = string.Empty;
     private string _selectedRole = string.Empty;
+    private RoleListItem? _selectedRoleItem;
     private bool _isActive = true;
     private string _validationError = string.Empty;
 
@@ -28,14 +32,26 @@ public sealed partial class AddUserViewModel : ViewModelBase
     /// Initializes a new instance of the <see cref="AddUserViewModel"/> class.
     /// </summary>
     /// <param name="userCommandService">The user command service.</param>
+    /// <param name="roleQueryService">The role query service.</param>
     /// <param name="navigationService">The navigation service.</param>
-    public AddUserViewModel(IUserCommandService userCommandService, INavigationService navigationService)
+    public AddUserViewModel(IUserCommandService userCommandService, IRoleQueryService roleQueryService, INavigationService navigationService)
     {
         _userCommandService = userCommandService ?? throw new ArgumentNullException(nameof(userCommandService));
+        _roleQueryService = roleQueryService ?? throw new ArgumentNullException(nameof(roleQueryService));
         _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
         
         Title = "Add User";
-        LoadRoles();
+    }
+
+    public override async Task InitializeAsync(CancellationToken cancellationToken = default)
+    {
+        if (IsInitialized)
+        {
+            return;
+        }
+
+        await LoadRolesAsync(cancellationToken);
+        await base.InitializeAsync(cancellationToken);
     }
 
     /// <summary>
@@ -75,12 +91,27 @@ public sealed partial class AddUserViewModel : ViewModelBase
     }
 
     /// <summary>
-    /// Gets or sets the selected role.
+    /// Gets or sets the selected role name (for API).
     /// </summary>
     public string SelectedRole
     {
         get => _selectedRole;
         set => SetProperty(ref _selectedRole, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the selected role item (for UI binding).
+    /// </summary>
+    public RoleListItem? SelectedRoleItem
+    {
+        get => _selectedRoleItem;
+        set
+        {
+            if (SetProperty(ref _selectedRoleItem, value))
+            {
+                SelectedRole = value?.Name ?? string.Empty;
+            }
+        }
     }
 
     /// <summary>
@@ -95,7 +126,7 @@ public sealed partial class AddUserViewModel : ViewModelBase
     /// <summary>
     /// Gets the collection of available roles.
     /// </summary>
-    public ObservableCollection<string> Roles { get; } = new();
+    public ObservableCollection<RoleListItem> Roles { get; } = new();
 
     /// <summary>
     /// Gets or sets the validation error message.
@@ -148,17 +179,38 @@ public sealed partial class AddUserViewModel : ViewModelBase
     }
 
     /// <summary>
-    /// Loads roles from the existing authorization infrastructure.
+    /// Loads roles from the database.
     /// </summary>
-    private void LoadRoles()
+    private async Task LoadRolesAsync(CancellationToken cancellationToken = default)
     {
-        Roles.Clear();
-        
-        foreach (var role in Enum.GetValues<ApplicationRole>())
+        SetBusy("Loading roles...");
+        var roles = await _roleQueryService.GetAllRolesAsync(cancellationToken).ConfigureAwait(false);
+        ClearBusy();
+
+        var dispatcher = System.Windows.Application.Current?.Dispatcher;
+        if (dispatcher != null && !dispatcher.CheckAccess())
         {
-            if (role != ApplicationRole.None)
+            dispatcher.Invoke(() =>
             {
-                Roles.Add(role.ToString());
+                Roles.Clear();
+                foreach (var role in roles)
+                {
+                    if (role.IsActive)
+                    {
+                        Roles.Add(role);
+                    }
+                }
+            });
+        }
+        else
+        {
+            Roles.Clear();
+            foreach (var role in roles)
+            {
+                if (role.IsActive)
+                {
+                    Roles.Add(role);
+                }
             }
         }
     }

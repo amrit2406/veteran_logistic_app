@@ -3,6 +3,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using veteran_logistic.Authentication.Contracts;
 using veteran_logistic.Authentication.ViewModels;
+using veteran_logistic.Authorization.Contracts;
+using veteran_logistic.Authorization.Models;
 using veteran_logistic.Navigation;
 
 namespace veteran_logistic.Shell;
@@ -15,6 +17,7 @@ public sealed class ShellViewModel : ObservableObject
     private readonly PlaceholderViewModel _placeholder = new();
     private readonly ILogoutService _logoutService;
     private readonly INavigationService _navigationService;
+    private readonly IPermissionAuthorizationService _permissionAuthorizationService;
     private object? _currentViewModel;
 
     private static object? ResolveShellContent(object? vm) => vm switch
@@ -117,28 +120,30 @@ public sealed class ShellViewModel : ObservableObject
     /// </summary>
     public bool CanGoBack => _navigationService.CanGoBack;
 
-    public ShellViewModel(INavigationService navigationService, ILogoutService logoutService)
+    public ShellViewModel(INavigationService navigationService, ILogoutService logoutService, IPermissionAuthorizationService permissionAuthorizationService)
     {
         if (navigationService is null) throw new ArgumentNullException(nameof(navigationService));
         if (logoutService is null) throw new ArgumentNullException(nameof(logoutService));
+        if (permissionAuthorizationService is null) throw new ArgumentNullException(nameof(permissionAuthorizationService));
 
         _navigationService = navigationService;
         _logoutService = logoutService;
+        _permissionAuthorizationService = permissionAuthorizationService;
         LogoutCommand = new AsyncRelayCommand(ExecuteLogoutAsync);
-        NavigateToUsersCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Administration.Users.ViewModels.UsersViewModel>());
-        NavigateToRolesCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Administration.Roles.ViewModels.RolesViewModel>());
-        NavigateToPermissionMatrixCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Administration.Permissions.ViewModels.PermissionMatrixViewModel>());
-        NavigateToFinancialYearsCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Administration.FinancialYears.ViewModels.FinancialYearsViewModel>());
-        NavigateToCompaniesCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.Companies.ViewModels.CompaniesViewModel>());
-        NavigateToCustomersCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.Customers.ViewModels.CustomersViewModel>());
-        NavigateToVendorsCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.Vendors.ViewModels.VendorsViewModel>());
-        NavigateToSourcesCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.Sources.ViewModels.SourcesViewModel>());
-        NavigateToDestinationsCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.Destinations.ViewModels.DestinationsViewModel>());
-        NavigateToMaterialsCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.Materials.ViewModels.MaterialsViewModel>());
-        NavigateToFuelPumpsCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.FuelPumps.ViewModels.FuelPumpsViewModel>());
-        NavigateToHsdRatesCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.HsdRates.ViewModels.HsdRatesViewModel>());
-        NavigateToPaymentLocationsCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.PaymentLocations.ViewModels.PaymentLocationsViewModel>());
-        NavigateToVehicleOwnersCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.VehicleOwners.ViewModels.VehicleOwnersViewModel>());
+        NavigateToUsersCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Administration.Users.ViewModels.UsersViewModel>(), () => CanNavigateToUsers());
+        NavigateToRolesCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Administration.Roles.ViewModels.RolesViewModel>(), () => CanNavigateToRoles());
+        NavigateToPermissionMatrixCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Administration.Permissions.ViewModels.PermissionMatrixViewModel>(), () => CanNavigateToPermissionMatrix());
+        NavigateToFinancialYearsCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Administration.FinancialYears.ViewModels.FinancialYearsViewModel>(), () => CanNavigateToFinancialYears());
+        NavigateToCompaniesCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.Companies.ViewModels.CompaniesViewModel>(), () => CanNavigateToCompanies());
+        NavigateToCustomersCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.Customers.ViewModels.CustomersViewModel>(), () => CanNavigateToCustomers());
+        NavigateToVendorsCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.Vendors.ViewModels.VendorsViewModel>(), () => CanNavigateToVendors());
+        NavigateToSourcesCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.Sources.ViewModels.SourcesViewModel>(), () => CanNavigateToSources());
+        NavigateToDestinationsCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.Destinations.ViewModels.DestinationsViewModel>(), () => CanNavigateToDestinations());
+        NavigateToMaterialsCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.Materials.ViewModels.MaterialsViewModel>(), () => CanNavigateToMaterials());
+        NavigateToFuelPumpsCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.FuelPumps.ViewModels.FuelPumpsViewModel>(), () => CanNavigateToFuelPumps());
+        NavigateToHsdRatesCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.HsdRates.ViewModels.HsdRatesViewModel>(), () => CanNavigateToHsdRates());
+        NavigateToPaymentLocationsCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.PaymentLocations.ViewModels.PaymentLocationsViewModel>(), () => CanNavigateToPaymentLocations());
+        NavigateToVehicleOwnersCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.VehicleOwners.ViewModels.VehicleOwnersViewModel>(), () => CanNavigateToVehicleOwners());
         GoBackCommand = new AsyncRelayCommand(ExecuteGoBackAsync);
         navigationService.CurrentViewModelChanged += OnCurrentViewModelChanged;
         _currentViewModel = ResolveShellContent(navigationService.CurrentViewModel) ?? _placeholder;
@@ -154,6 +159,92 @@ public sealed class ShellViewModel : ObservableObject
     {
         CurrentViewModel = ResolveShellContent(vm) ?? _placeholder;
         OnPropertyChanged(nameof(CanGoBack));
+        
+        // Refresh command can execute states when navigation changes
+        ((AsyncRelayCommand)NavigateToUsersCommand).NotifyCanExecuteChanged();
+        ((AsyncRelayCommand)NavigateToRolesCommand).NotifyCanExecuteChanged();
+        ((AsyncRelayCommand)NavigateToPermissionMatrixCommand).NotifyCanExecuteChanged();
+        ((AsyncRelayCommand)NavigateToFinancialYearsCommand).NotifyCanExecuteChanged();
+        ((AsyncRelayCommand)NavigateToCompaniesCommand).NotifyCanExecuteChanged();
+        ((AsyncRelayCommand)NavigateToCustomersCommand).NotifyCanExecuteChanged();
+        ((AsyncRelayCommand)NavigateToVendorsCommand).NotifyCanExecuteChanged();
+        ((AsyncRelayCommand)NavigateToSourcesCommand).NotifyCanExecuteChanged();
+        ((AsyncRelayCommand)NavigateToDestinationsCommand).NotifyCanExecuteChanged();
+        ((AsyncRelayCommand)NavigateToMaterialsCommand).NotifyCanExecuteChanged();
+        ((AsyncRelayCommand)NavigateToFuelPumpsCommand).NotifyCanExecuteChanged();
+        ((AsyncRelayCommand)NavigateToHsdRatesCommand).NotifyCanExecuteChanged();
+        ((AsyncRelayCommand)NavigateToPaymentLocationsCommand).NotifyCanExecuteChanged();
+        ((AsyncRelayCommand)NavigateToVehicleOwnersCommand).NotifyCanExecuteChanged();
+    }
+
+    private bool CanNavigateToUsers()
+    {
+        return _permissionAuthorizationService.HasPermission(ApplicationPermission.ViewUsers);
+    }
+
+    private bool CanNavigateToRoles()
+    {
+        return _permissionAuthorizationService.HasPermission(ApplicationPermission.ViewRoles);
+    }
+
+    private bool CanNavigateToPermissionMatrix()
+    {
+        return _permissionAuthorizationService.HasPermission(ApplicationPermission.ViewPermissionMatrix);
+    }
+
+    private bool CanNavigateToFinancialYears()
+    {
+        return _permissionAuthorizationService.HasPermission(ApplicationPermission.ViewFinancialYears);
+    }
+
+    private bool CanNavigateToCompanies()
+    {
+        return _permissionAuthorizationService.HasPermission(ApplicationPermission.ViewCompanies);
+    }
+
+    private bool CanNavigateToCustomers()
+    {
+        return _permissionAuthorizationService.HasPermission(ApplicationPermission.ViewCustomers);
+    }
+
+    private bool CanNavigateToVendors()
+    {
+        return _permissionAuthorizationService.HasPermission(ApplicationPermission.ViewVendors);
+    }
+
+    private bool CanNavigateToSources()
+    {
+        return _permissionAuthorizationService.HasPermission(ApplicationPermission.ViewSources);
+    }
+
+    private bool CanNavigateToDestinations()
+    {
+        return _permissionAuthorizationService.HasPermission(ApplicationPermission.ViewDestinations);
+    }
+
+    private bool CanNavigateToMaterials()
+    {
+        return _permissionAuthorizationService.HasPermission(ApplicationPermission.ViewMaterials);
+    }
+
+    private bool CanNavigateToFuelPumps()
+    {
+        return _permissionAuthorizationService.HasPermission(ApplicationPermission.ViewFuelPumps);
+    }
+
+    private bool CanNavigateToHsdRates()
+    {
+        return _permissionAuthorizationService.HasPermission(ApplicationPermission.ViewHsdRates);
+    }
+
+    private bool CanNavigateToPaymentLocations()
+    {
+        return _permissionAuthorizationService.HasPermission(ApplicationPermission.ViewPaymentLocations);
+    }
+
+    private bool CanNavigateToVehicleOwners()
+    {
+        return _permissionAuthorizationService.HasPermission(ApplicationPermission.ViewVehicleOwners);
     }
 
     private async Task ExecuteLogoutAsync()
