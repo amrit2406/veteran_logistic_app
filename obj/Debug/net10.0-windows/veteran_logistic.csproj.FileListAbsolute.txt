@@ -259,3 +259,4 @@ D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\VehicleOwners\View
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\VehicleOwners\Views\EditVehicleOwnerView.g.cs
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\VehicleOwners\Views\VehicleOwnersView.g.cs
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\VehicleOwners\Views\VehicleOwnersView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Styles\PasswordBoxStyles.baml

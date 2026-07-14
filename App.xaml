@@ -23,6 +23,7 @@
                 <ResourceDictionary Source="/Styles/DataGridStyles.xaml" />
                 <ResourceDictionary Source="/Styles/MenuStyles.xaml" />
                 <ResourceDictionary Source="/Styles/StatusBarStyles.xaml" />
+                <ResourceDictionary Source="/Styles/PasswordBoxStyles.xaml" />
                 <ResourceDictionary Source="/Themes/LightTheme.xaml" />
                 <ResourceDictionary Source="/Resources/DataTemplates.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -30,9 +31,11 @@
             <!-- Converters -->
             <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
             <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
             <converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter" />
             <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
             <converters:NullToBooleanConverter x:Key="NullToBooleanConverter" />
+            <converters:PasswordVisibilityIconConverter x:Key="PasswordVisibilityIconConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

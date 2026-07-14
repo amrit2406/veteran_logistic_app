@@ -70,12 +70,14 @@
                                 Grid.Column="0"
                                 Height="{StaticResource StandardControlHeight}"
                                 PasswordChanged="OnPasswordChanged"
+                                Visibility="{Binding IsPasswordVisible, Converter={StaticResource InverseBooleanToVisibilityConverter}}"
                                 Margin="0,0,8,0" />
 
-                    <TextBox Grid.Column="0"
+                    <TextBox x:Name="PasswordTextBox"
+                             Grid.Column="0"
                              Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
                              Height="{StaticResource StandardControlHeight}"
-                             Visibility="Collapsed"
+                             Visibility="{Binding IsPasswordVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                              Margin="0,0,8,0" />
 
                     <Button Grid.Column="1"
@@ -84,7 +86,7 @@
                             Style="{StaticResource IconButtonStyle}"
                             Command="{Binding TogglePasswordVisibilityCommand}"
                             ToolTip="Toggle Password Visibility">
-                        <TextBlock Text="👁"
+                        <TextBlock Text="{Binding IsPasswordVisible, Converter={StaticResource PasswordVisibilityIconConverter}}"
                                    FontSize="16"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center" />

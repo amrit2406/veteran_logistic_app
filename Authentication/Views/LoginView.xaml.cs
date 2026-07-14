@@ -20,4 +20,9 @@ public partial class LoginView : UserControl
             viewModel.Password = passwordBox.Password;
         }
     }
+
+    private void OnPasswordTextBoxTextChanged(object sender, TextChangedEventArgs e)
+    {
+        // Password is already bound via TwoWay binding, no need to manually sync
+    }
 }
