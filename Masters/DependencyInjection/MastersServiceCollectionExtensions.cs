@@ -39,6 +39,10 @@ using veteran_logistic.Masters.VehicleOwners.Contracts;
 using veteran_logistic.Masters.VehicleOwners.Services;
 using veteran_logistic.Masters.VehicleOwners.Validators;
 using veteran_logistic.Masters.VehicleOwners.ViewModels;
+using veteran_logistic.Masters.Vehicles.Contracts;
+using veteran_logistic.Masters.Vehicles.Services;
+using veteran_logistic.Masters.Vehicles.Validators;
+using veteran_logistic.Masters.Vehicles.ViewModels;
 
 namespace veteran_logistic.Masters.DependencyInjection;
 
@@ -165,6 +169,17 @@ public static class MastersServiceCollectionExtensions
         services.AddTransient<VehicleOwnersViewModel>();
         services.AddTransient<AddVehicleOwnerViewModel>();
         services.AddTransient<EditVehicleOwnerViewModel>();
+
+        // Vehicle services
+        services.AddScoped<IVehicleQueryService, VehicleQueryService>();
+        services.AddScoped<IVehicleCommandService, VehicleCommandService>();
+        services.AddScoped<ICreateVehicleValidator, CreateVehicleValidator>();
+        services.AddScoped<IUpdateVehicleValidator, UpdateVehicleValidator>();
+        services.AddScoped<IUpdateVehicleStatusValidator, UpdateVehicleStatusValidator>();
+        services.AddScoped<IDeleteVehicleValidator, DeleteVehicleValidator>();
+        services.AddTransient<VehiclesViewModel>();
+        services.AddTransient<AddVehicleViewModel>();
+        services.AddTransient<EditVehicleViewModel>();
 
         return services;
     }

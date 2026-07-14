@@ -199,3 +199,24 @@ System.InvalidOperationException: A second operation was started on this context
    at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
    at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
    at veteran_logistic.Authorization.Providers.DatabasePermissionProvider.GetPermissions(String roleName) in D:\app\veteran_logistic_app\Authorization\Providers\DatabasePermissionProvider.cs:line 49
+[2026-07-14 16:45:51 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Vehicle 'od33s1234' created successfully with ID 1
+[2026-07-14 16:46:03 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Vehicle '1' status updated to false
+[2026-07-14 16:46:08 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Vehicle '1' status updated to true

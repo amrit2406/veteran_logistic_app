@@ -260,3 +260,9 @@ D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\VehicleOwners\View
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\VehicleOwners\Views\VehicleOwnersView.g.cs
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\VehicleOwners\Views\VehicleOwnersView.baml
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Styles\PasswordBoxStyles.baml
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Vehicles\Views\AddVehicleView.baml
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Vehicles\Views\EditVehicleView.baml
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Vehicles\Views\AddVehicleView.g.cs
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Vehicles\Views\EditVehicleView.g.cs
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Vehicles\Views\VehiclesView.g.cs
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Vehicles\Views\VehiclesView.baml

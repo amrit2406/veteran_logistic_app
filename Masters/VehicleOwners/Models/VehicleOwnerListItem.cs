@@ -41,6 +41,21 @@ public sealed class VehicleOwnerListItem
     public string CompanyName { get; set; } = string.Empty;
 
     /// <summary>
+    /// Gets the owner name (company name if available, otherwise first and last name).
+    /// </summary>
+    public string OwnerName
+    {
+        get
+        {
+            if (!string.IsNullOrWhiteSpace(CompanyName))
+            {
+                return CompanyName;
+            }
+            return $"{FirstName} {LastName}".Trim();
+        }
+    }
+
+    /// <summary>
     /// Gets or sets the mobile number.
     /// </summary>
     public string Mobile { get; set; } = string.Empty;

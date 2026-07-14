@@ -94,6 +94,11 @@ public class VeteranLogisticsDbContext : DbContext
     public DbSet<VehicleOwner> VehicleOwners => Set<VehicleOwner>();
 
     /// <summary>
+    /// Gets or sets the Vehicles DbSet.
+    /// </summary>
+    public DbSet<Vehicle> Vehicles => Set<Vehicle>();
+
+    /// <summary>
     /// Apply entity configurations discovered in this assembly.
     /// </summary>
     /// <param name="modelBuilder">Model builder.</param>

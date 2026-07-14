@@ -111,6 +111,11 @@ public sealed class ShellViewModel : ObservableObject
     public IAsyncRelayCommand NavigateToVehicleOwnersCommand { get; }
 
     /// <summary>
+    /// Command to navigate to the Vehicles screen.
+    /// </summary>
+    public IAsyncRelayCommand NavigateToVehiclesCommand { get; }
+
+    /// <summary>
     /// Command to navigate back to the previous screen.
     /// </summary>
     public IAsyncRelayCommand GoBackCommand { get; }
@@ -144,6 +149,7 @@ public sealed class ShellViewModel : ObservableObject
         NavigateToHsdRatesCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.HsdRates.ViewModels.HsdRatesViewModel>(), () => CanNavigateToHsdRates());
         NavigateToPaymentLocationsCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.PaymentLocations.ViewModels.PaymentLocationsViewModel>(), () => CanNavigateToPaymentLocations());
         NavigateToVehicleOwnersCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.VehicleOwners.ViewModels.VehicleOwnersViewModel>(), () => CanNavigateToVehicleOwners());
+        NavigateToVehiclesCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.Vehicles.ViewModels.VehiclesViewModel>(), () => CanNavigateToVehicles());
         GoBackCommand = new AsyncRelayCommand(ExecuteGoBackAsync);
         navigationService.CurrentViewModelChanged += OnCurrentViewModelChanged;
         _currentViewModel = ResolveShellContent(navigationService.CurrentViewModel) ?? _placeholder;
@@ -175,6 +181,7 @@ public sealed class ShellViewModel : ObservableObject
         ((AsyncRelayCommand)NavigateToHsdRatesCommand).NotifyCanExecuteChanged();
         ((AsyncRelayCommand)NavigateToPaymentLocationsCommand).NotifyCanExecuteChanged();
         ((AsyncRelayCommand)NavigateToVehicleOwnersCommand).NotifyCanExecuteChanged();
+        ((AsyncRelayCommand)NavigateToVehiclesCommand).NotifyCanExecuteChanged();
     }
 
     private bool CanNavigateToUsers()
@@ -245,6 +252,11 @@ public sealed class ShellViewModel : ObservableObject
     private bool CanNavigateToVehicleOwners()
     {
         return _permissionAuthorizationService.HasPermission(ApplicationPermission.ViewVehicleOwners);
+    }
+
+    private bool CanNavigateToVehicles()
+    {
+        return _permissionAuthorizationService.HasPermission(ApplicationPermission.ViewVehicles);
     }
 
     private async Task ExecuteLogoutAsync()

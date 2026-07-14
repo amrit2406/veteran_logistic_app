@@ -1632,7 +1632,6 @@ This document records the implementation work completed across the repository an
 * Full CRUD operations: Create, Read (list with search), Update, Update Status, Delete (soft delete)
 * Owner Code must be auto-generated and read-only in UI (not entered manually)
 * PAN Type must be implemented as a dropdown with specified options
-
 ### Database Layer
 * **Entity**: `VeteranLogistics.Data/Entities/Administration/VehicleOwner.cs`
   - All business fields with appropriate max lengths
@@ -1660,7 +1659,6 @@ This document records the implementation work completed across the repository an
 * **DbContext**: `VeteranLogistics.Data/Context/VeteranLogisticsDbContext.cs`
   - DbSet<VehicleOwner> VehicleOwners added
 * **Migration**: `AddVehicleOwnerEntity` created successfully
-
 ### Query Layer
 * **Interface**: `Masters/VehicleOwners/Contracts/IVehicleOwnerQueryService.cs`
   - GetAllVehicleOwnersAsync: Returns all vehicle owners as VehicleOwnerListItem
@@ -1675,7 +1673,6 @@ This document records the implementation work completed across the repository an
 * **Models**:
   - `Masters/VehicleOwners/Models/VehicleOwnerListItem.cs`: DTO for listing (Id, OwnerCode, PANType, PANNumber, FirstName, LastName, CompanyName, Mobile, City, State, IsActive)
   - `Masters/VehicleOwners/Models/VehicleOwnerModel.cs`: DTO for editing (all business fields)
-
 ### Command Layer
 * **Request Models**:
   - `Masters/VehicleOwners/Models/CreateVehicleOwnerRequest.cs`: All business fields except OwnerCode (auto-generated)
@@ -1709,7 +1706,6 @@ This document records the implementation work completed across the repository an
     - Result pattern for operation outcomes
     - ILogger for logging
     - Async/await with CancellationToken and ConfigureAwait(false)
-
 ### UI Layer
 * **ViewModels**:
   - `Masters/VehicleOwners/ViewModels/VehicleOwnersViewModel.cs`: List screen with search (debounced 300ms), Add/Edit/Activate/Deactivate/Delete/Refresh commands, selected item tracking, busy state management, validation error display
@@ -1722,7 +1718,6 @@ This document records the implementation work completed across the repository an
   - `Masters/VehicleOwners/Views/AddVehicleOwnerView.xaml.cs`: Code-behind with InitializeComponent
   - `Masters/VehicleOwners/Views/EditVehicleOwnerView.xaml`: Form with read-only TextBox for OwnerCode, ComboBox for PAN Type (bound to PANTypes), TextBoxes for all fields, CheckBox for IsActive, save/cancel buttons, validation display, loading indicator
   - `Masters/VehicleOwners/Views/EditVehicleOwnerView.xaml.cs`: Code-behind with InitializeComponent
-
 ### Infrastructure Updates
 * **DI Registration**: `Masters/DependencyInjection/MastersServiceCollectionExtensions.cs` updated with Vehicle Owner services:
   - IVehicleOwnerQueryService, VehicleOwnerQueryService (Scoped)
@@ -1739,7 +1734,6 @@ This document records the implementation work completed across the repository an
 * **Navigation**: 
   - `Desktop/Shell/ShellView.xaml` updated with Vehicle Owners menu item under Masters
   - `Desktop/Shell/ShellViewModel.cs` updated with NavigateToVehicleOwnersCommand
-
 ### Explicitly Excluded
 * New architectural patterns or redesigns (strictly following Company module patterns)
 * Repository pattern, MediatR, or generic frameworks
@@ -1756,6 +1750,123 @@ This document records the implementation work completed across the repository an
 
 ### Validation Status
 Build verified successfully with 0 errors, 4 unrelated package warnings (Serilog version mismatches). All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer with ValidationResult.AddError pattern, Result pattern, Dependency injection with proper lifetimes, Navigation with INavigationAware, Async/await with CancellationToken and ConfigureAwait(false), Logging with ILogger, Busy state management. Vehicle Owner module is architecturally identical to the Company module (reference Master) and is production-ready. Full implementation with all specified business fields, auto-generated Owner Code, unique PAN Number constraint, PAN Type dropdown with fixed options, and comprehensive CRUD operations. The module is ready for Phase 3.11A — Architecture Review & Freeze and will serve as the reference module for all Vehicle-related phases.
+
+## Phase 3.12 - Vehicle Management (COMPLETED)
+
+### Business Requirements
+* Full Master module for managing vehicles with relationship to Vehicle Owners
+* Foreign key relationship to Vehicle Owners (VehicleOwnerId)
+* Unique Vehicle Number constraint (max 30 characters)
+* Vehicle Type dropdown with fixed options: 10 Wheels, 12 Wheels, 14 Wheels, 16 Wheels, 18 Wheels, 20 Wheels, 22 Wheels
+* Business fields: VehicleOwnerId, VehicleNumber, VehicleType
+* Standard audit fields: IsActive, CreatedOn, CreatedBy, ModifiedOn, ModifiedBy, IsDeleted, DeletedOn
+* Full CRUD operations: Create, Read (list with search), Update, Update Status, Delete (soft delete)
+* Vehicle Type must be implemented as a dropdown with specified options
+* Vehicle Number must be unique across all vehicles
+### Database Layer
+* **Entity**: `VeteranLogistics.Data/Entities/Administration/Vehicle.cs`
+  - VehicleOwnerId (int, required, FK to VehicleOwners)
+  - VehicleNumber (string, 30, required, unique)
+  - VehicleType (string, 50, required)
+  - Standard audit fields (IsActive, IsDeleted, DeletedOn, CreatedOn, CreatedBy, ModifiedOn, ModifiedBy)
+* **Configuration**: `VeteranLogistics.Data/Configurations/VehicleConfiguration.cs`
+  - Fluent API configuration for all properties
+  - Foreign key relationship to VehicleOwners
+  - Unique index on VehicleNumber
+  - Global query filter for soft deletion (!IsDeleted)
+  - Max length constraints for all fields
+* **DbContext**: `VeteranLogistics.Data/Context/VeteranLogisticsDbContext.cs`
+  - DbSet<Vehicle> Vehicles added
+* **Migration**: `AddVehicleEntity` created successfully
+### Query Layer
+* **Interface**: `Masters/Vehicles/Contracts/IVehicleQueryService.cs`
+  - GetAllVehiclesAsync: Returns all vehicles as VehicleListItem with owner details
+  - SearchVehiclesAsync: Multi-field search (Vehicle Number, Vehicle Type) using LIKE pattern
+  - GetVehicleForEditAsync: Returns full VehicleModel for editing by ID
+* **Service**: `Masters/Vehicles/Services/VehicleQueryService.cs`
+  - Uses AsNoTracking for read operations
+  - Uses EF.Functions.Like for search
+  - Projection to DTOs (VehicleListItem, VehicleModel)
+  - CancellationToken and ConfigureAwait(false)
+  - ILogger for logging
+* **Models**:
+  - `Masters/Vehicles/Models/VehicleListItem.cs`: DTO for listing (Id, VehicleNumber, VehicleType, OwnerCode, OwnerName, IsActive)
+  - `Masters/Vehicles/Models/VehicleModel.cs`: DTO for editing (VehicleOwnerId, VehicleNumber, VehicleType, IsActive)
+### Command Layer
+* **Request Models**:
+  - `Masters/Vehicles/Models/CreateVehicleRequest.cs`: VehicleOwnerId, VehicleNumber, VehicleType, IsActive
+  - `Masters/Vehicles/Models/UpdateVehicleRequest.cs`: VehicleId, VehicleOwnerId, VehicleNumber, VehicleType, IsActive
+  - `Masters/Vehicles/Models/UpdateVehicleStatusRequest.cs`: VehicleId and IsActive
+  - `Masters/Vehicles/Models/DeleteVehicleRequest.cs`: VehicleId
+* **Result Models**:
+  - `Masters/Vehicles/Models/CreateVehicleResult.cs`: IsSuccess, VehicleId, ErrorMessage with static Success/Failure methods
+  - `Masters/Vehicles/Models/UpdateVehicleResult.cs`: IsSuccess, ErrorMessage with static Success/Failure methods
+  - `Masters/Vehicles/Models/UpdateVehicleStatusResult.cs`: IsSuccess, ErrorMessage with static Success/Failure methods
+  - `Masters/Vehicles/Models/DeleteVehicleResult.cs`: IsSuccess, ErrorMessage with static Success/Failure methods
+* **Validator Interfaces**:
+  - `Masters/Vehicles/Contracts/ICreateVehicleValidator.cs`: Validates create requests
+  - `Masters/Vehicles/Contracts/IUpdateVehicleValidator.cs`: Validates update requests
+  - `Masters/Vehicles/Contracts/IUpdateVehicleStatusValidator.cs`: Validates status updates with current status check
+  - `Masters/Vehicles/Contracts/IDeleteVehicleValidator.cs`: Validates delete requests
+* **Validators**:
+  - `Masters/Vehicles/Validators/CreateVehicleValidator.cs`: Validates VehicleOwnerId > 0, VehicleNumber required and max 30, VehicleType from fixed list
+  - `Masters/Vehicles/Validators/UpdateVehicleValidator.cs`: Validates VehicleId > 0, VehicleOwnerId > 0, VehicleNumber required and max 30, VehicleType from fixed list
+  - `Masters/Vehicles/Validators/UpdateVehicleStatusValidator.cs`: Validates VehicleId > 0, meaningful status change
+  - `Masters/Vehicles/Validators/DeleteVehicleValidator.cs`: Validates VehicleId > 0
+  - All validators use ValidationResult.AddError pattern with property names
+* **Command Service**:
+  - `Masters/Vehicles/Contracts/IVehicleCommandService.cs`: Interface for Create, Update, UpdateStatus, Delete operations
+  - `Masters/Vehicles/Services/VehicleCommandService.cs`: Implementation with:
+    - Validation before operations
+    - Duplicate Vehicle Number check (excluding current record on update)
+    - Vehicle Owner existence check
+    - Audit field population (CreatedOn, CreatedBy, ModifiedOn, ModifiedBy, IsDeleted, DeletedOn)
+    - Single SaveChangesAsync call
+    - Result pattern for operation outcomes
+    - ILogger for logging
+    - Async/await with CancellationToken and ConfigureAwait(false)
+### UI Layer
+* **ViewModels**:
+  - `Masters/Vehicles/ViewModels/VehiclesViewModel.cs`: List screen with search (debounced 300ms), Add/Edit/Activate/Deactivate/Delete/Refresh commands, selected item tracking, busy state management, validation error display
+  - `Masters/Vehicles/ViewModels/AddVehicleViewModel.cs`: Add screen with VehicleOwners ObservableCollection (dropdown), VehicleTypes ObservableCollection (dropdown), all business fields, save/cancel commands, validation, busy state management
+  - `Masters/Vehicles/ViewModels/EditVehicleViewModel.cs`: Edit screen implementing INavigationAware, loads Vehicle by ID, VehicleOwners ObservableCollection (dropdown), VehicleTypes ObservableCollection (dropdown), all business fields, save/cancel commands, validation, busy state management
+* **Views**:
+  - `Masters/Vehicles/Views/VehiclesView.xaml`: List screen with search textbox, all action buttons (Add Vehicle, Edit Vehicle, Activate, Deactivate, Delete Vehicle, Refresh), DataGrid with columns: Vehicle Number, Vehicle Type, Owner Code, Owner Name, Active, loading/error indicators
+  - `Masters/Vehicles/Views/VehiclesView.xaml.cs`: Code-behind with InitializeComponent
+  - `Masters/Vehicles/Views/AddVehicleView.xaml`: Form with ComboBox for Vehicle Owner (bound to VehicleOwners), ComboBox for Vehicle Type (bound to VehicleTypes), TextBoxes for Vehicle Number, CheckBox for IsActive, save/cancel buttons, validation display, loading indicator
+  - `Masters/Vehicles/Views/AddVehicleView.xaml.cs`: Code-behind with InitializeComponent
+  - `Masters/Vehicles/Views/EditVehicleView.xaml`: Form with ComboBox for Vehicle Owner (bound to VehicleOwners), ComboBox for Vehicle Type (bound to VehicleTypes), TextBoxes for Vehicle Number, CheckBox for IsActive, save/cancel buttons, validation display, loading indicator
+  - `Masters/Vehicles/Views/EditVehicleView.xaml.cs`: Code-behind with InitializeComponent
+### Infrastructure Updates
+* **DI Registration**: `Masters/DependencyInjection/MastersServiceCollectionExtensions.cs` updated with Vehicle services:
+  - IVehicleQueryService, VehicleQueryService (Scoped)
+  - IVehicleCommandService, VehicleCommandService (Scoped)
+  - ICreateVehicleValidator, CreateVehicleValidator (Scoped)
+  - IUpdateVehicleValidator, UpdateVehicleValidator (Scoped)
+  - IUpdateVehicleStatusValidator, UpdateVehicleStatusValidator (Scoped)
+  - IDeleteVehicleValidator, DeleteVehicleValidator (Scoped)
+  - VehiclesViewModel, AddVehicleViewModel, EditVehicleViewModel (Transient)
+* **DataTemplates**: `Resources/DataTemplates.xaml` updated with Vehicle ViewModel/View mappings:
+  - VehiclesViewModel → VehiclesView
+  - AddVehicleViewModel → AddVehicleView
+  - EditVehicleViewModel → EditVehicleView
+* **Navigation**: 
+  - `Desktop/Shell/ShellView.xaml` updated with Vehicles menu item under Masters
+  - `Desktop/Shell/ShellViewModel.cs` updated with NavigateToVehiclesCommand
+### Explicitly Excluded
+* New architectural patterns or redesigns (strictly following VehicleOwner module patterns)
+* Repository pattern, MediatR, or generic frameworks
+* Business logic in ViewModels (only in services)
+* DbContext access in ViewModels
+* Vehicle Type as free-text field (dropdown with fixed options only)
+* Additional business fields beyond specified requirements
+* Vehicle hierarchy or categorization
+* Advanced search with multiple filter criteria (simple LIKE pattern implemented)
+* Export functionality
+* Bulk operations
+
+### Validation Status
+Build verified successfully with 0 errors, 4 unrelated package warnings (Serilog version mismatches). All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer with ValidationResult.AddError pattern, Result pattern, Dependency injection with proper lifetimes, Navigation with INavigationAware, Async/await with CancellationToken and ConfigureAwait(false), Logging with ILogger, Busy state management. Vehicle module is architecturally identical to the VehicleOwner module (reference Master) and is production-ready. Full implementation with foreign key relationship to Vehicle Owners, unique Vehicle Number constraint, Vehicle Type dropdown with fixed options, and comprehensive CRUD operations. The module is ready for production use and serves as a complete Vehicle Management solution.
 
 ## 3. Architecture & Design
 

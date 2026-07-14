@@ -878,6 +878,62 @@ namespace veteran_logistic.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.Vehicle", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("VehicleNumber")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<int>("VehicleOwnerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("VehicleType")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VehicleNumber")
+                        .IsUnique();
+
+                    b.HasIndex("VehicleOwnerId");
+
+                    b.ToTable("Vehicles");
+                });
+
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.VehicleOwner", b =>
                 {
                     b.Property<int>("Id")
@@ -1127,6 +1183,17 @@ namespace veteran_logistic.Migrations
                     b.Navigation("Permission");
 
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.Vehicle", b =>
+                {
+                    b.HasOne("VeteranLogistics.Data.Entities.Administration.VehicleOwner", "VehicleOwner")
+                        .WithMany()
+                        .HasForeignKey("VehicleOwnerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("VehicleOwner");
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.Permission", b =>
