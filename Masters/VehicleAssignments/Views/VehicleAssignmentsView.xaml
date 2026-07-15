@@ -10,7 +10,7 @@
         <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
         <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </UserControl.Resources>
-    <Grid Background="{DynamicResource BackgroundBrush}">
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -21,10 +21,10 @@
 
         <!-- Header -->
         <Border Grid.Row="0"
-                Background="{DynamicResource SurfaceBrush}"
-                BorderBrush="{DynamicResource BorderBrush}"
-                BorderThickness="{StaticResource StandardBorderThickness}"
-                Padding="{StaticResource Medium}">
+                Background="LightGray"
+                BorderBrush="Gray"
+                BorderThickness="1"
+                Padding="10">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -33,123 +33,86 @@
 
                 <TextBlock Grid.Column="0"
                            Text="Vehicle Assignments"
-                           Style="{StaticResource HeadingTextBlockStyle}"
+                           FontSize="16"
+                           FontWeight="Bold"
                            VerticalAlignment="Center" />
 
                 <StackPanel Grid.Column="1"
                             Orientation="Horizontal"
                             HorizontalAlignment="Right">
-                    <!-- Back Button -->
-                    <Button Height="{StaticResource StandardControlHeight}"
+                    <Button Content="Back"
                             Command="{Binding GoBackCommand}"
-                            IsEnabled="{Binding CanGoBack}"
-                            Style="{StaticResource IconButtonStyle}"
-                            ToolTip="Go Back"
-                            VerticalAlignment="Center"
-                            Margin="{StaticResource Small}">
-                        <Viewbox Width="16" Height="16">
-                            <Path Data="{StaticResource BackIconGeometry}"
-                                  Fill="{DynamicResource TextPrimaryBrush}" />
-                        </Viewbox>
-                    </Button>
+                            Width="80"
+                            Height="30"
+                            Margin="5" />
 
-                    <!-- Search -->
-                    <TextBox Height="{StaticResource StandardControlHeight}"
+                    <TextBox Width="150"
+                             Height="30"
                              Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                             Margin="{StaticResource Small}"
-                             VerticalAlignment="Center">
-                        <TextBox.Style>
-                            <Style BasedOn="{StaticResource BaseTextBoxStyle}" TargetType="TextBox">
-                                <Setter Property="Padding" Value="{StaticResource Small}" />
-                            </Style>
-                        </TextBox.Style>
-                    </TextBox>
+                             Margin="5"
+                             VerticalAlignment="Center" />
 
-
-                    <!-- Release Vehicle Button -->
-                    <Button Height="{StaticResource StandardControlHeight}"
+                    <Button Content="Release"
                             Command="{Binding ReleaseVehicleCommand}"
-                            Style="{StaticResource IconButtonStyle}"
-                            ToolTip="Release Vehicle"
-                            VerticalAlignment="Center"
-                            Margin="{StaticResource Small}">
-                        <TextBlock Text="Release Vehicle"
-                                   Style="{StaticResource CaptionTextBlockStyle}"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center" />
-                    </Button>
+                            Width="80"
+                            Height="30"
+                            Margin="5" />
 
-                    <!-- Delete Assignment Button -->
-                    <Button Height="{StaticResource StandardControlHeight}"
+                    <Button Content="Delete"
                             Command="{Binding DeleteAssignmentCommand}"
-                            Style="{StaticResource IconButtonStyle}"
-                            ToolTip="Delete Assignment"
-                            VerticalAlignment="Center"
-                            Margin="{StaticResource Small}">
-                        <TextBlock Text="Delete Assignment"
-                                   Style="{StaticResource CaptionTextBlockStyle}"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center" />
-                    </Button>
+                            Width="80"
+                            Height="30"
+                            Margin="5" />
 
-                    <!-- Refresh Button -->
-                    <Button Height="{StaticResource StandardControlHeight}"
+                    <Button Content="Refresh"
                             Command="{Binding RefreshCommand}"
-                            Style="{StaticResource IconButtonStyle}"
-                            ToolTip="Refresh"
-                            VerticalAlignment="Center"
-                            Margin="{StaticResource Small}">
-                        <TextBlock Text="Refresh"
-                                   Style="{StaticResource CaptionTextBlockStyle}"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center" />
-                    </Button>
+                            Width="80"
+                            Height="30"
+                            Margin="5" />
                 </StackPanel>
             </Grid>
         </Border>
 
         <!-- Loading Indicator -->
         <Border Grid.Row="1"
-                Background="{DynamicResource SurfaceBrush}"
-                BorderBrush="{DynamicResource BorderBrush}"
-                BorderThickness="{StaticResource StandardBorderThickness}"
-                Padding="{StaticResource Medium}"
-                Visibility="Collapsed">
+                Background="LightGray"
+                BorderBrush="Gray"
+                BorderThickness="1"
+                Padding="10"
+                Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center">
-                <ProgressBar Height="{StaticResource StandardControlHeight}"
+                <ProgressBar Height="20"
+                           Width="200"
                            IsIndeterminate="True"
-                           Foreground="{DynamicResource PrimaryBrush}"
-                           Margin="{StaticResource Small}" />
+                           Margin="10" />
                 <TextBlock Text="{Binding BusyMessage}"
-                           Style="{StaticResource CaptionTextBlockStyle}"
                            VerticalAlignment="Center" />
             </StackPanel>
         </Border>
 
         <!-- Validation Error -->
         <Border Grid.Row="2"
-                Background="{DynamicResource ErrorBrush}"
-                BorderBrush="{DynamicResource BorderBrush}"
-                BorderThickness="{StaticResource StandardBorderThickness}"
-                Padding="{StaticResource Medium}"
-                Visibility="Collapsed"
-                Margin="{StaticResource Small}">
+                Background="LightPink"
+                BorderBrush="Red"
+                BorderThickness="1"
+                Padding="10"
+                Visibility="{Binding ValidationError, Converter={StaticResource StringToVisibilityConverter}}"
+                Margin="5">
             <TextBlock Text="{Binding ValidationError}"
-                       Style="{StaticResource CaptionTextBlockStyle}"
-                       Foreground="{DynamicResource OnErrorBrush}"
-                       TextWrapping="Wrap" />
+                       TextWrapping="Wrap"
+                       Foreground="Red" />
         </Border>
 
         <!-- Assignment Details -->
         <Border Grid.Row="3"
-                Background="{DynamicResource SurfaceBrush}"
-                BorderBrush="{DynamicResource BorderBrush}"
-                BorderThickness="{StaticResource StandardBorderThickness}"
-                CornerRadius="{StaticResource StandardCornerRadius}"
-                Padding="{StaticResource Medium}"
-                Margin="{StaticResource Small}"
-                Visibility="Collapsed">
+                Background="LightBlue"
+                BorderBrush="Gray"
+                BorderThickness="1"
+                CornerRadius="5"
+                Padding="10"
+                Margin="5"
+                Visibility="{Binding SelectedAssignment, Converter={StaticResource NullToVisibilityConverter}}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -158,53 +121,73 @@
 
                 <!-- Vehicle Details -->
                 <Border Grid.Column="0"
-                        BorderBrush="{DynamicResource BorderBrush}"
-                        BorderThickness="{StaticResource StandardBorderThickness}"
-                        CornerRadius="{StaticResource StandardCornerRadius}"
-                        Padding="{StaticResource Medium}"
-                        Margin="{StaticResource Small}">
+                        BorderBrush="Gray"
+                        BorderThickness="1"
+                        CornerRadius="5"
+                        Padding="10"
+                        Margin="5">
                     <StackPanel>
                         <TextBlock Text="Vehicle Details"
-                                   Style="{StaticResource HeadingTextBlockStyle}"
-                                   Margin="{StaticResource Small}" />
+                                   FontWeight="Bold"
+                                   Margin="5" />
                         <TextBlock Text="Vehicle Number:"
-                                   Style="{StaticResource BodyTextBlockStyle}"
-                                   Margin="{StaticResource ExtraSmall}" />
+                                   Margin="5" />
                         <TextBlock Text="{Binding SelectedAssignment.VehicleNumber}"
-                                   Style="{StaticResource CaptionTextBlockStyle}"
-                                   Margin="{StaticResource ExtraSmall}" />
+                                   Margin="5,0,5,10" />
                         <TextBlock Text="Vehicle Type:"
-                                   Style="{StaticResource BodyTextBlockStyle}"
-                                   Margin="{StaticResource ExtraSmall}" />
+                                   Margin="5" />
                         <TextBlock Text="{Binding SelectedAssignment.VehicleType}"
-                                   Style="{StaticResource CaptionTextBlockStyle}"
-                                   Margin="{StaticResource ExtraSmall}" />
+                                   Margin="5,0,5,10" />
+                        <TextBlock Text="Assign Date:"
+                                   Margin="5" />
+                        <TextBlock Text="{Binding SelectedAssignment.AssignDate, StringFormat='{}{0:dd-MM-yyyy}'}"
+                                   Margin="5,0,5,10" />
+                        <TextBlock Text="Release Date:"
+                                   Margin="5" />
+                        <TextBlock Text="{Binding SelectedAssignment.ReleaseDate, StringFormat='{}{0:dd-MM-yyyy}'}"
+                                   Margin="5,0,5,10" />
                     </StackPanel>
                 </Border>
 
                 <!-- Owner Details -->
                 <Border Grid.Column="1"
-                        BorderBrush="{DynamicResource BorderBrush}"
-                        BorderThickness="{StaticResource StandardBorderThickness}"
-                        CornerRadius="{StaticResource StandardCornerRadius}"
-                        Padding="{StaticResource Medium}"
-                        Margin="{StaticResource Small}">
+                        BorderBrush="Gray"
+                        BorderThickness="1"
+                        CornerRadius="5"
+                        Padding="10"
+                        Margin="5">
                     <StackPanel>
                         <TextBlock Text="Owner Details"
-                                   Style="{StaticResource HeadingTextBlockStyle}"
-                                   Margin="{StaticResource Small}" />
-                        <TextBlock Text="Owner Name:"
-                                   Style="{StaticResource BodyTextBlockStyle}"
-                                   Margin="{StaticResource ExtraSmall}" />
-                        <TextBlock Text="{Binding SelectedAssignment.OwnerName}"
-                                   Style="{StaticResource CaptionTextBlockStyle}"
-                                   Margin="{StaticResource ExtraSmall}" />
+                                   FontWeight="Bold"
+                                   Margin="5" />
+                        <TextBlock Text="PAN Type:"
+                                   Margin="5" />
+                        <TextBlock Text="{Binding SelectedAssignment.PANType}"
+                                   Margin="5,0,5,10" />
                         <TextBlock Text="PAN Number:"
-                                   Style="{StaticResource BodyTextBlockStyle}"
-                                   Margin="{StaticResource ExtraSmall}" />
+                                   Margin="5" />
                         <TextBlock Text="{Binding SelectedAssignment.PANNumber}"
-                                   Style="{StaticResource CaptionTextBlockStyle}"
-                                   Margin="{StaticResource ExtraSmall}" />
+                                   Margin="5,0,5,10" />
+                        <TextBlock Text="First Name:"
+                                   Margin="5" />
+                        <TextBlock Text="{Binding SelectedAssignment.FirstName}"
+                                   Margin="5,0,5,10" />
+                        <TextBlock Text="Middle Name:"
+                                   Margin="5" />
+                        <TextBlock Text="{Binding SelectedAssignment.MiddleName}"
+                                   Margin="5,0,5,10" />
+                        <TextBlock Text="Last Name:"
+                                   Margin="5" />
+                        <TextBlock Text="{Binding SelectedAssignment.LastName}"
+                                   Margin="5,0,5,10" />
+                        <TextBlock Text="Address:"
+                                   Margin="5" />
+                        <TextBlock Text="{Binding SelectedAssignment.Address}"
+                                   Margin="5,0,5,10" />
+                        <TextBlock Text="Mobile:"
+                                   Margin="5" />
+                        <TextBlock Text="{Binding SelectedAssignment.Mobile}"
+                                   Margin="5,0,5,10" />
                     </StackPanel>
                 </Border>
             </Grid>
@@ -222,10 +205,11 @@
                   SelectionMode="Single"
                   GridLinesVisibility="Horizontal"
                   HeadersVisibility="Column"
-                  Background="{DynamicResource BackgroundBrush}"
-                  BorderThickness="0"
-                  RowBackground="{DynamicResource SurfaceBrush}"
-                  AlternatingRowBackground="{DynamicResource SurfaceBrush}">
+                  Background="White"
+                  BorderThickness="1"
+                  BorderBrush="Gray"
+                  RowBackground="White"
+                  AlternatingRowBackground="LightGray">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Vehicle Number"
                                     Binding="{Binding VehicleNumber}"

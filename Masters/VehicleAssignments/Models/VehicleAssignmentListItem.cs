@@ -36,9 +36,39 @@ public sealed class VehicleAssignmentListItem
     public string OwnerName { get; set; } = string.Empty;
 
     /// <summary>
+    /// Gets or sets the owner PAN type.
+    /// </summary>
+    public string PANType { get; set; } = string.Empty;
+
+    /// <summary>
     /// Gets or sets the owner PAN number.
     /// </summary>
     public string PANNumber { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets or sets the owner first name.
+    /// </summary>
+    public string FirstName { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets or sets the owner middle name.
+    /// </summary>
+    public string MiddleName { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets or sets the owner last name.
+    /// </summary>
+    public string LastName { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets or sets the owner address.
+    /// </summary>
+    public string Address { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets or sets the owner mobile number.
+    /// </summary>
+    public string Mobile { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the assign date.

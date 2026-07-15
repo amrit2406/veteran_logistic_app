@@ -89,12 +89,21 @@ public sealed class VehicleAssignmentQueryService : IVehicleAssignmentQueryServi
         return query.Select(va => new VehicleAssignmentListItem
         {
             Id = va.Id,
+            VehicleId = va.VehicleId,
+            VehicleOwnerId = va.VehicleOwnerId,
             VehicleNumber = va.Vehicle.VehicleNumber,
             VehicleType = va.Vehicle.VehicleType,
             OwnerName = $"{va.VehicleOwner.FirstName} {va.VehicleOwner.MiddleName} {va.VehicleOwner.LastName}".Trim(),
+            PANType = va.VehicleOwner.PANType,
             PANNumber = va.VehicleOwner.PANNumber,
+            FirstName = va.VehicleOwner.FirstName,
+            MiddleName = va.VehicleOwner.MiddleName,
+            LastName = va.VehicleOwner.LastName,
+            Address = va.VehicleOwner.Address,
+            Mobile = va.VehicleOwner.Mobile,
             AssignDate = va.AssignDate,
             ReleaseDate = va.ReleaseDate,
+            IsActive = va.IsActive,
             Status = va.ReleaseDate == null ? "Active" : "Released"
         });
     }
