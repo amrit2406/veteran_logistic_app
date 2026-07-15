@@ -1,0 +1,1696 @@
+[2026-07-15 12:44:00 FTL]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An unhandled exception occurred on the UI thread.
+System.InvalidOperationException: A TwoWay or OneWayToSource binding cannot work on the read-only property 'VehicleType' of type 'veteran_logistic.Masters.VehicleAssignments.ViewModels.AddVehicleAssignmentViewModel'.
+   at MS.Internal.Data.PropertyPathWorker.CheckReadOnly(Object item, Object info)
+   at MS.Internal.Data.PropertyPathWorker.ReplaceItem(Int32 k, Object newO, Object parent)
+   at System.Windows.Data.BindingExpression.Activate(Object item)
+   at System.Windows.Data.BindingExpression.AttachToContext(AttachAttempt attempt)
+   at System.Windows.Data.BindingExpression.MS.Internal.Data.IDataBindEngineClient.AttachToContext(Boolean lastChance)
+   at MS.Internal.Data.DataBindEngine.Task.Run(Boolean lastChance)
+   at MS.Internal.Data.DataBindEngine.Run(Object arg)
+   at MS.Internal.Data.DataBindEngine.OnLayoutUpdated(Object sender, EventArgs e)
+   at System.Windows.ContextLayoutManager.fireLayoutUpdateEvent()
+   at System.Windows.ContextLayoutManager.UpdateLayout()
+   at System.Windows.ContextLayoutManager.UpdateLayoutCallback(Object arg)
+   at System.Windows.Media.MediaContext.FireInvokeOnRenderCallbacks()
+   at System.Windows.Media.MediaContext.RenderMessageHandlerCore(Object resizedCompositionTarget)
+   at System.Windows.Media.MediaContext.RenderMessageHandler(Object resizedCompositionTarget)
+   at System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   at System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+[2026-07-15 12:44:00 FTL]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An unhandled exception occurred on the UI thread.
+System.InvalidOperationException: A TwoWay or OneWayToSource binding cannot work on the read-only property 'OwnerPANType' of type 'veteran_logistic.Masters.VehicleAssignments.ViewModels.AddVehicleAssignmentViewModel'.
+   at MS.Internal.Data.PropertyPathWorker.CheckReadOnly(Object item, Object info)
+   at MS.Internal.Data.PropertyPathWorker.ReplaceItem(Int32 k, Object newO, Object parent)
+   at System.Windows.Data.BindingExpression.Activate(Object item)
+   at System.Windows.Data.BindingExpression.AttachToContext(AttachAttempt attempt)
+   at System.Windows.Data.BindingExpression.MS.Internal.Data.IDataBindEngineClient.AttachToContext(Boolean lastChance)
+   at MS.Internal.Data.DataBindEngine.Task.Run(Boolean lastChance)
+   at MS.Internal.Data.DataBindEngine.Run(Object arg)
+   at System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   at System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+[2026-07-15 12:44:00 FTL]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An unhandled exception occurred on the UI thread.
+System.InvalidOperationException: A TwoWay or OneWayToSource binding cannot work on the read-only property 'OwnerPANNumber' of type 'veteran_logistic.Masters.VehicleAssignments.ViewModels.AddVehicleAssignmentViewModel'.
+   at MS.Internal.Data.PropertyPathWorker.CheckReadOnly(Object item, Object info)
+   at MS.Internal.Data.PropertyPathWorker.ReplaceItem(Int32 k, Object newO, Object parent)
+   at System.Windows.Data.BindingExpression.Activate(Object item)
+   at System.Windows.Data.BindingExpression.AttachToContext(AttachAttempt attempt)
+   at System.Windows.Data.BindingExpression.MS.Internal.Data.IDataBindEngineClient.AttachToContext(Boolean lastChance)
+   at MS.Internal.Data.DataBindEngine.Task.Run(Boolean lastChance)
+   at MS.Internal.Data.DataBindEngine.Run(Object arg)
+   at System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   at System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+[2026-07-15 12:44:14 FTL]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An unhandled exception occurred on the UI thread.
+System.InvalidOperationException: A TwoWay or OneWayToSource binding cannot work on the read-only property 'OwnerFirstName' of type 'veteran_logistic.Masters.VehicleAssignments.ViewModels.AddVehicleAssignmentViewModel'.
+   at MS.Internal.Data.PropertyPathWorker.CheckReadOnly(Object item, Object info)
+   at MS.Internal.Data.PropertyPathWorker.ReplaceItem(Int32 k, Object newO, Object parent)
+   at System.Windows.Data.BindingExpression.Activate(Object item)
+   at System.Windows.Data.BindingExpression.AttachToContext(AttachAttempt attempt)
+   at System.Windows.Data.BindingExpression.MS.Internal.Data.IDataBindEngineClient.AttachToContext(Boolean lastChance)
+   at MS.Internal.Data.DataBindEngine.Task.Run(Boolean lastChance)
+   at MS.Internal.Data.DataBindEngine.Run(Object arg)
+   at MS.Internal.Data.DataBindEngine.OnLayoutUpdated(Object sender, EventArgs e)
+   at System.Windows.ContextLayoutManager.fireLayoutUpdateEvent()
+   at System.Windows.ContextLayoutManager.UpdateLayout()
+   at System.Windows.Interop.HwndSource.SetLayoutSize()
+   at System.Windows.Interop.HwndSource.set_RootVisualInternal(Visual value)
+   at System.Windows.Controls.Primitives.Popup.CreateWindow(Boolean asyncCall)
+   at System.Windows.Controls.Primitives.Popup.OnIsOpenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+   at System.Windows.FrameworkElement.OnPropertyChanged(DependencyPropertyChangedEventArgs e)
+   at System.Windows.DependencyObject.UpdateEffectiveValue(EntryIndex entryIndex, DependencyProperty dp, PropertyMetadata metadata, EffectiveValueEntry oldEntry, EffectiveValueEntry& newEntry, Boolean coerceWithDeferredReference, Boolean coerceWithCurrentValue, OperationType operationType)
+   at System.Windows.DependencyObject.SetValue(DependencyProperty dp, Object value)
+   at System.Windows.Controls.DatePicker.OnIsDropDownOpenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+   at System.Windows.FrameworkElement.OnPropertyChanged(DependencyPropertyChangedEventArgs e)
+   at System.Windows.DependencyObject.UpdateEffectiveValue(EntryIndex entryIndex, DependencyProperty dp, PropertyMetadata metadata, EffectiveValueEntry oldEntry, EffectiveValueEntry& newEntry, Boolean coerceWithDeferredReference, Boolean coerceWithCurrentValue, OperationType operationType)
+   at System.Windows.DependencyObject.SetCurrentValueInternal(DependencyProperty dp, Object value)
+   at System.Windows.EventRoute.InvokeHandlersImpl(Object source, RoutedEventArgs args, Boolean reRaised)
+   at System.Windows.UIElement.RaiseEventImpl(DependencyObject sender, RoutedEventArgs args)
+   at System.Windows.Controls.Primitives.ButtonBase.OnClick()
+   at System.Windows.Controls.Button.OnClick()
+   at System.Windows.Controls.Primitives.ButtonBase.OnMouseLeftButtonUp(MouseButtonEventArgs e)
+   at System.Windows.EventRoute.InvokeHandlersImpl(Object source, RoutedEventArgs args, Boolean reRaised)
+   at System.Windows.UIElement.ReRaiseEventAs(DependencyObject sender, RoutedEventArgs args, RoutedEvent newEvent)
+   at System.Windows.EventRoute.InvokeHandlersImpl(Object source, RoutedEventArgs args, Boolean reRaised)
+   at System.Windows.UIElement.RaiseEventImpl(DependencyObject sender, RoutedEventArgs args)
+   at System.Windows.Input.InputManager.ProcessStagingArea()
+   at System.Windows.Interop.HwndMouseInputProvider.ReportInput(IntPtr hwnd, InputMode mode, Int32 timestamp, RawMouseActions actions, Int32 x, Int32 y, Int32 wheel)
+   at System.Windows.Interop.HwndMouseInputProvider.FilterMessage(IntPtr hwnd, WindowMessage msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   at System.Windows.Interop.HwndSource.InputFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   at MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   at System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   at System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+[2026-07-15 12:44:25 FTL]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An unhandled exception occurred on the UI thread.
+System.InvalidOperationException: A TwoWay or OneWayToSource binding cannot work on the read-only property 'OwnerMiddleName' of type 'veteran_logistic.Masters.VehicleAssignments.ViewModels.AddVehicleAssignmentViewModel'.
+   at MS.Internal.Data.PropertyPathWorker.CheckReadOnly(Object item, Object info)
+   at MS.Internal.Data.PropertyPathWorker.ReplaceItem(Int32 k, Object newO, Object parent)
+   at System.Windows.Data.BindingExpression.Activate(Object item)
+   at System.Windows.Data.BindingExpression.AttachToContext(AttachAttempt attempt)
+   at MS.Internal.Data.DataBindEngine.Task.Run(Boolean lastChance)
+   at MS.Internal.Data.DataBindEngine.Run(Object arg)
+   at MS.Internal.Data.DataBindEngine.OnLayoutUpdated(Object sender, EventArgs e)
+   at System.Windows.ContextLayoutManager.fireLayoutUpdateEvent()
+   at System.Windows.ContextLayoutManager.UpdateLayout()
+   at System.Windows.ContextLayoutManager.UpdateLayoutCallback(Object arg)
+   at System.Windows.Media.MediaContext.FireInvokeOnRenderCallbacks()
+   at System.Windows.Media.MediaContext.RenderMessageHandlerCore(Object resizedCompositionTarget)
+   at System.Windows.Media.MediaContext.AnimatedRenderMessageHandler(Object resizedCompositionTarget)
+   at System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   at System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Has ViewVehicleAssignments permission: false
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Has ViewVehicleAssignments permission: false
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Has ViewVehicleAssignments permission: false
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Has ViewVehicleAssignments permission: false
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Has ViewVehicleAssignments permission: false
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Has ViewVehicleAssignments permission: false
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Has ViewVehicleAssignments permission: false
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Has ViewVehicleAssignments permission: false
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Has ViewVehicleAssignments permission: false
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Has ViewVehicleAssignments permission: false
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Has ViewVehicleAssignments permission: false
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Has ViewVehicleAssignments permission: false
+[2026-07-15 14:51:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Permission check failed for permission 'masters.vehicleassignments.view'. User has 73 permissions.
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:37:27 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Permission check failed for permission 'masters.vehicleassignments.view'. User has 73 permissions.
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:42:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Permission check failed for permission 'masters.vehicleassignments.view'. User has 73 permissions.
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 77 permissions.
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 77 permissions.
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 77 permissions.
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 77 permissions.
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 77 permissions.
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 77 permissions.
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 77 permissions.
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 77 permissions.
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 77 permissions.
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 77 permissions.
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 77 permissions.
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 77 permissions.
+[2026-07-15 15:48:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:48:09 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 15:48:09 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 77 permissions.
+[2026-07-15 15:48:09 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 15:48:09 ERR]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed executing DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [v].[Id], [t].[VehicleNumber], [t].[VehicleType], [t0].[FirstName], [t0].[MiddleName], [t0].[LastName], [t0].[PANNumber], [v].[AssignDate], [v].[ReleaseDate], CASE
+    WHEN [v].[ReleaseDate] IS NULL THEN N'Active'
+    ELSE N'Released'
+END
+FROM [VehicleAssignments] AS [v]
+INNER JOIN (
+    SELECT [v0].[Id], [v0].[VehicleNumber], [v0].[VehicleType]
+    FROM [Vehicles] AS [v0]
+    WHERE [v0].[IsDeleted] = CAST(0 AS bit)
+) AS [t] ON [v].[VehicleId] = [t].[Id]
+INNER JOIN (
+    SELECT [v1].[Id], [v1].[FirstName], [v1].[LastName], [v1].[MiddleName], [v1].[PANNumber]
+    FROM [VehicleOwners] AS [v1]
+    WHERE [v1].[IsDeleted] = CAST(0 AS bit)
+) AS [t0] ON [v].[VehicleOwnerId] = [t0].[Id]
+WHERE [v].[IsDeleted] = CAST(0 AS bit)
+ORDER BY [v].[AssignDate]
+[2026-07-15 15:48:09 ERR]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An exception occurred while iterating over the results of a query for context type 'VeteranLogistics.Data.Context.VeteranLogisticsDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'VehicleAssignments'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:b8660f96-7dab-4d1e-9a58-50e0fe0b0cb8
+Error Number:208,State:1,Class:16
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'VehicleAssignments'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:b8660f96-7dab-4d1e-9a58-50e0fe0b0cb8
+Error Number:208,State:1,Class:16
+[2026-07-15 15:48:18 ERR]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed executing DbCommand (1ms) [Parameters=[@__request_VehicleId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[Id], [v].[AssignDate], [v].[CreatedBy], [v].[CreatedOn], [v].[DeletedOn], [v].[IsActive], [v].[IsDeleted], [v].[ModifiedBy], [v].[ModifiedOn], [v].[ReleaseDate], [v].[VehicleId], [v].[VehicleOwnerId]
+FROM [VehicleAssignments] AS [v]
+WHERE [v].[IsDeleted] = CAST(0 AS bit) AND [v].[VehicleId] = @__request_VehicleId_0 AND [v].[ReleaseDate] IS NULL
+[2026-07-15 15:48:18 ERR]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An exception occurred while iterating over the results of a query for context type 'VeteranLogistics.Data.Context.VeteranLogisticsDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'VehicleAssignments'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:b8660f96-7dab-4d1e-9a58-50e0fe0b0cb8
+Error Number:208,State:1,Class:16
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'VehicleAssignments'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at veteran_logistic.Masters.VehicleAssignments.Services.VehicleAssignmentCommandService.AssignVehicleAsync(AssignVehicleRequest request, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Masters\VehicleAssignments\Services\VehicleAssignmentCommandService.cs:line 61
+ClientConnectionId:b8660f96-7dab-4d1e-9a58-50e0fe0b0cb8
+Error Number:208,State:1,Class:16
+[2026-07-15 15:48:18 ERR]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An unexpected error occurred while assigning vehicle 1
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'VehicleAssignments'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at veteran_logistic.Masters.VehicleAssignments.Services.VehicleAssignmentCommandService.AssignVehicleAsync(AssignVehicleRequest request, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Masters\VehicleAssignments\Services\VehicleAssignmentCommandService.cs:line 61
+ClientConnectionId:b8660f96-7dab-4d1e-9a58-50e0fe0b0cb8
+Error Number:208,State:1,Class:16
+[2026-07-15 16:15:24 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 16:15:24 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 77 permissions.
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 77 permissions.
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 77 permissions.
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 77 permissions.
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 77 permissions.
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 77 permissions.
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 77 permissions.
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 77 permissions.
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 77 permissions.
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 77 permissions.
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 77 permissions.
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 77 permissions.
+[2026-07-15 16:15:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 16:15:26 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-07-15 16:15:26 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 77 permissions.
+[2026-07-15 16:15:26 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sources.view, masters.sources.add, masters.sources.edit, masters.sources.delete, masters.destinations.view, masters.destinations.add, masters.destinations.edit, masters.destinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-07-15 16:15:43 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Vehicle assignment created successfully with ID 1 for VehicleId 1

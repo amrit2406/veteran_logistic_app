@@ -99,6 +99,11 @@ public class VeteranLogisticsDbContext : DbContext
     public DbSet<Vehicle> Vehicles => Set<Vehicle>();
 
     /// <summary>
+    /// Gets or sets the VehicleAssignments DbSet.
+    /// </summary>
+    public DbSet<VehicleAssignment> VehicleAssignments => Set<VehicleAssignment>();
+
+    /// <summary>
     /// Apply entity configurations discovered in this assembly.
     /// </summary>
     /// <param name="modelBuilder">Model builder.</param>

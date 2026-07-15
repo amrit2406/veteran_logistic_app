@@ -34,7 +34,18 @@ public sealed class PermissionAuthorizationService : IPermissionAuthorizationSer
     public bool HasPermission(ApplicationPermission permission)
     {
         var userPermissions = GetUserPermissions();
-        return userPermissions.Contains(permission);
+        var hasPermission = userPermissions.Contains(permission);
+
+        // Debug logging for permission check
+        if (!hasPermission)
+        {
+            _logger.LogWarning("Permission check failed for permission '{PermissionId}'. User has {PermissionCount} permissions.",
+                permission.Id, userPermissions.Count());
+            _logger.LogDebug("Available permissions: {Permissions}",
+                string.Join(", ", userPermissions.Select(p => p.Id)));
+        }
+
+        return hasPermission;
     }
 
     /// <inheritdoc />
@@ -67,14 +78,19 @@ public sealed class PermissionAuthorizationService : IPermissionAuthorizationSer
 
         if (currentUser == null)
         {
-            _logger.LogDebug("No authenticated user found. Returning no permissions.");
+            _logger.LogWarning("No authenticated user found. Returning no permissions.");
             return Enumerable.Empty<ApplicationPermission>();
         }
 
+        _logger.LogWarning("User '{Username}' with role '{Role}' is requesting permissions.",
+            currentUser.Username, currentUser.Role);
+
         var permissions = _permissionProvider.GetPermissions(currentUser.Role);
-        _logger.LogDebug("User '{Username}' with role '{Role}' has {PermissionCount} permissions.", 
+        _logger.LogWarning("User '{Username}' with role '{Role}' has {PermissionCount} permissions.",
             currentUser.Username, currentUser.Role, permissions.Count());
-        
+        _logger.LogWarning("User permissions: {Permissions}",
+            string.Join(", ", permissions.Select(p => p.Id)));
+
         return permissions;
     }
 }

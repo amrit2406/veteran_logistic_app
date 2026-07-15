@@ -408,4 +408,44 @@ public sealed record ApplicationPermission
     /// Permission to delete vehicle owners.
     /// </summary>
     public static readonly ApplicationPermission DeleteVehicleOwners = new ApplicationPermission("masters.vehicleowners.delete");
+
+    // Masters - Vehicle Assignments Permissions
+    /// <summary>
+    /// Permission to view vehicle assignments.
+    /// </summary>
+    public static readonly ApplicationPermission ViewVehicleAssignments = new ApplicationPermission("masters.vehicleassignments.view");
+
+    /// <summary>
+    /// Permission to add vehicle assignments.
+    /// </summary>
+    public static readonly ApplicationPermission AddVehicleAssignments = new ApplicationPermission("masters.vehicleassignments.add");
+
+    /// <summary>
+    /// Permission to edit vehicle assignments.
+    /// </summary>
+    public static readonly ApplicationPermission EditVehicleAssignments = new ApplicationPermission("masters.vehicleassignments.edit");
+
+    /// <summary>
+    /// Permission to delete vehicle assignments.
+    /// </summary>
+    public static readonly ApplicationPermission DeleteVehicleAssignments = new ApplicationPermission("masters.vehicleassignments.delete");
+
+    /// <summary>
+    /// Gets all available application permissions.
+    /// </summary>
+    /// <returns>A collection of all application permissions.</returns>
+    public static IEnumerable<ApplicationPermission> GetAllPermissions()
+    {
+        var allPermissions = typeof(ApplicationPermission)
+            .GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static)
+            .Where(f => f.FieldType == typeof(ApplicationPermission))
+            .Select(f => (ApplicationPermission)f.GetValue(null)!)
+            .ToList();
+
+        // Debug logging
+        System.Diagnostics.Debug.WriteLine($"GetAllPermissions() returned {allPermissions.Count} permissions");
+        System.Diagnostics.Debug.WriteLine($"All permission IDs: {string.Join(", ", allPermissions.Select(p => p.Id))}");
+
+        return allPermissions;
+    }
 }

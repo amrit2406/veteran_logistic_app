@@ -123,7 +123,7 @@ namespace veteran_logistic.Migrations
                     b.HasIndex("GSTNumber")
                         .IsUnique();
 
-                    b.ToTable("Companies");
+                    b.ToTable("Companies", (string)null);
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.Customer", b =>
@@ -227,7 +227,7 @@ namespace veteran_logistic.Migrations
                     b.HasIndex("GSTNumber")
                         .IsUnique();
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.Destination", b =>
@@ -341,7 +341,7 @@ namespace veteran_logistic.Migrations
                     b.HasIndex("DestinationCode")
                         .IsUnique();
 
-                    b.ToTable("Destinations");
+                    b.ToTable("Destinations", (string)null);
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.FinancialYear", b =>
@@ -386,7 +386,7 @@ namespace veteran_logistic.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("FinancialYears");
+                    b.ToTable("FinancialYears", (string)null);
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.FuelPump", b =>
@@ -432,7 +432,7 @@ namespace veteran_logistic.Migrations
                     b.HasIndex("FuelPumpName")
                         .IsUnique();
 
-                    b.ToTable("FuelPumps");
+                    b.ToTable("FuelPumps", (string)null);
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.HsdRate", b =>
@@ -484,7 +484,7 @@ namespace veteran_logistic.Migrations
                         .IsUnique()
                         .HasFilter("[IsDeleted] = 0");
 
-                    b.ToTable("HsdRates");
+                    b.ToTable("HsdRates", (string)null);
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.Material", b =>
@@ -530,7 +530,7 @@ namespace veteran_logistic.Migrations
                     b.HasIndex("MaterialName")
                         .IsUnique();
 
-                    b.ToTable("Materials");
+                    b.ToTable("Materials", (string)null);
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.PaymentLocation", b =>
@@ -576,7 +576,7 @@ namespace veteran_logistic.Migrations
                     b.HasIndex("PaymentLocationName")
                         .IsUnique();
 
-                    b.ToTable("PaymentLocations");
+                    b.ToTable("PaymentLocations", (string)null);
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.Permission", b =>
@@ -636,7 +636,7 @@ namespace veteran_logistic.Migrations
 
                     b.HasIndex("Module", "Screen");
 
-                    b.ToTable("Permissions");
+                    b.ToTable("Permissions", (string)null);
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.Role", b =>
@@ -679,7 +679,7 @@ namespace veteran_logistic.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Roles");
+                    b.ToTable("Roles", (string)null);
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.RolePermission", b =>
@@ -712,7 +712,7 @@ namespace veteran_logistic.Migrations
                     b.HasIndex("RoleId", "PermissionId")
                         .IsUnique();
 
-                    b.ToTable("RolePermissions");
+                    b.ToTable("RolePermissions", (string)null);
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.Source", b =>
@@ -826,7 +826,7 @@ namespace veteran_logistic.Migrations
                     b.HasIndex("SourceCode")
                         .IsUnique();
 
-                    b.ToTable("Sources");
+                    b.ToTable("Sources", (string)null);
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.User", b =>
@@ -875,7 +875,7 @@ namespace veteran_logistic.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.Vehicle", b =>
@@ -931,7 +931,63 @@ namespace veteran_logistic.Migrations
 
                     b.HasIndex("VehicleOwnerId");
 
-                    b.ToTable("Vehicles");
+                    b.ToTable("Vehicles", (string)null);
+                });
+
+            modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.VehicleAssignment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("AssignDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ReleaseDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("VehicleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VehicleOwnerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VehicleOwnerId");
+
+                    b.HasIndex("VehicleId", "ReleaseDate")
+                        .IsUnique()
+                        .HasFilter("[ReleaseDate] IS NULL");
+
+                    b.ToTable("VehicleAssignments", (string)null);
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.VehicleOwner", b =>
@@ -1045,7 +1101,7 @@ namespace veteran_logistic.Migrations
                     b.HasIndex("PANNumber")
                         .IsUnique();
 
-                    b.ToTable("VehicleOwners");
+                    b.ToTable("VehicleOwners", (string)null);
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.Vendor", b =>
@@ -1154,7 +1210,7 @@ namespace veteran_logistic.Migrations
                     b.HasIndex("VendorCode")
                         .IsUnique();
 
-                    b.ToTable("Vendors");
+                    b.ToTable("Vendors", (string)null);
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.HsdRate", b =>
@@ -1192,6 +1248,25 @@ namespace veteran_logistic.Migrations
                         .HasForeignKey("VehicleOwnerId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("VehicleOwner");
+                });
+
+            modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.VehicleAssignment", b =>
+                {
+                    b.HasOne("VeteranLogistics.Data.Entities.Administration.Vehicle", "Vehicle")
+                        .WithMany()
+                        .HasForeignKey("VehicleId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("VeteranLogistics.Data.Entities.Administration.VehicleOwner", "VehicleOwner")
+                        .WithMany()
+                        .HasForeignKey("VehicleOwnerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Vehicle");
 
                     b.Navigation("VehicleOwner");
                 });

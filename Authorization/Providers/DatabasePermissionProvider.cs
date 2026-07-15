@@ -181,7 +181,13 @@ public sealed class DatabasePermissionProvider : IPermissionProvider
             ApplicationPermission.AddVehicleOwners,
             ApplicationPermission.EditVehicleOwners,
             ApplicationPermission.DeleteVehicleOwners,
-            
+
+            // Masters - Vehicle Assignments
+            ApplicationPermission.ViewVehicleAssignments,
+            ApplicationPermission.AddVehicleAssignments,
+            ApplicationPermission.EditVehicleAssignments,
+            ApplicationPermission.DeleteVehicleAssignments,
+
             // Drivers
             ApplicationPermission.ViewDrivers,
             ApplicationPermission.CreateDrivers,
@@ -301,7 +307,13 @@ public sealed class DatabasePermissionProvider : IPermissionProvider
             "Masters.VehicleOwners.Add" => ApplicationPermission.AddVehicleOwners,
             "Masters.VehicleOwners.Edit" => ApplicationPermission.EditVehicleOwners,
             "Masters.VehicleOwners.Delete" => ApplicationPermission.DeleteVehicleOwners,
-            
+
+            // Masters - Vehicle Assignments
+            "masters.vehicleassignments.view" => ApplicationPermission.ViewVehicleAssignments,
+            "masters.vehicleassignments.add" => ApplicationPermission.AddVehicleAssignments,
+            "masters.vehicleassignments.edit" => ApplicationPermission.EditVehicleAssignments,
+            "masters.vehicleassignments.delete" => ApplicationPermission.DeleteVehicleAssignments,
+
             // For now, return null for unmapped permissions
             _ => null
         };
