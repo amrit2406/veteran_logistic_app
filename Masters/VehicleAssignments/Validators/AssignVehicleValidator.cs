@@ -29,19 +29,9 @@ public sealed class AssignVehicleValidator : IAssignVehicleValidator
             result.AddError(new ValidationError(nameof(AssignVehicleRequest.VehicleId), "Vehicle ID is required."));
         }
 
-        if (string.IsNullOrWhiteSpace(request.OwnerFirstName))
+        if (request.VehicleOwnerId <= 0)
         {
-            result.AddError(new ValidationError(nameof(AssignVehicleRequest.OwnerFirstName), "Owner first name is required."));
-        }
-
-        if (string.IsNullOrWhiteSpace(request.OwnerLastName))
-        {
-            result.AddError(new ValidationError(nameof(AssignVehicleRequest.OwnerLastName), "Owner last name is required."));
-        }
-
-        if (string.IsNullOrWhiteSpace(request.OwnerPanNumber))
-        {
-            result.AddError(new ValidationError(nameof(AssignVehicleRequest.OwnerPanNumber), "Owner PAN number is required."));
+            result.AddError(new ValidationError(nameof(AssignVehicleRequest.VehicleOwnerId), "Vehicle owner ID is required."));
         }
 
         if (request.AssignDate == default)

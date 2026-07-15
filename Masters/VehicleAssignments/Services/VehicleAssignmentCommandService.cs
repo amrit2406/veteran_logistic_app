@@ -69,30 +69,10 @@ public sealed class VehicleAssignmentCommandService : IVehicleAssignmentCommandS
                 return AssignVehicleResult.Failure("The vehicle already has an active assignment. Please release the current assignment before assigning to a new owner.");
             }
 
-            // Create or find VehicleOwner from provided details
-            var vehicleOwner = new VehicleOwnerEntity
-            {
-                PANType = request.OwnerPanType,
-                PANNumber = request.OwnerPanNumber,
-                FirstName = request.OwnerFirstName,
-                MiddleName = request.OwnerMiddleName,
-                LastName = request.OwnerLastName,
-                Address = request.OwnerAddress,
-                Mobile = request.OwnerMobileNumber,
-                IsActive = true,
-                IsDeleted = false,
-                CreatedOn = DateTime.UtcNow,
-                CreatedBy = "System",
-                ModifiedBy = "System"
-            };
-
-            _dbContext.VehicleOwners.Add(vehicleOwner);
-            await _dbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
-
             var assignment = new VehicleAssignmentEntity
             {
                 VehicleId = request.VehicleId,
-                VehicleOwnerId = vehicleOwner.Id,
+                VehicleOwnerId = request.VehicleOwnerId,
                 AssignDate = request.AssignDate,
                 ReleaseDate = null,
                 IsActive = true,
@@ -247,5 +227,26 @@ public sealed class VehicleAssignmentCommandService : IVehicleAssignmentCommandS
             _logger.LogError(ex, "An unexpected error occurred while deleting vehicle assignment '{AssignmentId}'", request.AssignmentId);
             return DeleteVehicleAssignmentResult.Failure("An unexpected error occurred while deleting the vehicle assignment.");
         }
+    }
+
+    /// <inheritdoc />
+    public async Task<IEnumerable<VehicleAssignmentListItem>> GetActiveAssignmentsForVehicleAsync(int vehicleId, CancellationToken cancellationToken = default)
+    {
+        var assignments = await _dbContext.VehicleAssignments
+            .AsNoTracking()
+            .Where(va => va.VehicleId == vehicleId && va.ReleaseDate == null && !va.IsDeleted)
+            .Select(va => new VehicleAssignmentListItem
+            {
+                Id = va.Id,
+                VehicleId = va.VehicleId,
+                VehicleOwnerId = va.VehicleOwnerId,
+                AssignDate = va.AssignDate,
+                ReleaseDate = va.ReleaseDate,
+                IsActive = va.IsActive
+            })
+            .ToListAsync(cancellationToken)
+            .ConfigureAwait(false);
+
+        return assignments;
     }
 }

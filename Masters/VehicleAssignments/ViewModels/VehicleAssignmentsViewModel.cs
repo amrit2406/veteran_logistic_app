@@ -116,7 +116,6 @@ public sealed partial class VehicleAssignmentsViewModel : ViewModelBase
         {
             if (SetProperty(ref _selectedAssignment, value))
             {
-                EditAssignmentCommand.NotifyCanExecuteChanged();
                 ReleaseVehicleCommand.NotifyCanExecuteChanged();
                 DeleteAssignmentCommand.NotifyCanExecuteChanged();
             }
@@ -139,34 +138,6 @@ public sealed partial class VehicleAssignmentsViewModel : ViewModelBase
     private async Task RefreshAsync()
     {
         await LoadAssignmentsAsync();
-    }
-
-    /// <summary>
-    /// Command to navigate to the Add Vehicle Assignment screen.
-    /// </summary>
-    [RelayCommand]
-    private async Task AddAssignmentAsync()
-    {
-        await _navigationService.NavigateAsync<AddVehicleAssignmentViewModel>().ConfigureAwait(false);
-    }
-
-    /// <summary>
-    /// Command to navigate to the Edit Vehicle Assignment screen.
-    /// </summary>
-    [RelayCommand(CanExecute = nameof(CanExecuteAssignmentCommand))]
-    private async Task EditAssignmentAsync()
-    {
-        if (SelectedAssignment is null)
-        {
-            return;
-        }
-
-        var parameter = new NavigationParameter
-        {
-            ["AssignmentId"] = SelectedAssignment.Id
-        };
-
-        await _navigationService.NavigateAsync<EditVehicleAssignmentViewModel>(parameter).ConfigureAwait(false);
     }
 
     /// <summary>

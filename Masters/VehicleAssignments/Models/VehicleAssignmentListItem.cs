@@ -11,6 +11,16 @@ public sealed class VehicleAssignmentListItem
     public int Id { get; set; }
 
     /// <summary>
+    /// Gets or sets the vehicle ID.
+    /// </summary>
+    public int VehicleId { get; set; }
+
+    /// <summary>
+    /// Gets or sets the vehicle owner ID.
+    /// </summary>
+    public int VehicleOwnerId { get; set; }
+
+    /// <summary>
     /// Gets or sets the vehicle number.
     /// </summary>
     public string VehicleNumber { get; set; } = string.Empty;
@@ -39,6 +49,11 @@ public sealed class VehicleAssignmentListItem
     /// Gets or sets the release date (nullable).
     /// </summary>
     public DateTime? ReleaseDate { get; set; }
+
+    /// <summary>
+    /// Gets or sets whether the assignment is active.
+    /// </summary>
+    public bool IsActive { get; set; }
 
     /// <summary>
     /// Gets or sets the status (Active if ReleaseDate is null, Released otherwise).

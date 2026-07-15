@@ -230,14 +230,6 @@
     <mastersVehicleAssignmentsViews:VehicleAssignmentsView />
   </DataTemplate>
 
-  <DataTemplate DataType="{x:Type mastersVehicleAssignmentsVm:AddVehicleAssignmentViewModel}">
-    <mastersVehicleAssignmentsViews:AddVehicleAssignmentView />
-  </DataTemplate>
-
-  <DataTemplate DataType="{x:Type mastersVehicleAssignmentsVm:EditVehicleAssignmentViewModel}">
-    <mastersVehicleAssignmentsViews:EditVehicleAssignmentView />
-  </DataTemplate>
-
   <DataTemplate DataType="{x:Type vm:PlaceholderViewModel}">
     <Border Background="{DynamicResource BackgroundBrush}" Padding="{StaticResource ExtraLarge}">
       <Grid>

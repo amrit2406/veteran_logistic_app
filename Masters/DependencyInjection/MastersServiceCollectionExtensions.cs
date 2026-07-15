@@ -193,8 +193,6 @@ public static class MastersServiceCollectionExtensions
         services.AddScoped<IReleaseVehicleValidator, ReleaseVehicleValidator>();
         services.AddScoped<IDeleteVehicleAssignmentValidator, DeleteVehicleAssignmentValidator>();
         services.AddTransient<VehicleAssignmentsViewModel>();
-        services.AddTransient<AddVehicleAssignmentViewModel>();
-        services.AddTransient<EditVehicleAssignmentViewModel>();
 
         return services;
     }

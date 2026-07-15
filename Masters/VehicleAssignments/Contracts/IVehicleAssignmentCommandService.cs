@@ -38,4 +38,12 @@ public interface IVehicleAssignmentCommandService
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>A result indicating success or failure.</returns>
     Task<DeleteVehicleAssignmentResult> DeleteAssignmentAsync(DeleteVehicleAssignmentRequest request, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Gets active assignments for a specific vehicle.
+    /// </summary>
+    /// <param name="vehicleId">The vehicle ID.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A list of active assignments for the vehicle.</returns>
+    Task<IEnumerable<VehicleAssignmentListItem>> GetActiveAssignmentsForVehicleAsync(int vehicleId, CancellationToken cancellationToken = default);
 }
