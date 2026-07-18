@@ -35,7 +35,9 @@
                     xmlns:mastersVehicleOwnersVm="clr-namespace:veteran_logistic.Masters.VehicleOwners.ViewModels"
                     xmlns:mastersVehicleOwnersViews="clr-namespace:veteran_logistic.Masters.VehicleOwners.Views"
                     xmlns:mastersVehiclesVm="clr-namespace:veteran_logistic.Masters.Vehicles.ViewModels"
-                    xmlns:mastersVehiclesViews="clr-namespace:veteran_logistic.Masters.Vehicles.Views">
+                    xmlns:mastersVehiclesViews="clr-namespace:veteran_logistic.Masters.Vehicles.Views"
+                    xmlns:mastersVehicleAssignmentsVm="clr-namespace:veteran_logistic.Masters.VehicleAssignments.ViewModels"
+                    xmlns:mastersVehicleAssignmentsViews="clr-namespace:veteran_logistic.Masters.VehicleAssignments.Views">
   <DataTemplate DataType="{x:Type vm:ShellViewModel}">
     <views:ShellView />
   </DataTemplate>
@@ -222,6 +224,10 @@
 
   <DataTemplate DataType="{x:Type mastersVehiclesVm:EditVehicleViewModel}">
     <mastersVehiclesViews:EditVehicleView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type mastersVehicleAssignmentsVm:VehicleAssignmentsViewModel}">
+    <mastersVehicleAssignmentsViews:VehicleAssignmentsView />
   </DataTemplate>
 
   <DataTemplate DataType="{x:Type vm:PlaceholderViewModel}">

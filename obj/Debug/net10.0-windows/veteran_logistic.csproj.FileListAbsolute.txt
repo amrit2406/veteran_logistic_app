@@ -266,3 +266,5 @@ d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Vehicles\Views\Add
 d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Vehicles\Views\EditVehicleView.g.cs
 d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Vehicles\Views\VehiclesView.g.cs
 d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\Vehicles\Views\VehiclesView.baml
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\VehicleAssignments\Views\VehicleAssignmentsView.g.cs
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\VehicleAssignments\Views\VehicleAssignmentsView.baml

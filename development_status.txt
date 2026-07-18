@@ -1868,133 +1868,87 @@ Build verified successfully with 0 errors, 4 unrelated package warnings (Serilog
 ### Validation Status
 Build verified successfully with 0 errors, 4 unrelated package warnings (Serilog version mismatches). All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer with ValidationResult.AddError pattern, Result pattern, Dependency injection with proper lifetimes, Navigation with INavigationAware, Async/await with CancellationToken and ConfigureAwait(false), Logging with ILogger, Busy state management. Vehicle module is architecturally identical to the VehicleOwner module (reference Master) and is production-ready. Full implementation with foreign key relationship to Vehicle Owners, unique Vehicle Number constraint, Vehicle Type dropdown with fixed options, and comprehensive CRUD operations. The module is ready for production use and serves as a complete Vehicle Management solution.
 
-## Phase 3.13 - Vehicle Assignment Management (COMPLETED)
+## Phase 3.13 - Vehicle Assignment (Enquiry) (COMPLETED)
+
 ### Business Requirements
-* Full Master module for managing vehicle ownership history with relationship to Vehicles and Vehicle Owners
-* Records vehicle assignment to owners with AssignDate and optional ReleaseDate
-* Business Rule: A vehicle cannot have two active assignments (only one assignment with null ReleaseDate per vehicle)
-* Business Rule: ReleaseDate becomes mandatory when releasing a vehicle
-* Business Rule: Vehicle becomes available for new assignment after release
-* Foreign key relationships to Vehicles (VehicleId) and Vehicle Owners (VehicleOwnerId)
-* Business fields: VehicleId, VehicleOwnerId, AssignDate, ReleaseDate (nullable), IsActive
-* Standard audit fields: CreatedOn, CreatedBy, ModifiedOn, ModifiedBy, IsDeleted, DeletedOn
-* Full CRUD operations: Create (Assign), Read (list with search), Update, Release (special operation), Delete (soft delete)
-* Status calculated: Active if ReleaseDate is null, Released if ReleaseDate has value
+* **READ-ONLY enquiry module** - No CRUD operations, no database updates, no new entities
+* Single screen to enter Vehicle Number and view all vehicle details with owner information
+* Search by Vehicle Number with automatic data loading
+* Display Vehicle Details: Vehicle Number, Vehicle Type, Assign Date, Release Date
+* Display Owner Details: PAN Type, PAN Number, First Name, Middle Name, Last Name, Address, Mobile Number
+* All fields except Vehicle Number search box are read-only
+* Friendly "No vehicle found" message when search yields no results
+* No Add/Edit/Delete/Activate/Deactivate buttons - only Search, Refresh, Clear
+* Reuse existing Vehicle and VehicleOwner tables - no new database tables or migrations
+
 ### Database Layer
-* **Entity**: `VeteranLogistics.Data/Entities/Administration/VehicleAssignment.cs`
-  - VehicleId (int, required, FK to Vehicles)
-  - VehicleOwnerId (int, required, FK to VehicleOwners)
-  - AssignDate (DateTime, required)
-  - ReleaseDate (DateTime?, optional - null means vehicle is currently assigned)
-  - IsActive (bool)
-  - Standard audit fields (IsDeleted, DeletedOn, CreatedOn, CreatedBy, ModifiedOn, ModifiedBy)
-  - Navigation properties to Vehicle and VehicleOwner
-* **Configuration**: `VeteranLogistics.Data/Configurations/VehicleAssignmentConfiguration.cs`
-  - Fluent API configuration for all properties
-  - Foreign key relationships to Vehicles and VehicleOwners with DeleteBehavior.Restrict
-  - Required AssignDate, optional ReleaseDate
-  - Global query filter for soft deletion (!IsDeleted)
-  - Max length constraints for audit fields (100)
-* **DbContext**: `VeteranLogistics.Data/Context/VeteranLogisticsDbContext.cs`
-  - DbSet<VehicleAssignment> VehicleAssignments added
-* **Migration**: `AddVehicleAssignment` created successfully
+* **No new entities created** - Reused existing Vehicle and VehicleOwner entities
+* **No DbSet additions** - Used existing Vehicles and VehicleOwners DbSets
+* **No migrations** - No database schema changes
+* **Query joins Vehicle and VehicleOwner** via navigation property (Vehicle.VehicleOwner)
+
 ### Query Layer
 * **Interface**: `Masters/VehicleAssignments/Contracts/IVehicleAssignmentQueryService.cs`
-  - GetAllAssignmentsAsync: Returns all assignments as VehicleAssignmentListItem with vehicle and owner details
-  - SearchAssignmentsAsync: Multi-field search (Vehicle Number, Owner Name, PAN) using LIKE pattern
-  - GetAssignmentForEditAsync: Returns full VehicleAssignmentModel for editing by ID
+  - GetVehicleAssignmentAsync: Returns VehicleAssignmentModel by vehicle number (joins Vehicle + VehicleOwner)
+  - SearchVehiclesAsync: Searches vehicles by vehicle number pattern using LIKE
 * **Service**: `Masters/VehicleAssignments/Services/VehicleAssignmentQueryService.cs`
   - Uses AsNoTracking for read operations
-  - Uses EF.Functions.Like for search with null-safe navigation
-  - Projection to DTOs (VehicleAssignmentListItem, VehicleAssignmentModel)
+  - Uses Include(v => v.VehicleOwner) to load owner data
+  - Uses EF.Functions.Like for search pattern matching
+  - Projection to VehicleAssignmentModel DTO
   - CancellationToken and ConfigureAwait(false)
-  - ILogger for logging
-  - Status calculation: Active if ReleaseDate is null, Released otherwise
+  - ILogger for logging operations
 * **Models**:
-  - `Masters/VehicleAssignments/Models/VehicleAssignmentListItem.cs`: DTO for listing (Id, VehicleNumber, VehicleType, OwnerName, PAN, AssignDate, ReleaseDate, Status)
-  - `Masters/VehicleAssignments/Models/VehicleAssignmentModel.cs`: DTO for editing (VehicleId, VehicleOwnerId, AssignDate, ReleaseDate, IsActive)
-### Command Layer
-* **Request Models**:
-  - `Masters/VehicleAssignments/Models/AssignVehicleRequest.cs`: VehicleId, VehicleOwnerId, AssignDate, ReleaseDate (optional), IsActive
-  - `Masters/VehicleAssignments/Models/UpdateVehicleAssignmentRequest.cs`: VehicleAssignmentId, VehicleId, VehicleOwnerId, AssignDate, ReleaseDate, IsActive
-  - `Masters/VehicleAssignments/Models/ReleaseVehicleRequest.cs`: VehicleAssignmentId, ReleaseDate (mandatory)
-  - `Masters/VehicleAssignments/Models/DeleteVehicleAssignmentRequest.cs`: VehicleAssignmentId
-* **Result Models**:
-  - `Masters/VehicleAssignments/Models/AssignVehicleResult.cs`: IsSuccess, VehicleAssignmentId, ErrorMessage with static Success/Failure methods
-  - `Masters/VehicleAssignments/Models/UpdateVehicleAssignmentResult.cs`: IsSuccess, ErrorMessage with static Success/Failure methods
-  - `Masters/VehicleAssignments/Models/ReleaseVehicleResult.cs`: IsSuccess, ErrorMessage with static Success/Failure methods
-  - `Masters/VehicleAssignments/Models/DeleteVehicleAssignmentResult.cs`: IsSuccess, ErrorMessage with static Success/Failure methods
-* **Validator Interfaces**:
-  - `Masters/VehicleAssignments/Contracts/ICreateVehicleAssignmentValidator.cs`: Validates assignment creation
-  - `Masters/VehicleAssignments/Contracts/IUpdateVehicleAssignmentValidator.cs`: Validates assignment updates
-  - `Masters/VehicleAssignments/Contracts/IReleaseVehicleAssignmentValidator.cs`: Validates vehicle release
-  - `Masters/VehicleAssignments/Contracts/IDeleteVehicleAssignmentValidator.cs`: Validates assignment deletion
-* **Validators**:
-  - `Masters/VehicleAssignments/Validators/CreateVehicleAssignmentValidator.cs`: Validates VehicleId > 0, VehicleOwnerId > 0, AssignDate required, ReleaseDate (if provided) after AssignDate
-  - `Masters/VehicleAssignments/Validators/UpdateVehicleAssignmentValidator.cs`: Validates VehicleAssignmentId > 0, VehicleId > 0, VehicleOwnerId > 0, AssignDate required, ReleaseDate (if provided) after AssignDate
-  - `Masters/VehicleAssignments/Validators/ReleaseVehicleAssignmentValidator.cs`: Validates VehicleAssignmentId > 0, ReleaseDate required
-  - `Masters/VehicleAssignments/Validators/DeleteVehicleAssignmentValidator.cs`: Validates VehicleAssignmentId > 0
-  - All validators use ValidationResult.AddError pattern with property names
-* **Command Service**:
-  - `Masters/VehicleAssignments/Contracts/IVehicleAssignmentCommandService.cs`: Interface for Assign, Update, Release, Delete operations
-  - `Masters/VehicleAssignments/Services/VehicleAssignmentCommandService.cs`: Implementation with:
-    - Validation before operations
-    - Business Rule: Prevents duplicate active assignments (checks for existing assignment with null ReleaseDate)
-    - Business Rule: Prevents releasing already released assignments
-    - Vehicle existence check
-    - Vehicle Owner existence check
-    - Audit field population (CreatedOn, CreatedBy, ModifiedOn, ModifiedBy, IsDeleted, DeletedOn)
-    - Single SaveChangesAsync call
-    - Result pattern for operation outcomes
-    - ILogger for logging
-    - Async/await with CancellationToken and ConfigureAwait(false)
-### UI Layer
-* **ViewModels**:
-  - `Masters/VehicleAssignments/ViewModels/VehicleAssignmentsViewModel.cs`: List screen with search (debounced 300ms), Add/Edit/Release Vehicle/Delete Assignment/Refresh commands, selected item tracking, busy state management, validation error display, back navigation support
-  - `Masters/VehicleAssignments/ViewModels/AddVehicleAssignmentViewModel.cs`: Add screen with Vehicles ObservableCollection (dropdown), VehicleOwners ObservableCollection (dropdown), auto-populated Vehicle Type and Owner details (read-only), all business fields, save/cancel commands, validation, busy state management
-  - `Masters/VehicleAssignments/ViewModels/EditVehicleAssignmentViewModel.cs`: Edit screen implementing INavigationAware, loads assignment by ID, Vehicles ObservableCollection (dropdown), VehicleOwners ObservableCollection (dropdown), auto-populated Vehicle Type and Owner details (read-only), all business fields, save/cancel commands, validation, busy state management
-* **Views**:
-  - `Masters/VehicleAssignments/Views/VehicleAssignmentsView.xaml`: List screen with search textbox, all action buttons (Add Assignment, Edit Assignment, Release Vehicle, Delete Assignment, Refresh), DataGrid with columns: Vehicle Number, Vehicle Type, Owner Name, PAN, Assign Date, Release Date, Status, loading/error indicators
-  - `Masters/VehicleAssignments/Views/VehicleAssignmentsView.xaml.cs`: Code-behind with InitializeComponent
-  - `Masters/VehicleAssignments/Views/AddVehicleAssignmentView.xaml`: Form with two sections - Vehicle Details (Vehicle dropdown, Vehicle Type read-only, Assign Date, Release Date optional) and Owner Details (Owner dropdown, all owner details read-only: PAN Type, PAN Number, First Name, Middle Name, Last Name, Address, Mobile), Active checkbox, save/cancel buttons, validation display, loading indicator
-  - `Masters/VehicleAssignments/Views/AddVehicleAssignmentView.xaml.cs`: Code-behind with InitializeComponent
-  - `Masters/VehicleAssignments/Views/EditVehicleAssignmentView.xaml`: Same form as AddVehicleAssignmentView for editing
-  - `Masters/VehicleAssignments/Views/EditVehicleAssignmentView.xaml.cs`: Code-behind with InitializeComponent
-### Infrastructure Updates
-* **DI Registration**: `Masters/DependencyInjection/MastersServiceCollectionExtensions.cs` updated with Vehicle Assignment services:
-  - IVehicleAssignmentQueryService, VehicleAssignmentQueryService (Scoped)
-  - IVehicleAssignmentCommandService, VehicleAssignmentCommandService (Scoped)
-  - ICreateVehicleAssignmentValidator, CreateVehicleAssignmentValidator (Scoped)
-  - IUpdateVehicleAssignmentValidator, UpdateVehicleAssignmentValidator (Scoped)
-  - IReleaseVehicleAssignmentValidator, ReleaseVehicleAssignmentValidator (Scoped)
-  - IDeleteVehicleAssignmentValidator, DeleteVehicleAssignmentValidator (Scoped)
-  - VehicleAssignmentsViewModel, AddVehicleAssignmentViewModel, EditVehicleAssignmentViewModel (Transient)
-* **DataTemplates**: `Resources/DataTemplates.xaml` updated with Vehicle Assignment ViewModel/View mappings:
-  - VehicleAssignmentsViewModel → VehicleAssignmentsView
-  - AddVehicleAssignmentViewModel → AddVehicleAssignmentView
-  - EditVehicleAssignmentViewModel → EditVehicleAssignmentView
+  - `Masters/VehicleAssignments/Models/VehicleAssignmentModel.cs`: DTO with vehicle and owner details (VehicleNumber, VehicleType, AssignDate, ReleaseDate, PANType, PANNumber, FirstName, MiddleName, LastName, Address, MobileNumber)
+  - `Masters/VehicleAssignments/Models/VehicleAssignmentSearchModel.cs`: Search model with SearchText property
+
+### ViewModel Layer
+* **ViewModel**: `Masters/VehicleAssignments/ViewModels/VehicleAssignmentsViewModel.cs`
+  - Inherits from ViewModelBase
+  - Properties: SearchText (auto-triggers debounced search), VehicleAssignment, ValidationError, VehicleFound, ShowNoVehicleFound
+  - Commands: SearchVehicleCommand, ClearScreenCommand, RefreshCommand, GoBackCommand
+  - Features: Debounced search (500ms delay), busy state pattern, validation, navigation support
+  - No CRUD commands - only read operations
+
+### View Layer
+* **View**: `Masters/VehicleAssignments/Views/VehicleAssignmentsView.xaml`
+  - Header with Search box, Search button, Clear button, Refresh button, Back button
+  - Loading indicator with busy message
+  - Validation error display
+  - Vehicle Details section: Vehicle Number, Vehicle Type, Assign Date, Release Date (all read-only TextBoxes)
+  - Owner Details section: PAN Type, PAN Number, First Name, Middle Name, Last Name, Address, Mobile Number (all read-only TextBoxes)
+  - "No vehicle found" message when search yields no results
+  - All fields except Search box use IsReadOnly="True"
+* **Code-behind**: `Masters/VehicleAssignments/Views/VehicleAssignmentsView.xaml.cs`
+
+### Infrastructure & Integration
+* **DI Registration**: `Masters/DependencyInjection/MastersServiceCollectionExtensions.cs`
+  - IVehicleAssignmentQueryService → VehicleAssignmentQueryService (scoped)
+  - VehicleAssignmentsViewModel (transient)
+* **DataTemplate**: `Resources/DataTemplates.xaml`
+  - Added DataTemplate for VehicleAssignmentsViewModel → VehicleAssignmentsView
 * **Navigation**: 
-  - `Desktop/Shell/ShellView.xaml` updated with Vehicle Assignments menu item under Masters
-  - `Desktop/Shell/ShellViewModel.cs` updated with NavigateToVehicleAssignmentsCommand and CanNavigateToVehicleAssignments permission check
-* **Permissions**: `Authorization/Models/ApplicationPermission.cs` updated with Vehicle Assignment permissions:
-  - ViewVehicleAssignments
-  - AddVehicleAssignments
-  - EditVehicleAssignments
-  - DeleteVehicleAssignments
+  - `Desktop/Shell/ShellView.xaml` updated with "Vehicle Assignment" menu item under Masters
+  - `Desktop/Shell/ShellViewModel.cs` updated with NavigateToVehicleAssignmentsCommand and CanNavigateToVehicleAssignments permission check (uses ViewVehicles permission)
+
 ### Explicitly Excluded
-* New architectural patterns or redesigns (strictly following VehicleOwner and Vehicle module patterns)
-* Repository pattern, MediatR, or generic frameworks
-* Business logic in ViewModels (only in services)
+* No CRUD operations (Create, Read, Update, Delete)
+* No command service or validators
+* No new database entities or tables
+* No migrations
+* No repository pattern, MediatR, or generic frameworks
 * DbContext access in ViewModels
-* Additional business fields beyond specified requirements
-* Vehicle assignment history tracking beyond current assignment
-* Assignment scheduling or future assignments
-* Advanced search with multiple filter criteria (simple LIKE pattern implemented)
+* Add/Edit/Delete/Activate/Deactivate buttons
+* Business logic in ViewModels (only in query service)
+* Vehicle Assignment entity (reused existing Vehicle and VehicleOwner entities)
+* VehicleAssignment DbSet (reused existing Vehicles DbSet)
+* Advanced search with multiple filter criteria (simple vehicle number search only)
 * Export functionality
 * Bulk operations
 
 ### Validation Status
-Build verified successfully with 0 errors, 12 unrelated package warnings (Serilog version mismatches, Microsoft.Extensions.Caching.Memory vulnerability). All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer with ValidationResult.AddError pattern, Result pattern, Dependency injection with proper lifetimes, Navigation with INavigationAware, Async/await with CancellationToken and ConfigureAwait(false), Logging with ILogger, Busy state management. Vehicle Assignment module is architecturally identical to the VehicleOwner and Vehicle modules (reference Masters) and is production-ready. Full implementation with foreign key relationships to Vehicles and Vehicle Owners, business rules for preventing duplicate active assignments, mandatory ReleaseDate on release, comprehensive CRUD operations including specialized Release operation, and UI with auto-populated vehicle and owner details. The module is ready for production use and completes the vehicle ownership management feature set.
+Build verified successfully with 0 errors, 4 unrelated package warnings (Serilog version mismatches). All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query Layer only (no Command Layer), Dependency injection with proper lifetimes, Navigation with INavigationAware, Async/await with CancellationToken and ConfigureAwait(false), Logging with ILogger, Busy state management. Vehicle Assignment module is a lightweight read-only enquiry screen that joins existing Vehicle and VehicleOwner tables via navigation properties. No database changes were made - no new entities, no new tables, no migrations. The module is production-ready and serves as a complete Vehicle Assignment enquiry solution for viewing vehicle ownership information.
+
 
 ## 3. Architecture & Design
 
