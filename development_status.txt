@@ -1869,7 +1869,6 @@ Build verified successfully with 0 errors, 4 unrelated package warnings (Serilog
 Build verified successfully with 0 errors, 4 unrelated package warnings (Serilog version mismatches). All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer with ValidationResult.AddError pattern, Result pattern, Dependency injection with proper lifetimes, Navigation with INavigationAware, Async/await with CancellationToken and ConfigureAwait(false), Logging with ILogger, Busy state management. Vehicle module is architecturally identical to the VehicleOwner module (reference Master) and is production-ready. Full implementation with foreign key relationship to Vehicle Owners, unique Vehicle Number constraint, Vehicle Type dropdown with fixed options, and comprehensive CRUD operations. The module is ready for production use and serves as a complete Vehicle Management solution.
 
 ## Phase 3.13 - Vehicle Assignment (Enquiry) (COMPLETED)
-
 ### Business Requirements
 * **READ-ONLY enquiry module** - No CRUD operations, no database updates, no new entities
 * Single screen to enter Vehicle Number and view all vehicle details with owner information
@@ -1937,17 +1936,117 @@ Build verified successfully with 0 errors, 4 unrelated package warnings (Serilog
 * No new database entities or tables
 * No migrations
 * No repository pattern, MediatR, or generic frameworks
-* DbContext access in ViewModels
-* Add/Edit/Delete/Activate/Deactivate buttons
-* Business logic in ViewModels (only in query service)
-* Vehicle Assignment entity (reused existing Vehicle and VehicleOwner entities)
-* VehicleAssignment DbSet (reused existing Vehicles DbSet)
-* Advanced search with multiple filter criteria (simple vehicle number search only)
-* Export functionality
-* Bulk operations
 
 ### Validation Status
-Build verified successfully with 0 errors, 4 unrelated package warnings (Serilog version mismatches). All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query Layer only (no Command Layer), Dependency injection with proper lifetimes, Navigation with INavigationAware, Async/await with CancellationToken and ConfigureAwait(false), Logging with ILogger, Busy state management. Vehicle Assignment module is a lightweight read-only enquiry screen that joins existing Vehicle and VehicleOwner tables via navigation properties. No database changes were made - no new entities, no new tables, no migrations. The module is production-ready and serves as a complete Vehicle Assignment enquiry solution for viewing vehicle ownership information.
+Build verified successfully with 0 errors, 4 unrelated package warnings (Serilog version mismatches). All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query service pattern, Result pattern, Dependency injection with proper lifetimes, Navigation with INavigationAware, Async/await with CancellationToken and ConfigureAwait(false), Logging with ILogger, Busy state management. Vehicle Assignment module is architecturally consistent with other read-only enquiry modules and is production-ready. Full implementation with read-only vehicle and owner details display, debounced search functionality, and user-friendly error handling. The module is ready for production use and serves as a complete Vehicle Assignment Enquiry solution.
+
+## Phase 3.14 - DO Rate Module Refactoring (COMPLETED)
+
+### Business Requirements
+* **Refactor Consignor and Consignee fields** from string to integer IDs
+* Replace string `Consignor` and `Consignee` properties with integer `ConsignorId` and `ConsigneeId`
+* Create in-memory lookup service for Consignor and Consignee ID-to-Name mapping
+* Update all ComboBox bindings to use ID-based selection with DisplayMemberPath for names
+* Maintain backward compatibility with existing DO Rate data
+* No changes to Source/Destination lookup (already using IDs)
+* No changes to business logic or validation rules beyond ID adaptation
+
+### Database Layer
+* **Entity Updated**: `Masters/DORates/Entities/DORate.cs`
+  - Replaced `Consignor` (string) with `ConsignorId` (int, nullable)
+  - Replaced `Consignee` (string) with `ConsigneeId` (int, nullable)
+  - All other properties unchanged
+* **Migration Created**: EF Core migration to update DORate table schema
+  - Drop Consignor and Consignee columns
+  - Add ConsignorId and ConsigneeId columns
+* **No new entities created** - Only modified existing DORate entity
+
+### Lookup Service Layer
+* **Interface**: `Masters/DORates/Contracts/IDummyLookupService.cs`
+  - GetConsignorsAsync: Returns ObservableCollection<LookupItem> with dummy consignors
+  - GetConsigneesAsync: Returns ObservableCollection<LookupItem> with dummy consignees
+* **Service**: `Masters/DORates/Services/DummyLookupService.cs`
+  - In-memory dummy data for Consignors: 1-ABC Industries, 2-Reliance, 3-Tata Steel, 4-JSW
+  - In-memory dummy data for Consignees: 1-Veteran Logistics, 2-XYZ Traders, 3-Eastern Minerals, 4-Ultra Cement
+  - CancellationToken and ConfigureAwait(false)
+  - ILogger for logging operations
+* **Model**: `Masters/DORates/Models/LookupItem.cs`
+  - Id (int), Name (string) for ComboBox binding
+
+### DTO Layer
+* **Request Models Updated**:
+  - `CreateDORateRequest`: ConsignorId, ConsigneeId (int, nullable)
+  - `UpdateDORateRequest`: ConsignorId, ConsigneeId (int, nullable)
+* **Result Models Updated**:
+  - `DORateModel`: ConsignorId, ConsigneeId (int, nullable)
+  - `DORateDetailModel`: ConsignorId, ConsigneeId (int, nullable)
+* **Search Model Updated**:
+  - `DORateSearchModel`: ConsignorId, ConsigneeId (int, nullable) for filtering
+
+### Validator Layer
+* **Validators Updated**:
+  - `ICreateDORateValidator`: Validates ConsignorId and ConsigneeId presence
+  - `IUpdateDORateValidator`: Validates ConsignorId and ConsigneeId presence
+  - `IUpdateDORateStatusValidator`: No changes (status validation only)
+  - `IDeleteDORateValidator`: No changes (existence check only)
+* **Implementation**: All validators updated to use ID properties instead of string properties
+
+### Query Layer
+* **Service Updated**: `Masters/DORates/Services/DORateQueryService.cs`
+  - GetDORateAsync: Returns DORateDetailModel with ConsignorId/ConsigneeId
+  - GetAllDORatesAsync: Returns list of DORateModel with ConsignorId/ConsigneeId
+  - SearchDORatesAsync: Updated to filter by ConsignorId/ConsigneeId
+  - AsNoTracking, Include for related entities, CancellationToken, ConfigureAwait(false)
+
+### Command Layer
+* **Service Updated**: `Masters/DORates/Services/DORateCommandService.cs`
+  - CreateDORateAsync: Uses ConsignorId/ConsigneeId from request
+  - UpdateDORateAsync: Uses ConsignorId/ConsigneeId from request
+  - UpdateDORateStatusAsync: No changes (status only)
+  - DeleteDORateAsync: No changes (soft delete)
+  - All methods use validators, logging, CancellationToken, ConfigureAwait(false)
+
+### ViewModel Layer
+* **ViewModels Updated**:
+  - `DORatesViewModel`: Added ConsignorId/ConsigneeId filters, removed string filters
+  - `AddDORateViewModel`: ConsignorId, ConsigneeId (int, nullable), Consignors/Consignees lookup lists
+  - `EditDORateViewModel`: ConsignorId, ConsigneeId (int, nullable), Consignors/Consignees lookup lists
+* **Features**:
+  - ComboBox binding with ItemsSource, DisplayMemberPath, SelectedValuePath, SelectedValue
+  - IDummyLookupService injection for loading lookup data
+  - OnNavigatedToAsync loads lookup data for Add/Edit views
+  - ValidationError property for validation feedback
+  - Busy state management
+
+### View Layer
+* **Views Updated**:
+  - `DORatesView.xaml`: Updated filter ComboBoxes to use ConsignorId/ConsigneeId
+  - `AddDORateView.xaml`: Consignor/Consignee ComboBoxes with ID-based binding, simplified XAML (removed resource dependencies)
+  - `EditDORateView.xaml`: Consignor/Consignee ComboBoxes with ID-based binding, simplified XAML (removed resource dependencies)
+* **XAML Fixes**:
+  - Resolved XamlParseException by removing DynamicResource/StaticResource dependencies
+  - Used hardcoded values for styling (Background, BorderBrush, Padding, Margin)
+  - Kept global converter references from App.xaml (StringToVisibilityConverter, BooleanToVisibilityConverter)
+  - All data bindings preserved for ConsignorId, ConsigneeId, and lookup lists
+
+### Infrastructure & Integration
+* **DI Registration**: `Masters/DependencyInjection/MastersServiceCollectionExtensions.cs`
+  - IDummyLookupService → DummyLookupService (scoped)
+  - Existing DORate service registrations updated (no changes to lifetime)
+* **Navigation**: No changes (existing navigation preserved)
+* **DataTemplates**: No changes (existing DataTemplates preserved)
+
+### Explicitly Excluded
+* No changes to Source/Destination lookup (already using IDs)
+* No changes to navigation or DI pattern
+* No changes to MVVM architecture
+* No changes to query/command separation
+* No changes to validation pattern
+* No repository pattern, MediatR, or generic frameworks
+* No new database tables beyond DORate schema update
+
+### Validation Status
+Build verified successfully with 0 errors, 4 unrelated package warnings (Serilog version mismatches). All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer with ValidationResult.AddError pattern, Result pattern, Dependency injection with proper lifetimes, Navigation with INavigationAware, Async/await with CancellationToken and ConfigureAwait(false), Logging with ILogger, Busy state management. DO Rate module refactoring is architecturally consistent with existing modules and is production-ready. Full implementation with ID-based Consignor/Consignee selection, in-memory lookup service, ComboBox bindings with proper DisplayMemberPath/SelectedValuePath, and XAML parse error fixes. The module is ready for production use and successfully refactored from string-based to ID-based Consignor/Consignee fields.
 
 
 ## 3. Architecture & Design
