@@ -262,47 +262,26 @@ public sealed record ApplicationPermission
     /// </summary>
     public static readonly ApplicationPermission DeleteVendors = new ApplicationPermission("masters.vendors.delete");
 
-    // Masters - Sources Permissions
+    // Masters - Source/Destinations Permissions
     /// <summary>
-    /// Permission to view sources.
+    /// Permission to view source/destinations.
     /// </summary>
-    public static readonly ApplicationPermission ViewSources = new ApplicationPermission("masters.sources.view");
+    public static readonly ApplicationPermission ViewSourceDestinations = new ApplicationPermission("masters.sourcedestinations.view");
 
     /// <summary>
-    /// Permission to add sources.
+    /// Permission to add source/destinations.
     /// </summary>
-    public static readonly ApplicationPermission AddSources = new ApplicationPermission("masters.sources.add");
+    public static readonly ApplicationPermission AddSourceDestinations = new ApplicationPermission("masters.sourcedestinations.add");
 
     /// <summary>
-    /// Permission to edit sources.
+    /// Permission to edit source/destinations.
     /// </summary>
-    public static readonly ApplicationPermission EditSources = new ApplicationPermission("masters.sources.edit");
+    public static readonly ApplicationPermission EditSourceDestinations = new ApplicationPermission("masters.sourcedestinations.edit");
 
     /// <summary>
-    /// Permission to delete sources.
+    /// Permission to delete source/destinations.
     /// </summary>
-    public static readonly ApplicationPermission DeleteSources = new ApplicationPermission("masters.sources.delete");
-
-    // Masters - Destinations Permissions
-    /// <summary>
-    /// Permission to view destinations.
-    /// </summary>
-    public static readonly ApplicationPermission ViewDestinations = new ApplicationPermission("masters.destinations.view");
-
-    /// <summary>
-    /// Permission to add destinations.
-    /// </summary>
-    public static readonly ApplicationPermission AddDestinations = new ApplicationPermission("masters.destinations.add");
-
-    /// <summary>
-    /// Permission to edit destinations.
-    /// </summary>
-    public static readonly ApplicationPermission EditDestinations = new ApplicationPermission("masters.destinations.edit");
-
-    /// <summary>
-    /// Permission to delete destinations.
-    /// </summary>
-    public static readonly ApplicationPermission DeleteDestinations = new ApplicationPermission("masters.destinations.delete");
+    public static readonly ApplicationPermission DeleteSourceDestinations = new ApplicationPermission("masters.sourcedestinations.delete");
 
     // Masters - Materials Permissions
     /// <summary>

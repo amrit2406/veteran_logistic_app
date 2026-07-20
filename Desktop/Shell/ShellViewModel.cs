@@ -76,14 +76,9 @@ public sealed class ShellViewModel : ObservableObject
     public IAsyncRelayCommand NavigateToVendorsCommand { get; }
 
     /// <summary>
-    /// Command to navigate to the Sources screen.
+    /// Command to navigate to the Source/Destinations screen.
     /// </summary>
-    public IAsyncRelayCommand NavigateToSourcesCommand { get; }
-
-    /// <summary>
-    /// Command to navigate to the Destinations screen.
-    /// </summary>
-    public IAsyncRelayCommand NavigateToDestinationsCommand { get; }
+    public IAsyncRelayCommand NavigateToSourceDestinationsCommand { get; }
 
     /// <summary>
     /// Command to navigate to the Materials screen.
@@ -147,8 +142,7 @@ public sealed class ShellViewModel : ObservableObject
         NavigateToCompaniesCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.Companies.ViewModels.CompaniesViewModel>(), () => CanNavigateToCompanies());
         NavigateToCustomersCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.Customers.ViewModels.CustomersViewModel>(), () => CanNavigateToCustomers());
         NavigateToVendorsCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.Vendors.ViewModels.VendorsViewModel>(), () => CanNavigateToVendors());
-        NavigateToSourcesCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.Sources.ViewModels.SourcesViewModel>(), () => CanNavigateToSources());
-        NavigateToDestinationsCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.Destinations.ViewModels.DestinationsViewModel>(), () => CanNavigateToDestinations());
+        NavigateToSourceDestinationsCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.SourceDestinations.ViewModels.SourceDestinationsViewModel>(), () => CanNavigateToSourceDestinations());
         NavigateToMaterialsCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.Materials.ViewModels.MaterialsViewModel>(), () => CanNavigateToMaterials());
         NavigateToFuelPumpsCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.FuelPumps.ViewModels.FuelPumpsViewModel>(), () => CanNavigateToFuelPumps());
         NavigateToHsdRatesCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.HsdRates.ViewModels.HsdRatesViewModel>(), () => CanNavigateToHsdRates());
@@ -180,8 +174,7 @@ public sealed class ShellViewModel : ObservableObject
         ((AsyncRelayCommand)NavigateToCompaniesCommand).NotifyCanExecuteChanged();
         ((AsyncRelayCommand)NavigateToCustomersCommand).NotifyCanExecuteChanged();
         ((AsyncRelayCommand)NavigateToVendorsCommand).NotifyCanExecuteChanged();
-        ((AsyncRelayCommand)NavigateToSourcesCommand).NotifyCanExecuteChanged();
-        ((AsyncRelayCommand)NavigateToDestinationsCommand).NotifyCanExecuteChanged();
+        ((AsyncRelayCommand)NavigateToSourceDestinationsCommand).NotifyCanExecuteChanged();
         ((AsyncRelayCommand)NavigateToMaterialsCommand).NotifyCanExecuteChanged();
         ((AsyncRelayCommand)NavigateToFuelPumpsCommand).NotifyCanExecuteChanged();
         ((AsyncRelayCommand)NavigateToHsdRatesCommand).NotifyCanExecuteChanged();
@@ -226,14 +219,9 @@ public sealed class ShellViewModel : ObservableObject
         return _permissionAuthorizationService.HasPermission(ApplicationPermission.ViewVendors);
     }
 
-    private bool CanNavigateToSources()
+    private bool CanNavigateToSourceDestinations()
     {
-        return _permissionAuthorizationService.HasPermission(ApplicationPermission.ViewSources);
-    }
-
-    private bool CanNavigateToDestinations()
-    {
-        return _permissionAuthorizationService.HasPermission(ApplicationPermission.ViewDestinations);
+        return _permissionAuthorizationService.HasPermission(ApplicationPermission.ViewSourceDestinations);
     }
 
     private bool CanNavigateToMaterials()

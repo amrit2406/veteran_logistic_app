@@ -97,8 +97,7 @@
                     <MenuItem Header="Companies" Command="{Binding NavigateToCompaniesCommand}" />
                     <MenuItem Header="Customers" Command="{Binding NavigateToCustomersCommand}" />
                     <MenuItem Header="Vendors" Command="{Binding NavigateToVendorsCommand}" />
-                    <MenuItem Header="Sources" Command="{Binding NavigateToSourcesCommand}" />
-                    <MenuItem Header="Destinations" Command="{Binding NavigateToDestinationsCommand}" />
+                    <MenuItem Header="Source/Destinations" Command="{Binding NavigateToSourceDestinationsCommand}" />
                     <MenuItem Header="Materials" Command="{Binding NavigateToMaterialsCommand}" />
                     <MenuItem Header="Fuel Pumps" Command="{Binding NavigateToFuelPumpsCommand}" />
                     <MenuItem Header="HSD Rates" Command="{Binding NavigateToHsdRatesCommand}" />

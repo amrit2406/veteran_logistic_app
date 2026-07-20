@@ -112,14 +112,10 @@ public sealed class DefaultPermissionProvider : IPermissionProvider
             ApplicationPermission.ViewVendors,
             ApplicationPermission.AddVendors,
             ApplicationPermission.EditVendors,
-            // Masters - Sources
-            ApplicationPermission.ViewSources,
-            ApplicationPermission.AddSources,
-            ApplicationPermission.EditSources,
-            // Masters - Destinations
-            ApplicationPermission.ViewDestinations,
-            ApplicationPermission.AddDestinations,
-            ApplicationPermission.EditDestinations,
+            // Masters - Source/Destinations
+            ApplicationPermission.ViewSourceDestinations,
+            ApplicationPermission.AddSourceDestinations,
+            ApplicationPermission.EditSourceDestinations,
             // Masters - Materials
             ApplicationPermission.ViewMaterials,
             ApplicationPermission.AddMaterials,
@@ -173,12 +169,9 @@ public sealed class DefaultPermissionProvider : IPermissionProvider
             // Masters - Vendors
             ApplicationPermission.ViewVendors,
             ApplicationPermission.AddVendors,
-            // Masters - Sources
-            ApplicationPermission.ViewSources,
-            ApplicationPermission.AddSources,
-            // Masters - Destinations
-            ApplicationPermission.ViewDestinations,
-            ApplicationPermission.AddDestinations,
+            // Masters - Source/Destinations
+            ApplicationPermission.ViewSourceDestinations,
+            ApplicationPermission.AddSourceDestinations,
             // Masters - Materials
             ApplicationPermission.ViewMaterials,
             ApplicationPermission.AddMaterials,
@@ -219,10 +212,8 @@ public sealed class DefaultPermissionProvider : IPermissionProvider
             ApplicationPermission.ViewCustomers,
             // Masters - Vendors
             ApplicationPermission.ViewVendors,
-            // Masters - Sources
-            ApplicationPermission.ViewSources,
-            // Masters - Destinations
-            ApplicationPermission.ViewDestinations,
+            // Masters - Source/Destinations
+            ApplicationPermission.ViewSourceDestinations,
             // Masters - Materials
             ApplicationPermission.ViewMaterials,
             // Masters - Fuel Pumps

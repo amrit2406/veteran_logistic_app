@@ -140,17 +140,11 @@ public sealed class DatabasePermissionProvider : IPermissionProvider
             ApplicationPermission.EditVendors,
             ApplicationPermission.DeleteVendors,
             
-            // Masters - Sources
-            ApplicationPermission.ViewSources,
-            ApplicationPermission.AddSources,
-            ApplicationPermission.EditSources,
-            ApplicationPermission.DeleteSources,
-            
-            // Masters - Destinations
-            ApplicationPermission.ViewDestinations,
-            ApplicationPermission.AddDestinations,
-            ApplicationPermission.EditDestinations,
-            ApplicationPermission.DeleteDestinations,
+            // Masters - Source/Destinations
+            ApplicationPermission.ViewSourceDestinations,
+            ApplicationPermission.AddSourceDestinations,
+            ApplicationPermission.EditSourceDestinations,
+            ApplicationPermission.DeleteSourceDestinations,
             
             // Masters - Materials
             ApplicationPermission.ViewMaterials,
@@ -266,17 +260,11 @@ public sealed class DatabasePermissionProvider : IPermissionProvider
             "Masters.Vendors.Edit" => ApplicationPermission.EditVendors,
             "Masters.Vendors.Delete" => ApplicationPermission.DeleteVendors,
             
-            // Masters - Sources
-            "Masters.Sources.View" => ApplicationPermission.ViewSources,
-            "Masters.Sources.Add" => ApplicationPermission.AddSources,
-            "Masters.Sources.Edit" => ApplicationPermission.EditSources,
-            "Masters.Sources.Delete" => ApplicationPermission.DeleteSources,
-            
-            // Masters - Destinations
-            "Masters.Destinations.View" => ApplicationPermission.ViewDestinations,
-            "Masters.Destinations.Add" => ApplicationPermission.AddDestinations,
-            "Masters.Destinations.Edit" => ApplicationPermission.EditDestinations,
-            "Masters.Destinations.Delete" => ApplicationPermission.DeleteDestinations,
+            // Masters - Source/Destinations
+            "Masters.SourceDestinations.View" => ApplicationPermission.ViewSourceDestinations,
+            "Masters.SourceDestinations.Add" => ApplicationPermission.AddSourceDestinations,
+            "Masters.SourceDestinations.Edit" => ApplicationPermission.EditSourceDestinations,
+            "Masters.SourceDestinations.Delete" => ApplicationPermission.DeleteSourceDestinations,
             
             // Masters - Materials
             "Masters.Materials.View" => ApplicationPermission.ViewMaterials,

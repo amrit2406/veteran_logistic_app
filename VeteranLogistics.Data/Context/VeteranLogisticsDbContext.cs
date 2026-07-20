@@ -59,14 +59,9 @@ public class VeteranLogisticsDbContext : DbContext
     public DbSet<Vendor> Vendors => Set<Vendor>();
 
     /// <summary>
-    /// Gets or sets the Sources DbSet.
+    /// Gets or sets the SourceDestinations DbSet.
     /// </summary>
-    public DbSet<Source> Sources => Set<Source>();
-
-    /// <summary>
-    /// Gets or sets the Destinations DbSet.
-    /// </summary>
-    public DbSet<Destination> Destinations => Set<Destination>();
+    public DbSet<SourceDestination> SourceDestinations => Set<SourceDestination>();
 
     /// <summary>
     /// Gets or sets the Materials DbSet.

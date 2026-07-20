@@ -11,14 +11,10 @@ using veteran_logistic.Masters.Vendors.Contracts;
 using veteran_logistic.Masters.Vendors.Services;
 using veteran_logistic.Masters.Vendors.Validators;
 using veteran_logistic.Masters.Vendors.ViewModels;
-using veteran_logistic.Masters.Sources.Contracts;
-using veteran_logistic.Masters.Sources.Services;
-using veteran_logistic.Masters.Sources.Validators;
-using veteran_logistic.Masters.Sources.ViewModels;
-using veteran_logistic.Masters.Destinations.Contracts;
-using veteran_logistic.Masters.Destinations.Services;
-using veteran_logistic.Masters.Destinations.Validators;
-using veteran_logistic.Masters.Destinations.ViewModels;
+using veteran_logistic.Masters.SourceDestinations.Contracts;
+using veteran_logistic.Masters.SourceDestinations.Services;
+using veteran_logistic.Masters.SourceDestinations.Validators;
+using veteran_logistic.Masters.SourceDestinations.ViewModels;
 using veteran_logistic.Masters.Materials.Contracts;
 using veteran_logistic.Masters.Materials.Services;
 using veteran_logistic.Masters.Materials.Validators;
@@ -96,27 +92,16 @@ public static class MastersServiceCollectionExtensions
         services.AddTransient<AddVendorViewModel>();
         services.AddTransient<EditVendorViewModel>();
 
-        // Source services
-        services.AddScoped<ISourceQueryService, SourceQueryService>();
-        services.AddScoped<ISourceCommandService, SourceCommandService>();
-        services.AddScoped<ICreateSourceValidator, CreateSourceValidator>();
-        services.AddScoped<IUpdateSourceValidator, UpdateSourceValidator>();
-        services.AddScoped<IUpdateSourceStatusValidator, UpdateSourceStatusValidator>();
-        services.AddScoped<IDeleteSourceValidator, DeleteSourceValidator>();
-        services.AddTransient<SourcesViewModel>();
-        services.AddTransient<AddSourceViewModel>();
-        services.AddTransient<EditSourceViewModel>();
-
-        // Destination services
-        services.AddScoped<IDestinationQueryService, DestinationQueryService>();
-        services.AddScoped<IDestinationCommandService, DestinationCommandService>();
-        services.AddScoped<ICreateDestinationValidator, CreateDestinationValidator>();
-        services.AddScoped<IUpdateDestinationValidator, UpdateDestinationValidator>();
-        services.AddScoped<IUpdateDestinationStatusValidator, UpdateDestinationStatusValidator>();
-        services.AddScoped<IDeleteDestinationValidator, DeleteDestinationValidator>();
-        services.AddTransient<DestinationsViewModel>();
-        services.AddTransient<AddDestinationViewModel>();
-        services.AddTransient<EditDestinationViewModel>();
+        // Source/Destination services
+        services.AddScoped<ISourceDestinationQueryService, SourceDestinationQueryService>();
+        services.AddScoped<ISourceDestinationCommandService, SourceDestinationCommandService>();
+        services.AddScoped<ICreateSourceDestinationValidator, CreateSourceDestinationValidator>();
+        services.AddScoped<IUpdateSourceDestinationValidator, UpdateSourceDestinationValidator>();
+        services.AddScoped<IUpdateSourceDestinationStatusValidator, UpdateSourceDestinationStatusValidator>();
+        services.AddScoped<IDeleteSourceDestinationValidator, DeleteSourceDestinationValidator>();
+        services.AddTransient<SourceDestinationsViewModel>();
+        services.AddTransient<AddSourceDestinationViewModel>();
+        services.AddTransient<EditSourceDestinationViewModel>();
 
         // Material services
         services.AddScoped<IMaterialQueryService, MaterialQueryService>();

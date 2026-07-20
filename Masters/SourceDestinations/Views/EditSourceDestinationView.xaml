@@ -1,0 +1,102 @@
+<UserControl x:Class="veteran_logistic.Masters.SourceDestinations.Views.EditSourceDestinationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+    <Grid Background="{DynamicResource BackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0"
+                Background="{DynamicResource SurfaceBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="{StaticResource StandardBorderThickness}"
+                Padding="{StaticResource Medium}">
+            <TextBlock Text="Edit Source/Destination"
+                       Style="{StaticResource HeadingTextBlockStyle}"
+                       VerticalAlignment="Center" />
+        </Border>
+
+        <!-- Form -->
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto"
+                      Padding="{StaticResource Large}">
+            <StackPanel HorizontalAlignment="Left" MaxWidth="600">
+                <!-- Validation Error -->
+                <Border Background="{DynamicResource ErrorBrush}"
+                        BorderBrush="{DynamicResource ErrorBrush}"
+                        BorderThickness="{StaticResource StandardBorderThickness}"
+                        CornerRadius="{StaticResource StandardCornerRadius}"
+                        Padding="{StaticResource Small}"
+                        Margin="{StaticResource Small}"
+                        Visibility="{Binding ValidationError, Converter={StaticResource StringToVisibilityConverter}}">
+                    <TextBlock Text="{Binding ValidationError}"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               Foreground="{DynamicResource TextOnPrimaryBrush}"
+                               TextWrapping="Wrap" />
+                </Border>
+
+                <!-- Source/Destination -->
+                <StackPanel Margin="{StaticResource Small}">
+                    <TextBlock Text="Source/Destination"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               Margin="{StaticResource ExtraSmall}" />
+                    <TextBox Text="{Binding LocationName, UpdateSourceTrigger=PropertyChanged}"
+                             Height="{StaticResource StandardControlHeight}" />
+                </StackPanel>
+
+                <!-- Active -->
+                <StackPanel Margin="{StaticResource Small}"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center">
+                    <CheckBox IsChecked="{Binding IsActive}"
+                              VerticalAlignment="Center"
+                              Margin="{StaticResource ExtraSmall}" />
+                    <TextBlock Text="Active"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               VerticalAlignment="Center"
+                               Margin="{StaticResource Small}" />
+                </StackPanel>
+
+                <!-- Buttons -->
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Margin="{StaticResource Medium}">
+                    <Button Content="Save"
+                            Command="{Binding SaveCommand}"
+                            Height="{StaticResource StandardControlHeight}"
+                            Margin="{StaticResource Small}" />
+
+                    <Button Content="Cancel"
+                            Command="{Binding CancelCommand}"
+                            Height="{StaticResource StandardControlHeight}"
+                            Margin="{StaticResource Small}" />
+                </StackPanel>
+
+                <!-- Loading Indicator -->
+                <Border Background="{DynamicResource SurfaceBrush}"
+                        BorderBrush="{DynamicResource BorderBrush}"
+                        BorderThickness="{StaticResource StandardBorderThickness}"
+                        CornerRadius="{StaticResource StandardCornerRadius}"
+                        Padding="{StaticResource Medium}"
+                        Margin="{StaticResource Small}"
+                        Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center">
+                        <ProgressBar Height="{StaticResource StandardControlHeight}"
+                                   IsIndeterminate="True"
+                                   Foreground="{DynamicResource PrimaryBrush}"
+                                   Margin="{StaticResource Small}" />
+                        <TextBlock Text="{Binding BusyMessage}"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   VerticalAlignment="Center" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

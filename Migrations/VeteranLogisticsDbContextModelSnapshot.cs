@@ -123,7 +123,7 @@ namespace veteran_logistic.Migrations
                     b.HasIndex("GSTNumber")
                         .IsUnique();
 
-                    b.ToTable("Companies", (string)null);
+                    b.ToTable("Companies");
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.Customer", b =>
@@ -227,121 +227,7 @@ namespace veteran_logistic.Migrations
                     b.HasIndex("GSTNumber")
                         .IsUnique();
 
-                    b.ToTable("Customers", (string)null);
-                });
-
-            modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.Destination", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AddressLine1")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("AddressLine2")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("ContactPerson")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DestinationCode")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("DestinationName")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("GSTNumber")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<decimal?>("Latitude")
-                        .HasPrecision(9, 6)
-                        .HasColumnType("decimal(9,6)");
-
-                    b.Property<decimal?>("Longitude")
-                        .HasPrecision(9, 6)
-                        .HasColumnType("decimal(9,6)");
-
-                    b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("PostalCode")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("Remarks")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<string>("State")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DestinationCode")
-                        .IsUnique();
-
-                    b.ToTable("Destinations", (string)null);
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.FinancialYear", b =>
@@ -386,7 +272,7 @@ namespace veteran_logistic.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("FinancialYears", (string)null);
+                    b.ToTable("FinancialYears");
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.FuelPump", b =>
@@ -432,7 +318,7 @@ namespace veteran_logistic.Migrations
                     b.HasIndex("FuelPumpName")
                         .IsUnique();
 
-                    b.ToTable("FuelPumps", (string)null);
+                    b.ToTable("FuelPumps");
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.HsdRate", b =>
@@ -484,7 +370,7 @@ namespace veteran_logistic.Migrations
                         .IsUnique()
                         .HasFilter("[IsDeleted] = 0");
 
-                    b.ToTable("HsdRates", (string)null);
+                    b.ToTable("HsdRates");
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.Material", b =>
@@ -530,7 +416,7 @@ namespace veteran_logistic.Migrations
                     b.HasIndex("MaterialName")
                         .IsUnique();
 
-                    b.ToTable("Materials", (string)null);
+                    b.ToTable("Materials");
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.PaymentLocation", b =>
@@ -576,7 +462,7 @@ namespace veteran_logistic.Migrations
                     b.HasIndex("PaymentLocationName")
                         .IsUnique();
 
-                    b.ToTable("PaymentLocations", (string)null);
+                    b.ToTable("PaymentLocations");
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.Permission", b =>
@@ -636,7 +522,7 @@ namespace veteran_logistic.Migrations
 
                     b.HasIndex("Module", "Screen");
 
-                    b.ToTable("Permissions", (string)null);
+                    b.ToTable("Permissions");
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.Role", b =>
@@ -679,7 +565,7 @@ namespace veteran_logistic.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Roles", (string)null);
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.RolePermission", b =>
@@ -712,41 +598,16 @@ namespace veteran_logistic.Migrations
                     b.HasIndex("RoleId", "PermissionId")
                         .IsUnique();
 
-                    b.ToTable("RolePermissions", (string)null);
+                    b.ToTable("RolePermissions");
                 });
 
-            modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.Source", b =>
+            modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.SourceDestination", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AddressLine1")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("AddressLine2")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("ContactPerson")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -759,29 +620,17 @@ namespace veteran_logistic.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("GSTNumber")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<decimal?>("Latitude")
-                        .HasPrecision(9, 6)
-                        .HasColumnType("decimal(9,6)");
-
-                    b.Property<decimal?>("Longitude")
-                        .HasPrecision(9, 6)
-                        .HasColumnType("decimal(9,6)");
+                    b.Property<string>("LocationName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)")
+                        .HasColumnName("SourceDestination");
 
                     b.Property<string>("ModifiedBy")
                         .IsRequired()
@@ -791,42 +640,12 @@ namespace veteran_logistic.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("PostalCode")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("Remarks")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<string>("SourceCode")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("SourceName")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("State")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("SourceCode")
+                    b.HasIndex("LocationName")
                         .IsUnique();
 
-                    b.ToTable("Sources", (string)null);
+                    b.ToTable("SourceDestinations");
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.User", b =>
@@ -875,7 +694,7 @@ namespace veteran_logistic.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.Vehicle", b =>
@@ -931,7 +750,7 @@ namespace veteran_logistic.Migrations
 
                     b.HasIndex("VehicleOwnerId");
 
-                    b.ToTable("Vehicles", (string)null);
+                    b.ToTable("Vehicles");
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.VehicleAssignment", b =>
@@ -987,7 +806,7 @@ namespace veteran_logistic.Migrations
                         .IsUnique()
                         .HasFilter("[ReleaseDate] IS NULL");
 
-                    b.ToTable("VehicleAssignments", (string)null);
+                    b.ToTable("VehicleAssignments");
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.VehicleOwner", b =>
@@ -1101,7 +920,7 @@ namespace veteran_logistic.Migrations
                     b.HasIndex("PANNumber")
                         .IsUnique();
 
-                    b.ToTable("VehicleOwners", (string)null);
+                    b.ToTable("VehicleOwners");
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.Vendor", b =>
@@ -1210,7 +1029,7 @@ namespace veteran_logistic.Migrations
                     b.HasIndex("VendorCode")
                         .IsUnique();
 
-                    b.ToTable("Vendors", (string)null);
+                    b.ToTable("Vendors");
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.HsdRate", b =>

@@ -20,10 +20,8 @@
                     xmlns:mastersCustomersViews="clr-namespace:veteran_logistic.Masters.Customers.Views"
                     xmlns:mastersVendorsVm="clr-namespace:veteran_logistic.Masters.Vendors.ViewModels"
                     xmlns:mastersVendorsViews="clr-namespace:veteran_logistic.Masters.Vendors.Views"
-                    xmlns:mastersSourcesVm="clr-namespace:veteran_logistic.Masters.Sources.ViewModels"
-                    xmlns:mastersSourcesViews="clr-namespace:veteran_logistic.Masters.Sources.Views"
-                    xmlns:mastersDestinationsVm="clr-namespace:veteran_logistic.Masters.Destinations.ViewModels"
-                    xmlns:mastersDestinationsViews="clr-namespace:veteran_logistic.Masters.Destinations.Views"
+                    xmlns:mastersSourceDestinationsVm="clr-namespace:veteran_logistic.Masters.SourceDestinations.ViewModels"
+                    xmlns:mastersSourceDestinationsViews="clr-namespace:veteran_logistic.Masters.SourceDestinations.Views"
                     xmlns:mastersMaterialsVm="clr-namespace:veteran_logistic.Masters.Materials.ViewModels"
                     xmlns:mastersMaterialsViews="clr-namespace:veteran_logistic.Masters.Materials.Views"
                     xmlns:mastersFuelPumpsVm="clr-namespace:veteran_logistic.Masters.FuelPumps.ViewModels"
@@ -130,28 +128,16 @@
     <mastersVendorsViews:EditVendorView />
   </DataTemplate>
 
-  <DataTemplate DataType="{x:Type mastersSourcesVm:SourcesViewModel}">
-    <mastersSourcesViews:SourcesView />
+  <DataTemplate DataType="{x:Type mastersSourceDestinationsVm:SourceDestinationsViewModel}">
+    <mastersSourceDestinationsViews:SourceDestinationsView />
   </DataTemplate>
 
-  <DataTemplate DataType="{x:Type mastersSourcesVm:AddSourceViewModel}">
-    <mastersSourcesViews:AddSourceView />
+  <DataTemplate DataType="{x:Type mastersSourceDestinationsVm:AddSourceDestinationViewModel}">
+    <mastersSourceDestinationsViews:AddSourceDestinationView />
   </DataTemplate>
 
-  <DataTemplate DataType="{x:Type mastersSourcesVm:EditSourceViewModel}">
-    <mastersSourcesViews:EditSourceView />
-  </DataTemplate>
-
-  <DataTemplate DataType="{x:Type mastersDestinationsVm:DestinationsViewModel}">
-    <mastersDestinationsViews:DestinationsView />
-  </DataTemplate>
-
-  <DataTemplate DataType="{x:Type mastersDestinationsVm:AddDestinationViewModel}">
-    <mastersDestinationsViews:AddDestinationView />
-  </DataTemplate>
-
-  <DataTemplate DataType="{x:Type mastersDestinationsVm:EditDestinationViewModel}">
-    <mastersDestinationsViews:EditDestinationView />
+  <DataTemplate DataType="{x:Type mastersSourceDestinationsVm:EditSourceDestinationViewModel}">
+    <mastersSourceDestinationsViews:EditSourceDestinationView />
   </DataTemplate>
 
   <DataTemplate DataType="{x:Type mastersMaterialsVm:MaterialsViewModel}">
