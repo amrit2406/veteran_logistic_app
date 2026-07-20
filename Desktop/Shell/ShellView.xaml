@@ -105,6 +105,7 @@
                     <MenuItem Header="Vehicle Owners" Command="{Binding NavigateToVehicleOwnersCommand}" />
                     <MenuItem Header="Vehicles" Command="{Binding NavigateToVehiclesCommand}" />
                     <MenuItem Header="Vehicle Assignment" Command="{Binding NavigateToVehicleAssignmentsCommand}" />
+                    <MenuItem Header="DO Rate Setup" Command="{Binding NavigateToDORatesCommand}" />
                 </MenuItem>
                 <MenuItem Header="Transactions" Style="{StaticResource TopMenuItemStyle}">
                     <MenuItem Header="Orders" />

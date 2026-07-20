@@ -262,3 +262,9 @@ D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\SourceDestinations
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\SourceDestinations\Views\EditSourceDestinationView.g.cs
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\SourceDestinations\Views\SourceDestinationsView.g.cs
 d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\SourceDestinations\Views\SourceDestinationsView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\DORates\Views\AddDORateView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\DORates\Views\DORatesView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\DORates\Views\EditDORateView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\DORates\Views\AddDORateView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\DORates\Views\DORatesView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\DORates\Views\EditDORateView.baml

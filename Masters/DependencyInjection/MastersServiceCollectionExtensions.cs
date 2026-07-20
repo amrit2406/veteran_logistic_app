@@ -42,6 +42,10 @@ using veteran_logistic.Masters.Vehicles.ViewModels;
 using veteran_logistic.Masters.VehicleAssignments.Contracts;
 using veteran_logistic.Masters.VehicleAssignments.Services;
 using veteran_logistic.Masters.VehicleAssignments.ViewModels;
+using veteran_logistic.Masters.DORates.Contracts;
+using veteran_logistic.Masters.DORates.Services;
+using veteran_logistic.Masters.DORates.Validators;
+using veteran_logistic.Masters.DORates.ViewModels;
 
 namespace veteran_logistic.Masters.DependencyInjection;
 
@@ -172,6 +176,18 @@ public static class MastersServiceCollectionExtensions
         // Vehicle Assignment services (Query only - no CRUD)
         services.AddScoped<IVehicleAssignmentQueryService, VehicleAssignmentQueryService>();
         services.AddTransient<VehicleAssignmentsViewModel>();
+
+        // DO Rate services
+        services.AddScoped<IDummyLookupService, DummyLookupService>();
+        services.AddScoped<IDORateQueryService, DORateQueryService>();
+        services.AddScoped<IDORateCommandService, DORateCommandService>();
+        services.AddScoped<ICreateDORateValidator, CreateDORateValidator>();
+        services.AddScoped<IUpdateDORateValidator, UpdateDORateValidator>();
+        services.AddScoped<IUpdateDORateStatusValidator, UpdateDORateStatusValidator>();
+        services.AddScoped<IDeleteDORateValidator, DeleteDORateValidator>();
+        services.AddTransient<DORatesViewModel>();
+        services.AddTransient<AddDORateViewModel>();
+        services.AddTransient<EditDORateViewModel>();
 
         return services;
     }

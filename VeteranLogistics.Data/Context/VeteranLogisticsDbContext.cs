@@ -99,6 +99,11 @@ public class VeteranLogisticsDbContext : DbContext
     public DbSet<VehicleAssignment> VehicleAssignments => Set<VehicleAssignment>();
 
     /// <summary>
+    /// Gets or sets the DORates DbSet.
+    /// </summary>
+    public DbSet<DORate> DORates => Set<DORate>();
+
+    /// <summary>
     /// Apply entity configurations discovered in this assembly.
     /// </summary>
     /// <param name="modelBuilder">Model builder.</param>
