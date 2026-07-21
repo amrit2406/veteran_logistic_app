@@ -56,6 +56,17 @@ public sealed class HsdRateCommandService : IHsdRateCommandService
                 return CreateHsdRateResult.Failure(errorMessage);
             }
 
+            // Validate Fuel Pump exists
+            var fuelPump = await _dbContext.FuelPumps
+                .AsNoTracking()
+                .FirstOrDefaultAsync(f => f.Id == request.FuelPumpId, cancellationToken)
+                .ConfigureAwait(false);
+
+            if (fuelPump is null)
+            {
+                return CreateHsdRateResult.Failure("Fuel pump not found.");
+            }
+
             // Check for duplicate FuelPumpId + ApplicableDate combination
             var existingHsdRate = await _dbContext.HsdRates
                 .AsNoTracking()
@@ -110,6 +121,17 @@ public sealed class HsdRateCommandService : IHsdRateCommandService
             if (hsdRate is null)
             {
                 return UpdateHsdRateResult.Failure("HSD rate not found.");
+            }
+
+            // Validate Fuel Pump exists
+            var fuelPump = await _dbContext.FuelPumps
+                .AsNoTracking()
+                .FirstOrDefaultAsync(f => f.Id == request.FuelPumpId, cancellationToken)
+                .ConfigureAwait(false);
+
+            if (fuelPump is null)
+            {
+                return UpdateHsdRateResult.Failure("Fuel pump not found.");
             }
 
             // Check for duplicate FuelPumpId + ApplicableDate (excluding current HSD rate)

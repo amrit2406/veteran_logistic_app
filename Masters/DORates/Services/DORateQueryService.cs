@@ -33,6 +33,7 @@ public sealed class DORateQueryService : IDORateQueryService
         var doRates = await _dbContext.DORates
             .Include(d => d.Source)
             .Include(d => d.Destination)
+            .AsNoTracking()
             .Select(d => new DORateListItem
             {
                 Id = d.Id,
@@ -64,16 +65,17 @@ public sealed class DORateQueryService : IDORateQueryService
         var query = _dbContext.DORates
             .Include(d => d.Source)
             .Include(d => d.Destination)
-            .AsQueryable();
+            .AsNoTracking();
 
         if (!string.IsNullOrWhiteSpace(searchTerm))
         {
+            var searchPattern = $"%{searchTerm}%";
             query = query.Where(d =>
-                d.DONumber.Contains(searchTerm) ||
-                (d.Source != null && d.Source.LocationName.Contains(searchTerm)) ||
-                (d.Destination != null && d.Destination.LocationName.Contains(searchTerm)) ||
-                d.VesselName.Contains(searchTerm) ||
-                d.TraderName.Contains(searchTerm));
+                EF.Functions.Like(d.DONumber, searchPattern) ||
+                (d.Source != null && EF.Functions.Like(d.Source.LocationName, searchPattern)) ||
+                (d.Destination != null && EF.Functions.Like(d.Destination.LocationName, searchPattern)) ||
+                EF.Functions.Like(d.VesselName, searchPattern) ||
+                EF.Functions.Like(d.TraderName, searchPattern));
         }
 
         var doRates = await query
@@ -106,6 +108,7 @@ public sealed class DORateQueryService : IDORateQueryService
         _logger.LogInformation("Getting DO rate for edit with ID: {Id}", id);
 
         var doRate = await _dbContext.DORates
+            .AsNoTracking()
             .Where(d => d.Id == id)
             .Select(d => new DORateModel
             {

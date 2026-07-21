@@ -61,6 +61,38 @@ public sealed class DORateCommandService : IDORateCommandService
             };
         }
 
+        // Validate Source exists
+        var source = await _dbContext.SourceDestinations
+            .AsNoTracking()
+            .FirstOrDefaultAsync(s => s.Id == request.SourceId, cancellationToken)
+            .ConfigureAwait(false);
+
+        if (source == null)
+        {
+            _logger.LogWarning("Source with ID {SourceId} not found", request.SourceId);
+            return new CreateDORateResult
+            {
+                IsSuccess = false,
+                ErrorMessage = "Source not found."
+            };
+        }
+
+        // Validate Destination exists
+        var destination = await _dbContext.SourceDestinations
+            .AsNoTracking()
+            .FirstOrDefaultAsync(d => d.Id == request.DestinationId, cancellationToken)
+            .ConfigureAwait(false);
+
+        if (destination == null)
+        {
+            _logger.LogWarning("Destination with ID {DestinationId} not found", request.DestinationId);
+            return new CreateDORateResult
+            {
+                IsSuccess = false,
+                ErrorMessage = "Destination not found."
+            };
+        }
+
         // Check for duplicate active DO setup
         var exists = await _dbContext.DORates
             .AnyAsync(d => d.SourceId == request.SourceId &&
@@ -156,6 +188,38 @@ public sealed class DORateCommandService : IDORateCommandService
             {
                 IsSuccess = false,
                 ErrorMessage = "DO Rate not found."
+            };
+        }
+
+        // Validate Source exists
+        var source = await _dbContext.SourceDestinations
+            .AsNoTracking()
+            .FirstOrDefaultAsync(s => s.Id == request.SourceId, cancellationToken)
+            .ConfigureAwait(false);
+
+        if (source == null)
+        {
+            _logger.LogWarning("Source with ID {SourceId} not found", request.SourceId);
+            return new UpdateDORateResult
+            {
+                IsSuccess = false,
+                ErrorMessage = "Source not found."
+            };
+        }
+
+        // Validate Destination exists
+        var destination = await _dbContext.SourceDestinations
+            .AsNoTracking()
+            .FirstOrDefaultAsync(d => d.Id == request.DestinationId, cancellationToken)
+            .ConfigureAwait(false);
+
+        if (destination == null)
+        {
+            _logger.LogWarning("Destination with ID {DestinationId} not found", request.DestinationId);
+            return new UpdateDORateResult
+            {
+                IsSuccess = false,
+                ErrorMessage = "Destination not found."
             };
         }
 

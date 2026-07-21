@@ -32,6 +32,7 @@ public sealed class SourceDestinationQueryService : ISourceDestinationQueryServi
         _logger.LogInformation("Getting all source/destinations");
 
         var sourceDestinations = await _dbContext.SourceDestinations
+            .AsNoTracking()
             .Select(sd => new SourceDestinationListItem
             {
                 Id = sd.Id,
@@ -52,11 +53,12 @@ public sealed class SourceDestinationQueryService : ISourceDestinationQueryServi
     {
         _logger.LogInformation("Searching source/destinations with term: {SearchTerm}", searchTerm);
 
-        var query = _dbContext.SourceDestinations.AsQueryable();
+        var query = _dbContext.SourceDestinations.AsNoTracking();
 
         if (!string.IsNullOrWhiteSpace(searchTerm))
         {
-            query = query.Where(sd => sd.LocationName.Contains(searchTerm));
+            var searchPattern = $"%{searchTerm}%";
+            query = query.Where(sd => EF.Functions.Like(sd.LocationName, searchPattern));
         }
 
         var sourceDestinations = await query
@@ -81,6 +83,7 @@ public sealed class SourceDestinationQueryService : ISourceDestinationQueryServi
         _logger.LogInformation("Getting source/destination for edit with ID: {Id}", id);
 
         var sourceDestination = await _dbContext.SourceDestinations
+            .AsNoTracking()
             .Where(sd => sd.Id == id)
             .Select(sd => new SourceDestinationModel
             {
