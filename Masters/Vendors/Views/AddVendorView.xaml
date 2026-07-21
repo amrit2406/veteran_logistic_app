@@ -40,39 +40,44 @@
                                TextWrapping="Wrap" />
                 </Border>
 
-                <!-- Vendor Code -->
+                <!-- Code (Auto-generated) -->
                 <StackPanel Margin="{StaticResource Small}">
-                    <TextBlock Text="Vendor Code"
+                    <TextBlock Text="Code (Auto-generated)"
                                Style="{StaticResource BodyTextBlockStyle}"
                                Margin="{StaticResource ExtraSmall}" />
-                    <TextBox Text="{Binding VendorCode, UpdateSourceTrigger=PropertyChanged}"
+                    <TextBox Text="{Binding Code, UpdateSourceTrigger=PropertyChanged}"
+                             Height="{StaticResource StandardControlHeight}"
+                             IsReadOnly="True" />
+                </StackPanel>
+
+                <!-- Type -->
+                <StackPanel Margin="{StaticResource Small}">
+                    <TextBlock Text="Type"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               Margin="{StaticResource ExtraSmall}" />
+                    <ComboBox SelectedValue="{Binding Type, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedValuePath="Content"
+                              Height="{StaticResource StandardControlHeight}">
+                        <ComboBoxItem Content="Union" />
+                        <ComboBoxItem Content="Vendor" />
+                    </ComboBox>
+                </StackPanel>
+
+                <!-- Name -->
+                <StackPanel Margin="{StaticResource Small}">
+                    <TextBlock Text="Name"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               Margin="{StaticResource ExtraSmall}" />
+                    <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
                              Height="{StaticResource StandardControlHeight}" />
                 </StackPanel>
 
-                <!-- Vendor Name -->
+                <!-- Correspondence Address -->
                 <StackPanel Margin="{StaticResource Small}">
-                    <TextBlock Text="Vendor Name"
+                    <TextBlock Text="Correspondence Address"
                                Style="{StaticResource BodyTextBlockStyle}"
                                Margin="{StaticResource ExtraSmall}" />
-                    <TextBox Text="{Binding VendorName, UpdateSourceTrigger=PropertyChanged}"
-                             Height="{StaticResource StandardControlHeight}" />
-                </StackPanel>
-
-                <!-- Address Line 1 -->
-                <StackPanel Margin="{StaticResource Small}">
-                    <TextBlock Text="Address Line 1"
-                               Style="{StaticResource BodyTextBlockStyle}"
-                               Margin="{StaticResource ExtraSmall}" />
-                    <TextBox Text="{Binding AddressLine1, UpdateSourceTrigger=PropertyChanged}"
-                             Height="{StaticResource StandardControlHeight}" />
-                </StackPanel>
-
-                <!-- Address Line 2 -->
-                <StackPanel Margin="{StaticResource Small}">
-                    <TextBlock Text="Address Line 2"
-                               Style="{StaticResource BodyTextBlockStyle}"
-                               Margin="{StaticResource ExtraSmall}" />
-                    <TextBox Text="{Binding AddressLine2, UpdateSourceTrigger=PropertyChanged}"
+                    <TextBox Text="{Binding CorrespondenceAddress, UpdateSourceTrigger=PropertyChanged}"
                              Height="{StaticResource StandardControlHeight}" />
                 </StackPanel>
 
@@ -85,39 +90,39 @@
                              Height="{StaticResource StandardControlHeight}" />
                 </StackPanel>
 
-                <!-- State -->
+                <!-- Billing Address -->
                 <StackPanel Margin="{StaticResource Small}">
-                    <TextBlock Text="State"
+                    <TextBlock Text="Billing Address"
                                Style="{StaticResource BodyTextBlockStyle}"
                                Margin="{StaticResource ExtraSmall}" />
-                    <TextBox Text="{Binding State, UpdateSourceTrigger=PropertyChanged}"
+                    <TextBox Text="{Binding BillingAddress, UpdateSourceTrigger=PropertyChanged}"
                              Height="{StaticResource StandardControlHeight}" />
                 </StackPanel>
 
-                <!-- Country -->
+                <!-- Phone -->
                 <StackPanel Margin="{StaticResource Small}">
-                    <TextBlock Text="Country"
+                    <TextBlock Text="Phone"
                                Style="{StaticResource BodyTextBlockStyle}"
                                Margin="{StaticResource ExtraSmall}" />
-                    <TextBox Text="{Binding Country, UpdateSourceTrigger=PropertyChanged}"
+                    <TextBox Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}"
                              Height="{StaticResource StandardControlHeight}" />
                 </StackPanel>
 
-                <!-- Postal Code -->
+                <!-- Mobile -->
                 <StackPanel Margin="{StaticResource Small}">
-                    <TextBlock Text="Postal Code"
+                    <TextBlock Text="Mobile"
                                Style="{StaticResource BodyTextBlockStyle}"
                                Margin="{StaticResource ExtraSmall}" />
-                    <TextBox Text="{Binding PostalCode, UpdateSourceTrigger=PropertyChanged}"
+                    <TextBox Text="{Binding Mobile, UpdateSourceTrigger=PropertyChanged}"
                              Height="{StaticResource StandardControlHeight}" />
                 </StackPanel>
 
-                <!-- Phone Number -->
+                <!-- Fax -->
                 <StackPanel Margin="{StaticResource Small}">
-                    <TextBlock Text="Phone Number"
+                    <TextBlock Text="Fax"
                                Style="{StaticResource BodyTextBlockStyle}"
                                Margin="{StaticResource ExtraSmall}" />
-                    <TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
+                    <TextBox Text="{Binding Fax, UpdateSourceTrigger=PropertyChanged}"
                              Height="{StaticResource StandardControlHeight}" />
                 </StackPanel>
 
@@ -130,30 +135,39 @@
                              Height="{StaticResource StandardControlHeight}" />
                 </StackPanel>
 
-                <!-- GST Number -->
+                <!-- Service Tax -->
                 <StackPanel Margin="{StaticResource Small}">
-                    <TextBlock Text="GST Number"
+                    <TextBlock Text="Service Tax"
                                Style="{StaticResource BodyTextBlockStyle}"
                                Margin="{StaticResource ExtraSmall}" />
-                    <TextBox Text="{Binding GSTNumber, UpdateSourceTrigger=PropertyChanged}"
+                    <TextBox Text="{Binding ServiceTax, UpdateSourceTrigger=PropertyChanged}"
                              Height="{StaticResource StandardControlHeight}" />
                 </StackPanel>
 
-                <!-- PAN Number -->
+                <!-- CST -->
                 <StackPanel Margin="{StaticResource Small}">
-                    <TextBlock Text="PAN Number"
+                    <TextBlock Text="CST"
                                Style="{StaticResource BodyTextBlockStyle}"
                                Margin="{StaticResource ExtraSmall}" />
-                    <TextBox Text="{Binding PANNumber, UpdateSourceTrigger=PropertyChanged}"
+                    <TextBox Text="{Binding CST, UpdateSourceTrigger=PropertyChanged}"
                              Height="{StaticResource StandardControlHeight}" />
                 </StackPanel>
 
-                <!-- Contact Person -->
+                <!-- PAN -->
                 <StackPanel Margin="{StaticResource Small}">
-                    <TextBlock Text="Contact Person"
+                    <TextBlock Text="PAN"
                                Style="{StaticResource BodyTextBlockStyle}"
                                Margin="{StaticResource ExtraSmall}" />
-                    <TextBox Text="{Binding ContactPerson, UpdateSourceTrigger=PropertyChanged}"
+                    <TextBox Text="{Binding PAN, UpdateSourceTrigger=PropertyChanged}"
+                             Height="{StaticResource StandardControlHeight}" />
+                </StackPanel>
+
+                <!-- GSTIN -->
+                <StackPanel Margin="{StaticResource Small}">
+                    <TextBlock Text="GSTIN"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               Margin="{StaticResource ExtraSmall}" />
+                    <TextBox Text="{Binding GSTIN, UpdateSourceTrigger=PropertyChanged}"
                              Height="{StaticResource StandardControlHeight}" />
                 </StackPanel>
 

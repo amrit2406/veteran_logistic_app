@@ -56,43 +56,25 @@ public sealed class VendorCommandService : IVendorCommandService
                 return CreateVendorResult.Failure(errorMessage);
             }
 
-            // Check for duplicate VendorCode
-            var existingVendorByCode = await _dbContext.Vendors
-                .AsNoTracking()
-                .FirstOrDefaultAsync(v => v.VendorCode == request.VendorCode, cancellationToken)
-                .ConfigureAwait(false);
-
-            if (existingVendorByCode is not null)
-            {
-                return CreateVendorResult.Failure("A vendor with this vendor code already exists.");
-            }
-
-            // Check for duplicate GSTNumber
-            var existingVendorByGST = await _dbContext.Vendors
-                .AsNoTracking()
-                .FirstOrDefaultAsync(v => v.GSTNumber == request.GSTNumber, cancellationToken)
-                .ConfigureAwait(false);
-
-            if (existingVendorByGST is not null)
-            {
-                return CreateVendorResult.Failure("A vendor with this GST number already exists.");
-            }
+            // Auto-generate Code
+            string generatedCode = await GenerateVendorCodeAsync(cancellationToken).ConfigureAwait(false);
 
             var vendor = new VendorEntity
             {
-                VendorCode = request.VendorCode,
-                VendorName = request.VendorName,
-                AddressLine1 = request.AddressLine1,
-                AddressLine2 = request.AddressLine2,
+                Code = generatedCode,
+                Type = request.Type,
+                Name = request.Name,
+                CorrespondenceAddress = request.CorrespondenceAddress,
                 City = request.City,
-                State = request.State,
-                Country = request.Country,
-                PostalCode = request.PostalCode,
-                PhoneNumber = request.PhoneNumber,
+                BillingAddress = request.BillingAddress,
+                Phone = request.Phone,
+                Mobile = request.Mobile,
+                Fax = request.Fax,
                 Email = request.Email,
-                GSTNumber = request.GSTNumber,
-                PANNumber = request.PANNumber,
-                ContactPerson = request.ContactPerson,
+                ServiceTax = request.ServiceTax,
+                CST = request.CST,
+                PAN = request.PAN,
+                GSTIN = request.GSTIN,
                 IsActive = request.IsActive,
                 CreatedOn = DateTime.UtcNow,
                 CreatedBy = "System", // TODO: Replace with actual user from session
@@ -102,14 +84,30 @@ public sealed class VendorCommandService : IVendorCommandService
             _dbContext.Vendors.Add(vendor);
             await _dbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
-            _logger.LogInformation("Vendor '{VendorCode}' created successfully with ID {VendorId}", request.VendorCode, vendor.Id);
+            _logger.LogInformation("Vendor '{Code}' created successfully with ID {VendorId}", generatedCode, vendor.Id);
             return CreateVendorResult.Success(vendor.Id);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "An unexpected error occurred while creating vendor '{VendorCode}'", request.VendorCode);
+            _logger.LogError(ex, "An unexpected error occurred while creating vendor");
             return CreateVendorResult.Failure("An unexpected error occurred while creating the vendor.");
         }
+    }
+
+    /// <summary>
+    /// Generates a unique vendor code.
+    /// </summary>
+    private async Task<string> GenerateVendorCodeAsync(CancellationToken cancellationToken)
+    {
+        // Get the highest existing vendor ID to generate a sequential code
+        int maxId = await _dbContext.Vendors
+            .AsNoTracking()
+            .MaxAsync(v => (int?)v.Id, cancellationToken)
+            .ConfigureAwait(false) ?? 0;
+
+        // Generate code as VND followed by a 6-digit number (e.g., VND000001)
+        int nextId = maxId + 1;
+        return $"VND{nextId:D6}";
     }
 
     /// <inheritdoc />
@@ -133,41 +131,31 @@ public sealed class VendorCommandService : IVendorCommandService
                 return UpdateVendorResult.Failure("Vendor not found.");
             }
 
-            // Check for duplicate VendorCode (excluding current vendor)
+            // Check for duplicate Code (excluding current vendor)
             var existingVendorByCode = await _dbContext.Vendors
                 .AsNoTracking()
-                .FirstOrDefaultAsync(v => v.VendorCode == request.VendorCode && v.Id != request.VendorId, cancellationToken)
+                .FirstOrDefaultAsync(v => v.Code == request.Code && v.Id != request.VendorId, cancellationToken)
                 .ConfigureAwait(false);
 
             if (existingVendorByCode is not null)
             {
-                return UpdateVendorResult.Failure("A vendor with this vendor code already exists.");
+                return UpdateVendorResult.Failure("A vendor with this code already exists.");
             }
 
-            // Check for duplicate GSTNumber (excluding current vendor)
-            var existingVendorByGST = await _dbContext.Vendors
-                .AsNoTracking()
-                .FirstOrDefaultAsync(v => v.GSTNumber == request.GSTNumber && v.Id != request.VendorId, cancellationToken)
-                .ConfigureAwait(false);
-
-            if (existingVendorByGST is not null)
-            {
-                return UpdateVendorResult.Failure("A vendor with this GST number already exists.");
-            }
-
-            vendor.VendorCode = request.VendorCode;
-            vendor.VendorName = request.VendorName;
-            vendor.AddressLine1 = request.AddressLine1;
-            vendor.AddressLine2 = request.AddressLine2;
+            vendor.Code = request.Code;
+            vendor.Type = request.Type;
+            vendor.Name = request.Name;
+            vendor.CorrespondenceAddress = request.CorrespondenceAddress;
             vendor.City = request.City;
-            vendor.State = request.State;
-            vendor.Country = request.Country;
-            vendor.PostalCode = request.PostalCode;
-            vendor.PhoneNumber = request.PhoneNumber;
+            vendor.BillingAddress = request.BillingAddress;
+            vendor.Phone = request.Phone;
+            vendor.Mobile = request.Mobile;
+            vendor.Fax = request.Fax;
             vendor.Email = request.Email;
-            vendor.GSTNumber = request.GSTNumber;
-            vendor.PANNumber = request.PANNumber;
-            vendor.ContactPerson = request.ContactPerson;
+            vendor.ServiceTax = request.ServiceTax;
+            vendor.CST = request.CST;
+            vendor.PAN = request.PAN;
+            vendor.GSTIN = request.GSTIN;
             vendor.IsActive = request.IsActive;
             vendor.ModifiedOn = DateTime.UtcNow;
             vendor.ModifiedBy = "System"; // TODO: Replace with actual user from session

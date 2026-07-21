@@ -30,7 +30,7 @@ public sealed class VendorQueryService : IVendorQueryService
     public async Task<IReadOnlyList<VendorListItem>> GetAllVendorsAsync(CancellationToken cancellationToken = default)
     {
         return await ProjectToListItem(_dbContext.Vendors.AsNoTracking())
-            .OrderBy(v => v.VendorName)
+            .OrderBy(v => v.Name)
             .ToListAsync(cancellationToken)
             .ConfigureAwait(false);
     }
@@ -44,14 +44,13 @@ public sealed class VendorQueryService : IVendorQueryService
         {
             var searchPattern = $"%{search}%";
             query = query.Where(v =>
-                EF.Functions.Like(v.VendorCode, searchPattern) ||
-                EF.Functions.Like(v.VendorName, searchPattern) ||
-                EF.Functions.Like(v.City, searchPattern) ||
-                EF.Functions.Like(v.State, searchPattern));
+                EF.Functions.Like(v.Code, searchPattern) ||
+                EF.Functions.Like(v.Name, searchPattern) ||
+                EF.Functions.Like(v.City, searchPattern));
         }
 
         return await ProjectToListItem(query)
-            .OrderBy(v => v.VendorName)
+            .OrderBy(v => v.Name)
             .ToListAsync(cancellationToken)
             .ConfigureAwait(false);
     }
@@ -65,19 +64,20 @@ public sealed class VendorQueryService : IVendorQueryService
             .Select(v => new VendorModel
             {
                 Id = v.Id,
-                VendorCode = v.VendorCode,
-                VendorName = v.VendorName,
-                AddressLine1 = v.AddressLine1,
-                AddressLine2 = v.AddressLine2,
+                Code = v.Code,
+                Type = v.Type,
+                Name = v.Name,
+                CorrespondenceAddress = v.CorrespondenceAddress,
                 City = v.City,
-                State = v.State,
-                Country = v.Country,
-                PostalCode = v.PostalCode,
-                PhoneNumber = v.PhoneNumber,
+                BillingAddress = v.BillingAddress,
+                Phone = v.Phone,
+                Mobile = v.Mobile,
+                Fax = v.Fax,
                 Email = v.Email,
-                GSTNumber = v.GSTNumber,
-                PANNumber = v.PANNumber,
-                ContactPerson = v.ContactPerson,
+                ServiceTax = v.ServiceTax,
+                CST = v.CST,
+                PAN = v.PAN,
+                GSTIN = v.GSTIN,
                 IsActive = v.IsActive
             })
             .FirstOrDefaultAsync(cancellationToken)
@@ -89,12 +89,11 @@ public sealed class VendorQueryService : IVendorQueryService
         return query.Select(v => new VendorListItem
         {
             Id = v.Id,
-            VendorCode = v.VendorCode,
-            VendorName = v.VendorName,
-            GSTNumber = v.GSTNumber,
-            PANNumber = v.PANNumber,
+            Code = v.Code,
+            Name = v.Name,
+            GSTIN = v.GSTIN,
+            PAN = v.PAN,
             City = v.City,
-            State = v.State,
             IsActive = v.IsActive
         });
     }

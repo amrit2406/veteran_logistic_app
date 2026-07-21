@@ -9,9 +9,9 @@ namespace veteran_logistic.Masters.Vendors.Validators;
 /// </summary>
 public sealed class CreateVendorValidator : ICreateVendorValidator
 {
-    private const int MinVendorCodeLength = 2;
-    private const int MaxVendorCodeLength = 50;
-    private const int MaxVendorNameLength = 200;
+    private const int MinCodeLength = 2;
+    private const int MaxCodeLength = 50;
+    private const int MaxNameLength = 200;
 
     /// <summary>
     /// Validates a create vendor request.
@@ -28,31 +28,22 @@ public sealed class CreateVendorValidator : ICreateVendorValidator
             return result;
         }
 
-        if (string.IsNullOrWhiteSpace(request.VendorCode))
+        if (string.IsNullOrWhiteSpace(request.Type))
         {
-            result.AddError(new ValidationError(nameof(CreateVendorRequest.VendorCode), "Vendor code is required."));
+            result.AddError(new ValidationError(nameof(CreateVendorRequest.Type), "Type is required."));
         }
-        else if (request.VendorCode.Length < MinVendorCodeLength)
+        else if (request.Type != "Union" && request.Type != "Vendor")
         {
-            result.AddError(new ValidationError(nameof(CreateVendorRequest.VendorCode), $"Vendor code must be at least {MinVendorCodeLength} characters."));
-        }
-        else if (request.VendorCode.Length > MaxVendorCodeLength)
-        {
-            result.AddError(new ValidationError(nameof(CreateVendorRequest.VendorCode), $"Vendor code must not exceed {MaxVendorCodeLength} characters."));
+            result.AddError(new ValidationError(nameof(CreateVendorRequest.Type), "Type must be either 'Union' or 'Vendor'."));
         }
 
-        if (string.IsNullOrWhiteSpace(request.VendorName))
+        if (string.IsNullOrWhiteSpace(request.Name))
         {
-            result.AddError(new ValidationError(nameof(CreateVendorRequest.VendorName), "Vendor name is required."));
+            result.AddError(new ValidationError(nameof(CreateVendorRequest.Name), "Name is required."));
         }
-        else if (request.VendorName.Length > MaxVendorNameLength)
+        else if (request.Name.Length > MaxNameLength)
         {
-            result.AddError(new ValidationError(nameof(CreateVendorRequest.VendorName), $"Vendor name must not exceed {MaxVendorNameLength} characters."));
-        }
-
-        if (string.IsNullOrWhiteSpace(request.GSTNumber))
-        {
-            result.AddError(new ValidationError(nameof(CreateVendorRequest.GSTNumber), "GST number is required."));
+            result.AddError(new ValidationError(nameof(CreateVendorRequest.Name), $"Name must not exceed {MaxNameLength} characters."));
         }
 
         return result;

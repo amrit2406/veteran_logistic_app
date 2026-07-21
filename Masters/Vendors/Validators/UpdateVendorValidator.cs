@@ -9,7 +9,7 @@ namespace veteran_logistic.Masters.Vendors.Validators;
 /// </summary>
 public sealed class UpdateVendorValidator : IUpdateVendorValidator
 {
-    private const int MaxVendorNameLength = 200;
+    private const int MaxNameLength = 200;
 
     /// <inheritdoc />
     public ValidationResult Validate(UpdateVendorRequest request)
@@ -27,23 +27,22 @@ public sealed class UpdateVendorValidator : IUpdateVendorValidator
             result.AddError(new ValidationError(nameof(UpdateVendorRequest.VendorId), "Vendor ID must be a positive value."));
         }
 
-        if (string.IsNullOrWhiteSpace(request.VendorCode))
+        if (string.IsNullOrWhiteSpace(request.Type))
         {
-            result.AddError(new ValidationError(nameof(UpdateVendorRequest.VendorCode), "Vendor code is required."));
+            result.AddError(new ValidationError(nameof(UpdateVendorRequest.Type), "Type is required."));
+        }
+        else if (request.Type != "Union" && request.Type != "Vendor")
+        {
+            result.AddError(new ValidationError(nameof(UpdateVendorRequest.Type), "Type must be either 'Union' or 'Vendor'."));
         }
 
-        if (string.IsNullOrWhiteSpace(request.VendorName))
+        if (string.IsNullOrWhiteSpace(request.Name))
         {
-            result.AddError(new ValidationError(nameof(UpdateVendorRequest.VendorName), "Vendor name is required."));
+            result.AddError(new ValidationError(nameof(UpdateVendorRequest.Name), "Name is required."));
         }
-        else if (request.VendorName.Length > MaxVendorNameLength)
+        else if (request.Name.Length > MaxNameLength)
         {
-            result.AddError(new ValidationError(nameof(UpdateVendorRequest.VendorName), $"Vendor name must not exceed {MaxVendorNameLength} characters."));
-        }
-
-        if (string.IsNullOrWhiteSpace(request.GSTNumber))
-        {
-            result.AddError(new ValidationError(nameof(UpdateVendorRequest.GSTNumber), "GST number is required."));
+            result.AddError(new ValidationError(nameof(UpdateVendorRequest.Name), $"Name must not exceed {MaxNameLength} characters."));
         }
 
         return result;

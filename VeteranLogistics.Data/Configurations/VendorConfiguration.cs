@@ -12,66 +12,67 @@ public sealed class VendorConfiguration : IEntityTypeConfiguration<Vendor>
     /// <inheritdoc />
     public void Configure(EntityTypeBuilder<Vendor> builder)
     {
-        // Configure VendorCode as required and unique
-        builder.Property(v => v.VendorCode)
+        // Configure Code as required and unique (auto-generated)
+        builder.Property(v => v.Code)
             .IsRequired()
             .HasMaxLength(50);
 
-        builder.HasIndex(v => v.VendorCode)
+        builder.HasIndex(v => v.Code)
             .IsUnique();
 
-        // Configure VendorName as required
-        builder.Property(v => v.VendorName)
+        // Configure Type as required (Union/Vendor)
+        builder.Property(v => v.Type)
+            .IsRequired()
+            .HasMaxLength(50);
+
+        // Configure Name as required
+        builder.Property(v => v.Name)
             .IsRequired()
             .HasMaxLength(200);
 
-        // Configure AddressLine1
-        builder.Property(v => v.AddressLine1)
-            .HasMaxLength(200);
-
-        // Configure AddressLine2
-        builder.Property(v => v.AddressLine2)
-            .HasMaxLength(200);
+        // Configure CorrespondenceAddress
+        builder.Property(v => v.CorrespondenceAddress)
+            .HasMaxLength(500);
 
         // Configure City
         builder.Property(v => v.City)
             .HasMaxLength(100);
 
-        // Configure State
-        builder.Property(v => v.State)
-            .HasMaxLength(100);
+        // Configure BillingAddress
+        builder.Property(v => v.BillingAddress)
+            .HasMaxLength(500);
 
-        // Configure Country
-        builder.Property(v => v.Country)
-            .HasMaxLength(100);
-
-        // Configure PostalCode
-        builder.Property(v => v.PostalCode)
+        // Configure Phone
+        builder.Property(v => v.Phone)
             .HasMaxLength(20);
 
-        // Configure PhoneNumber
-        builder.Property(v => v.PhoneNumber)
+        // Configure Mobile
+        builder.Property(v => v.Mobile)
+            .HasMaxLength(20);
+
+        // Configure Fax
+        builder.Property(v => v.Fax)
             .HasMaxLength(20);
 
         // Configure Email
         builder.Property(v => v.Email)
             .HasMaxLength(200);
 
-        // Configure GSTNumber as required and unique
-        builder.Property(v => v.GSTNumber)
-            .IsRequired()
+        // Configure ServiceTax
+        builder.Property(v => v.ServiceTax)
             .HasMaxLength(50);
 
-        builder.HasIndex(v => v.GSTNumber)
-            .IsUnique();
+        // Configure CST
+        builder.Property(v => v.CST)
+            .HasMaxLength(50);
 
-        // Configure PANNumber
-        builder.Property(v => v.PANNumber)
+        // Configure PAN
+        builder.Property(v => v.PAN)
             .HasMaxLength(20);
 
-        // Configure ContactPerson
-        builder.Property(v => v.ContactPerson)
-            .HasMaxLength(200);
+        // Configure GSTIN
+        builder.Property(v => v.GSTIN)
+            .HasMaxLength(50);
 
         // Configure CreatedBy
         builder.Property(v => v.CreatedBy)

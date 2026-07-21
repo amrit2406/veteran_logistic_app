@@ -194,27 +194,23 @@
                   AlternatingRowBackground="{DynamicResource SurfaceBrush}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Code"
-                                    Binding="{Binding VendorCode}"
+                                    Binding="{Binding Code}"
                                     Width="Auto" />
 
-                <DataGridTextColumn Header="Vendor Name"
-                                    Binding="{Binding VendorName}"
+                <DataGridTextColumn Header="Name"
+                                    Binding="{Binding Name}"
                                     Width="*" />
 
-                <DataGridTextColumn Header="GST Number"
-                                    Binding="{Binding GSTNumber}"
+                <DataGridTextColumn Header="GSTIN"
+                                    Binding="{Binding GSTIN}"
                                     Width="Auto" />
 
-                <DataGridTextColumn Header="PAN Number"
-                                    Binding="{Binding PANNumber}"
+                <DataGridTextColumn Header="PAN"
+                                    Binding="{Binding PAN}"
                                     Width="Auto" />
 
                 <DataGridTextColumn Header="City"
                                     Binding="{Binding City}"
-                                    Width="Auto" />
-
-                <DataGridTextColumn Header="State"
-                                    Binding="{Binding State}"
                                     Width="Auto" />
 
                 <DataGridTextColumn Header="Active"

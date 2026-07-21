@@ -8,24 +8,24 @@ namespace VeteranLogistics.Data.Entities.Administration;
 public class Vendor : BaseEntity
 {
     /// <summary>
-    /// Gets or sets the vendor code.
+    /// Gets or sets the vendor code (auto-generated).
     /// </summary>
-    public string VendorCode { get; set; } = string.Empty;
+    public string Code { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets or sets the vendor type (Union/Vendor).
+    /// </summary>
+    public string Type { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the vendor name.
     /// </summary>
-    public string VendorName { get; set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets or sets the first line of the address.
+    /// Gets or sets the correspondence address.
     /// </summary>
-    public string AddressLine1 { get; set; } = string.Empty;
-
-    /// <summary>
-    /// Gets or sets the second line of the address.
-    /// </summary>
-    public string AddressLine2 { get; set; } = string.Empty;
+    public string CorrespondenceAddress { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the city.
@@ -33,24 +33,24 @@ public class Vendor : BaseEntity
     public string City { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets or sets the state.
+    /// Gets or sets the billing address.
     /// </summary>
-    public string State { get; set; } = string.Empty;
-
-    /// <summary>
-    /// Gets or sets the country.
-    /// </summary>
-    public string Country { get; set; } = string.Empty;
-
-    /// <summary>
-    /// Gets or sets the postal code.
-    /// </summary>
-    public string PostalCode { get; set; } = string.Empty;
+    public string BillingAddress { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the phone number.
     /// </summary>
-    public string PhoneNumber { get; set; } = string.Empty;
+    public string Phone { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets or sets the mobile number.
+    /// </summary>
+    public string Mobile { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets or sets the fax number.
+    /// </summary>
+    public string Fax { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the email address.
@@ -58,19 +58,24 @@ public class Vendor : BaseEntity
     public string Email { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets or sets the GST number.
+    /// Gets or sets the service tax.
     /// </summary>
-    public string GSTNumber { get; set; } = string.Empty;
+    public string ServiceTax { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets or sets the CST number.
+    /// </summary>
+    public string CST { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the PAN number.
     /// </summary>
-    public string PANNumber { get; set; } = string.Empty;
+    public string PAN { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets or sets the contact person.
+    /// Gets or sets the GSTIN.
     /// </summary>
-    public string ContactPerson { get; set; } = string.Empty;
+    public string GSTIN { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets whether the vendor is active.

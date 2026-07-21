@@ -14,19 +14,20 @@ public sealed partial class AddVendorViewModel : ViewModelBase
 {
     private readonly IVendorCommandService _vendorCommandService;
     private readonly INavigationService _navigationService;
-    private string _vendorCode = string.Empty;
-    private string _vendorName = string.Empty;
-    private string _addressLine1 = string.Empty;
-    private string _addressLine2 = string.Empty;
+    private string _code = string.Empty;
+    private string _type = string.Empty;
+    private string _name = string.Empty;
+    private string _correspondenceAddress = string.Empty;
     private string _city = string.Empty;
-    private string _state = string.Empty;
-    private string _country = string.Empty;
-    private string _postalCode = string.Empty;
-    private string _phoneNumber = string.Empty;
+    private string _billingAddress = string.Empty;
+    private string _phone = string.Empty;
+    private string _mobile = string.Empty;
+    private string _fax = string.Empty;
     private string _email = string.Empty;
-    private string _gstNumber = string.Empty;
-    private string _panNumber = string.Empty;
-    private string _contactPerson = string.Empty;
+    private string _serviceTax = string.Empty;
+    private string _cst = string.Empty;
+    private string _pan = string.Empty;
+    private string _gstin = string.Empty;
     private bool _isActive = true;
     private string _validationError = string.Empty;
 
@@ -44,39 +45,39 @@ public sealed partial class AddVendorViewModel : ViewModelBase
     }
 
     /// <summary>
-    /// Gets or sets the vendor code.
+    /// Gets or sets the vendor code (auto-generated).
     /// </summary>
-    public string VendorCode
+    public string Code
     {
-        get => _vendorCode;
-        set => SetProperty(ref _vendorCode, value);
+        get => _code;
+        set => SetProperty(ref _code, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the vendor type (Union/Vendor).
+    /// </summary>
+    public string Type
+    {
+        get => _type;
+        set => SetProperty(ref _type, value);
     }
 
     /// <summary>
     /// Gets or sets the vendor name.
     /// </summary>
-    public string VendorName
+    public string Name
     {
-        get => _vendorName;
-        set => SetProperty(ref _vendorName, value);
+        get => _name;
+        set => SetProperty(ref _name, value);
     }
 
     /// <summary>
-    /// Gets or sets the address line 1.
+    /// Gets or sets the correspondence address.
     /// </summary>
-    public string AddressLine1
+    public string CorrespondenceAddress
     {
-        get => _addressLine1;
-        set => SetProperty(ref _addressLine1, value);
-    }
-
-    /// <summary>
-    /// Gets or sets the address line 2.
-    /// </summary>
-    public string AddressLine2
-    {
-        get => _addressLine2;
-        set => SetProperty(ref _addressLine2, value);
+        get => _correspondenceAddress;
+        set => SetProperty(ref _correspondenceAddress, value);
     }
 
     /// <summary>
@@ -89,39 +90,39 @@ public sealed partial class AddVendorViewModel : ViewModelBase
     }
 
     /// <summary>
-    /// Gets or sets the state.
+    /// Gets or sets the billing address.
     /// </summary>
-    public string State
+    public string BillingAddress
     {
-        get => _state;
-        set => SetProperty(ref _state, value);
-    }
-
-    /// <summary>
-    /// Gets or sets the country.
-    /// </summary>
-    public string Country
-    {
-        get => _country;
-        set => SetProperty(ref _country, value);
-    }
-
-    /// <summary>
-    /// Gets or sets the postal code.
-    /// </summary>
-    public string PostalCode
-    {
-        get => _postalCode;
-        set => SetProperty(ref _postalCode, value);
+        get => _billingAddress;
+        set => SetProperty(ref _billingAddress, value);
     }
 
     /// <summary>
     /// Gets or sets the phone number.
     /// </summary>
-    public string PhoneNumber
+    public string Phone
     {
-        get => _phoneNumber;
-        set => SetProperty(ref _phoneNumber, value);
+        get => _phone;
+        set => SetProperty(ref _phone, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the mobile number.
+    /// </summary>
+    public string Mobile
+    {
+        get => _mobile;
+        set => SetProperty(ref _mobile, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the fax number.
+    /// </summary>
+    public string Fax
+    {
+        get => _fax;
+        set => SetProperty(ref _fax, value);
     }
 
     /// <summary>
@@ -134,30 +135,39 @@ public sealed partial class AddVendorViewModel : ViewModelBase
     }
 
     /// <summary>
-    /// Gets or sets the GST number.
+    /// Gets or sets the service tax.
     /// </summary>
-    public string GSTNumber
+    public string ServiceTax
     {
-        get => _gstNumber;
-        set => SetProperty(ref _gstNumber, value);
+        get => _serviceTax;
+        set => SetProperty(ref _serviceTax, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the CST number.
+    /// </summary>
+    public string CST
+    {
+        get => _cst;
+        set => SetProperty(ref _cst, value);
     }
 
     /// <summary>
     /// Gets or sets the PAN number.
     /// </summary>
-    public string PANNumber
+    public string PAN
     {
-        get => _panNumber;
-        set => SetProperty(ref _panNumber, value);
+        get => _pan;
+        set => SetProperty(ref _pan, value);
     }
 
     /// <summary>
-    /// Gets or sets the contact person.
+    /// Gets or sets the GSTIN.
     /// </summary>
-    public string ContactPerson
+    public string GSTIN
     {
-        get => _contactPerson;
-        set => SetProperty(ref _contactPerson, value);
+        get => _gstin;
+        set => SetProperty(ref _gstin, value);
     }
 
     /// <summary>
@@ -188,19 +198,20 @@ public sealed partial class AddVendorViewModel : ViewModelBase
 
         var request = new CreateVendorRequest
         {
-            VendorCode = VendorCode,
-            VendorName = VendorName,
-            AddressLine1 = AddressLine1,
-            AddressLine2 = AddressLine2,
+            Code = Code,
+            Type = Type,
+            Name = Name,
+            CorrespondenceAddress = CorrespondenceAddress,
             City = City,
-            State = State,
-            Country = Country,
-            PostalCode = PostalCode,
-            PhoneNumber = PhoneNumber,
+            BillingAddress = BillingAddress,
+            Phone = Phone,
+            Mobile = Mobile,
+            Fax = Fax,
             Email = Email,
-            GSTNumber = GSTNumber,
-            PANNumber = PANNumber,
-            ContactPerson = ContactPerson,
+            ServiceTax = ServiceTax,
+            CST = CST,
+            PAN = PAN,
+            GSTIN = GSTIN,
             IsActive = IsActive
         };
 

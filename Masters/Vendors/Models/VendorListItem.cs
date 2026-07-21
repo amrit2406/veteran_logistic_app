@@ -11,34 +11,29 @@ public sealed class VendorListItem
     public int Id { get; set; }
 
     /// <summary>
-    /// Gets or sets the vendor code.
+    /// Gets or sets the vendor code (auto-generated).
     /// </summary>
-    public string VendorCode { get; set; } = string.Empty;
+    public string Code { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the vendor name.
     /// </summary>
-    public string VendorName { get; set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets or sets the GST number.
+    /// Gets or sets the GSTIN.
     /// </summary>
-    public string GSTNumber { get; set; } = string.Empty;
+    public string GSTIN { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the PAN number.
     /// </summary>
-    public string PANNumber { get; set; } = string.Empty;
+    public string PAN { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the city.
     /// </summary>
     public string City { get; set; } = string.Empty;
-
-    /// <summary>
-    /// Gets or sets the state.
-    /// </summary>
-    public string State { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets whether the vendor is active.
