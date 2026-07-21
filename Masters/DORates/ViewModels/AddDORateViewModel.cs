@@ -238,42 +238,55 @@ public sealed partial class AddDORateViewModel : ViewModelBase
     /// </summary>
     private async Task LoadDropdownDataAsync(CancellationToken cancellationToken = default)
     {
-        SetBusy("Loading dropdown data...");
-        var sourceDestinations = await _sourceDestinationQueryService.GetAllSourceDestinationsAsync(cancellationToken);
-        
-        var dispatcher = System.Windows.Application.Current?.Dispatcher;
-        if (dispatcher == null || dispatcher.CheckAccess())
+        try
         {
-            UpdateSourceDestinationsInternal(sourceDestinations);
-            UpdateConsignorsInternal();
-            UpdateConsigneesInternal();
-        }
-        else
-        {
-            dispatcher.Invoke(() =>
+            SetBusy("Loading dropdown data...");
+            
+            // Load sequentially to avoid DbContext concurrency issues
+            var sourceDestinations = await _sourceDestinationQueryService.GetAllSourceDestinationsAsync(cancellationToken).ConfigureAwait(false);
+            var consignors = await _dummyLookupService.GetConsignorsAsync(cancellationToken).ConfigureAwait(false);
+            var consignees = await _dummyLookupService.GetConsigneesAsync(cancellationToken).ConfigureAwait(false);
+            
+            var dispatcher = System.Windows.Application.Current?.Dispatcher;
+            if (dispatcher == null || dispatcher.CheckAccess())
             {
                 UpdateSourceDestinationsInternal(sourceDestinations);
-                UpdateConsignorsInternal();
-                UpdateConsigneesInternal();
-            });
+                UpdateConsignorsInternal(consignors);
+                UpdateConsigneesInternal(consignees);
+            }
+            else
+            {
+                dispatcher.Invoke(() =>
+                {
+                    UpdateSourceDestinationsInternal(sourceDestinations);
+                    UpdateConsignorsInternal(consignors);
+                    UpdateConsigneesInternal(consignees);
+                });
+            }
         }
-        
-        ClearBusy();
+        catch (Exception ex)
+        {
+            ValidationError = $"Error loading dropdown data: {ex.Message}";
+        }
+        finally
+        {
+            ClearBusy();
+        }
     }
 
-    private void UpdateConsignorsInternal()
+    private void UpdateConsignorsInternal(IEnumerable<LookupItem> consignors)
     {
         Consignors.Clear();
-        foreach (var consignor in _dummyLookupService.GetConsignors())
+        foreach (var consignor in consignors)
         {
             Consignors.Add(consignor);
         }
     }
 
-    private void UpdateConsigneesInternal()
+    private void UpdateConsigneesInternal(IEnumerable<LookupItem> consignees)
     {
         Consignees.Clear();
-        foreach (var consignee in _dummyLookupService.GetConsignees())
+        foreach (var consignee in consignees)
         {
             Consignees.Add(consignee);
         }

@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using VeteranLogistics.Data.Context;
-using VeteranLogistics.Data.Entities.Administration;
 using veteran_logistic.Masters.DORates.Contracts;
 using veteran_logistic.Masters.DORates.Models;
 
@@ -14,19 +13,16 @@ public sealed class DORateQueryService : IDORateQueryService
 {
     private readonly VeteranLogisticsDbContext _dbContext;
     private readonly ILogger<DORateQueryService> _logger;
-    private readonly IDummyLookupService _dummyLookupService;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="DORateQueryService"/> class.
     /// </summary>
     /// <param name="dbContext">The database context.</param>
     /// <param name="logger">The logger.</param>
-    /// <param name="dummyLookupService">The dummy lookup service.</param>
-    public DORateQueryService(VeteranLogisticsDbContext dbContext, ILogger<DORateQueryService> logger, IDummyLookupService dummyLookupService)
+    public DORateQueryService(VeteranLogisticsDbContext dbContext, ILogger<DORateQueryService> logger)
     {
         _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-        _dummyLookupService = dummyLookupService ?? throw new ArgumentNullException(nameof(dummyLookupService));
     }
 
     /// <inheritdoc />
@@ -40,8 +36,8 @@ public sealed class DORateQueryService : IDORateQueryService
             .Select(d => new DORateListItem
             {
                 Id = d.Id,
-                Consignor = _dummyLookupService.GetConsignorName(d.ConsignorId),
-                Consignee = _dummyLookupService.GetConsigneeName(d.ConsigneeId),
+                Consignor = _dbContext.Customers.Where(c => c.Id == d.ConsignorId).Select(c => c.CustomerName).FirstOrDefault() ?? string.Empty,
+                Consignee = _dbContext.Customers.Where(c => c.Id == d.ConsigneeId).Select(c => c.CustomerName).FirstOrDefault() ?? string.Empty,
                 Source = d.Source != null ? d.Source.LocationName : string.Empty,
                 Destination = d.Destination != null ? d.Destination.LocationName : string.Empty,
                 EffectiveDate = d.EffectiveDate,
@@ -84,8 +80,8 @@ public sealed class DORateQueryService : IDORateQueryService
             .Select(d => new DORateListItem
             {
                 Id = d.Id,
-                Consignor = _dummyLookupService.GetConsignorName(d.ConsignorId),
-                Consignee = _dummyLookupService.GetConsigneeName(d.ConsigneeId),
+                Consignor = _dbContext.Customers.Where(c => c.Id == d.ConsignorId).Select(c => c.CustomerName).FirstOrDefault() ?? string.Empty,
+                Consignee = _dbContext.Customers.Where(c => c.Id == d.ConsigneeId).Select(c => c.CustomerName).FirstOrDefault() ?? string.Empty,
                 Source = d.Source != null ? d.Source.LocationName : string.Empty,
                 Destination = d.Destination != null ? d.Destination.LocationName : string.Empty,
                 EffectiveDate = d.EffectiveDate,

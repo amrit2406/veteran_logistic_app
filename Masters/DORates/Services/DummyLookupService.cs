@@ -1,53 +1,67 @@
+using Microsoft.Extensions.Logging;
+using veteran_logistic.Masters.Customers.Contracts;
 using veteran_logistic.Masters.DORates.Contracts;
 using veteran_logistic.Masters.DORates.Models;
 
 namespace veteran_logistic.Masters.DORates.Services;
 
 /// <summary>
-/// Implementation of the dummy lookup service for Consignors and Consignees.
-/// This provides in-memory dummy data that can be replaced with real Master lookups later.
+/// Implementation of the lookup service for Consignors and Consignees.
+/// This service uses the Customer entity to provide real customer data.
 /// </summary>
 public sealed class DummyLookupService : IDummyLookupService
 {
-    private readonly List<LookupItem> _consignors = new()
-    {
-        new LookupItem { Id = 1, Name = "ABC Industries" },
-        new LookupItem { Id = 2, Name = "Reliance" },
-        new LookupItem { Id = 3, Name = "Tata Steel" },
-        new LookupItem { Id = 4, Name = "JSW" }
-    };
+    private readonly ICustomerQueryService _customerQueryService;
+    private readonly ILogger<DummyLookupService> _logger;
 
-    private readonly List<LookupItem> _consignees = new()
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DummyLookupService"/> class.
+    /// </summary>
+    /// <param name="customerQueryService">The customer query service.</param>
+    /// <param name="logger">The logger.</param>
+    public DummyLookupService(ICustomerQueryService customerQueryService, ILogger<DummyLookupService> logger)
     {
-        new LookupItem { Id = 1, Name = "Veteran Logistics" },
-        new LookupItem { Id = 2, Name = "XYZ Traders" },
-        new LookupItem { Id = 3, Name = "Eastern Minerals" },
-        new LookupItem { Id = 4, Name = "Ultra Cement" }
-    };
-
-    /// <inheritdoc />
-    public IEnumerable<LookupItem> GetConsignors()
-    {
-        return _consignors;
+        _customerQueryService = customerQueryService ?? throw new ArgumentNullException(nameof(customerQueryService));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
     /// <inheritdoc />
-    public IEnumerable<LookupItem> GetConsignees()
+    public async Task<IEnumerable<LookupItem>> GetConsignorsAsync(CancellationToken cancellationToken = default)
     {
-        return _consignees;
+        var customers = await _customerQueryService.GetAllCustomersAsync(cancellationToken).ConfigureAwait(false);
+        _logger.LogInformation("Retrieved {Count} customers for Consignor lookup", customers.Count);
+        
+        return customers
+            .Where(c => c.IsActive)
+            .Select(c => new LookupItem { Id = c.Id, Name = c.CustomerName })
+            .OrderBy(c => c.Name);
     }
 
     /// <inheritdoc />
-    public string GetConsignorName(int consignorId)
+    public async Task<IEnumerable<LookupItem>> GetConsigneesAsync(CancellationToken cancellationToken = default)
     {
-        var consignor = _consignors.FirstOrDefault(c => c.Id == consignorId);
-        return consignor?.Name ?? string.Empty;
+        var customers = await _customerQueryService.GetAllCustomersAsync(cancellationToken).ConfigureAwait(false);
+        _logger.LogInformation("Retrieved {Count} customers for Consignee lookup", customers.Count);
+        
+        return customers
+            .Where(c => c.IsActive)
+            .Select(c => new LookupItem { Id = c.Id, Name = c.CustomerName })
+            .OrderBy(c => c.Name);
     }
 
     /// <inheritdoc />
-    public string GetConsigneeName(int consigneeId)
+    public async Task<string> GetConsignorNameAsync(int consignorId, CancellationToken cancellationToken = default)
     {
-        var consignee = _consignees.FirstOrDefault(c => c.Id == consigneeId);
-        return consignee?.Name ?? string.Empty;
+        var customers = await _customerQueryService.GetAllCustomersAsync(cancellationToken).ConfigureAwait(false);
+        var customer = customers.FirstOrDefault(c => c.Id == consignorId);
+        return customer?.CustomerName ?? string.Empty;
+    }
+
+    /// <inheritdoc />
+    public async Task<string> GetConsigneeNameAsync(int consigneeId, CancellationToken cancellationToken = default)
+    {
+        var customers = await _customerQueryService.GetAllCustomersAsync(cancellationToken).ConfigureAwait(false);
+        var customer = customers.FirstOrDefault(c => c.Id == consigneeId);
+        return customer?.CustomerName ?? string.Empty;
     }
 }
