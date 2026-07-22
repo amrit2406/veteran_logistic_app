@@ -268,3 +268,9 @@ D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\DORates\Views\Edit
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\DORates\Views\AddDORateView.baml
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\DORates\Views\DORatesView.baml
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Masters\DORates\Views\EditDORateView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\LoadingRegisters\Views\AddLoadingRegisterView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\LoadingRegisters\Views\EditLoadingRegisterView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\LoadingRegisters\Views\AddLoadingRegisterView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\LoadingRegisters\Views\EditLoadingRegisterView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\LoadingRegisters\Views\LoadingRegistersView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\LoadingRegisters\Views\LoadingRegistersView.baml

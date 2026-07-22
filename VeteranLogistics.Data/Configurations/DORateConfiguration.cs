@@ -53,6 +53,11 @@ public sealed class DORateConfiguration : IEntityTypeConfiguration<DORate>
             .IsRequired()
             .HasMaxLength(50);
 
+        // Configure DOQty with decimal precision
+        builder.Property(d => d.DOQty)
+            .IsRequired()
+            .HasPrecision(18, 2);
+
         // Configure BillingRate with decimal precision
         builder.Property(d => d.BillingRate)
             .IsRequired()

@@ -183,6 +183,20 @@
                              Height="30" />
                 </Grid>
 
+                <!-- DO Qty -->
+                <Grid Margin="0,0,0,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0"
+                               Text="DO Qty"
+                               VerticalAlignment="Center" />
+                    <TextBox Grid.Column="1"
+                             Text="{Binding DOQty, UpdateSourceTrigger=PropertyChanged}"
+                             Height="30" />
+                </Grid>
+
                 <!-- Freight Rate -->
                 <Grid Margin="0,0,0,8">
                     <Grid.ColumnDefinitions>

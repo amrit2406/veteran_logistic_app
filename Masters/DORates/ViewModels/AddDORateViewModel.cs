@@ -28,6 +28,7 @@ public sealed partial class AddDORateViewModel : ViewModelBase
     private decimal _unionRate;
     private decimal _vendorRate;
     private string _doNumber = string.Empty;
+    private decimal _doQty;
     private decimal _billingRate;
     private decimal _allowedShortage;
     private decimal _ratePerKg;
@@ -159,6 +160,15 @@ public sealed partial class AddDORateViewModel : ViewModelBase
     {
         get => _doNumber;
         set => SetProperty(ref _doNumber, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the DO quantity.
+    /// </summary>
+    public decimal DOQty
+    {
+        get => _doQty;
+        set => SetProperty(ref _doQty, value);
     }
 
     /// <summary>
@@ -324,6 +334,7 @@ public sealed partial class AddDORateViewModel : ViewModelBase
             UnionRate = UnionRate,
             VendorRate = VendorRate,
             DONumber = DONumber,
+            DOQty = DOQty,
             BillingRate = BillingRate,
             AllowedShortage = AllowedShortage,
             RatePerKg = RatePerKg,

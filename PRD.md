@@ -301,7 +301,7 @@ Logout
 Back to Login
 Phase 2 — Administration
 
-Status: ⏳ Pending
+Status: ✅ Completed & Frozen
 
 Objective
 
@@ -341,7 +341,7 @@ Default Financial Year
 Validation Rules
 Phase 3 — Masters
 
-Status: ⏳ Pending
+Status: ✅ Completed & Frozen
 
 Objective
 

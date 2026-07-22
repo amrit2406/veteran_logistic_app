@@ -30,6 +30,7 @@ public sealed partial class EditDORateViewModel : ViewModelBase, INavigationAwar
     private decimal _unionRate;
     private decimal _vendorRate;
     private string _doNumber = string.Empty;
+    private decimal _doQty;
     private decimal _billingRate;
     private decimal _allowedShortage;
     private decimal _ratePerKg;
@@ -164,6 +165,15 @@ public sealed partial class EditDORateViewModel : ViewModelBase, INavigationAwar
     {
         get => _doNumber;
         set => SetProperty(ref _doNumber, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the DO quantity.
+    /// </summary>
+    public decimal DOQty
+    {
+        get => _doQty;
+        set => SetProperty(ref _doQty, value);
     }
 
     /// <summary>
@@ -330,6 +340,7 @@ public sealed partial class EditDORateViewModel : ViewModelBase, INavigationAwar
             UnionRate = doRate.UnionRate;
             VendorRate = doRate.VendorRate;
             DONumber = doRate.DONumber;
+            DOQty = doRate.DOQty;
             BillingRate = doRate.BillingRate;
             AllowedShortage = doRate.AllowedShortage;
             RatePerKg = doRate.RatePerKg;
@@ -372,6 +383,7 @@ public sealed partial class EditDORateViewModel : ViewModelBase, INavigationAwar
             UnionRate = UnionRate,
             VendorRate = VendorRate,
             DONumber = DONumber,
+            DOQty = DOQty,
             BillingRate = BillingRate,
             AllowedShortage = AllowedShortage,
             RatePerKg = RatePerKg,

@@ -51,6 +51,11 @@ public sealed class CreateDORateRequest
     public string DONumber { get; set; } = string.Empty;
 
     /// <summary>
+    /// Gets or sets the DO quantity.
+    /// </summary>
+    public decimal DOQty { get; set; }
+
+    /// <summary>
     /// Gets or sets the billing rate.
     /// </summary>
     public decimal BillingRate { get; set; }

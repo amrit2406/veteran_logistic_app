@@ -104,6 +104,11 @@ public class VeteranLogisticsDbContext : DbContext
     public DbSet<DORate> DORates => Set<DORate>();
 
     /// <summary>
+    /// Gets or sets the LoadingRegisters DbSet.
+    /// </summary>
+    public DbSet<LoadingRegister> LoadingRegisters => Set<LoadingRegister>();
+
+    /// <summary>
     /// Apply entity configurations discovered in this assembly.
     /// </summary>
     /// <param name="modelBuilder">Model builder.</param>
