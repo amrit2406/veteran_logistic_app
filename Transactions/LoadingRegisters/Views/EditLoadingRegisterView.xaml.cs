@@ -9,6 +9,18 @@ public partial class EditLoadingRegisterView : UserControl
 {
     public EditLoadingRegisterView()
     {
-        InitializeComponent();
+        try
+        {
+            InitializeComponent();
+        }
+        catch (System.Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"XAML Load Error: {ex.Message}");
+            if (ex.InnerException != null)
+            {
+                System.Diagnostics.Debug.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+            }
+            throw;
+        }
     }
 }

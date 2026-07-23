@@ -25,7 +25,7 @@
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto"
                       Padding="{StaticResource Large}">
-            <StackPanel HorizontalAlignment="Left">
+            <StackPanel>
                 <!-- Validation Error -->
                 <Border Background="{DynamicResource ErrorBrush}"
                         BorderBrush="{DynamicResource ErrorBrush}"
@@ -47,511 +47,476 @@
                         CornerRadius="{StaticResource StandardCornerRadius}"
                         Padding="{StaticResource Medium}"
                         Margin="{StaticResource Small}">
-                    <StackPanel>
-                        <TextBlock Text="Challan Number"
-                                   Style="{StaticResource SubHeadingTextBlockStyle}"
-                                   Margin="{StaticResource Small}" />
-                        
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Challan Number"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding ChallanNumber}"
-                                     IsReadOnly="True"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
-                    </StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" MinWidth="150" />
+                            <ColumnDefinition Width="*" MinWidth="200" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Challan Number"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Column="1"
+                                 Text="{Binding ChallanNumber, Mode=OneWay}"
+                                 IsReadOnly="True"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}"
+                                 Background="{DynamicResource DisabledBrush}" />
+                    </Grid>
                 </Border>
 
-                <!-- Basic Information Section -->
+                <!-- Main Form Grid -->
                 <Border Background="{DynamicResource SurfaceBrush}"
                         BorderBrush="{DynamicResource BorderBrush}"
                         BorderThickness="{StaticResource StandardBorderThickness}"
                         CornerRadius="{StaticResource StandardCornerRadius}"
                         Padding="{StaticResource Medium}"
                         Margin="{StaticResource Small}">
-                    <StackPanel>
-                        <TextBlock Text="Basic Information"
-                                   Style="{StaticResource SubHeadingTextBlockStyle}"
-                                   Margin="{StaticResource Small}" />
-                        
-                        <!-- Loading Date -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Loading Date"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <DatePicker SelectedDate="{Binding LoadingDate}"
-                                        Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" MinWidth="150" />
+                            <ColumnDefinition Width="*" MinWidth="200" />
+                            <ColumnDefinition Width="16" />
+                            <ColumnDefinition Width="Auto" MinWidth="150" />
+                            <ColumnDefinition Width="*" MinWidth="200" />
+                        </Grid.ColumnDefinitions>
 
-                        <!-- TP Number -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="TP Number"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding TPNumber, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
-                    </StackPanel>
+                        <!-- Row 1: Loading Date, TP Number -->
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Loading Date"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <DatePicker Grid.Row="0" Grid.Column="1"
+                                    SelectedDate="{Binding LoadingDate}"
+                                    Height="{StaticResource StandardControlHeight}"
+                                    Margin="{StaticResource ExtraSmall}" />
+
+                        <TextBlock Grid.Row="0" Grid.Column="3" Text="TP Number"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="0" Grid.Column="4"
+                                 Text="{Binding TPNumber, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
+
+                        <!-- Row 2: Consignor, Consignee -->
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Consignor"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <ComboBox Grid.Row="1" Grid.Column="1"
+                                  ItemsSource="{Binding Customers}"
+                                  SelectedValuePath="Id"
+                                  DisplayMemberPath="CustomerName"
+                                  SelectedValue="{Binding ConsignorId}"
+                                  Height="{StaticResource StandardControlHeight}"
+                                  Margin="{StaticResource ExtraSmall}"
+                                  IsEditable="True"
+                                  IsTextSearchEnabled="True"
+                                  TextSearch.TextPath="CustomerName" />
+
+                        <TextBlock Grid.Row="1" Grid.Column="3" Text="Consignee"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <ComboBox Grid.Row="1" Grid.Column="4"
+                                  ItemsSource="{Binding Customers}"
+                                  SelectedValuePath="Id"
+                                  DisplayMemberPath="CustomerName"
+                                  SelectedValue="{Binding ConsigneeId}"
+                                  Height="{StaticResource StandardControlHeight}"
+                                  Margin="{StaticResource ExtraSmall}"
+                                  IsEditable="True"
+                                  IsTextSearchEnabled="True"
+                                  TextSearch.TextPath="CustomerName" />
+
+                        <!-- Row 3: Source, Destination -->
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Source"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <ComboBox Grid.Row="2" Grid.Column="1"
+                                  ItemsSource="{Binding SourceDestinations}"
+                                  SelectedValuePath="Id"
+                                  DisplayMemberPath="LocationName"
+                                  SelectedValue="{Binding SourceId}"
+                                  Height="{StaticResource StandardControlHeight}"
+                                  Margin="{StaticResource ExtraSmall}"
+                                  IsEditable="True"
+                                  IsTextSearchEnabled="True"
+                                  TextSearch.TextPath="LocationName" />
+
+                        <TextBlock Grid.Row="2" Grid.Column="3" Text="Destination"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <ComboBox Grid.Row="2" Grid.Column="4"
+                                  ItemsSource="{Binding SourceDestinations}"
+                                  SelectedValuePath="Id"
+                                  DisplayMemberPath="LocationName"
+                                  SelectedValue="{Binding DestinationId}"
+                                  Height="{StaticResource StandardControlHeight}"
+                                  Margin="{StaticResource ExtraSmall}"
+                                  IsEditable="True"
+                                  IsTextSearchEnabled="True"
+                                  TextSearch.TextPath="LocationName" />
+
+                        <!-- Row 4: Vehicle, Union/Vendor -->
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Vehicle"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <ComboBox Grid.Row="3" Grid.Column="1"
+                                  ItemsSource="{Binding Vehicles}"
+                                  SelectedValuePath="Id"
+                                  DisplayMemberPath="VehicleNumber"
+                                  SelectedValue="{Binding VehicleId}"
+                                  Height="{StaticResource StandardControlHeight}"
+                                  Margin="{StaticResource ExtraSmall}"
+                                  IsEditable="True"
+                                  IsTextSearchEnabled="True"
+                                  TextSearch.TextPath="VehicleNumber" />
+
+                        <TextBlock Grid.Row="3" Grid.Column="3" Text="Union/Vendor"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <ComboBox Grid.Row="3" Grid.Column="4"
+                                  ItemsSource="{Binding Vendors}"
+                                  SelectedValuePath="Id"
+                                  DisplayMemberPath="Name"
+                                  SelectedValue="{Binding UnionVendorId}"
+                                  Height="{StaticResource StandardControlHeight}"
+                                  Margin="{StaticResource ExtraSmall}"
+                                  IsEditable="True"
+                                  IsTextSearchEnabled="True"
+                                  TextSearch.TextPath="Name" />
+
+                        <!-- Row 5: Material, Rate -->
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Material"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <ComboBox Grid.Row="4" Grid.Column="1"
+                                  ItemsSource="{Binding Materials}"
+                                  SelectedValuePath="Id"
+                                  DisplayMemberPath="MaterialName"
+                                  SelectedValue="{Binding MaterialId}"
+                                  Height="{StaticResource StandardControlHeight}"
+                                  Margin="{StaticResource ExtraSmall}"
+                                  IsEditable="True"
+                                  IsTextSearchEnabled="True"
+                                  TextSearch.TextPath="MaterialName" />
+
+                        <TextBlock Grid.Row="4" Grid.Column="3" Text="Rate"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="4" Grid.Column="4"
+                                 Text="{Binding Rate, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
+
+                        <!-- Row 6: Gross Weight, Tare Weight -->
+                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Gross Weight"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="5" Grid.Column="1"
+                                 Text="{Binding GrossWeight, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
+
+                        <TextBlock Grid.Row="5" Grid.Column="3" Text="Tare Weight"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="5" Grid.Column="4"
+                                 Text="{Binding TareWeight, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
+
+                        <!-- Row 7: Loading Weight (Calculated), Gross Amount (Calculated) -->
+                        <TextBlock Grid.Row="6" Grid.Column="0" Text="Loading Weight"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="6" Grid.Column="1"
+                                 Text="{Binding LoadingWeight, Mode=OneWay}"
+                                 IsReadOnly="True"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}"
+                                 Background="{DynamicResource DisabledBrush}" />
+
+                        <TextBlock Grid.Row="6" Grid.Column="3" Text="Gross Amount"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="6" Grid.Column="4"
+                                 Text="{Binding GrossAmount, Mode=OneWay}"
+                                 IsReadOnly="True"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}"
+                                 Background="{DynamicResource DisabledBrush}" />
+                    </Grid>
                 </Border>
 
-                <!-- Consignor/Consignee Section -->
+                <!-- Additional Details Grid -->
                 <Border Background="{DynamicResource SurfaceBrush}"
                         BorderBrush="{DynamicResource BorderBrush}"
                         BorderThickness="{StaticResource StandardBorderThickness}"
                         CornerRadius="{StaticResource StandardCornerRadius}"
                         Padding="{StaticResource Medium}"
                         Margin="{StaticResource Small}">
-                    <StackPanel>
-                        <TextBlock Text="Consignor / Consignee"
-                                   Style="{StaticResource SubHeadingTextBlockStyle}"
-                                   Margin="{StaticResource Small}" />
-                        
-                        <!-- Consignor -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Consignor"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding ConsignorId, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" MinWidth="150" />
+                            <ColumnDefinition Width="*" MinWidth="200" />
+                            <ColumnDefinition Width="16" />
+                            <ColumnDefinition Width="Auto" MinWidth="150" />
+                            <ColumnDefinition Width="*" MinWidth="200" />
+                        </Grid.ColumnDefinitions>
 
-                        <!-- Consignee -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Consignee"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding ConsigneeId, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
+                        <!-- Row 1: Driver Commission, Vehicle Loaded By -->
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Driver Commission"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="0" Grid.Column="1"
+                                 Text="{Binding DriverCommission, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
 
-                        <!-- Source -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Source"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding SourceId, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
+                        <TextBlock Grid.Row="0" Grid.Column="3" Text="Vehicle Loaded By"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="0" Grid.Column="4"
+                                 Text="{Binding VehicleLoadedBy, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
 
-                        <!-- Destination -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Destination"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding DestinationId, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
-                    </StackPanel>
+                        <!-- Row 2: Fuel Quantity, Fuel Amount -->
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Fuel Quantity"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="1" Grid.Column="1"
+                                 Text="{Binding FuelQuantity, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
+
+                        <TextBlock Grid.Row="1" Grid.Column="3" Text="Fuel Amount"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="1" Grid.Column="4"
+                                 Text="{Binding FuelAmount, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
+
+                        <!-- Row 3: Fuel Cash, Fuel Advance -->
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Fuel Cash"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="2" Grid.Column="1"
+                                 Text="{Binding FuelCash, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
+
+                        <TextBlock Grid.Row="2" Grid.Column="3" Text="Fuel Advance"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="2" Grid.Column="4"
+                                 Text="{Binding FuelAdvance, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
+
+                        <!-- Row 4: Cash Advance, Payment Location -->
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Cash Advance"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="3" Grid.Column="1"
+                                 Text="{Binding CashAdvance, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
+
+                        <TextBlock Grid.Row="3" Grid.Column="3" Text="Payment Location"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <ComboBox Grid.Row="3" Grid.Column="4"
+                                  ItemsSource="{Binding PaymentLocations}"
+                                  SelectedValuePath="Id"
+                                  DisplayMemberPath="PaymentLocationName"
+                                  SelectedValue="{Binding PaymentLocationId}"
+                                  Height="{StaticResource StandardControlHeight}"
+                                  Margin="{StaticResource ExtraSmall}"
+                                  IsEditable="True"
+                                  IsTextSearchEnabled="True"
+                                  TextSearch.TextPath="PaymentLocationName" />
+
+                        <!-- Row 5: Other Advance, Other Advance Date -->
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Other Advance"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="4" Grid.Column="1"
+                                 Text="{Binding OtherAdvance, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
+
+                        <TextBlock Grid.Row="4" Grid.Column="3" Text="Other Advance Date"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <DatePicker Grid.Row="4" Grid.Column="4"
+                                    SelectedDate="{Binding OtherAdvanceDate}"
+                                    Height="{StaticResource StandardControlHeight}"
+                                    Margin="{StaticResource ExtraSmall}" />
+                    </Grid>
                 </Border>
 
-                <!-- Transport Information Section -->
+                <!-- Driver & Owner Info Grid -->
                 <Border Background="{DynamicResource SurfaceBrush}"
                         BorderBrush="{DynamicResource BorderBrush}"
                         BorderThickness="{StaticResource StandardBorderThickness}"
                         CornerRadius="{StaticResource StandardCornerRadius}"
                         Padding="{StaticResource Medium}"
                         Margin="{StaticResource Small}">
-                    <StackPanel>
-                        <TextBlock Text="Transport Information"
-                                   Style="{StaticResource SubHeadingTextBlockStyle}"
-                                   Margin="{StaticResource Small}" />
-                        
-                        <!-- Vehicle -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Vehicle"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding VehicleId, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" MinWidth="150" />
+                            <ColumnDefinition Width="*" MinWidth="200" />
+                            <ColumnDefinition Width="16" />
+                            <ColumnDefinition Width="Auto" MinWidth="150" />
+                            <ColumnDefinition Width="*" MinWidth="200" />
+                        </Grid.ColumnDefinitions>
 
-                        <!-- Vehicle Type -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Vehicle Type"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding VehicleType, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
+                        <!-- Row 1: Driver, Driver Mobile -->
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Driver"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="0" Grid.Column="1"
+                                 Text="{Binding Driver, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
 
-                        <!-- Union/Vendor -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Union/Vendor"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding UnionVendorId, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
+                        <TextBlock Grid.Row="0" Grid.Column="3" Text="Driver Mobile"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="0" Grid.Column="4"
+                                 Text="{Binding DriverMobile, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
 
-                        <!-- Driver Commission -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Driver Commission"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding DriverCommission, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
-                    </StackPanel>
+                        <!-- Row 2: Driving Licence Number, Owner Mobile -->
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Driving Licence"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="1" Grid.Column="1"
+                                 Text="{Binding DrivingLicenceNumber, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
+
+                        <TextBlock Grid.Row="1" Grid.Column="3" Text="Owner Mobile"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="1" Grid.Column="4"
+                                 Text="{Binding OwnerMobile, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
+
+                        <!-- Row 3: Shortage Weight, Owner Address -->
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Shortage Weight"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="2" Grid.Column="1"
+                                 Text="{Binding ShortageWeight, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
+
+                        <TextBlock Grid.Row="2" Grid.Column="3" Text="Owner Address"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="2" Grid.Column="4"
+                                 Text="{Binding OwnerAddress, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
+                    </Grid>
                 </Border>
 
-                <!-- Weight Information Section -->
+                <!-- Notes & Active -->
                 <Border Background="{DynamicResource SurfaceBrush}"
                         BorderBrush="{DynamicResource BorderBrush}"
                         BorderThickness="{StaticResource StandardBorderThickness}"
                         CornerRadius="{StaticResource StandardCornerRadius}"
                         Padding="{StaticResource Medium}"
                         Margin="{StaticResource Small}">
-                    <StackPanel>
-                        <TextBlock Text="Weight Information"
-                                   Style="{StaticResource SubHeadingTextBlockStyle}"
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" MinWidth="150" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Notes"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Top"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="0" Grid.Column="1"
+                                 Text="{Binding Notes, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="60"
+                                 TextWrapping="Wrap"
+                                 AcceptsReturn="True"
+                                 Margin="{StaticResource ExtraSmall}"
+                                 VerticalScrollBarVisibility="Auto" />
+
+                        <CheckBox Grid.Row="0" Grid.Column="3"
+                                  IsChecked="{Binding IsActive}"
+                                  VerticalAlignment="Center"
+                                  Margin="{StaticResource ExtraSmall}" />
+                        <TextBlock Grid.Row="0" Grid.Column="4" Text="Active"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
                                    Margin="{StaticResource Small}" />
-                        
-                        <!-- Gross Weight -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Gross Weight"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding GrossWeight, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
-
-                        <!-- Tare Weight -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Tare Weight"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding TareWeight, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
-
-                        <!-- Loading Weight (Calculated) -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Loading Weight (Calculated)"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding LoadingWeight}"
-                                     IsReadOnly="True"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
-
-                        <!-- Material -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Material"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding MaterialId, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
-
-                        <!-- Rate -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Rate"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding Rate, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
-
-                        <!-- Gross Amount (Calculated) -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Gross Amount (Calculated)"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding GrossAmount}"
-                                     IsReadOnly="True"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
-                    </StackPanel>
-                </Border>
-
-                <!-- Vehicle Loading Section -->
-                <Border Background="{DynamicResource SurfaceBrush}"
-                        BorderBrush="{DynamicResource BorderBrush}"
-                        BorderThickness="{StaticResource StandardBorderThickness}"
-                        CornerRadius="{StaticResource StandardCornerRadius}"
-                        Padding="{StaticResource Medium}"
-                        Margin="{StaticResource Small}">
-                    <StackPanel>
-                        <TextBlock Text="Vehicle Loading"
-                                   Style="{StaticResource SubHeadingTextBlockStyle}"
-                                   Margin="{StaticResource Small}" />
-                        
-                        <!-- Vehicle Loaded By -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Vehicle Loaded By"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding VehicleLoadedBy, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
-                    </StackPanel>
-                </Border>
-
-                <!-- Fuel Information Section -->
-                <Border Background="{DynamicResource SurfaceBrush}"
-                        BorderBrush="{DynamicResource BorderBrush}"
-                        BorderThickness="{StaticResource StandardBorderThickness}"
-                        CornerRadius="{StaticResource StandardCornerRadius}"
-                        Padding="{StaticResource Medium}"
-                        Margin="{StaticResource Small}">
-                    <StackPanel>
-                        <TextBlock Text="Fuel Information"
-                                   Style="{StaticResource SubHeadingTextBlockStyle}"
-                                   Margin="{StaticResource Small}" />
-                        
-                        <!-- Fuel Quantity -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Fuel Quantity"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding FuelQuantity, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
-
-                        <!-- Fuel Amount -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Fuel Amount"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding FuelAmount, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
-
-                        <!-- Fuel Cash -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Fuel Cash"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding FuelCash, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
-
-                        <!-- Fuel Advance -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Fuel Advance"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding FuelAdvance, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
-                    </StackPanel>
-                </Border>
-
-                <!-- Shortage Section -->
-                <Border Background="{DynamicResource SurfaceBrush}"
-                        BorderBrush="{DynamicResource BorderBrush}"
-                        BorderThickness="{StaticResource StandardBorderThickness}"
-                        CornerRadius="{StaticResource StandardCornerRadius}"
-                        Padding="{StaticResource Medium}"
-                        Margin="{StaticResource Small}">
-                    <StackPanel>
-                        <TextBlock Text="Shortage"
-                                   Style="{StaticResource SubHeadingTextBlockStyle}"
-                                   Margin="{StaticResource Small}" />
-                        
-                        <!-- Shortage Weight -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Shortage Weight"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding ShortageWeight, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
-                    </StackPanel>
-                </Border>
-
-                <!-- Advance Information Section -->
-                <Border Background="{DynamicResource SurfaceBrush}"
-                        BorderBrush="{DynamicResource BorderBrush}"
-                        BorderThickness="{StaticResource StandardBorderThickness}"
-                        CornerRadius="{StaticResource StandardCornerRadius}"
-                        Padding="{StaticResource Medium}"
-                        Margin="{StaticResource Small}">
-                    <StackPanel>
-                        <TextBlock Text="Advance Information"
-                                   Style="{StaticResource SubHeadingTextBlockStyle}"
-                                   Margin="{StaticResource Small}" />
-                        
-                        <!-- Cash Advance -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Cash Advance"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding CashAdvance, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
-
-                        <!-- Payment Location -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Payment Location"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding PaymentLocationId, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
-
-                        <!-- Other Advance -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Other Advance"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding OtherAdvance, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
-
-                        <!-- Other Advance Date -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Other Advance Date"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <DatePicker SelectedDate="{Binding OtherAdvanceDate}"
-                                        Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
-                    </StackPanel>
-                </Border>
-
-                <!-- Third Party Section -->
-                <Border Background="{DynamicResource SurfaceBrush}"
-                        BorderBrush="{DynamicResource BorderBrush}"
-                        BorderThickness="{StaticResource StandardBorderThickness}"
-                        CornerRadius="{StaticResource StandardCornerRadius}"
-                        Padding="{StaticResource Medium}"
-                        Margin="{StaticResource Small}">
-                    <StackPanel>
-                        <TextBlock Text="Third Party"
-                                   Style="{StaticResource SubHeadingTextBlockStyle}"
-                                   Margin="{StaticResource Small}" />
-                        
-                        <!-- Third Party -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Third Party"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding ThirdParty, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
-                    </StackPanel>
-                </Border>
-
-                <!-- Owner Information Section -->
-                <Border Background="{DynamicResource SurfaceBrush}"
-                        BorderBrush="{DynamicResource BorderBrush}"
-                        BorderThickness="{StaticResource StandardBorderThickness}"
-                        CornerRadius="{StaticResource StandardCornerRadius}"
-                        Padding="{StaticResource Medium}"
-                        Margin="{StaticResource Small}">
-                    <StackPanel>
-                        <TextBlock Text="Owner Information"
-                                   Style="{StaticResource SubHeadingTextBlockStyle}"
-                                   Margin="{StaticResource Small}" />
-                        
-                        <!-- Owner -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Owner"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding OwnerId, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
-
-                        <!-- Owner Mobile -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Owner Mobile"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding OwnerMobile, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
-
-                        <!-- Owner Address -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Owner Address"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding OwnerAddress, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
-                    </StackPanel>
-                </Border>
-
-                <!-- Driver Information Section -->
-                <Border Background="{DynamicResource SurfaceBrush}"
-                        BorderBrush="{DynamicResource BorderBrush}"
-                        BorderThickness="{StaticResource StandardBorderThickness}"
-                        CornerRadius="{StaticResource StandardCornerRadius}"
-                        Padding="{StaticResource Medium}"
-                        Margin="{StaticResource Small}">
-                    <StackPanel>
-                        <TextBlock Text="Driver Information"
-                                   Style="{StaticResource SubHeadingTextBlockStyle}"
-                                   Margin="{StaticResource Small}" />
-                        
-                        <!-- Driver -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Driver"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding Driver, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
-
-                        <!-- Driving Licence Number -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Driving Licence Number"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding DrivingLicenceNumber, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
-
-                        <!-- Driver Mobile -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Driver Mobile"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding DriverMobile, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="{StaticResource StandardControlHeight}" />
-                        </StackPanel>
-                    </StackPanel>
-                </Border>
-
-                <!-- Additional Information Section -->
-                <Border Background="{DynamicResource SurfaceBrush}"
-                        BorderBrush="{DynamicResource BorderBrush}"
-                        BorderThickness="{StaticResource StandardBorderThickness}"
-                        CornerRadius="{StaticResource StandardCornerRadius}"
-                        Padding="{StaticResource Medium}"
-                        Margin="{StaticResource Small}">
-                    <StackPanel>
-                        <TextBlock Text="Additional Information"
-                                   Style="{StaticResource SubHeadingTextBlockStyle}"
-                                   Margin="{StaticResource Small}" />
-                        
-                        <!-- Notes -->
-                        <StackPanel Margin="{StaticResource Small}">
-                            <TextBlock Text="Notes"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="{StaticResource ExtraSmall}" />
-                            <TextBox Text="{Binding Notes, UpdateSourceTrigger=PropertyChanged}"
-                                     Height="80"
-                                     TextWrapping="Wrap"
-                                     AcceptsReturn="True" />
-                        </StackPanel>
-
-                        <!-- Active -->
-                        <StackPanel Margin="{StaticResource Small}"
-                                    Orientation="Horizontal"
-                                    VerticalAlignment="Center">
-                            <CheckBox IsChecked="{Binding IsActive}"
-                                      VerticalAlignment="Center"
-                                      Margin="{StaticResource ExtraSmall}" />
-                            <TextBlock Text="Active"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       VerticalAlignment="Center"
-                                       Margin="{StaticResource Small}" />
-                        </StackPanel>
-                    </StackPanel>
+                    </Grid>
                 </Border>
 
                 <!-- Buttons -->
@@ -561,12 +526,14 @@
                     <Button Content="Save"
                             Command="{Binding SaveCommand}"
                             Height="{StaticResource StandardControlHeight}"
-                            Margin="{StaticResource Small}" />
+                            Margin="{StaticResource Small}"
+                            MinWidth="100" />
 
                     <Button Content="Cancel"
                             Command="{Binding CancelCommand}"
                             Height="{StaticResource StandardControlHeight}"
-                            Margin="{StaticResource Small}" />
+                            Margin="{StaticResource Small}"
+                            MinWidth="100" />
                 </StackPanel>
 
                 <!-- Loading Indicator -->

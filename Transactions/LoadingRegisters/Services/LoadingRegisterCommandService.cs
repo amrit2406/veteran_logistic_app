@@ -121,7 +121,12 @@ public sealed class LoadingRegisterCommandService : ILoadingRegisterCommandServi
         catch (Exception ex)
         {
             _logger.LogError(ex, "An unexpected error occurred while creating loading register");
-            return CreateLoadingRegisterResult.Failure("An unexpected error occurred while creating the loading register.");
+            var errorMessage = $"Error: {ex.Message}";
+            if (ex.InnerException != null)
+            {
+                errorMessage += $" | Inner: {ex.InnerException.Message}";
+            }
+            return CreateLoadingRegisterResult.Failure(errorMessage);
         }
     }
 
@@ -202,7 +207,12 @@ public sealed class LoadingRegisterCommandService : ILoadingRegisterCommandServi
         catch (Exception ex)
         {
             _logger.LogError(ex, "An unexpected error occurred while updating loading register '{LoadingRegisterId}'", request.LoadingRegisterId);
-            return UpdateLoadingRegisterResult.Failure("An unexpected error occurred while updating the loading register.");
+            var errorMessage = $"Error: {ex.Message}";
+            if (ex.InnerException != null)
+            {
+                errorMessage += $" | Inner: {ex.InnerException.Message}";
+            }
+            return UpdateLoadingRegisterResult.Failure(errorMessage);
         }
     }
 

@@ -24,22 +24,40 @@ public sealed class CreateLoadingRegisterValidator : ICreateLoadingRegisterValid
             return result;
         }
 
-        // Loading Date is required
-        if (request.LoadingDate == default)
+        // Consignor is required
+        if (request.ConsignorId <= 0)
         {
-            result.AddError(new ValidationError(nameof(CreateLoadingRegisterRequest.LoadingDate), "Loading date is required."));
+            result.AddError(new ValidationError(nameof(CreateLoadingRegisterRequest.ConsignorId), "Consignor is required."));
         }
 
-        // TP Number is required
-        if (string.IsNullOrWhiteSpace(request.TPNumber))
+        // Consignee is required
+        if (request.ConsigneeId <= 0)
         {
-            result.AddError(new ValidationError(nameof(CreateLoadingRegisterRequest.TPNumber), "TP number is required."));
+            result.AddError(new ValidationError(nameof(CreateLoadingRegisterRequest.ConsigneeId), "Consignee is required."));
         }
 
-        // Vehicle Type is required
-        if (string.IsNullOrWhiteSpace(request.VehicleType))
+        // Source is required
+        if (request.SourceId <= 0)
         {
-            result.AddError(new ValidationError(nameof(CreateLoadingRegisterRequest.VehicleType), "Vehicle type is required."));
+            result.AddError(new ValidationError(nameof(CreateLoadingRegisterRequest.SourceId), "Source is required."));
+        }
+
+        // Destination is required
+        if (request.DestinationId <= 0)
+        {
+            result.AddError(new ValidationError(nameof(CreateLoadingRegisterRequest.DestinationId), "Destination is required."));
+        }
+
+        // Vehicle is required
+        if (request.VehicleId <= 0)
+        {
+            result.AddError(new ValidationError(nameof(CreateLoadingRegisterRequest.VehicleId), "Vehicle is required."));
+        }
+
+        // Material is required
+        if (request.MaterialId <= 0)
+        {
+            result.AddError(new ValidationError(nameof(CreateLoadingRegisterRequest.MaterialId), "Material is required."));
         }
 
         // Gross Weight must be positive
@@ -106,12 +124,6 @@ public sealed class CreateLoadingRegisterValidator : ICreateLoadingRegisterValid
         if (request.OtherAdvance < 0)
         {
             result.AddError(new ValidationError(nameof(CreateLoadingRegisterRequest.OtherAdvance), "Other advance must be zero or positive."));
-        }
-
-        // Driver name is required
-        if (string.IsNullOrWhiteSpace(request.Driver))
-        {
-            result.AddError(new ValidationError(nameof(CreateLoadingRegisterRequest.Driver), "Driver name is required."));
         }
 
         return result;

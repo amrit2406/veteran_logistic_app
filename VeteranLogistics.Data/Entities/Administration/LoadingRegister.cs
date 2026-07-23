@@ -1,5 +1,7 @@
 using VeteranLogistics.Data.Entities.Base;
 
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace VeteranLogistics.Data.Entities.Administration;
 
 /// <summary>
@@ -13,7 +15,7 @@ public class LoadingRegister : BaseEntity
     public string ChallanNumber { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets or sets the consignor ID (foreign key to Company).
+    /// Gets or sets the consignor ID (foreign key to Customer).
     /// </summary>
     public int? ConsignorId { get; set; }
 
@@ -209,13 +211,15 @@ public class LoadingRegister : BaseEntity
 
     // Navigation properties
     /// <summary>
-    /// Gets or sets the consignor (Company).
+    /// Gets or sets the consignor (Customer).
     /// </summary>
-    public Company? Consignor { get; set; }
+    [ForeignKey("ConsignorId")]
+    public Customer? Consignor { get; set; }
 
     /// <summary>
     /// Gets or sets the consignee (Customer).
     /// </summary>
+    [ForeignKey("ConsigneeId")]
     public Customer? Consignee { get; set; }
 
     /// <summary>

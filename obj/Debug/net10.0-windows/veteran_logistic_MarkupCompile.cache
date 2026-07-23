@@ -4,15 +4,15 @@
 winexe
 C#
 .cs
-d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\
 veteran_logistic
 none
 false
 TRACE;DEBUG;NET;NET10_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NET10_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
-d:\app\veteran_logistic_app\App.xaml
+D:\app\veteran_logistic_app\App.xaml
 70834846371
 
-676603807639
+678-944520515
 2782014891864
 Administration\FinancialYears\Views\AddFinancialYearView.xaml;Administration\FinancialYears\Views\EditFinancialYearView.xaml;Administration\FinancialYears\Views\FinancialYearsView.xaml;Administration\Permissions\Views\PermissionMatrixView.xaml;Administration\Roles\Views\AddRoleView.xaml;Administration\Roles\Views\EditRoleView.xaml;Administration\Roles\Views\RolesView.xaml;Administration\Users\Views\AddUserView.xaml;Administration\Users\Views\EditUserView.xaml;Administration\Users\Views\ResetPasswordView.xaml;Administration\Users\Views\UsersView.xaml;Authentication\Views\LoginView.xaml;Desktop\Shell\ShellView.xaml;FinancialYear\Views\FinancialYearSelectionView.xaml;MainWindow.xaml;Masters\Companies\Views\AddCompanyView.xaml;Masters\Companies\Views\CompaniesView.xaml;Masters\Companies\Views\EditCompanyView.xaml;Masters\Customers\Views\AddCustomerView.xaml;Masters\Customers\Views\CustomersView.xaml;Masters\Customers\Views\EditCustomerView.xaml;Masters\DORates\Views\AddDORateView.xaml;Masters\DORates\Views\DORatesView.xaml;Masters\DORates\Views\EditDORateView.xaml;Masters\FuelPumps\Views\AddFuelPumpView.xaml;Masters\FuelPumps\Views\EditFuelPumpView.xaml;Masters\FuelPumps\Views\FuelPumpsView.xaml;Masters\HsdRates\Views\AddHsdRateView.xaml;Masters\HsdRates\Views\EditHsdRateView.xaml;Masters\HsdRates\Views\HsdRatesView.xaml;Masters\Materials\Views\AddMaterialView.xaml;Masters\Materials\Views\EditMaterialView.xaml;Masters\Materials\Views\MaterialsView.xaml;Masters\PaymentLocations\Views\AddPaymentLocationView.xaml;Masters\PaymentLocations\Views\EditPaymentLocationView.xaml;Masters\PaymentLocations\Views\PaymentLocationsView.xaml;Masters\SourceDestinations\Views\AddSourceDestinationView.xaml;Masters\SourceDestinations\Views\EditSourceDestinationView.xaml;Masters\SourceDestinations\Views\SourceDestinationsView.xaml;Masters\VehicleAssignments\Views\VehicleAssignmentsView.xaml;Masters\VehicleOwners\Views\AddVehicleOwnerView.xaml;Masters\VehicleOwners\Views\EditVehicleOwnerView.xaml;Masters\VehicleOwners\Views\VehicleOwnersView.xaml;Masters\Vehicles\Views\AddVehicleView.xaml;Masters\Vehicles\Views\EditVehicleView.xaml;Masters\Vehicles\Views\VehiclesView.xaml;Masters\Vendors\Views\AddVendorView.xaml;Masters\Vendors\Views\EditVendorView.xaml;Masters\Vendors\Views\VendorsView.xaml;Resources\Brushes.xaml;Resources\Colors.xaml;Resources\DataTemplates.xaml;Resources\Icons.xaml;Resources\Spacing.xaml;Resources\Typography.xaml;Styles\ButtonStyles.xaml;Styles\CheckBoxStyles.xaml;Styles\ComboBoxStyles.xaml;Styles\DataGridStyles.xaml;Styles\DatePickerStyles.xaml;Styles\MenuStyles.xaml;Styles\PasswordBoxStyles.xaml;Styles\StatusBarStyles.xaml;Styles\TextBlockStyles.xaml;Styles\TextBoxStyles.xaml;Styles\WindowStyles.xaml;Themes\LightTheme.xaml;Transactions\LoadingRegisters\Views\AddLoadingRegisterView.xaml;Transactions\LoadingRegisters\Views\EditLoadingRegisterView.xaml;Transactions\LoadingRegisters\Views\LoadingRegistersView.xaml;
 

@@ -1377,7 +1377,7 @@ namespace veteran_logistic.Migrations
                         .HasForeignKey("ConsigneeId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("VeteranLogistics.Data.Entities.Administration.Company", "Consignor")
+                    b.HasOne("VeteranLogistics.Data.Entities.Administration.Customer", "Consignor")
                         .WithMany()
                         .HasForeignKey("ConsignorId")
                         .OnDelete(DeleteBehavior.Restrict);

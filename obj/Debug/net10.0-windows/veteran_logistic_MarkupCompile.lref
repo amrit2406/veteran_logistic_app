@@ -9,16 +9,16 @@ Fd:\app\veteran_logistic_app\FinancialYear\Views\FinancialYearSelectionView.xaml
 Fd:\app\veteran_logistic_app\MainWindow.xaml;;
 Fd:\app\veteran_logistic_app\Masters\Companies\Views\CompaniesView.xaml;;
 Fd:\app\veteran_logistic_app\Masters\Customers\Views\CustomersView.xaml;;
+Fd:\app\veteran_logistic_app\Masters\DORates\Views\DORatesView.xaml;;
 Fd:\app\veteran_logistic_app\Masters\FuelPumps\Views\FuelPumpsView.xaml;;
 Fd:\app\veteran_logistic_app\Masters\HsdRates\Views\HsdRatesView.xaml;;
 Fd:\app\veteran_logistic_app\Masters\Materials\Views\MaterialsView.xaml;;
 Fd:\app\veteran_logistic_app\Masters\PaymentLocations\Views\PaymentLocationsView.xaml;;
+Fd:\app\veteran_logistic_app\Masters\SourceDestinations\Views\SourceDestinationsView.xaml;;
 Fd:\app\veteran_logistic_app\Masters\VehicleAssignments\Views\VehicleAssignmentsView.xaml;;
 Fd:\app\veteran_logistic_app\Masters\VehicleOwners\Views\VehicleOwnersView.xaml;;
 Fd:\app\veteran_logistic_app\Masters\Vehicles\Views\VehiclesView.xaml;;
 Fd:\app\veteran_logistic_app\Masters\Vendors\Views\VendorsView.xaml;;
 Fd:\app\veteran_logistic_app\Resources\DataTemplates.xaml;;
-FD:\app\veteran_logistic_app\Masters\SourceDestinations\Views\SourceDestinationsView.xaml;;
-FD:\app\veteran_logistic_app\Masters\DORates\Views\DORatesView.xaml;;
-FD:\app\veteran_logistic_app\Transactions\LoadingRegisters\Views\LoadingRegistersView.xaml;;
+Fd:\app\veteran_logistic_app\Transactions\LoadingRegisters\Views\LoadingRegistersView.xaml;;
 

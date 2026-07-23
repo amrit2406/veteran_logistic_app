@@ -2,6 +2,18 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using veteran_logistic.Transactions.LoadingRegisters.Contracts;
 using veteran_logistic.Transactions.LoadingRegisters.Models;
+using veteran_logistic.Masters.Customers.Contracts;
+using veteran_logistic.Masters.Customers.Models;
+using veteran_logistic.Masters.SourceDestinations.Contracts;
+using veteran_logistic.Masters.SourceDestinations.Models;
+using veteran_logistic.Masters.Materials.Contracts;
+using veteran_logistic.Masters.Materials.Models;
+using veteran_logistic.Masters.PaymentLocations.Contracts;
+using veteran_logistic.Masters.PaymentLocations.Models;
+using veteran_logistic.Masters.Vendors.Contracts;
+using veteran_logistic.Masters.Vendors.Models;
+using veteran_logistic.Masters.Vehicles.Contracts;
+using veteran_logistic.Masters.Vehicles.Models;
 using veteran_logistic.MVVM;
 using veteran_logistic.Navigation;
 
@@ -14,6 +26,12 @@ public sealed partial class AddLoadingRegisterViewModel : ViewModelBase
 {
     private readonly ILoadingRegisterCommandService _loadingRegisterCommandService;
     private readonly INavigationService _navigationService;
+    private readonly ICustomerQueryService _customerQueryService;
+    private readonly ISourceDestinationQueryService _sourceDestinationQueryService;
+    private readonly IMaterialQueryService _materialQueryService;
+    private readonly IPaymentLocationQueryService _paymentLocationQueryService;
+    private readonly IVendorQueryService _vendorQueryService;
+    private readonly IVehicleQueryService _vehicleQueryService;
     private int? _consignorId;
     private int? _consigneeId;
     private int? _sourceId;
@@ -50,16 +68,36 @@ public sealed partial class AddLoadingRegisterViewModel : ViewModelBase
     private string _validationError = string.Empty;
     private decimal _loadingWeight;
     private decimal _grossAmount;
+    private IReadOnlyList<CustomerListItem> _customers = [];
+    private IReadOnlyList<SourceDestinationListItem> _sourceDestinations = [];
+    private IReadOnlyList<MaterialListItem> _materials = [];
+    private IReadOnlyList<PaymentLocationListItem> _paymentLocations = [];
+    private IReadOnlyList<VendorListItem> _vendors = [];
+    private IReadOnlyList<VehicleListItem> _vehicles = [];
 
     /// <summary>
     /// Initializes a new instance of the <see cref="AddLoadingRegisterViewModel"/> class.
     /// </summary>
     /// <param name="loadingRegisterCommandService">The loading register command service.</param>
     /// <param name="navigationService">The navigation service.</param>
-    public AddLoadingRegisterViewModel(ILoadingRegisterCommandService loadingRegisterCommandService, INavigationService navigationService)
+    public AddLoadingRegisterViewModel(
+        ILoadingRegisterCommandService loadingRegisterCommandService,
+        INavigationService navigationService,
+        ICustomerQueryService customerQueryService,
+        ISourceDestinationQueryService sourceDestinationQueryService,
+        IMaterialQueryService materialQueryService,
+        IPaymentLocationQueryService paymentLocationQueryService,
+        IVendorQueryService vendorQueryService,
+        IVehicleQueryService vehicleQueryService)
     {
         _loadingRegisterCommandService = loadingRegisterCommandService ?? throw new ArgumentNullException(nameof(loadingRegisterCommandService));
         _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
+        _customerQueryService = customerQueryService ?? throw new ArgumentNullException(nameof(customerQueryService));
+        _sourceDestinationQueryService = sourceDestinationQueryService ?? throw new ArgumentNullException(nameof(sourceDestinationQueryService));
+        _materialQueryService = materialQueryService ?? throw new ArgumentNullException(nameof(materialQueryService));
+        _paymentLocationQueryService = paymentLocationQueryService ?? throw new ArgumentNullException(nameof(paymentLocationQueryService));
+        _vendorQueryService = vendorQueryService ?? throw new ArgumentNullException(nameof(vendorQueryService));
+        _vehicleQueryService = vehicleQueryService ?? throw new ArgumentNullException(nameof(vehicleQueryService));
         
         Title = "Add Loading Register";
     }
@@ -416,6 +454,60 @@ public sealed partial class AddLoadingRegisterViewModel : ViewModelBase
     }
 
     /// <summary>
+    /// Gets the collection of customers for consignor/consignee selection.
+    /// </summary>
+    public IReadOnlyList<CustomerListItem> Customers
+    {
+        get => _customers;
+        private set => SetProperty(ref _customers, value);
+    }
+
+    /// <summary>
+    /// Gets the collection of source/destinations.
+    /// </summary>
+    public IReadOnlyList<SourceDestinationListItem> SourceDestinations
+    {
+        get => _sourceDestinations;
+        private set => SetProperty(ref _sourceDestinations, value);
+    }
+
+    /// <summary>
+    /// Gets the collection of materials.
+    /// </summary>
+    public IReadOnlyList<MaterialListItem> Materials
+    {
+        get => _materials;
+        private set => SetProperty(ref _materials, value);
+    }
+
+    /// <summary>
+    /// Gets the collection of payment locations.
+    /// </summary>
+    public IReadOnlyList<PaymentLocationListItem> PaymentLocations
+    {
+        get => _paymentLocations;
+        private set => SetProperty(ref _paymentLocations, value);
+    }
+
+    /// <summary>
+    /// Gets the collection of vendors (union/vendors).
+    /// </summary>
+    public IReadOnlyList<VendorListItem> Vendors
+    {
+        get => _vendors;
+        private set => SetProperty(ref _vendors, value);
+    }
+
+    /// <summary>
+    /// Gets the collection of vehicles.
+    /// </summary>
+    public IReadOnlyList<VehicleListItem> Vehicles
+    {
+        get => _vehicles;
+        private set => SetProperty(ref _vehicles, value);
+    }
+
+    /// <summary>
     /// Calculates the loading weight.
     /// </summary>
     private void CalculateLoadingWeight()
@@ -432,6 +524,26 @@ public sealed partial class AddLoadingRegisterViewModel : ViewModelBase
     }
 
     /// <summary>
+    /// Loads master data for dropdowns.
+    /// </summary>
+    private async Task LoadMasterDataAsync()
+    {
+        try
+        {
+            Customers = await _customerQueryService.GetAllCustomersAsync();
+            SourceDestinations = (await _sourceDestinationQueryService.GetAllSourceDestinationsAsync()).ToList();
+            Materials = await _materialQueryService.GetAllMaterialsAsync();
+            PaymentLocations = await _paymentLocationQueryService.GetAllPaymentLocationsAsync();
+            Vendors = await _vendorQueryService.GetAllVendorsAsync();
+            Vehicles = await _vehicleQueryService.GetAllVehiclesAsync();
+        }
+        catch (Exception ex)
+        {
+            ValidationError = $"Failed to load master data: {ex.Message}";
+        }
+    }
+
+    /// <summary>
     /// Command to save the loading register.
     /// </summary>
     [RelayCommand]
@@ -439,54 +551,62 @@ public sealed partial class AddLoadingRegisterViewModel : ViewModelBase
     {
         ValidationError = string.Empty;
 
-        var request = new CreateLoadingRegisterRequest
+        try
         {
-            ConsignorId = ConsignorId,
-            ConsigneeId = ConsigneeId,
-            SourceId = SourceId,
-            DestinationId = DestinationId,
-            LoadingDate = LoadingDate,
-            TPNumber = TPNumber,
-            VehicleId = VehicleId,
-            VehicleType = VehicleType,
-            UnionVendorId = UnionVendorId,
-            DriverCommission = DriverCommission,
-            GrossWeight = GrossWeight,
-            TareWeight = TareWeight,
-            MaterialId = MaterialId,
-            Rate = Rate,
-            VehicleLoadedBy = VehicleLoadedBy,
-            FuelQuantity = FuelQuantity,
-            FuelAmount = FuelAmount,
-            FuelCash = FuelCash,
-            FuelAdvance = FuelAdvance,
-            ShortageWeight = ShortageWeight,
-            CashAdvance = CashAdvance,
-            PaymentLocationId = PaymentLocationId,
-            OtherAdvance = OtherAdvance,
-            OtherAdvanceDate = OtherAdvanceDate,
-            ThirdParty = ThirdParty,
-            OwnerId = OwnerId,
-            OwnerMobile = OwnerMobile,
-            OwnerAddress = OwnerAddress,
-            Driver = Driver,
-            DrivingLicenceNumber = DrivingLicenceNumber,
-            DriverMobile = DriverMobile,
-            Notes = Notes,
-            IsActive = IsActive
-        };
+            var request = new CreateLoadingRegisterRequest
+            {
+                ConsignorId = ConsignorId,
+                ConsigneeId = ConsigneeId,
+                SourceId = SourceId,
+                DestinationId = DestinationId,
+                LoadingDate = LoadingDate,
+                TPNumber = TPNumber,
+                VehicleId = VehicleId,
+                VehicleType = VehicleType,
+                UnionVendorId = UnionVendorId,
+                DriverCommission = DriverCommission,
+                GrossWeight = GrossWeight,
+                TareWeight = TareWeight,
+                MaterialId = MaterialId,
+                Rate = Rate,
+                VehicleLoadedBy = VehicleLoadedBy,
+                FuelQuantity = FuelQuantity,
+                FuelAmount = FuelAmount,
+                FuelCash = FuelCash,
+                FuelAdvance = FuelAdvance,
+                ShortageWeight = ShortageWeight,
+                CashAdvance = CashAdvance,
+                PaymentLocationId = PaymentLocationId,
+                OtherAdvance = OtherAdvance,
+                OtherAdvanceDate = OtherAdvanceDate,
+                ThirdParty = ThirdParty,
+                OwnerId = OwnerId,
+                OwnerMobile = OwnerMobile,
+                OwnerAddress = OwnerAddress,
+                Driver = Driver,
+                DrivingLicenceNumber = DrivingLicenceNumber,
+                DriverMobile = DriverMobile,
+                Notes = Notes,
+                IsActive = IsActive
+            };
 
-        SetBusy("Creating loading register...");
-        var result = await _loadingRegisterCommandService.CreateLoadingRegisterAsync(request).ConfigureAwait(false);
-        ClearBusy();
+            SetBusy("Creating loading register...");
+            var result = await _loadingRegisterCommandService.CreateLoadingRegisterAsync(request).ConfigureAwait(false);
+            ClearBusy();
 
-        if (result.IsSuccess)
-        {
-            await _navigationService.GoBackAsync().ConfigureAwait(false);
+            if (result.IsSuccess)
+            {
+                await _navigationService.GoBackAsync().ConfigureAwait(false);
+            }
+            else
+            {
+                ValidationError = result.ErrorMessage ?? "Failed to create loading register.";
+            }
         }
-        else
+        catch (Exception ex)
         {
-            ValidationError = result.ErrorMessage ?? "Failed to create loading register.";
+            ClearBusy();
+            ValidationError = $"Error: {ex.Message}";
         }
     }
 
@@ -497,5 +617,14 @@ public sealed partial class AddLoadingRegisterViewModel : ViewModelBase
     private async Task CancelAsync()
     {
         await _navigationService.GoBackAsync().ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// Loads data when the view is navigated to.
+    /// </summary>
+    public override async Task OnNavigatedToAsync(
+        CancellationToken cancellationToken = default)
+    {
+        await LoadMasterDataAsync();
     }
 }

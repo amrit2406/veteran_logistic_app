@@ -48,7 +48,7 @@ public sealed class LoadingRegisterQueryService : ILoadingRegisterQueryService
                 EF.Functions.Like(lr.ChallanNumber, searchPattern) ||
                 EF.Functions.Like(lr.TPNumber, searchPattern) ||
                 (lr.Vehicle != null && EF.Functions.Like(lr.Vehicle.VehicleNumber, searchPattern)) ||
-                (lr.Consignor != null && EF.Functions.Like(lr.Consignor.CompanyName, searchPattern)) ||
+                (lr.Consignor != null && EF.Functions.Like(lr.Consignor.CustomerName, searchPattern)) ||
                 (lr.Consignee != null && EF.Functions.Like(lr.Consignee.CustomerName, searchPattern)) ||
                 EF.Functions.Like(lr.Driver, searchPattern) ||
                 (lr.Material != null && EF.Functions.Like(lr.Material.MaterialName, searchPattern)));
@@ -120,7 +120,7 @@ public sealed class LoadingRegisterQueryService : ILoadingRegisterQueryService
             LoadingDate = lr.LoadingDate,
             TPNumber = lr.TPNumber,
             VehicleNumber = lr.Vehicle != null ? lr.Vehicle.VehicleNumber : null,
-            ConsignorName = lr.Consignor != null ? lr.Consignor.CompanyName : null,
+            ConsignorName = lr.Consignor != null ? lr.Consignor.CustomerName : null,
             ConsigneeName = lr.Consignee != null ? lr.Consignee.CustomerName : null,
             SourceName = lr.Source != null ? lr.Source.LocationName : null,
             DestinationName = lr.Destination != null ? lr.Destination.LocationName : null,
