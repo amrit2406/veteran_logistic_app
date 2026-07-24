@@ -25,7 +25,7 @@
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto"
                       Padding="{StaticResource Large}">
-            <StackPanel HorizontalAlignment="Left">
+            <StackPanel>
                 <!-- Validation Error -->
                 <Border Background="{DynamicResource ErrorBrush}"
                         BorderBrush="{DynamicResource ErrorBrush}"
@@ -40,141 +40,184 @@
                                TextWrapping="Wrap" />
                 </Border>
 
-                <!-- Company Code -->
-                <StackPanel Margin="{StaticResource Small}">
-                    <TextBlock Text="Company Code"
-                               Style="{StaticResource BodyTextBlockStyle}"
-                               Margin="{StaticResource ExtraSmall}" />
-                    <TextBox Text="{Binding CompanyCode, UpdateSourceTrigger=PropertyChanged}"
-                             Height="{StaticResource StandardControlHeight}" />
-                </StackPanel>
+                <!-- Main Form Grid -->
+                <Border Background="{DynamicResource SurfaceBrush}"
+                        BorderBrush="{DynamicResource BorderBrush}"
+                        BorderThickness="{StaticResource StandardBorderThickness}"
+                        CornerRadius="{StaticResource StandardCornerRadius}"
+                        Padding="{StaticResource Medium}"
+                        Margin="{StaticResource Small}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" MinWidth="150" />
+                            <ColumnDefinition Width="*" MinWidth="200" />
+                            <ColumnDefinition Width="16" />
+                            <ColumnDefinition Width="Auto" MinWidth="150" />
+                            <ColumnDefinition Width="*" MinWidth="200" />
+                        </Grid.ColumnDefinitions>
 
-                <!-- Company Name -->
-                <StackPanel Margin="{StaticResource Small}">
-                    <TextBlock Text="Company Name"
-                               Style="{StaticResource BodyTextBlockStyle}"
-                               Margin="{StaticResource ExtraSmall}" />
-                    <TextBox Text="{Binding CompanyName, UpdateSourceTrigger=PropertyChanged}"
-                             Height="{StaticResource StandardControlHeight}" />
-                </StackPanel>
+                        <!-- Row 1: Company Code, Company Name -->
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Company Code"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="0" Grid.Column="1"
+                                 Text="{Binding CompanyCode, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
 
-                <!-- Address Line 1 -->
-                <StackPanel Margin="{StaticResource Small}">
-                    <TextBlock Text="Address Line 1"
-                               Style="{StaticResource BodyTextBlockStyle}"
-                               Margin="{StaticResource ExtraSmall}" />
-                    <TextBox Text="{Binding AddressLine1, UpdateSourceTrigger=PropertyChanged}"
-                             Height="{StaticResource StandardControlHeight}" />
-                </StackPanel>
+                        <TextBlock Grid.Row="0" Grid.Column="3" Text="Company Name"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="0" Grid.Column="4"
+                                 Text="{Binding CompanyName, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
 
-                <!-- Address Line 2 -->
-                <StackPanel Margin="{StaticResource Small}">
-                    <TextBlock Text="Address Line 2"
-                               Style="{StaticResource BodyTextBlockStyle}"
-                               Margin="{StaticResource ExtraSmall}" />
-                    <TextBox Text="{Binding AddressLine2, UpdateSourceTrigger=PropertyChanged}"
-                             Height="{StaticResource StandardControlHeight}" />
-                </StackPanel>
+                        <!-- Row 2: Address Line 1, Address Line 2 -->
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Address Line 1"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="1" Grid.Column="1"
+                                 Text="{Binding AddressLine1, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
 
-                <!-- City -->
-                <StackPanel Margin="{StaticResource Small}">
-                    <TextBlock Text="City"
-                               Style="{StaticResource BodyTextBlockStyle}"
-                               Margin="{StaticResource ExtraSmall}" />
-                    <TextBox Text="{Binding City, UpdateSourceTrigger=PropertyChanged}"
-                             Height="{StaticResource StandardControlHeight}" />
-                </StackPanel>
+                        <TextBlock Grid.Row="1" Grid.Column="3" Text="Address Line 2"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="1" Grid.Column="4"
+                                 Text="{Binding AddressLine2, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
 
-                <!-- State -->
-                <StackPanel Margin="{StaticResource Small}">
-                    <TextBlock Text="State"
-                               Style="{StaticResource BodyTextBlockStyle}"
-                               Margin="{StaticResource ExtraSmall}" />
-                    <TextBox Text="{Binding State, UpdateSourceTrigger=PropertyChanged}"
-                             Height="{StaticResource StandardControlHeight}" />
-                </StackPanel>
+                        <!-- Row 3: City, State -->
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="City"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="2" Grid.Column="1"
+                                 Text="{Binding City, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
 
-                <!-- Country -->
-                <StackPanel Margin="{StaticResource Small}">
-                    <TextBlock Text="Country"
-                               Style="{StaticResource BodyTextBlockStyle}"
-                               Margin="{StaticResource ExtraSmall}" />
-                    <TextBox Text="{Binding Country, UpdateSourceTrigger=PropertyChanged}"
-                             Height="{StaticResource StandardControlHeight}" />
-                </StackPanel>
+                        <TextBlock Grid.Row="2" Grid.Column="3" Text="State"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="2" Grid.Column="4"
+                                 Text="{Binding State, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
 
-                <!-- Postal Code -->
-                <StackPanel Margin="{StaticResource Small}">
-                    <TextBlock Text="Postal Code"
-                               Style="{StaticResource BodyTextBlockStyle}"
-                               Margin="{StaticResource ExtraSmall}" />
-                    <TextBox Text="{Binding PostalCode, UpdateSourceTrigger=PropertyChanged}"
-                             Height="{StaticResource StandardControlHeight}" />
-                </StackPanel>
+                        <!-- Row 4: Country, Postal Code -->
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Country"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="3" Grid.Column="1"
+                                 Text="{Binding Country, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
 
-                <!-- Phone Number -->
-                <StackPanel Margin="{StaticResource Small}">
-                    <TextBlock Text="Phone Number"
-                               Style="{StaticResource BodyTextBlockStyle}"
-                               Margin="{StaticResource ExtraSmall}" />
-                    <TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
-                             Height="{StaticResource StandardControlHeight}" />
-                </StackPanel>
+                        <TextBlock Grid.Row="3" Grid.Column="3" Text="Postal Code"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="3" Grid.Column="4"
+                                 Text="{Binding PostalCode, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
 
-                <!-- Email -->
-                <StackPanel Margin="{StaticResource Small}">
-                    <TextBlock Text="Email"
-                               Style="{StaticResource BodyTextBlockStyle}"
-                               Margin="{StaticResource ExtraSmall}" />
-                    <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
-                             Height="{StaticResource StandardControlHeight}" />
-                </StackPanel>
+                        <!-- Row 5: Phone Number, Email -->
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Phone Number"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="4" Grid.Column="1"
+                                 Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
 
-                <!-- GST Number -->
-                <StackPanel Margin="{StaticResource Small}">
-                    <TextBlock Text="GST Number"
-                               Style="{StaticResource BodyTextBlockStyle}"
-                               Margin="{StaticResource ExtraSmall}" />
-                    <TextBox Text="{Binding GSTNumber, UpdateSourceTrigger=PropertyChanged}"
-                             Height="{StaticResource StandardControlHeight}" />
-                </StackPanel>
+                        <TextBlock Grid.Row="4" Grid.Column="3" Text="Email"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="4" Grid.Column="4"
+                                 Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
 
-                <!-- PAN Number -->
-                <StackPanel Margin="{StaticResource Small}">
-                    <TextBlock Text="PAN Number"
-                               Style="{StaticResource BodyTextBlockStyle}"
-                               Margin="{StaticResource ExtraSmall}" />
-                    <TextBox Text="{Binding PANNumber, UpdateSourceTrigger=PropertyChanged}"
-                             Height="{StaticResource StandardControlHeight}" />
-                </StackPanel>
+                        <!-- Row 6: GST Number, PAN Number -->
+                        <TextBlock Grid.Row="5" Grid.Column="0" Text="GST Number"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="5" Grid.Column="1"
+                                 Text="{Binding GSTNumber, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
 
-                <!-- Active -->
-                <StackPanel Margin="{StaticResource Small}"
-                            Orientation="Horizontal"
-                            VerticalAlignment="Center">
-                    <CheckBox IsChecked="{Binding IsActive}"
-                              VerticalAlignment="Center"
-                              Margin="{StaticResource ExtraSmall}" />
-                    <TextBlock Text="Active"
-                               Style="{StaticResource BodyTextBlockStyle}"
-                               VerticalAlignment="Center"
-                               Margin="{StaticResource Small}" />
-                </StackPanel>
+                        <TextBlock Grid.Row="5" Grid.Column="3" Text="PAN Number"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="5" Grid.Column="4"
+                                 Text="{Binding PANNumber, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
+                    </Grid>
+                </Border>
 
-                <!-- Buttons -->
-                <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Right"
-                            Margin="{StaticResource Medium}">
-                    <Button Content="Save"
-                            Command="{Binding SaveCommand}"
-                            Height="{StaticResource StandardControlHeight}"
-                            Margin="{StaticResource Small}" />
+                <!-- Active & Buttons -->
+                <Border Background="{DynamicResource SurfaceBrush}"
+                        BorderBrush="{DynamicResource BorderBrush}"
+                        BorderThickness="{StaticResource StandardBorderThickness}"
+                        CornerRadius="{StaticResource StandardCornerRadius}"
+                        Padding="{StaticResource Medium}"
+                        Margin="{StaticResource Small}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-                    <Button Content="Cancel"
-                            Command="{Binding CancelCommand}"
-                            Height="{StaticResource StandardControlHeight}"
-                            Margin="{StaticResource Small}" />
-                </StackPanel>
+                        <CheckBox Grid.Column="0"
+                                  IsChecked="{Binding IsActive}"
+                                  VerticalAlignment="Center"
+                                  Margin="{StaticResource ExtraSmall}" />
+                        <TextBlock Grid.Column="1" Text="Active"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource Small}" />
+
+                        <Button Grid.Column="3" Content="Save"
+                                Command="{Binding SaveCommand}"
+                                Height="{StaticResource StandardControlHeight}"
+                                Margin="{StaticResource Small}"
+                                MinWidth="100" />
+
+                        <Button Grid.Column="4" Content="Cancel"
+                                Command="{Binding CancelCommand}"
+                                Height="{StaticResource StandardControlHeight}"
+                                Margin="{StaticResource Small}"
+                                MinWidth="100" />
+                    </Grid>
+                </Border>
 
                 <!-- Loading Indicator -->
                 <Border Background="{DynamicResource SurfaceBrush}"

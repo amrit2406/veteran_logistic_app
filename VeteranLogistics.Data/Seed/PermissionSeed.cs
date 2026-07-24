@@ -16,18 +16,6 @@ public static class PermissionSeed
 {
     private static readonly List<Permission> Permissions = new()
     {
-        // Masters - Vehicles screen
-        new Permission { Module = "Masters", Screen = "Vehicles", PermissionKey = "vehicles.view", DisplayName = "View Vehicles", Description = "View list of vehicles", SortOrder = 1, IsActive = true },
-        new Permission { Module = "Masters", Screen = "Vehicles", PermissionKey = "vehicles.create", DisplayName = "Create Vehicles", Description = "Create a new vehicle", SortOrder = 2, IsActive = true },
-        new Permission { Module = "Masters", Screen = "Vehicles", PermissionKey = "vehicles.edit", DisplayName = "Edit Vehicles", Description = "Edit existing vehicle", SortOrder = 3, IsActive = true },
-        new Permission { Module = "Masters", Screen = "Vehicles", PermissionKey = "vehicles.delete", DisplayName = "Delete Vehicles", Description = "Delete a vehicle", SortOrder = 4, IsActive = true },
-
-        // Masters - DO Rates screen
-        new Permission { Module = "Masters", Screen = "DORates", PermissionKey = "masters.dorates.view", DisplayName = "View DO Rates", Description = "View list of DO rates", SortOrder = 5, IsActive = true },
-        new Permission { Module = "Masters", Screen = "DORates", PermissionKey = "masters.dorates.add", DisplayName = "Add DO Rate", Description = "Create a new DO rate", SortOrder = 6, IsActive = true },
-        new Permission { Module = "Masters", Screen = "DORates", PermissionKey = "masters.dorates.edit", DisplayName = "Edit DO Rate", Description = "Edit existing DO rate", SortOrder = 7, IsActive = true },
-        new Permission { Module = "Masters", Screen = "DORates", PermissionKey = "masters.dorates.delete", DisplayName = "Delete DO Rate", Description = "Delete a DO rate", SortOrder = 8, IsActive = true },
-
         // Administration - Users screen
         new Permission { Module = "Administration", Screen = "Users", PermissionKey = "Administration.Users.View", DisplayName = "View Users", Description = "View list of users", SortOrder = 10, IsActive = true },
         new Permission { Module = "Administration", Screen = "Users", PermissionKey = "Administration.Users.Add", DisplayName = "Add User", Description = "Create a new user", SortOrder = 11, IsActive = true },
@@ -111,7 +99,20 @@ public static class PermissionSeed
         new Permission { Module = "Masters", Screen = "VehicleOwners", PermissionKey = "Masters.VehicleOwners.View", DisplayName = "View Vehicle Owners", Description = "View list of vehicle owners", SortOrder = 190, IsActive = true },
         new Permission { Module = "Masters", Screen = "VehicleOwners", PermissionKey = "Masters.VehicleOwners.Add", DisplayName = "Add Vehicle Owner", Description = "Create a new vehicle owner", SortOrder = 191, IsActive = true },
         new Permission { Module = "Masters", Screen = "VehicleOwners", PermissionKey = "Masters.VehicleOwners.Edit", DisplayName = "Edit Vehicle Owner", Description = "Edit existing vehicle owner", SortOrder = 192, IsActive = true },
-        new Permission { Module = "Masters", Screen = "VehicleOwners", PermissionKey = "Masters.VehicleOwners.Delete", DisplayName = "Delete Vehicle Owner", Description = "Delete a vehicle owner", SortOrder = 193, IsActive = true }
+        new Permission { Module = "Masters", Screen = "VehicleOwners", PermissionKey = "Masters.VehicleOwners.Delete", DisplayName = "Delete Vehicle Owner", Description = "Delete a vehicle owner", SortOrder = 193, IsActive = true }, 
+        
+        // Masters - Vehicles screen
+        new Permission { Module = "Masters", Screen = "Vehicles", PermissionKey = "vehicles.view", DisplayName = "View Vehicles", Description = "View list of vehicles", SortOrder = 1, IsActive = true },
+        new Permission { Module = "Masters", Screen = "Vehicles", PermissionKey = "vehicles.create", DisplayName = "Create Vehicles", Description = "Create a new vehicle", SortOrder = 2, IsActive = true },
+        new Permission { Module = "Masters", Screen = "Vehicles", PermissionKey = "vehicles.edit", DisplayName = "Edit Vehicles", Description = "Edit existing vehicle", SortOrder = 3, IsActive = true },
+        new Permission { Module = "Masters", Screen = "Vehicles", PermissionKey = "vehicles.delete", DisplayName = "Delete Vehicles", Description = "Delete a vehicle", SortOrder = 4, IsActive = true },
+
+        // Masters - DO Rates screen
+        new Permission { Module = "Masters", Screen = "DORates", PermissionKey = "masters.dorates.view", DisplayName = "View DO Rates", Description = "View list of DO rates", SortOrder = 5, IsActive = true },
+        new Permission { Module = "Masters", Screen = "DORates", PermissionKey = "masters.dorates.add", DisplayName = "Add DO Rate", Description = "Create a new DO rate", SortOrder = 6, IsActive = true },
+        new Permission { Module = "Masters", Screen = "DORates", PermissionKey = "masters.dorates.edit", DisplayName = "Edit DO Rate", Description = "Edit existing DO rate", SortOrder = 7, IsActive = true },
+        new Permission { Module = "Masters", Screen = "DORates", PermissionKey = "masters.dorates.delete", DisplayName = "Delete DO Rate", Description = "Delete a DO rate", SortOrder = 8, IsActive = true },
+
     };
 
     /// <summary>

@@ -4,342 +4,308 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d">
-    <Grid Background="White">
+    <Grid Background="{DynamicResource BackgroundBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <!-- Header -->
         <Border Grid.Row="0"
-                Background="LightGray"
-                BorderBrush="Gray"
-                BorderThickness="1"
-                Padding="8">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-
-                <TextBlock Grid.Column="0"
-                           Text="Edit DO Rate"
-                           FontSize="16"
-                           FontWeight="Bold"
-                           VerticalAlignment="Center" />
-
-                <StackPanel Grid.Column="1"
-                            Orientation="Horizontal"
-                            HorizontalAlignment="Right">
-                    <!-- Save Button -->
-                    <Button Height="30"
-                            Command="{Binding SaveCommand}"
-                            VerticalAlignment="Center"
-                            Margin="4">
-                        <TextBlock Text="Save" />
-                    </Button>
-
-                    <!-- Cancel Button -->
-                    <Button Height="30"
-                            Command="{Binding CancelCommand}"
-                            VerticalAlignment="Center"
-                            Margin="4">
-                        <TextBlock Text="Cancel" />
-                    </Button>
-                </StackPanel>
-            </Grid>
-        </Border>
-
-        <!-- Loading Indicator -->
-        <Border Grid.Row="1"
-                Background="LightGray"
-                BorderBrush="Gray"
-                BorderThickness="1"
-                Padding="8"
-                Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center">
-                <ProgressBar Height="30"
-                           IsIndeterminate="True"
-                           Foreground="Blue"
-                           Margin="4" />
-                <TextBlock Text="{Binding BusyMessage}"
-                           VerticalAlignment="Center" />
-            </StackPanel>
+                Background="{DynamicResource SurfaceBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="{StaticResource StandardBorderThickness}"
+                Padding="{StaticResource Medium}">
+            <TextBlock Text="Edit DO Rate"
+                       Style="{StaticResource HeadingTextBlockStyle}"
+                       VerticalAlignment="Center" />
         </Border>
 
         <!-- Form -->
-        <ScrollViewer Grid.Row="2"
+        <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto"
-                      HorizontalScrollBarVisibility="Disabled"
-                      Padding="16">
-            <StackPanel MaxWidth="800" HorizontalAlignment="Center">
+                      Padding="{StaticResource Large}">
+            <StackPanel>
                 <!-- Validation Error -->
-                <Border Background="Red"
-                        BorderBrush="DarkRed"
-                        BorderThickness="1"
-                        Padding="8"
-                        Margin="0,0,0,8"
+                <Border Background="{DynamicResource ErrorBrush}"
+                        BorderBrush="{DynamicResource ErrorBrush}"
+                        BorderThickness="{StaticResource StandardBorderThickness}"
+                        CornerRadius="{StaticResource StandardCornerRadius}"
+                        Padding="{StaticResource Small}"
+                        Margin="{StaticResource Small}"
                         Visibility="{Binding ValidationError, Converter={StaticResource StringToVisibilityConverter}}">
                     <TextBlock Text="{Binding ValidationError}"
-                               Foreground="White"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               Foreground="{DynamicResource TextOnPrimaryBrush}"
                                TextWrapping="Wrap" />
                 </Border>
 
-                <!-- Consignor -->
-                <Grid Margin="0,0,0,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0"
-                               Text="Consignor"
-                               VerticalAlignment="Center" />
-                    <ComboBox Grid.Column="1"
-                              ItemsSource="{Binding Consignors}"
-                              DisplayMemberPath="Name"
-                              SelectedValuePath="Id"
-                              SelectedValue="{Binding ConsignorId}"
-                              Height="30" />
-                </Grid>
+                <!-- Main Form Grid -->
+                <Border Background="{DynamicResource SurfaceBrush}"
+                        BorderBrush="{DynamicResource BorderBrush}"
+                        BorderThickness="{StaticResource StandardBorderThickness}"
+                        CornerRadius="{StaticResource StandardCornerRadius}"
+                        Padding="{StaticResource Medium}"
+                        Margin="{StaticResource Small}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" MinWidth="150" />
+                            <ColumnDefinition Width="*" MinWidth="200" />
+                            <ColumnDefinition Width="16" />
+                            <ColumnDefinition Width="Auto" MinWidth="150" />
+                            <ColumnDefinition Width="*" MinWidth="200" />
+                        </Grid.ColumnDefinitions>
 
-                <!-- Consignee -->
-                <Grid Margin="0,0,0,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0"
-                               Text="Consignee"
-                               VerticalAlignment="Center" />
-                    <ComboBox Grid.Column="1"
-                              ItemsSource="{Binding Consignees}"
-                              DisplayMemberPath="Name"
-                              SelectedValuePath="Id"
-                              SelectedValue="{Binding ConsigneeId}"
-                              Height="30" />
-                </Grid>
+                        <!-- Row 1: Consignor, Consignee -->
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Consignor"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <ComboBox Grid.Row="0" Grid.Column="1"
+                                  ItemsSource="{Binding Consignors}"
+                                  DisplayMemberPath="Name"
+                                  SelectedValuePath="Id"
+                                  SelectedValue="{Binding ConsignorId}"
+                                  Height="{StaticResource StandardControlHeight}"
+                                  Margin="{StaticResource ExtraSmall}"
+                                  IsEditable="True"
+                                  IsTextSearchEnabled="True"
+                                  TextSearch.TextPath="Name" />
 
-                <!-- Source -->
-                <Grid Margin="0,0,0,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0"
-                               Text="Source"
-                               VerticalAlignment="Center" />
-                    <ComboBox Grid.Column="1"
-                              ItemsSource="{Binding SourceDestinations}"
-                              DisplayMemberPath="LocationName"
-                              SelectedValuePath="Id"
-                              SelectedValue="{Binding SourceId}"
-                              Height="30" />
-                </Grid>
+                        <TextBlock Grid.Row="0" Grid.Column="3" Text="Consignee"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <ComboBox Grid.Row="0" Grid.Column="4"
+                                  ItemsSource="{Binding Consignees}"
+                                  DisplayMemberPath="Name"
+                                  SelectedValuePath="Id"
+                                  SelectedValue="{Binding ConsigneeId}"
+                                  Height="{StaticResource StandardControlHeight}"
+                                  Margin="{StaticResource ExtraSmall}"
+                                  IsEditable="True"
+                                  IsTextSearchEnabled="True"
+                                  TextSearch.TextPath="Name" />
 
-                <!-- Destination -->
-                <Grid Margin="0,0,0,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0"
-                               Text="Destination"
-                               VerticalAlignment="Center" />
-                    <ComboBox Grid.Column="1"
-                              ItemsSource="{Binding SourceDestinations}"
-                              DisplayMemberPath="LocationName"
-                              SelectedValuePath="Id"
-                              SelectedValue="{Binding DestinationId}"
-                              Height="30" />
-                </Grid>
+                        <!-- Row 2: Source, Destination -->
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Source"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <ComboBox Grid.Row="1" Grid.Column="1"
+                                  ItemsSource="{Binding SourceDestinations}"
+                                  DisplayMemberPath="LocationName"
+                                  SelectedValuePath="Id"
+                                  SelectedValue="{Binding SourceId}"
+                                  Height="{StaticResource StandardControlHeight}"
+                                  Margin="{StaticResource ExtraSmall}"
+                                  IsEditable="True"
+                                  IsTextSearchEnabled="True"
+                                  TextSearch.TextPath="LocationName" />
 
-                <!-- Effective Date -->
-                <Grid Margin="0,0,0,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0"
-                               Text="Effective Date"
-                               VerticalAlignment="Center" />
-                    <DatePicker Grid.Column="1"
-                                SelectedDate="{Binding EffectiveDate}"
-                                Height="30" />
-                </Grid>
+                        <TextBlock Grid.Row="1" Grid.Column="3" Text="Destination"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <ComboBox Grid.Row="1" Grid.Column="4"
+                                  ItemsSource="{Binding SourceDestinations}"
+                                  DisplayMemberPath="LocationName"
+                                  SelectedValuePath="Id"
+                                  SelectedValue="{Binding DestinationId}"
+                                  Height="{StaticResource StandardControlHeight}"
+                                  Margin="{StaticResource ExtraSmall}"
+                                  IsEditable="True"
+                                  IsTextSearchEnabled="True"
+                                  TextSearch.TextPath="LocationName" />
 
-                <!-- DO Number -->
-                <Grid Margin="0,0,0,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0"
-                               Text="DO Number"
-                               VerticalAlignment="Center" />
-                    <TextBox Grid.Column="1"
-                             Text="{Binding DONumber, UpdateSourceTrigger=PropertyChanged}"
-                             Height="30" />
-                </Grid>
+                        <!-- Row 3: Effective Date, DO Number -->
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Effective Date"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <DatePicker Grid.Row="2" Grid.Column="1"
+                                    SelectedDate="{Binding EffectiveDate}"
+                                    Height="{StaticResource StandardControlHeight}"
+                                    Margin="{StaticResource ExtraSmall}" />
 
-                <!-- DO Qty -->
-                <Grid Margin="0,0,0,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0"
-                               Text="DO Qty"
-                               VerticalAlignment="Center" />
-                    <TextBox Grid.Column="1"
-                             Text="{Binding DOQty, UpdateSourceTrigger=PropertyChanged}"
-                             Height="30" />
-                </Grid>
+                        <TextBlock Grid.Row="2" Grid.Column="3" Text="DO Number"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="2" Grid.Column="4"
+                                 Text="{Binding DONumber, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
 
-                <!-- Freight Rate -->
-                <Grid Margin="0,0,0,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0"
-                               Text="Freight Rate"
-                               VerticalAlignment="Center" />
-                    <TextBox Grid.Column="1"
-                             Text="{Binding FreightRate, UpdateSourceTrigger=PropertyChanged}"
-                             Height="30" />
-                </Grid>
+                        <!-- Row 4: DO Qty, Freight Rate -->
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="DO Qty"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="3" Grid.Column="1"
+                                 Text="{Binding DOQty, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
 
-                <!-- Union Rate -->
-                <Grid Margin="0,0,0,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0"
-                               Text="Union Rate"
-                               VerticalAlignment="Center" />
-                    <TextBox Grid.Column="1"
-                             Text="{Binding UnionRate, UpdateSourceTrigger=PropertyChanged}"
-                             Height="30" />
-                </Grid>
+                        <TextBlock Grid.Row="3" Grid.Column="3" Text="Freight Rate"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="3" Grid.Column="4"
+                                 Text="{Binding FreightRate, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
 
-                <!-- Vendor Rate -->
-                <Grid Margin="0,0,0,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0"
-                               Text="Vendor Rate"
-                               VerticalAlignment="Center" />
-                    <TextBox Grid.Column="1"
-                             Text="{Binding VendorRate, UpdateSourceTrigger=PropertyChanged}"
-                             Height="30" />
-                </Grid>
+                        <!-- Row 5: Union Rate, Vendor Rate -->
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Union Rate"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="4" Grid.Column="1"
+                                 Text="{Binding UnionRate, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
 
-                <!-- Billing Rate -->
-                <Grid Margin="0,0,0,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0"
-                               Text="Billing Rate"
-                               VerticalAlignment="Center" />
-                    <TextBox Grid.Column="1"
-                             Text="{Binding BillingRate, UpdateSourceTrigger=PropertyChanged}"
-                             Height="30" />
-                </Grid>
+                        <TextBlock Grid.Row="4" Grid.Column="3" Text="Vendor Rate"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="4" Grid.Column="4"
+                                 Text="{Binding VendorRate, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
 
-                <!-- Allowed Shortage -->
-                <Grid Margin="0,0,0,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0"
-                               Text="Allowed Shortage"
-                               VerticalAlignment="Center" />
-                    <TextBox Grid.Column="1"
-                             Text="{Binding AllowedShortage, UpdateSourceTrigger=PropertyChanged}"
-                             Height="30" />
-                </Grid>
+                        <!-- Row 6: Billing Rate, Allowed Shortage -->
+                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Billing Rate"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="5" Grid.Column="1"
+                                 Text="{Binding BillingRate, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
 
-                <!-- Rate Per Kg -->
-                <Grid Margin="0,0,0,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0"
-                               Text="Rate Per Kg"
-                               VerticalAlignment="Center" />
-                    <TextBox Grid.Column="1"
-                             Text="{Binding RatePerKg, UpdateSourceTrigger=PropertyChanged}"
-                             Height="30" />
-                </Grid>
+                        <TextBlock Grid.Row="5" Grid.Column="3" Text="Allowed Shortage"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="5" Grid.Column="4"
+                                 Text="{Binding AllowedShortage, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
 
-                <!-- Vessel Name -->
-                <Grid Margin="0,0,0,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0"
-                               Text="Vessel Name"
-                               VerticalAlignment="Center" />
-                    <TextBox Grid.Column="1"
-                             Text="{Binding VesselName, UpdateSourceTrigger=PropertyChanged}"
-                             Height="30" />
-                </Grid>
+                        <!-- Row 7: Rate Per Kg, Vessel Name -->
+                        <TextBlock Grid.Row="6" Grid.Column="0" Text="Rate Per Kg"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="6" Grid.Column="1"
+                                 Text="{Binding RatePerKg, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
 
-                <!-- Trader Name -->
-                <Grid Margin="0,0,0,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0"
-                               Text="Trader Name"
-                               VerticalAlignment="Center" />
-                    <TextBox Grid.Column="1"
-                             Text="{Binding TraderName, UpdateSourceTrigger=PropertyChanged}"
-                             Height="30" />
-                </Grid>
+                        <TextBlock Grid.Row="6" Grid.Column="3" Text="Vessel Name"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="6" Grid.Column="4"
+                                 Text="{Binding VesselName, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
+
+                        <!-- Row 8: Trader Name, Active -->
+                        <TextBlock Grid.Row="7" Grid.Column="0" Text="Trader Name"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="7" Grid.Column="1"
+                                 Text="{Binding TraderName, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
+
+                        <CheckBox Grid.Row="7" Grid.Column="3"
+                                  IsChecked="{Binding IsActive}"
+                                  VerticalAlignment="Center"
+                                  Margin="{StaticResource ExtraSmall}" />
+                        <TextBlock Grid.Row="7" Grid.Column="4" Text="Active"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource Small}" />
+                    </Grid>
+                </Border>
 
                 <!-- Narration -->
-                <Grid Margin="0,0,0,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0"
-                               Text="Narration"
-                               VerticalAlignment="Top"
-                               Margin="0,8,0,0" />
-                    <TextBox Grid.Column="1"
-                             Text="{Binding Narration, UpdateSourceTrigger=PropertyChanged}"
-                             Height="80"
-                             TextWrapping="Wrap"
-                             AcceptsReturn="True"
-                             VerticalScrollBarVisibility="Auto" />
-                </Grid>
+                <Border Background="{DynamicResource SurfaceBrush}"
+                        BorderBrush="{DynamicResource BorderBrush}"
+                        BorderThickness="{StaticResource StandardBorderThickness}"
+                        CornerRadius="{StaticResource StandardCornerRadius}"
+                        Padding="{StaticResource Medium}"
+                        Margin="{StaticResource Small}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" MinWidth="150" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Narration"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Top"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Column="1"
+                                 Text="{Binding Narration, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="60"
+                                 TextWrapping="Wrap"
+                                 AcceptsReturn="True"
+                                 Margin="{StaticResource ExtraSmall}"
+                                 VerticalScrollBarVisibility="Auto" />
+                    </Grid>
+                </Border>
 
-                <!-- IsActive -->
-                <Grid Margin="0,0,0,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0"
-                               Text="Active"
-                               VerticalAlignment="Center" />
-                    <CheckBox Grid.Column="1"
-                              IsChecked="{Binding IsActive}"
-                              VerticalAlignment="Center" />
-                </Grid>
+                <!-- Buttons -->
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Margin="{StaticResource Medium}">
+                    <Button Content="Save"
+                            Command="{Binding SaveCommand}"
+                            Height="{StaticResource StandardControlHeight}"
+                            Margin="{StaticResource Small}"
+                            MinWidth="100" />
+
+                    <Button Content="Cancel"
+                            Command="{Binding CancelCommand}"
+                            Height="{StaticResource StandardControlHeight}"
+                            Margin="{StaticResource Small}"
+                            MinWidth="100" />
+                </StackPanel>
+
+                <!-- Loading Indicator -->
+                <Border Background="{DynamicResource SurfaceBrush}"
+                        BorderBrush="{DynamicResource BorderBrush}"
+                        BorderThickness="{StaticResource StandardBorderThickness}"
+                        CornerRadius="{StaticResource StandardCornerRadius}"
+                        Padding="{StaticResource Medium}"
+                        Margin="{StaticResource Small}"
+                        Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center">
+                        <ProgressBar Height="{StaticResource StandardControlHeight}"
+                                   IsIndeterminate="True"
+                                   Foreground="{DynamicResource PrimaryBrush}"
+                                   Margin="{StaticResource Small}" />
+                        <TextBlock Text="{Binding BusyMessage}"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   VerticalAlignment="Center" />
+                    </StackPanel>
+                </Border>
             </StackPanel>
         </ScrollViewer>
     </Grid>
