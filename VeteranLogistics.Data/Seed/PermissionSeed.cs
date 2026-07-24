@@ -16,30 +16,42 @@ public static class PermissionSeed
 {
     private static readonly List<Permission> Permissions = new()
     {
+        // Masters - Vehicles screen
+        new Permission { Module = "Masters", Screen = "Vehicles", PermissionKey = "vehicles.view", DisplayName = "View Vehicles", Description = "View list of vehicles", SortOrder = 1, IsActive = true },
+        new Permission { Module = "Masters", Screen = "Vehicles", PermissionKey = "vehicles.create", DisplayName = "Create Vehicles", Description = "Create a new vehicle", SortOrder = 2, IsActive = true },
+        new Permission { Module = "Masters", Screen = "Vehicles", PermissionKey = "vehicles.edit", DisplayName = "Edit Vehicles", Description = "Edit existing vehicle", SortOrder = 3, IsActive = true },
+        new Permission { Module = "Masters", Screen = "Vehicles", PermissionKey = "vehicles.delete", DisplayName = "Delete Vehicles", Description = "Delete a vehicle", SortOrder = 4, IsActive = true },
+
+        // Masters - DO Rates screen
+        new Permission { Module = "Masters", Screen = "DORates", PermissionKey = "masters.dorates.view", DisplayName = "View DO Rates", Description = "View list of DO rates", SortOrder = 5, IsActive = true },
+        new Permission { Module = "Masters", Screen = "DORates", PermissionKey = "masters.dorates.add", DisplayName = "Add DO Rate", Description = "Create a new DO rate", SortOrder = 6, IsActive = true },
+        new Permission { Module = "Masters", Screen = "DORates", PermissionKey = "masters.dorates.edit", DisplayName = "Edit DO Rate", Description = "Edit existing DO rate", SortOrder = 7, IsActive = true },
+        new Permission { Module = "Masters", Screen = "DORates", PermissionKey = "masters.dorates.delete", DisplayName = "Delete DO Rate", Description = "Delete a DO rate", SortOrder = 8, IsActive = true },
+
         // Administration - Users screen
-        new Permission { Module = "Administration", Screen = "Users", PermissionKey = "Administration.Users.View", DisplayName = "View Users", Description = "View list of users", SortOrder = 1, IsActive = true },
-        new Permission { Module = "Administration", Screen = "Users", PermissionKey = "Administration.Users.Add", DisplayName = "Add User", Description = "Create a new user", SortOrder = 2, IsActive = true },
-        new Permission { Module = "Administration", Screen = "Users", PermissionKey = "Administration.Users.Edit", DisplayName = "Edit User", Description = "Edit existing user", SortOrder = 3, IsActive = true },
-        new Permission { Module = "Administration", Screen = "Users", PermissionKey = "Administration.Users.Activate", DisplayName = "Activate User", Description = "Activate a user account", SortOrder = 4, IsActive = true },
-        new Permission { Module = "Administration", Screen = "Users", PermissionKey = "Administration.Users.Delete", DisplayName = "Delete User", Description = "Delete a user account", SortOrder = 5, IsActive = true },
+        new Permission { Module = "Administration", Screen = "Users", PermissionKey = "Administration.Users.View", DisplayName = "View Users", Description = "View list of users", SortOrder = 10, IsActive = true },
+        new Permission { Module = "Administration", Screen = "Users", PermissionKey = "Administration.Users.Add", DisplayName = "Add User", Description = "Create a new user", SortOrder = 11, IsActive = true },
+        new Permission { Module = "Administration", Screen = "Users", PermissionKey = "Administration.Users.Edit", DisplayName = "Edit User", Description = "Edit existing user", SortOrder = 12, IsActive = true },
+        new Permission { Module = "Administration", Screen = "Users", PermissionKey = "Administration.Users.Activate", DisplayName = "Activate User", Description = "Activate a user account", SortOrder = 13, IsActive = true },
+        new Permission { Module = "Administration", Screen = "Users", PermissionKey = "Administration.Users.Delete", DisplayName = "Delete User", Description = "Delete a user account", SortOrder = 14, IsActive = true },
         
         // Administration - Roles screen
-        new Permission { Module = "Administration", Screen = "Roles", PermissionKey = "Administration.Roles.View", DisplayName = "View Roles", Description = "View list of roles", SortOrder = 10, IsActive = true },
-        new Permission { Module = "Administration", Screen = "Roles", PermissionKey = "Administration.Roles.Add", DisplayName = "Add Role", Description = "Create a new role", SortOrder = 11, IsActive = true },
-        new Permission { Module = "Administration", Screen = "Roles", PermissionKey = "Administration.Roles.Edit", DisplayName = "Edit Role", Description = "Edit existing role", SortOrder = 12, IsActive = true },
-        new Permission { Module = "Administration", Screen = "Roles", PermissionKey = "Administration.Roles.Activate", DisplayName = "Activate Role", Description = "Activate a role", SortOrder = 13, IsActive = true },
-        new Permission { Module = "Administration", Screen = "Roles", PermissionKey = "Administration.Roles.Delete", DisplayName = "Delete Role", Description = "Delete a role", SortOrder = 14, IsActive = true },
+        new Permission { Module = "Administration", Screen = "Roles", PermissionKey = "Administration.Roles.View", DisplayName = "View Roles", Description = "View list of roles", SortOrder = 20, IsActive = true },
+        new Permission { Module = "Administration", Screen = "Roles", PermissionKey = "Administration.Roles.Add", DisplayName = "Add Role", Description = "Create a new role", SortOrder = 21, IsActive = true },
+        new Permission { Module = "Administration", Screen = "Roles", PermissionKey = "Administration.Roles.Edit", DisplayName = "Edit Role", Description = "Edit existing role", SortOrder = 22, IsActive = true },
+        new Permission { Module = "Administration", Screen = "Roles", PermissionKey = "Administration.Roles.Activate", DisplayName = "Activate Role", Description = "Activate a role", SortOrder = 23, IsActive = true },
+        new Permission { Module = "Administration", Screen = "Roles", PermissionKey = "Administration.Roles.Delete", DisplayName = "Delete Role", Description = "Delete a role", SortOrder = 24, IsActive = true },
         
         // Administration - Permission Matrix screen
-        new Permission { Module = "Administration", Screen = "PermissionMatrix", PermissionKey = "Administration.PermissionMatrix.View", DisplayName = "View Permission Matrix", Description = "View permission matrix", SortOrder = 20, IsActive = true },
-        new Permission { Module = "Administration", Screen = "PermissionMatrix", PermissionKey = "Administration.PermissionMatrix.Manage", DisplayName = "Manage Permission Matrix", Description = "Edit permission assignments", SortOrder = 21, IsActive = true },
+        new Permission { Module = "Administration", Screen = "PermissionMatrix", PermissionKey = "Administration.PermissionMatrix.View", DisplayName = "View Permission Matrix", Description = "View permission matrix", SortOrder = 30, IsActive = true },
+        new Permission { Module = "Administration", Screen = "PermissionMatrix", PermissionKey = "Administration.PermissionMatrix.Manage", DisplayName = "Manage Permission Matrix", Description = "Edit permission assignments", SortOrder = 31, IsActive = true },
         
         // Administration - Financial Year screen
-        new Permission { Module = "Administration", Screen = "FinancialYear", PermissionKey = "Administration.FinancialYear.View", DisplayName = "View Financial Years", Description = "View financial year list", SortOrder = 30, IsActive = true },
-        new Permission { Module = "Administration", Screen = "FinancialYear", PermissionKey = "Administration.FinancialYear.Add", DisplayName = "Add Financial Year", Description = "Create a new financial year", SortOrder = 31, IsActive = true },
-        new Permission { Module = "Administration", Screen = "FinancialYear", PermissionKey = "Administration.FinancialYear.Edit", DisplayName = "Edit Financial Year", Description = "Edit existing financial year", SortOrder = 32, IsActive = true },
-        new Permission { Module = "Administration", Screen = "FinancialYear", PermissionKey = "Administration.FinancialYear.Activate", DisplayName = "Activate Financial Year", Description = "Activate a financial year", SortOrder = 33, IsActive = true },
-        new Permission { Module = "Administration", Screen = "FinancialYear", PermissionKey = "Administration.FinancialYear.Close", DisplayName = "Close Financial Year", Description = "Close a financial year", SortOrder = 34, IsActive = true },
+        new Permission { Module = "Administration", Screen = "FinancialYear", PermissionKey = "Administration.FinancialYear.View", DisplayName = "View Financial Years", Description = "View financial year list", SortOrder = 40, IsActive = true },
+        new Permission { Module = "Administration", Screen = "FinancialYear", PermissionKey = "Administration.FinancialYear.Add", DisplayName = "Add Financial Year", Description = "Create a new financial year", SortOrder = 41, IsActive = true },
+        new Permission { Module = "Administration", Screen = "FinancialYear", PermissionKey = "Administration.FinancialYear.Edit", DisplayName = "Edit Financial Year", Description = "Edit existing financial year", SortOrder = 42, IsActive = true },
+        new Permission { Module = "Administration", Screen = "FinancialYear", PermissionKey = "Administration.FinancialYear.Activate", DisplayName = "Activate Financial Year", Description = "Activate a financial year", SortOrder = 43, IsActive = true },
+        new Permission { Module = "Administration", Screen = "FinancialYear", PermissionKey = "Administration.FinancialYear.Close", DisplayName = "Close Financial Year", Description = "Close a financial year", SortOrder = 44, IsActive = true },
         
         // Masters - Companies screen
         new Permission { Module = "Masters", Screen = "Companies", PermissionKey = "Masters.Companies.View", DisplayName = "View Companies", Description = "View list of companies", SortOrder = 100, IsActive = true },
