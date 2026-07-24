@@ -176,17 +176,7 @@
                   ItemsSource="{Binding Roles}"
                   SelectedItem="{Binding SelectedRole}"
                   IsReadOnly="True"
-                  AutoGenerateColumns="False"
-                  CanUserAddRows="False"
-                  CanUserDeleteRows="False"
-                  CanUserReorderColumns="False"
-                  SelectionMode="Single"
-                  GridLinesVisibility="Horizontal"
-                  HeadersVisibility="Column"
-                  Background="{DynamicResource BackgroundBrush}"
-                  BorderThickness="0"
-                  RowBackground="{DynamicResource SurfaceBrush}"
-                  AlternatingRowBackground="{DynamicResource SurfaceBrush}">
+                  AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name"
                                     Binding="{Binding Name}"
