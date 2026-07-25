@@ -40,7 +40,7 @@ public sealed partial class EditUserViewModel : ViewModelBase, INavigationAware
         _userQueryService = userQueryService ?? throw new ArgumentNullException(nameof(userQueryService));
         _roleQueryService = roleQueryService ?? throw new ArgumentNullException(nameof(roleQueryService));
         _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
-        
+
         Title = "Edit User";
     }
 
