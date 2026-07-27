@@ -109,6 +109,11 @@ public class VeteranLogisticsDbContext : DbContext
     public DbSet<LoadingRegister> LoadingRegisters => Set<LoadingRegister>();
 
     /// <summary>
+    /// Gets or sets the UnloadingRegisters DbSet.
+    /// </summary>
+    public DbSet<UnloadingRegister> UnloadingRegisters => Set<UnloadingRegister>();
+
+    /// <summary>
     /// Apply entity configurations discovered in this assembly.
     /// </summary>
     /// <param name="modelBuilder">Model builder.</param>

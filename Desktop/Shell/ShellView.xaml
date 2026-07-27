@@ -109,6 +109,7 @@
                 </MenuItem>
                 <MenuItem Header="Transactions" Style="{StaticResource TopMenuItemStyle}">
                     <MenuItem Header="Loading Registers" Command="{Binding NavigateToLoadingRegistersCommand}" />
+                    <MenuItem Header="Unloading Registers" Command="{Binding NavigateToUnloadingRegistersCommand}" />
                     <MenuItem Header="Orders" />
                     <MenuItem Header="Shipments" />
                 </MenuItem>

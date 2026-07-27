@@ -39,7 +39,9 @@
     xmlns:mastersDORatesViews="clr-namespace:veteran_logistic.Masters.DORates.Views"
                     xmlns:mastersVehicleAssignmentsViews="clr-namespace:veteran_logistic.Masters.VehicleAssignments.Views"
     xmlns:transactionsLoadingRegistersVm="clr-namespace:veteran_logistic.Transactions.LoadingRegisters.ViewModels"
-    xmlns:transactionsLoadingRegistersViews="clr-namespace:veteran_logistic.Transactions.LoadingRegisters.Views">
+    xmlns:transactionsLoadingRegistersViews="clr-namespace:veteran_logistic.Transactions.LoadingRegisters.Views"
+    xmlns:transactionsUnloadingRegistersVm="clr-namespace:veteran_logistic.Transactions.UnloadingRegisters.ViewModels"
+    xmlns:transactionsUnloadingRegistersViews="clr-namespace:veteran_logistic.Transactions.UnloadingRegisters.Views">
   <DataTemplate DataType="{x:Type vm:ShellViewModel}">
     <views:ShellView />
   </DataTemplate>
@@ -242,6 +244,18 @@
 
   <DataTemplate DataType="{x:Type transactionsLoadingRegistersVm:EditLoadingRegisterViewModel}">
     <transactionsLoadingRegistersViews:EditLoadingRegisterView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type transactionsUnloadingRegistersVm:UnloadingRegistersViewModel}">
+    <transactionsUnloadingRegistersViews:UnloadingRegistersView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type transactionsUnloadingRegistersVm:AddUnloadingRegisterViewModel}">
+    <transactionsUnloadingRegistersViews:AddUnloadingRegisterView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type transactionsUnloadingRegistersVm:EditUnloadingRegisterViewModel}">
+    <transactionsUnloadingRegistersViews:EditUnloadingRegisterView />
   </DataTemplate>
 
   <DataTemplate DataType="{x:Type vm:PlaceholderViewModel}">

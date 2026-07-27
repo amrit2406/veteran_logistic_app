@@ -29,4 +29,12 @@ public interface ILoadingRegisterQueryService
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>The loading register model, or null if not found.</returns>
     Task<LoadingRegisterModel?> GetLoadingRegisterForEditAsync(int id, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Gets a loading register by challan number.
+    /// </summary>
+    /// <param name="challanNumber">The challan number.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>The loading register model, or null if not found.</returns>
+    Task<LoadingRegisterModel?> GetLoadingRegisterByChallanNumberAsync(string challanNumber, CancellationToken cancellationToken = default);
 }

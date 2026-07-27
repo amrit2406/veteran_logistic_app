@@ -126,6 +126,11 @@ public sealed class ShellViewModel : ObservableObject
     public IAsyncRelayCommand NavigateToLoadingRegistersCommand { get; }
 
     /// <summary>
+    /// Command to navigate to the Unloading Registers screen.
+    /// </summary>
+    public IAsyncRelayCommand NavigateToUnloadingRegistersCommand { get; }
+
+    /// <summary>
     /// Command to navigate back to the previous screen.
     /// </summary>
     public IAsyncRelayCommand GoBackCommand { get; }
@@ -162,6 +167,7 @@ public sealed class ShellViewModel : ObservableObject
         NavigateToVehicleAssignmentsCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.VehicleAssignments.ViewModels.VehicleAssignmentsViewModel>(), () => CanNavigateToVehicleAssignments());
         NavigateToDORatesCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.DORates.ViewModels.DORatesViewModel>(), () => CanNavigateToDORates());
         NavigateToLoadingRegistersCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Transactions.LoadingRegisters.ViewModels.LoadingRegistersViewModel>(), () => CanNavigateToLoadingRegisters());
+        NavigateToUnloadingRegistersCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Transactions.UnloadingRegisters.ViewModels.UnloadingRegistersViewModel>(), () => CanNavigateToUnloadingRegisters());
         GoBackCommand = new AsyncRelayCommand(ExecuteGoBackAsync);
         navigationService.CurrentViewModelChanged += OnCurrentViewModelChanged;
         _currentViewModel = ResolveShellContent(navigationService.CurrentViewModel) ?? _placeholder;
@@ -196,6 +202,7 @@ public sealed class ShellViewModel : ObservableObject
         ((AsyncRelayCommand)NavigateToVehicleAssignmentsCommand).NotifyCanExecuteChanged();
         ((AsyncRelayCommand)NavigateToDORatesCommand).NotifyCanExecuteChanged();
         ((AsyncRelayCommand)NavigateToLoadingRegistersCommand).NotifyCanExecuteChanged();
+        ((AsyncRelayCommand)NavigateToUnloadingRegistersCommand).NotifyCanExecuteChanged();
     }
 
     private bool CanNavigateToUsers()
@@ -279,6 +286,11 @@ public sealed class ShellViewModel : ObservableObject
     }
 
     private bool CanNavigateToLoadingRegisters()
+    {
+        return true; // TODO: Add permission check when permission is defined
+    }
+
+    private bool CanNavigateToUnloadingRegisters()
     {
         return true; // TODO: Add permission check when permission is defined
     }

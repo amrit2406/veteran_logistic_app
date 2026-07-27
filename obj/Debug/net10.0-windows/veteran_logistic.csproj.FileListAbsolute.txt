@@ -274,3 +274,9 @@ D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\LoadingRegist
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\LoadingRegisters\Views\EditLoadingRegisterView.g.cs
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\LoadingRegisters\Views\LoadingRegistersView.g.cs
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\LoadingRegisters\Views\LoadingRegistersView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\UnloadingRegisters\Views\AddUnloadingRegisterView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\UnloadingRegisters\Views\EditUnloadingRegisterView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\UnloadingRegisters\Views\AddUnloadingRegisterView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\UnloadingRegisters\Views\EditUnloadingRegisterView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\UnloadingRegisters\Views\UnloadingRegistersView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\UnloadingRegisters\Views\UnloadingRegistersView.baml

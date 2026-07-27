@@ -111,6 +111,56 @@ public sealed class LoadingRegisterQueryService : ILoadingRegisterQueryService
             .ConfigureAwait(false);
     }
 
+    /// <inheritdoc />
+    public async Task<LoadingRegisterModel?> GetLoadingRegisterByChallanNumberAsync(string challanNumber, CancellationToken cancellationToken = default)
+    {
+        return await _dbContext.LoadingRegisters
+            .AsNoTracking()
+            .Where(lr => lr.ChallanNumber == challanNumber)
+            .Select(lr => new LoadingRegisterModel
+            {
+                Id = lr.Id,
+                ChallanNumber = lr.ChallanNumber,
+                ConsignorId = lr.ConsignorId,
+                ConsigneeId = lr.ConsigneeId,
+                SourceId = lr.SourceId,
+                DestinationId = lr.DestinationId,
+                LoadingDate = lr.LoadingDate,
+                TPNumber = lr.TPNumber,
+                VehicleId = lr.VehicleId,
+                VehicleType = lr.VehicleType,
+                UnionVendorId = lr.UnionVendorId,
+                DriverCommission = lr.DriverCommission,
+                GrossWeight = lr.GrossWeight,
+                TareWeight = lr.TareWeight,
+                LoadingWeight = lr.LoadingWeight,
+                MaterialId = lr.MaterialId,
+                Rate = lr.Rate,
+                GrossAmount = lr.GrossAmount,
+                VehicleLoadedBy = lr.VehicleLoadedBy,
+                FuelQuantity = lr.FuelQuantity,
+                FuelAmount = lr.FuelAmount,
+                FuelCash = lr.FuelCash,
+                FuelAdvance = lr.FuelAdvance,
+                ShortageWeight = lr.ShortageWeight,
+                CashAdvance = lr.CashAdvance,
+                PaymentLocationId = lr.PaymentLocationId,
+                OtherAdvance = lr.OtherAdvance,
+                OtherAdvanceDate = lr.OtherAdvanceDate,
+                ThirdParty = lr.ThirdParty,
+                OwnerId = lr.OwnerId,
+                OwnerMobile = lr.OwnerMobile,
+                OwnerAddress = lr.OwnerAddress,
+                Driver = lr.Driver,
+                DrivingLicenceNumber = lr.DrivingLicenceNumber,
+                DriverMobile = lr.DriverMobile,
+                Notes = lr.Notes,
+                IsActive = lr.IsActive
+            })
+            .FirstOrDefaultAsync(cancellationToken)
+            .ConfigureAwait(false);
+    }
+
     private static IQueryable<LoadingRegisterListItem> ProjectToListItem(IQueryable<LoadingRegisterEntity> query)
     {
         return query.Select(lr => new LoadingRegisterListItem
