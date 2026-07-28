@@ -86,6 +86,10 @@ public sealed class UnloadingRegisterQueryService : IUnloadingRegisterQueryServi
                 GrossWeight = ur.GrossWeight,
                 TareWeight = ur.TareWeight,
                 LoadingWeight = ur.LoadingWeight,
+                GrossWeightUL = ur.GrossWeightUL,
+                TareWeightUL = ur.TareWeightUL,
+                UnloadingWeight = ur.UnloadingWeight,
+                ChallanMoney = ur.ChallanMoney,
                 MaterialId = ur.MaterialId,
                 Rate = ur.Rate,
                 GrossAmount = ur.GrossAmount,
@@ -131,6 +135,10 @@ public sealed class UnloadingRegisterQueryService : IUnloadingRegisterQueryServi
             MaterialName = ur.Material != null ? ur.Material.MaterialName : null,
             Driver = ur.Driver,
             LoadingWeight = ur.LoadingWeight,
+            GrossWeightUL = ur.GrossWeightUL,
+            TareWeightUL = ur.TareWeightUL,
+            UnloadingWeight = ur.UnloadingWeight,
+            ChallanMoney = ur.ChallanMoney,
             GrossAmount = ur.GrossAmount,
             IsActive = ur.IsActive
         });

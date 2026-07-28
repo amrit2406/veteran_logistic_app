@@ -63,6 +63,13 @@ public sealed class UnloadingRegisterCommandService : IUnloadingRegisterCommandS
                 return CreateUnloadingRegisterResult.Failure("Loading weight cannot be negative. Gross weight must be greater than or equal to tare weight.");
             }
 
+            // Calculate UnloadingWeight
+            var unloadingWeight = request.GrossWeightUL - request.TareWeightUL;
+            if (unloadingWeight < 0)
+            {
+                return CreateUnloadingRegisterResult.Failure("Unloading weight cannot be negative. Gross weight at unloading must be greater than or equal to tare weight at unloading.");
+            }
+
             // Calculate GrossAmount
             var grossAmount = loadingWeight * request.Rate;
 
@@ -86,6 +93,10 @@ public sealed class UnloadingRegisterCommandService : IUnloadingRegisterCommandS
                 GrossWeight = request.GrossWeight,
                 TareWeight = request.TareWeight,
                 LoadingWeight = loadingWeight,
+                GrossWeightUL = request.GrossWeightUL,
+                TareWeightUL = request.TareWeightUL,
+                UnloadingWeight = unloadingWeight,
+                ChallanMoney = request.ChallanMoney,
                 MaterialId = request.MaterialId,
                 Rate = request.Rate,
                 GrossAmount = grossAmount,
@@ -159,6 +170,13 @@ public sealed class UnloadingRegisterCommandService : IUnloadingRegisterCommandS
                 return UpdateUnloadingRegisterResult.Failure("Loading weight cannot be negative. Gross weight must be greater than or equal to tare weight.");
             }
 
+            // Calculate UnloadingWeight
+            var unloadingWeight = request.GrossWeightUL - request.TareWeightUL;
+            if (unloadingWeight < 0)
+            {
+                return UpdateUnloadingRegisterResult.Failure("Unloading weight cannot be negative. Gross weight at unloading must be greater than or equal to tare weight at unloading.");
+            }
+
             // Calculate GrossAmount
             var grossAmount = loadingWeight * request.Rate;
 
@@ -176,6 +194,10 @@ public sealed class UnloadingRegisterCommandService : IUnloadingRegisterCommandS
             unloadingRegister.GrossWeight = request.GrossWeight;
             unloadingRegister.TareWeight = request.TareWeight;
             unloadingRegister.LoadingWeight = loadingWeight;
+            unloadingRegister.GrossWeightUL = request.GrossWeightUL;
+            unloadingRegister.TareWeightUL = request.TareWeightUL;
+            unloadingRegister.UnloadingWeight = unloadingWeight;
+            unloadingRegister.ChallanMoney = request.ChallanMoney;
             unloadingRegister.MaterialId = request.MaterialId;
             unloadingRegister.Rate = request.Rate;
             unloadingRegister.GrossAmount = grossAmount;

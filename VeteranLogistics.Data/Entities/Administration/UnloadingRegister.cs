@@ -85,6 +85,26 @@ public class UnloadingRegister : BaseEntity
     public decimal LoadingWeight { get; set; }
 
     /// <summary>
+    /// Gets or sets the gross weight at unloading.
+    /// </summary>
+    public decimal GrossWeightUL { get; set; }
+
+    /// <summary>
+    /// Gets or sets the tare weight at unloading.
+    /// </summary>
+    public decimal TareWeightUL { get; set; }
+
+    /// <summary>
+    /// Gets or sets the unloading weight (calculated: GrossWeightUL - TareWeightUL).
+    /// </summary>
+    public decimal UnloadingWeight { get; set; }
+
+    /// <summary>
+    /// Gets or sets the challan money.
+    /// </summary>
+    public decimal ChallanMoney { get; set; }
+
+    /// <summary>
     /// Gets or sets the material ID (foreign key to Material).
     /// </summary>
     public int? MaterialId { get; set; }

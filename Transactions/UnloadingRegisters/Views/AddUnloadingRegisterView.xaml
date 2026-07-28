@@ -114,6 +114,8 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" MinWidth="150" />
@@ -301,6 +303,46 @@
                                  Height="{StaticResource StandardControlHeight}"
                                  Margin="{StaticResource ExtraSmall}"
                                  Background="{DynamicResource DisabledBrush}" />
+
+                        <!-- Row 8: Gross Weight UL, Tare Weight UL -->
+                        <TextBlock Grid.Row="7" Grid.Column="0" Text="Gross Wt (UL)"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="7" Grid.Column="1"
+                                 Text="{Binding GrossWeightUL, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
+
+                        <TextBlock Grid.Row="7" Grid.Column="3" Text="Tare Wt (UL)"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="7" Grid.Column="4"
+                                 Text="{Binding TareWeightUL, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
+
+                        <!-- Row 9: Unloading Weight (Calculated), Challan Money -->
+                        <TextBlock Grid.Row="8" Grid.Column="0" Text="Unloading Wt"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="8" Grid.Column="1"
+                                 Text="{Binding UnloadingWeight, Mode=OneWay}"
+                                 IsReadOnly="True"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}"
+                                 Background="{DynamicResource DisabledBrush}" />
+
+                        <TextBlock Grid.Row="8" Grid.Column="3" Text="Challan Money"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <TextBox Grid.Row="8" Grid.Column="4"
+                                 Text="{Binding ChallanMoney, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
                     </Grid>
                 </Border>
 

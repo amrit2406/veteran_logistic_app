@@ -78,6 +78,24 @@ public sealed class CreateUnloadingRegisterValidator : ICreateUnloadingRegisterV
             result.AddError(new ValidationError(nameof(CreateUnloadingRegisterRequest.TareWeight), "Tare weight must be zero or positive."));
         }
 
+        // Gross Weight UL must be positive
+        if (request.GrossWeightUL < 0)
+        {
+            result.AddError(new ValidationError(nameof(CreateUnloadingRegisterRequest.GrossWeightUL), "Gross weight at unloading must be zero or positive."));
+        }
+
+        // Tare Weight UL must be positive
+        if (request.TareWeightUL < 0)
+        {
+            result.AddError(new ValidationError(nameof(CreateUnloadingRegisterRequest.TareWeightUL), "Tare weight at unloading must be zero or positive."));
+        }
+
+        // Challan Money must be positive
+        if (request.ChallanMoney < 0)
+        {
+            result.AddError(new ValidationError(nameof(CreateUnloadingRegisterRequest.ChallanMoney), "Challan money must be zero or positive."));
+        }
+
         // Rate must be positive
         if (request.Rate < 0)
         {

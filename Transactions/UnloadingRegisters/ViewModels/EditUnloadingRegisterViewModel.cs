@@ -76,6 +76,10 @@ public sealed partial class EditUnloadingRegisterViewModel : ViewModelBase, INav
     private string _validationError = string.Empty;
     private decimal _loadingWeight;
     private decimal _grossAmount;
+    private decimal _grossWeightUL;
+    private decimal _tareWeightUL;
+    private decimal _unloadingWeight;
+    private decimal _challanMoney;
     private IReadOnlyList<CustomerListItem> _customers = [];
     private IReadOnlyList<SourceDestinationListItem> _sourceDestinations = [];
     private IReadOnlyList<MaterialListItem> _materials = [];
@@ -302,6 +306,54 @@ public sealed partial class EditUnloadingRegisterViewModel : ViewModelBase, INav
     {
         get => _loadingWeight;
         private set => SetProperty(ref _loadingWeight, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the gross weight at unloading.
+    /// </summary>
+    public decimal GrossWeightUL
+    {
+        get => _grossWeightUL;
+        set
+        {
+            if (SetProperty(ref _grossWeightUL, value))
+            {
+                CalculateUnloadingWeight();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Gets or sets the tare weight at unloading.
+    /// </summary>
+    public decimal TareWeightUL
+    {
+        get => _tareWeightUL;
+        set
+        {
+            if (SetProperty(ref _tareWeightUL, value))
+            {
+                CalculateUnloadingWeight();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Gets or sets the unloading weight (calculated).
+    /// </summary>
+    public decimal UnloadingWeight
+    {
+        get => _unloadingWeight;
+        private set => SetProperty(ref _unloadingWeight, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the challan money.
+    /// </summary>
+    public decimal ChallanMoney
+    {
+        get => _challanMoney;
+        set => SetProperty(ref _challanMoney, value);
     }
 
     /// <summary>
@@ -636,6 +688,10 @@ public sealed partial class EditUnloadingRegisterViewModel : ViewModelBase, INav
             GrossWeight = unloadingRegister.GrossWeight;
             TareWeight = unloadingRegister.TareWeight;
             LoadingWeight = unloadingRegister.LoadingWeight;
+            GrossWeightUL = unloadingRegister.GrossWeightUL;
+            TareWeightUL = unloadingRegister.TareWeightUL;
+            UnloadingWeight = unloadingRegister.UnloadingWeight;
+            ChallanMoney = unloadingRegister.ChallanMoney;
             MaterialId = unloadingRegister.MaterialId;
             Rate = unloadingRegister.Rate;
             GrossAmount = unloadingRegister.GrossAmount;
@@ -675,6 +731,14 @@ public sealed partial class EditUnloadingRegisterViewModel : ViewModelBase, INav
     }
 
     /// <summary>
+    /// Calculates the unloading weight.
+    /// </summary>
+    private void CalculateUnloadingWeight()
+    {
+        UnloadingWeight = GrossWeightUL - TareWeightUL;
+    }
+
+    /// <summary>
     /// Calculates the gross amount.
     /// </summary>
     private void CalculateGrossAmount()
@@ -708,6 +772,10 @@ public sealed partial class EditUnloadingRegisterViewModel : ViewModelBase, INav
                 DriverCommission = DriverCommission,
                 GrossWeight = GrossWeight,
                 TareWeight = TareWeight,
+                GrossWeightUL = GrossWeightUL,
+                TareWeightUL = TareWeightUL,
+                UnloadingWeight = UnloadingWeight,
+                ChallanMoney = ChallanMoney,
                 MaterialId = MaterialId,
                 Rate = Rate,
                 VehicleLoadedBy = VehicleLoadedBy,

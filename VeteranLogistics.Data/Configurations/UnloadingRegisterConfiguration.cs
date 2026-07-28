@@ -52,6 +52,22 @@ public sealed class UnloadingRegisterConfiguration : IEntityTypeConfiguration<Un
         builder.Property(ur => ur.LoadingWeight)
             .HasPrecision(18, 3);
 
+        // Configure GrossWeightUL
+        builder.Property(ur => ur.GrossWeightUL)
+            .HasPrecision(18, 3);
+
+        // Configure TareWeightUL
+        builder.Property(ur => ur.TareWeightUL)
+            .HasPrecision(18, 3);
+
+        // Configure UnloadingWeight
+        builder.Property(ur => ur.UnloadingWeight)
+            .HasPrecision(18, 3);
+
+        // Configure ChallanMoney
+        builder.Property(ur => ur.ChallanMoney)
+            .HasPrecision(18, 2);
+
         // Configure Rate
         builder.Property(ur => ur.Rate)
             .HasPrecision(18, 2);
