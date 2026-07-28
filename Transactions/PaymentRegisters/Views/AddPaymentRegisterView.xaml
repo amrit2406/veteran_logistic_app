@@ -100,7 +100,7 @@
                         CornerRadius="{StaticResource StandardCornerRadius}"
                         Padding="{StaticResource Medium}"
                         Margin="{StaticResource Small}"
-                        Visibility="{Binding PaymentRegisterData, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        Visibility="{Binding PaymentRegisterData, Converter={StaticResource NullToVisibilityConverter}}">
                     <StackPanel>
                         <TextBlock Text="Transaction Data (Auto-Populated from Loading &amp; Unloading Registers)"
                                    Style="{StaticResource SubHeadingTextBlockStyle}"
@@ -199,7 +199,7 @@
                         CornerRadius="{StaticResource StandardCornerRadius}"
                         Padding="{StaticResource Medium}"
                         Margin="{StaticResource Small}"
-                        Visibility="{Binding PaymentRegisterData, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        Visibility="{Binding PaymentRegisterData, Converter={StaticResource NullToVisibilityConverter}}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -306,7 +306,7 @@
                         CornerRadius="{StaticResource StandardCornerRadius}"
                         Padding="{StaticResource Medium}"
                         Margin="{StaticResource Small}"
-                        Visibility="{Binding PaymentRegisterData, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        Visibility="{Binding PaymentRegisterData, Converter={StaticResource NullToVisibilityConverter}}">
                     <StackPanel>
                         <TextBlock Text="Beneficiary Details"
                                    Style="{StaticResource SubHeadingTextBlockStyle}"
@@ -404,7 +404,7 @@
                         CornerRadius="{StaticResource StandardCornerRadius}"
                         Padding="{StaticResource Medium}"
                         Margin="{StaticResource Small}"
-                        Visibility="{Binding PaymentRegisterData, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        Visibility="{Binding PaymentRegisterData, Converter={StaticResource NullToVisibilityConverter}}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -444,7 +444,7 @@
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Right"
                             Margin="{StaticResource Medium}"
-                            Visibility="{Binding PaymentRegisterData, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            Visibility="{Binding PaymentRegisterData, Converter={StaticResource NullToVisibilityConverter}}">
                     <Button Content="Save"
                             Command="{Binding SaveCommand}"
                             Height="{StaticResource StandardControlHeight}"

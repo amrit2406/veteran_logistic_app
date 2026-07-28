@@ -355,3 +355,17 @@ Retrieved 3 materials
 [Thread: 2]
 
 Retrieved 3 payment locations
+[2026-07-28 16:57:10 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Payment register 'CH2026000001' created successfully with ID 1
+[2026-07-28 16:57:19 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Payment register already exists for challan number 'CH2026000001'

@@ -21,6 +21,15 @@ public sealed partial class EditPaymentRegisterViewModel : ViewModelBase, INavig
     private string _validationError = string.Empty;
 
     /// <summary>
+    /// Gets or sets the payment register ID.
+    /// </summary>
+    public int PaymentRegisterId
+    {
+        get => _paymentRegisterId;
+        set => SetProperty(ref _paymentRegisterId, value);
+    }
+
+    /// <summary>
     /// Command to navigate back to the previous screen.
     /// </summary>
     public IAsyncRelayCommand GoBackCommand { get; }
@@ -65,7 +74,6 @@ public sealed partial class EditPaymentRegisterViewModel : ViewModelBase, INavig
     public override async Task OnNavigatedToAsync(CancellationToken cancellationToken = default)
     {
         await base.OnNavigatedToAsync(cancellationToken);
-        await LoadPaymentRegisterAsync(cancellationToken);
         
         var dispatcher = System.Windows.Application.Current?.Dispatcher;
         if (dispatcher != null && !dispatcher.CheckAccess())
@@ -83,11 +91,20 @@ public sealed partial class EditPaymentRegisterViewModel : ViewModelBase, INavig
         }
     }
 
-    public void OnNavigatedTo(NavigationParameter? parameter)
+    public async void OnNavigatedTo(NavigationParameter? parameter)
     {
+        System.Diagnostics.Debug.WriteLine($"EditPaymentRegisterViewModel: OnNavigatedTo called (Instance: {GetHashCode()})");
+        
         if (parameter != null && parameter.TryGetValue<int>("PaymentRegisterId", out var id))
         {
+            System.Diagnostics.Debug.WriteLine($"EditPaymentRegisterViewModel: PaymentRegisterId from parameter = {id}");
             PaymentRegisterId = id;
+            System.Diagnostics.Debug.WriteLine($"EditPaymentRegisterViewModel: PaymentRegisterId property set = {PaymentRegisterId}");
+            await LoadPaymentRegisterAsync(CancellationToken.None);
+        }
+        else
+        {
+            System.Diagnostics.Debug.WriteLine($"EditPaymentRegisterViewModel: Parameter is null or PaymentRegisterId not found");
         }
     }
 
@@ -98,15 +115,6 @@ public sealed partial class EditPaymentRegisterViewModel : ViewModelBase, INavig
     {
         get => _validationError;
         set => SetProperty(ref _validationError, value);
-    }
-
-    /// <summary>
-    /// Gets or sets the payment register ID.
-    /// </summary>
-    public int PaymentRegisterId
-    {
-        get => _paymentRegisterId;
-        set => SetProperty(ref _paymentRegisterId, value);
     }
 
     /// <summary>
@@ -265,21 +273,28 @@ public sealed partial class EditPaymentRegisterViewModel : ViewModelBase, INavig
     /// <param name="cancellationToken">The cancellation token.</param>
     private async Task LoadPaymentRegisterAsync(CancellationToken cancellationToken = default)
     {
+        System.Diagnostics.Debug.WriteLine($"EditPaymentRegisterViewModel: LoadPaymentRegisterAsync called with PaymentRegisterId = {PaymentRegisterId}");
+        
         if (PaymentRegisterId == 0)
         {
             ValidationError = "Payment register ID not provided.";
+            System.Diagnostics.Debug.WriteLine($"EditPaymentRegisterViewModel: PaymentRegisterId is 0, returning");
             return;
         }
 
         SetBusy("Loading payment register...");
+        System.Diagnostics.Debug.WriteLine($"EditPaymentRegisterViewModel: Calling GetPaymentRegisterForEditAsync with ID = {PaymentRegisterId}");
         var paymentRegister = await _paymentRegisterQueryService.GetPaymentRegisterForEditAsync(PaymentRegisterId, cancellationToken);
         ClearBusy();
 
         if (paymentRegister is null)
         {
             ValidationError = "Payment register not found.";
+            System.Diagnostics.Debug.WriteLine($"EditPaymentRegisterViewModel: paymentRegister is null");
             return;
         }
+
+        System.Diagnostics.Debug.WriteLine($"EditPaymentRegisterViewModel: paymentRegister loaded, ChallanNumber = {paymentRegister.ChallanNumber}");
 
         ChallanNumber = paymentRegister.ChallanNumber;
         TPNumber = paymentRegister.TPNumber;
@@ -311,6 +326,8 @@ public sealed partial class EditPaymentRegisterViewModel : ViewModelBase, INavig
         PayableAmount = paymentRegister.PayableAmount;
         PaymentStatus = paymentRegister.PaymentStatus;
         IsActive = paymentRegister.IsActive;
+        
+        System.Diagnostics.Debug.WriteLine($"EditPaymentRegisterViewModel: All properties set");
     }
 
     /// <summary>
