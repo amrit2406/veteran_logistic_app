@@ -131,6 +131,11 @@ public sealed class ShellViewModel : ObservableObject
     public IAsyncRelayCommand NavigateToUnloadingRegistersCommand { get; }
 
     /// <summary>
+    /// Command to navigate to the Payment Registers screen.
+    /// </summary>
+    public IAsyncRelayCommand NavigateToPaymentRegistersCommand { get; }
+
+    /// <summary>
     /// Command to navigate back to the previous screen.
     /// </summary>
     public IAsyncRelayCommand GoBackCommand { get; }
@@ -168,6 +173,7 @@ public sealed class ShellViewModel : ObservableObject
         NavigateToDORatesCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Masters.DORates.ViewModels.DORatesViewModel>(), () => CanNavigateToDORates());
         NavigateToLoadingRegistersCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Transactions.LoadingRegisters.ViewModels.LoadingRegistersViewModel>(), () => CanNavigateToLoadingRegisters());
         NavigateToUnloadingRegistersCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Transactions.UnloadingRegisters.ViewModels.UnloadingRegistersViewModel>(), () => CanNavigateToUnloadingRegisters());
+        NavigateToPaymentRegistersCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Transactions.PaymentRegisters.ViewModels.PaymentRegistersViewModel>(), () => CanNavigateToPaymentRegisters());
         GoBackCommand = new AsyncRelayCommand(ExecuteGoBackAsync);
         navigationService.CurrentViewModelChanged += OnCurrentViewModelChanged;
         _currentViewModel = ResolveShellContent(navigationService.CurrentViewModel) ?? _placeholder;
@@ -203,6 +209,7 @@ public sealed class ShellViewModel : ObservableObject
         ((AsyncRelayCommand)NavigateToDORatesCommand).NotifyCanExecuteChanged();
         ((AsyncRelayCommand)NavigateToLoadingRegistersCommand).NotifyCanExecuteChanged();
         ((AsyncRelayCommand)NavigateToUnloadingRegistersCommand).NotifyCanExecuteChanged();
+        ((AsyncRelayCommand)NavigateToPaymentRegistersCommand).NotifyCanExecuteChanged();
     }
 
     private bool CanNavigateToUsers()
@@ -291,6 +298,11 @@ public sealed class ShellViewModel : ObservableObject
     }
 
     private bool CanNavigateToUnloadingRegisters()
+    {
+        return true; // TODO: Add permission check when permission is defined
+    }
+
+    private bool CanNavigateToPaymentRegisters()
     {
         return true; // TODO: Add permission check when permission is defined
     }

@@ -771,6 +771,187 @@ namespace veteran_logistic.Migrations
                     b.ToTable("PaymentLocations");
                 });
 
+            modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.PaymentRegister", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AccountNumber")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<decimal>("AdminCharge")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("BankName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Beneficiary")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<decimal>("ChallanMoney")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ChallanNumber")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("DriverCommission")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("GrossAmount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("HSDParty")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("IFSCCode")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LoadingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("LoadingRegisterId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("LoadingWeight")
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<string>("MaterialName")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("MobileNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Notes")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("PAN")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<decimal>("PayableAmount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("PaymentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("PaymentLocationId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PaymentStatus")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasDefaultValue("Pending");
+
+                    b.Property<string>("PaymentType")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<decimal>("Surcharge")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TDSPercentage")
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
+
+                    b.Property<string>("TPNumber")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("UTRNumber")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime?>("UnloadingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UnloadingRegisterId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("UnloadingWeight")
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<string>("VehicleNumber")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("VehicleType")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChallanNumber");
+
+                    b.HasIndex("LoadingRegisterId");
+
+                    b.HasIndex("PaymentLocationId");
+
+                    b.HasIndex("PaymentStatus");
+
+                    b.HasIndex("UnloadingRegisterId");
+
+                    b.ToTable("PaymentRegisters");
+                });
+
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.Permission", b =>
                 {
                     b.Property<int>("Id")
@@ -1654,6 +1835,30 @@ namespace veteran_logistic.Migrations
                     b.Navigation("UnionVendor");
 
                     b.Navigation("Vehicle");
+                });
+
+            modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.PaymentRegister", b =>
+                {
+                    b.HasOne("VeteranLogistics.Data.Entities.Administration.LoadingRegister", "LoadingRegister")
+                        .WithMany()
+                        .HasForeignKey("LoadingRegisterId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("VeteranLogistics.Data.Entities.Administration.PaymentLocation", "PaymentLocation")
+                        .WithMany()
+                        .HasForeignKey("PaymentLocationId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("VeteranLogistics.Data.Entities.Administration.UnloadingRegister", "UnloadingRegister")
+                        .WithMany()
+                        .HasForeignKey("UnloadingRegisterId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("LoadingRegister");
+
+                    b.Navigation("PaymentLocation");
+
+                    b.Navigation("UnloadingRegister");
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.RolePermission", b =>

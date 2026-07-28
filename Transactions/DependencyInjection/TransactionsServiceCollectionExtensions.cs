@@ -7,6 +7,10 @@ using veteran_logistic.Transactions.UnloadingRegisters.Contracts;
 using veteran_logistic.Transactions.UnloadingRegisters.Services;
 using veteran_logistic.Transactions.UnloadingRegisters.Validators;
 using veteran_logistic.Transactions.UnloadingRegisters.ViewModels;
+using veteran_logistic.Transactions.PaymentRegisters.Contracts;
+using veteran_logistic.Transactions.PaymentRegisters.Services;
+using veteran_logistic.Transactions.PaymentRegisters.Validators;
+using veteran_logistic.Transactions.PaymentRegisters.ViewModels;
 
 namespace veteran_logistic.Transactions.DependencyInjection;
 
@@ -45,6 +49,17 @@ public static class TransactionsServiceCollectionExtensions
         services.AddTransient<UnloadingRegistersViewModel>();
         services.AddTransient<AddUnloadingRegisterViewModel>();
         services.AddTransient<EditUnloadingRegisterViewModel>();
+
+        // Payment Register services
+        services.AddScoped<IPaymentRegisterQueryService, PaymentRegisterQueryService>();
+        services.AddScoped<IPaymentRegisterCommandService, PaymentRegisterCommandService>();
+        services.AddScoped<ICreatePaymentRegisterValidator, CreatePaymentRegisterValidator>();
+        services.AddScoped<IUpdatePaymentRegisterValidator, UpdatePaymentRegisterValidator>();
+        services.AddScoped<IUpdatePaymentRegisterStatusValidator, UpdatePaymentRegisterStatusValidator>();
+        services.AddScoped<IDeletePaymentRegisterValidator, DeletePaymentRegisterValidator>();
+        services.AddTransient<PaymentRegistersViewModel>();
+        services.AddTransient<AddPaymentRegisterViewModel>();
+        services.AddTransient<EditPaymentRegisterViewModel>();
 
         return services;
     }

@@ -280,3 +280,9 @@ D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\UnloadingRegi
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\UnloadingRegisters\Views\EditUnloadingRegisterView.g.cs
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\UnloadingRegisters\Views\UnloadingRegistersView.g.cs
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\UnloadingRegisters\Views\UnloadingRegistersView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\PaymentRegisters\Views\PaymentRegistersView.g.cs
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\PaymentRegisters\Views\AddPaymentRegisterView.baml
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\PaymentRegisters\Views\EditPaymentRegisterView.baml
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\PaymentRegisters\Views\AddPaymentRegisterView.g.cs
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\PaymentRegisters\Views\EditPaymentRegisterView.g.cs
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\PaymentRegisters\Views\PaymentRegistersView.baml

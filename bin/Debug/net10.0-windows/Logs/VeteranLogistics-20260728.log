@@ -320,3 +320,38 @@ Retrieved 3 materials
 [Thread: 2]
 
 Retrieved 3 payment locations
+[2026-07-28 16:44:19 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Loading register not found for challan number '001'
+[2026-07-28 16:44:28 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-07-28 16:44:28 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 source/destinations
+[2026-07-28 16:44:28 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 materials
+[2026-07-28 16:44:28 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 payment locations
