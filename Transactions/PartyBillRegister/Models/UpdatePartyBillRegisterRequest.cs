@@ -31,36 +31,6 @@ public sealed class UpdatePartyBillRegisterRequest
     public string? PermitNumber { get; set; }
 
     /// <summary>
-    /// Gets or sets the first charge head.
-    /// </summary>
-    public string? ChargeHead1 { get; set; }
-
-    /// <summary>
-    /// Gets or sets the first charge type.
-    /// </summary>
-    public string? ChargeType1 { get; set; }
-
-    /// <summary>
-    /// Gets or sets the first charge amount.
-    /// </summary>
-    public decimal ChargeAmount1 { get; set; }
-
-    /// <summary>
-    /// Gets or sets the second charge head.
-    /// </summary>
-    public string? ChargeHead2 { get; set; }
-
-    /// <summary>
-    /// Gets or sets the second charge type.
-    /// </summary>
-    public string? ChargeType2 { get; set; }
-
-    /// <summary>
-    /// Gets or sets the second charge amount.
-    /// </summary>
-    public decimal ChargeAmount2 { get; set; }
-
-    /// <summary>
     /// Gets or sets the remarks.
     /// </summary>
     public string Remarks { get; set; } = string.Empty;

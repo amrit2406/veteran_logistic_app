@@ -42,18 +42,6 @@ public sealed class CreatePartyBillRegisterValidator : ICreatePartyBillRegisterV
             result.AddError(new ValidationError(nameof(CreatePartyBillRegisterRequest.FromDate), "From date cannot be greater than to date."));
         }
 
-        // Charge Amount 1 cannot be negative
-        if (request.ChargeAmount1 < 0)
-        {
-            result.AddError(new ValidationError(nameof(CreatePartyBillRegisterRequest.ChargeAmount1), "Charge amount 1 cannot be negative."));
-        }
-
-        // Charge Amount 2 cannot be negative
-        if (request.ChargeAmount2 < 0)
-        {
-            result.AddError(new ValidationError(nameof(CreatePartyBillRegisterRequest.ChargeAmount2), "Charge amount 2 cannot be negative."));
-        }
-
         // At least one loading register must be selected
         if (request.SelectedLoadingRegisterIds == null || request.SelectedLoadingRegisterIds.Count == 0)
         {

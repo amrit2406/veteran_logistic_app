@@ -53,6 +53,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" MinWidth="150" />
@@ -62,21 +63,31 @@
                             <ColumnDefinition Width="*" MinWidth="200" />
                         </Grid.ColumnDefinitions>
 
-                        <!-- Row 1: Bill Date, Party Name -->
-                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Bill Date"
+                        <!-- Row 0: Bill Number -->
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Bill Number"
                                    Style="{StaticResource BodyTextBlockStyle}"
                                    VerticalAlignment="Center"
                                    Margin="{StaticResource ExtraSmall}" />
-                        <DatePicker Grid.Row="0" Grid.Column="1"
+                        <TextBox Grid.Row="0" Grid.Column="1"
+                                 Text="{Binding BillNumber, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{StaticResource StandardControlHeight}"
+                                 Margin="{StaticResource ExtraSmall}" />
+
+                        <!-- Row 1: Bill Date, Party Name -->
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Bill Date"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <DatePicker Grid.Row="1" Grid.Column="1"
                                     SelectedDate="{Binding BillDate}"
                                     Height="{StaticResource StandardControlHeight}"
                                     Margin="{StaticResource ExtraSmall}" />
 
-                        <TextBlock Grid.Row="0" Grid.Column="3" Text="Party Name"
+                        <TextBlock Grid.Row="1" Grid.Column="3" Text="Party Name"
                                    Style="{StaticResource BodyTextBlockStyle}"
                                    VerticalAlignment="Center"
                                    Margin="{StaticResource ExtraSmall}" />
-                        <ComboBox Grid.Row="0" Grid.Column="4"
+                        <ComboBox Grid.Row="1" Grid.Column="4"
                                   ItemsSource="{Binding Customers}"
                                   SelectedValuePath="Id"
                                   DisplayMemberPath="CustomerName"
@@ -88,30 +99,30 @@
                                   TextSearch.TextPath="CustomerName" />
 
                         <!-- Row 2: Third Party Name, Permit Number -->
-                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Third Party Name"
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Third Party Name"
                                    Style="{StaticResource BodyTextBlockStyle}"
                                    VerticalAlignment="Center"
                                    Margin="{StaticResource ExtraSmall}" />
-                        <TextBox Grid.Row="1" Grid.Column="1"
+                        <TextBox Grid.Row="2" Grid.Column="1"
                                  Text="{Binding ThirdPartyName, UpdateSourceTrigger=PropertyChanged}"
                                  Height="{StaticResource StandardControlHeight}"
                                  Margin="{StaticResource ExtraSmall}" />
 
-                        <TextBlock Grid.Row="1" Grid.Column="3" Text="Permit Number"
+                        <TextBlock Grid.Row="2" Grid.Column="3" Text="Permit Number"
                                    Style="{StaticResource BodyTextBlockStyle}"
                                    VerticalAlignment="Center"
                                    Margin="{StaticResource ExtraSmall}" />
-                        <TextBox Grid.Row="1" Grid.Column="4"
+                        <TextBox Grid.Row="2" Grid.Column="4"
                                  Text="{Binding PermitNumber, UpdateSourceTrigger=PropertyChanged}"
                                  Height="{StaticResource StandardControlHeight}"
                                  Margin="{StaticResource ExtraSmall}" />
 
                         <!-- Row 3: Consignor, Destination -->
-                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Consignor"
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Consignor"
                                    Style="{StaticResource BodyTextBlockStyle}"
                                    VerticalAlignment="Center"
                                    Margin="{StaticResource ExtraSmall}" />
-                        <ComboBox Grid.Row="2" Grid.Column="1"
+                        <ComboBox Grid.Row="3" Grid.Column="1"
                                   ItemsSource="{Binding Customers}"
                                   SelectedValuePath="Id"
                                   DisplayMemberPath="CustomerName"
@@ -122,11 +133,11 @@
                                   IsTextSearchEnabled="True"
                                   TextSearch.TextPath="CustomerName" />
 
-                        <TextBlock Grid.Row="2" Grid.Column="3" Text="Destination"
+                        <TextBlock Grid.Row="3" Grid.Column="3" Text="Destination"
                                    Style="{StaticResource BodyTextBlockStyle}"
                                    VerticalAlignment="Center"
                                    Margin="{StaticResource ExtraSmall}" />
-                        <ComboBox Grid.Row="2" Grid.Column="4"
+                        <ComboBox Grid.Row="3" Grid.Column="4"
                                   ItemsSource="{Binding SourceDestinations}"
                                   SelectedValuePath="Id"
                                   DisplayMemberPath="LocationName"
@@ -138,20 +149,20 @@
                                   TextSearch.TextPath="LocationName" />
 
                         <!-- Row 4: From Date, To Date -->
-                        <TextBlock Grid.Row="3" Grid.Column="0" Text="From Date"
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="From Date"
                                    Style="{StaticResource BodyTextBlockStyle}"
                                    VerticalAlignment="Center"
                                    Margin="{StaticResource ExtraSmall}" />
-                        <DatePicker Grid.Row="3" Grid.Column="1"
+                        <DatePicker Grid.Row="4" Grid.Column="1"
                                     SelectedDate="{Binding FromDate}"
                                     Height="{StaticResource StandardControlHeight}"
                                     Margin="{StaticResource ExtraSmall}" />
 
-                        <TextBlock Grid.Row="3" Grid.Column="3" Text="To Date"
+                        <TextBlock Grid.Row="4" Grid.Column="3" Text="To Date"
                                    Style="{StaticResource BodyTextBlockStyle}"
                                    VerticalAlignment="Center"
                                    Margin="{StaticResource ExtraSmall}" />
-                        <DatePicker Grid.Row="3" Grid.Column="4"
+                        <DatePicker Grid.Row="4" Grid.Column="4"
                                     SelectedDate="{Binding ToDate}"
                                     Height="{StaticResource StandardControlHeight}"
                                     Margin="{StaticResource ExtraSmall}" />
@@ -300,106 +311,6 @@
                                  Margin="{StaticResource ExtraSmall}"
                                  Background="{DynamicResource DisabledBrush}"
                                  FontWeight="Bold" />
-                    </Grid>
-                </Border>
-
-                <!-- Additional Charges Grid -->
-                <Border Background="{DynamicResource SurfaceBrush}"
-                        BorderBrush="{DynamicResource BorderBrush}"
-                        BorderThickness="{StaticResource StandardBorderThickness}"
-                        CornerRadius="{StaticResource StandardCornerRadius}"
-                        Padding="{StaticResource Medium}"
-                        Margin="{StaticResource Small}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" MinWidth="150" />
-                            <ColumnDefinition Width="*" MinWidth="150" />
-                            <ColumnDefinition Width="16" />
-                            <ColumnDefinition Width="Auto" MinWidth="150" />
-                            <ColumnDefinition Width="*" MinWidth="150" />
-                        </Grid.ColumnDefinitions>
-
-                        <!-- Row 1: Charge Head 1, Charge Type 1 -->
-                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Charge Head 1"
-                                   Style="{StaticResource BodyTextBlockStyle}"
-                                   VerticalAlignment="Center"
-                                   Margin="{StaticResource ExtraSmall}" />
-                        <TextBox Grid.Row="0" Grid.Column="1"
-                                 Text="{Binding ChargeHead1, UpdateSourceTrigger=PropertyChanged}"
-                                 Height="{StaticResource StandardControlHeight}"
-                                 Margin="{StaticResource ExtraSmall}" />
-
-                        <TextBlock Grid.Row="0" Grid.Column="3" Text="Charge Type 1"
-                                   Style="{StaticResource BodyTextBlockStyle}"
-                                   VerticalAlignment="Center"
-                                   Margin="{StaticResource ExtraSmall}" />
-                        <TextBox Grid.Row="0" Grid.Column="4"
-                                 Text="{Binding ChargeType1, UpdateSourceTrigger=PropertyChanged}"
-                                 Height="{StaticResource StandardControlHeight}"
-                                 Margin="{StaticResource ExtraSmall}" />
-
-                        <!-- Row 2: Charge Amount 1, Charge Head 2 -->
-                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Charge Amount 1"
-                                   Style="{StaticResource BodyTextBlockStyle}"
-                                   VerticalAlignment="Center"
-                                   Margin="{StaticResource ExtraSmall}" />
-                        <TextBox Grid.Row="1" Grid.Column="1"
-                                 Text="{Binding ChargeAmount1, UpdateSourceTrigger=PropertyChanged}"
-                                 Height="{StaticResource StandardControlHeight}"
-                                 Margin="{StaticResource ExtraSmall}" />
-
-                        <TextBlock Grid.Row="1" Grid.Column="3" Text="Charge Head 2"
-                                   Style="{StaticResource BodyTextBlockStyle}"
-                                   VerticalAlignment="Center"
-                                   Margin="{StaticResource ExtraSmall}" />
-                        <TextBox Grid.Row="1" Grid.Column="4"
-                                 Text="{Binding ChargeHead2, UpdateSourceTrigger=PropertyChanged}"
-                                 Height="{StaticResource StandardControlHeight}"
-                                 Margin="{StaticResource ExtraSmall}" />
-                    </Grid>
-                </Border>
-
-                <!-- Additional Charges Row 2 -->
-                <Border Background="{DynamicResource SurfaceBrush}"
-                        BorderBrush="{DynamicResource BorderBrush}"
-                        BorderThickness="{StaticResource StandardBorderThickness}"
-                        CornerRadius="{StaticResource StandardCornerRadius}"
-                        Padding="{StaticResource Medium}"
-                        Margin="{StaticResource Small}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" MinWidth="150" />
-                            <ColumnDefinition Width="*" MinWidth="150" />
-                            <ColumnDefinition Width="16" />
-                            <ColumnDefinition Width="Auto" MinWidth="150" />
-                            <ColumnDefinition Width="*" MinWidth="150" />
-                        </Grid.ColumnDefinitions>
-
-                        <!-- Row 1: Charge Type 2, Charge Amount 2 -->
-                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Charge Type 2"
-                                   Style="{StaticResource BodyTextBlockStyle}"
-                                   VerticalAlignment="Center"
-                                   Margin="{StaticResource ExtraSmall}" />
-                        <TextBox Grid.Row="0" Grid.Column="1"
-                                 Text="{Binding ChargeType2, UpdateSourceTrigger=PropertyChanged}"
-                                 Height="{StaticResource StandardControlHeight}"
-                                 Margin="{StaticResource ExtraSmall}" />
-
-                        <TextBlock Grid.Row="0" Grid.Column="3" Text="Charge Amount 2"
-                                   Style="{StaticResource BodyTextBlockStyle}"
-                                   VerticalAlignment="Center"
-                                   Margin="{StaticResource ExtraSmall}" />
-                        <TextBox Grid.Row="0" Grid.Column="4"
-                                 Text="{Binding ChargeAmount2, UpdateSourceTrigger=PropertyChanged}"
-                                 Height="{StaticResource StandardControlHeight}"
-                                 Margin="{StaticResource ExtraSmall}" />
                     </Grid>
                 </Border>
 

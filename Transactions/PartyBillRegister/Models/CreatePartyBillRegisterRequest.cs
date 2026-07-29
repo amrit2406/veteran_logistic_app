@@ -6,6 +6,11 @@ namespace veteran_logistic.Transactions.PartyBillRegister.Models;
 public sealed class CreatePartyBillRegisterRequest
 {
     /// <summary>
+    /// Gets or sets the bill number.
+    /// </summary>
+    public string BillNumber { get; set; } = string.Empty;
+
+    /// <summary>
     /// Gets or sets the bill date.
     /// </summary>
     public DateTime BillDate { get; set; }
@@ -44,36 +49,6 @@ public sealed class CreatePartyBillRegisterRequest
     /// Gets or sets the to date filter.
     /// </summary>
     public DateTime? ToDate { get; set; }
-
-    /// <summary>
-    /// Gets or sets the first charge head.
-    /// </summary>
-    public string? ChargeHead1 { get; set; }
-
-    /// <summary>
-    /// Gets or sets the first charge type.
-    /// </summary>
-    public string? ChargeType1 { get; set; }
-
-    /// <summary>
-    /// Gets or sets the first charge amount.
-    /// </summary>
-    public decimal ChargeAmount1 { get; set; }
-
-    /// <summary>
-    /// Gets or sets the second charge head.
-    /// </summary>
-    public string? ChargeHead2 { get; set; }
-
-    /// <summary>
-    /// Gets or sets the second charge type.
-    /// </summary>
-    public string? ChargeType2 { get; set; }
-
-    /// <summary>
-    /// Gets or sets the second charge amount.
-    /// </summary>
-    public decimal ChargeAmount2 { get; set; }
 
     /// <summary>
     /// Gets or sets the remarks.

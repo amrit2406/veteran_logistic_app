@@ -5,6 +5,10 @@ using System.Threading;
 using System.Windows;
 using veteran_logistic.Transactions.PartyBillRegister.Contracts;
 using veteran_logistic.Transactions.PartyBillRegister.Models;
+using veteran_logistic.Masters.Customers.Contracts;
+using veteran_logistic.Masters.Customers.Models;
+using veteran_logistic.Masters.SourceDestinations.Contracts;
+using veteran_logistic.Masters.SourceDestinations.Models;
 using veteran_logistic.MVVM;
 using veteran_logistic.Navigation;
 using VeteranLogistics.Shared.Validation;
@@ -20,10 +24,15 @@ public sealed partial class AddPartyBillRegisterViewModel : ViewModelBase
     private readonly IPartyBillRegisterCommandService _partyBillRegisterCommandService;
     private readonly ICreatePartyBillRegisterValidator _createPartyBillRegisterValidator;
     private readonly INavigationService _navigationService;
+    private readonly ICustomerQueryService _customerQueryService;
+    private readonly ISourceDestinationQueryService _sourceDestinationQueryService;
     private string _validationError = string.Empty;
     private bool _selectAll = false;
+    private IReadOnlyList<CustomerListItem> _customers = [];
+    private IReadOnlyList<SourceDestinationListItem> _sourceDestinations = [];
 
     // Header fields
+    private string _billNumber = string.Empty;
     private DateTime _billDate = DateTime.Today;
     private int _partyId;
     private string _partyName = string.Empty;
@@ -35,14 +44,6 @@ public sealed partial class AddPartyBillRegisterViewModel : ViewModelBase
     private string _destinationName = string.Empty;
     private DateTime? _fromDate;
     private DateTime? _toDate;
-
-    // Additional charges
-    private string _chargeHead1 = string.Empty;
-    private string _chargeType1 = string.Empty;
-    private decimal _chargeAmount1;
-    private string _chargeHead2 = string.Empty;
-    private string _chargeType2 = string.Empty;
-    private decimal _chargeAmount2;
 
     // Remarks
     private string _remarks = string.Empty;
@@ -70,12 +71,16 @@ public sealed partial class AddPartyBillRegisterViewModel : ViewModelBase
     /// <param name="partyBillRegisterCommandService">The party bill register command service.</param>
     /// <param name="createPartyBillRegisterValidator">The create party bill register validator.</param>
     /// <param name="navigationService">The navigation service.</param>
-    public AddPartyBillRegisterViewModel(IPartyBillRegisterQueryService partyBillRegisterQueryService, IPartyBillRegisterCommandService partyBillRegisterCommandService, ICreatePartyBillRegisterValidator createPartyBillRegisterValidator, INavigationService navigationService)
+    /// <param name="customerQueryService">The customer query service.</param>
+    /// <param name="sourceDestinationQueryService">The source destination query service.</param>
+    public AddPartyBillRegisterViewModel(IPartyBillRegisterQueryService partyBillRegisterQueryService, IPartyBillRegisterCommandService partyBillRegisterCommandService, ICreatePartyBillRegisterValidator createPartyBillRegisterValidator, INavigationService navigationService, ICustomerQueryService customerQueryService, ISourceDestinationQueryService sourceDestinationQueryService)
     {
         _partyBillRegisterQueryService = partyBillRegisterQueryService ?? throw new ArgumentNullException(nameof(partyBillRegisterQueryService));
         _partyBillRegisterCommandService = partyBillRegisterCommandService ?? throw new ArgumentNullException(nameof(partyBillRegisterCommandService));
         _createPartyBillRegisterValidator = createPartyBillRegisterValidator ?? throw new ArgumentNullException(nameof(createPartyBillRegisterValidator));
         _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
+        _customerQueryService = customerQueryService ?? throw new ArgumentNullException(nameof(customerQueryService));
+        _sourceDestinationQueryService = sourceDestinationQueryService ?? throw new ArgumentNullException(nameof(sourceDestinationQueryService));
 
         Title = "Add Party Bill Register";
         GoBackCommand = new AsyncRelayCommand(ExecuteGoBackAsync, () => CanGoBack);
@@ -94,7 +99,7 @@ public sealed partial class AddPartyBillRegisterViewModel : ViewModelBase
             return;
         }
 
-        await LoadEligibleLoadingRegistersAsync(cancellationToken);
+        await LoadMasterDataAsync(cancellationToken);
         await base.InitializeAsync(cancellationToken);
     }
 
@@ -129,6 +134,33 @@ public sealed partial class AddPartyBillRegisterViewModel : ViewModelBase
     /// Gets the collection of eligible loading registers.
     /// </summary>
     public ObservableCollection<EligibleLoadingRegisterModel> EligibleLoadingRegisters { get; } = new();
+
+    /// <summary>
+    /// Gets or sets the collection of customers for dropdowns.
+    /// </summary>
+    public IReadOnlyList<CustomerListItem> Customers
+    {
+        get => _customers;
+        private set => SetProperty(ref _customers, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the collection of source/destinations for dropdowns.
+    /// </summary>
+    public IReadOnlyList<SourceDestinationListItem> SourceDestinations
+    {
+        get => _sourceDestinations;
+        private set => SetProperty(ref _sourceDestinations, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the bill number.
+    /// </summary>
+    public string BillNumber
+    {
+        get => _billNumber;
+        set => SetProperty(ref _billNumber, value);
+    }
 
     /// <summary>
     /// Gets or sets the bill date.
@@ -236,72 +268,6 @@ public sealed partial class AddPartyBillRegisterViewModel : ViewModelBase
     }
 
     /// <summary>
-    /// Gets or sets the first charge head.
-    /// </summary>
-    public string ChargeHead1
-    {
-        get => _chargeHead1;
-        set => SetProperty(ref _chargeHead1, value);
-    }
-
-    /// <summary>
-    /// Gets or sets the first charge type.
-    /// </summary>
-    public string ChargeType1
-    {
-        get => _chargeType1;
-        set => SetProperty(ref _chargeType1, value);
-    }
-
-    /// <summary>
-    /// Gets or sets the first charge amount.
-    /// </summary>
-    public decimal ChargeAmount1
-    {
-        get => _chargeAmount1;
-        set
-        {
-            if (SetProperty(ref _chargeAmount1, value))
-            {
-                CalculateTotals();
-            }
-        }
-    }
-
-    /// <summary>
-    /// Gets or sets the second charge head.
-    /// </summary>
-    public string ChargeHead2
-    {
-        get => _chargeHead2;
-        set => SetProperty(ref _chargeHead2, value);
-    }
-
-    /// <summary>
-    /// Gets or sets the second charge type.
-    /// </summary>
-    public string ChargeType2
-    {
-        get => _chargeType2;
-        set => SetProperty(ref _chargeType2, value);
-    }
-
-    /// <summary>
-    /// Gets or sets the second charge amount.
-    /// </summary>
-    public decimal ChargeAmount2
-    {
-        get => _chargeAmount2;
-        set
-        {
-            if (SetProperty(ref _chargeAmount2, value))
-            {
-                CalculateTotals();
-            }
-        }
-    }
-
-    /// <summary>
     /// Gets or sets the remarks.
     /// </summary>
     public string Remarks
@@ -384,6 +350,7 @@ public sealed partial class AddPartyBillRegisterViewModel : ViewModelBase
 
         var request = new CreatePartyBillRegisterRequest
         {
+            BillNumber = BillNumber,
             BillDate = BillDate,
             PartyId = PartyId,
             ThirdPartyName = ThirdPartyName,
@@ -392,12 +359,6 @@ public sealed partial class AddPartyBillRegisterViewModel : ViewModelBase
             DestinationId = DestinationId,
             FromDate = FromDate,
             ToDate = ToDate,
-            ChargeHead1 = ChargeHead1,
-            ChargeType1 = ChargeType1,
-            ChargeAmount1 = ChargeAmount1,
-            ChargeHead2 = ChargeHead2,
-            ChargeType2 = ChargeType2,
-            ChargeAmount2 = ChargeAmount2,
             Remarks = Remarks,
             SelectedLoadingRegisterIds = EligibleLoadingRegisters.Where(lr => lr.IsSelected).Select(lr => lr.Id).ToList(),
             CreatedBy = "System"
@@ -431,6 +392,22 @@ public sealed partial class AddPartyBillRegisterViewModel : ViewModelBase
     private async Task CancelAsync()
     {
         await _navigationService.GoBackAsync();
+    }
+
+    /// <summary>
+    /// Loads master data for dropdowns.
+    /// </summary>
+    private async Task LoadMasterDataAsync(CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            Customers = await _customerQueryService.GetAllCustomersAsync(cancellationToken);
+            SourceDestinations = (await _sourceDestinationQueryService.GetAllSourceDestinationsAsync(cancellationToken)).ToList();
+        }
+        catch (Exception ex)
+        {
+            ValidationError = $"Failed to load master data: {ex.Message}";
+        }
     }
 
     /// <summary>
@@ -485,7 +462,7 @@ public sealed partial class AddPartyBillRegisterViewModel : ViewModelBase
     }
 
     /// <summary>
-    /// Calculates totals based on selected loading registers and additional charges.
+    /// Calculates totals based on selected loading registers.
     /// </summary>
     private void CalculateTotals()
     {
@@ -493,7 +470,7 @@ public sealed partial class AddPartyBillRegisterViewModel : ViewModelBase
         TotalRecords = selectedItems.Count;
         TotalMaterialWeight = selectedItems.Sum(lr => lr.MaterialWeight);
         TotalAmount = selectedItems.Sum(lr => lr.Amount);
-        GrandTotal = TotalAmount + ChargeAmount1 + ChargeAmount2;
+        GrandTotal = TotalAmount;
     }
 
     /// <summary>

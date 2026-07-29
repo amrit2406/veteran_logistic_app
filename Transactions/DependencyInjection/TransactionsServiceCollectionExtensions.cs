@@ -16,6 +16,8 @@ using veteran_logistic.Transactions.PartyBillRegister.Services;
 using veteran_logistic.Transactions.PartyBillRegister.Validators;
 using veteran_logistic.Transactions.PartyBillRegister.ViewModels;
 using veteran_logistic.Masters.PaymentLocations.Contracts;
+using veteran_logistic.Masters.Customers.Contracts;
+using veteran_logistic.Masters.SourceDestinations.Contracts;
 
 namespace veteran_logistic.Transactions.DependencyInjection;
 

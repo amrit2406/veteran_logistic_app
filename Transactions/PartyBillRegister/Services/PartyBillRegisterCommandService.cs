@@ -33,8 +33,16 @@ public sealed class PartyBillRegisterCommandService : IPartyBillRegisterCommandS
 
         try
         {
-            // Generate bill number
-            var billNumber = await GenerateBillNumberAsync(cancellationToken).ConfigureAwait(false);
+            // Validate bill number is provided
+            if (string.IsNullOrWhiteSpace(request.BillNumber))
+            {
+                _logger.LogWarning("Bill number is required");
+                return new CreatePartyBillRegisterResult
+                {
+                    IsSuccess = false,
+                    ErrorMessage = "Bill number is required."
+                };
+            }
 
             // Retrieve selected loading registers
             var loadingRegisters = await _dbContext.LoadingRegisters
@@ -58,12 +66,12 @@ public sealed class PartyBillRegisterCommandService : IPartyBillRegisterCommandS
             var totalRecords = loadingRegisters.Count;
             var totalMaterialWeight = loadingRegisters.Sum(lr => lr.LoadingWeight);
             var totalAmount = loadingRegisters.Sum(lr => lr.GrossAmount);
-            var grandTotal = totalAmount + request.ChargeAmount1 + request.ChargeAmount2;
+            var grandTotal = totalAmount;
 
             // Create party bill register
             var partyBillRegister = new VeteranLogistics.Data.Entities.Administration.PartyBillRegister
             {
-                BillNumber = billNumber,
+                BillNumber = request.BillNumber,
                 BillDate = request.BillDate,
                 PartyId = request.PartyId,
                 ThirdPartyName = request.ThirdPartyName,
@@ -75,12 +83,6 @@ public sealed class PartyBillRegisterCommandService : IPartyBillRegisterCommandS
                 TotalRecords = totalRecords,
                 TotalMaterialWeight = totalMaterialWeight,
                 TotalAmount = totalAmount,
-                ChargeHead1 = request.ChargeHead1,
-                ChargeType1 = request.ChargeType1,
-                ChargeAmount1 = request.ChargeAmount1,
-                ChargeHead2 = request.ChargeHead2,
-                ChargeType2 = request.ChargeType2,
-                ChargeAmount2 = request.ChargeAmount2,
                 GrandTotal = grandTotal,
                 Remarks = request.Remarks,
                 IsActive = true,
@@ -114,12 +116,12 @@ public sealed class PartyBillRegisterCommandService : IPartyBillRegisterCommandS
 
             await _dbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
-            _logger.LogInformation("Successfully created party bill register with ID: {PartyBillRegisterId} and Bill Number: {BillNumber}", partyBillRegister.Id, billNumber);
+            _logger.LogInformation("Successfully created party bill register with ID: {PartyBillRegisterId} and Bill Number: {BillNumber}", partyBillRegister.Id, request.BillNumber);
 
             return new CreatePartyBillRegisterResult
             {
                 PartyBillRegisterId = partyBillRegister.Id,
-                BillNumber = billNumber,
+                BillNumber = request.BillNumber,
                 IsSuccess = true
             };
         }
@@ -161,18 +163,12 @@ public sealed class PartyBillRegisterCommandService : IPartyBillRegisterCommandS
             partyBillRegister.PartyId = request.PartyId;
             partyBillRegister.ThirdPartyName = request.ThirdPartyName;
             partyBillRegister.PermitNumber = request.PermitNumber;
-            partyBillRegister.ChargeHead1 = request.ChargeHead1;
-            partyBillRegister.ChargeType1 = request.ChargeType1;
-            partyBillRegister.ChargeAmount1 = request.ChargeAmount1;
-            partyBillRegister.ChargeHead2 = request.ChargeHead2;
-            partyBillRegister.ChargeType2 = request.ChargeType2;
-            partyBillRegister.ChargeAmount2 = request.ChargeAmount2;
             partyBillRegister.Remarks = request.Remarks;
             partyBillRegister.ModifiedBy = request.ModifiedBy;
             partyBillRegister.ModifiedOn = DateTime.UtcNow;
 
             // Recalculate grand total
-            partyBillRegister.GrandTotal = partyBillRegister.TotalAmount + request.ChargeAmount1 + request.ChargeAmount2;
+            partyBillRegister.GrandTotal = partyBillRegister.TotalAmount;
 
             await _dbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 

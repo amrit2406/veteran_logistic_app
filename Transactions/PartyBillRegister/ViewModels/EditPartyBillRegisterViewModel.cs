@@ -5,6 +5,10 @@ using System.Threading;
 using System.Windows;
 using veteran_logistic.Transactions.PartyBillRegister.Contracts;
 using veteran_logistic.Transactions.PartyBillRegister.Models;
+using veteran_logistic.Masters.Customers.Contracts;
+using veteran_logistic.Masters.Customers.Models;
+using veteran_logistic.Masters.SourceDestinations.Contracts;
+using veteran_logistic.Masters.SourceDestinations.Models;
 using veteran_logistic.MVVM;
 using veteran_logistic.Navigation;
 using VeteranLogistics.Shared.Validation;
@@ -20,7 +24,11 @@ public sealed partial class EditPartyBillRegisterViewModel : ViewModelBase, INav
     private readonly IPartyBillRegisterCommandService _partyBillRegisterCommandService;
     private readonly IUpdatePartyBillRegisterValidator _updatePartyBillRegisterValidator;
     private readonly INavigationService _navigationService;
+    private readonly ICustomerQueryService _customerQueryService;
+    private readonly ISourceDestinationQueryService _sourceDestinationQueryService;
     private string _validationError = string.Empty;
+    private IReadOnlyList<CustomerListItem> _customers = [];
+    private IReadOnlyList<SourceDestinationListItem> _sourceDestinations = [];
 
     // Header fields
     private int _partyBillRegisterId;
@@ -30,14 +38,6 @@ public sealed partial class EditPartyBillRegisterViewModel : ViewModelBase, INav
     private string _partyName = string.Empty;
     private string _thirdPartyName = string.Empty;
     private string _permitNumber = string.Empty;
-
-    // Additional charges
-    private string _chargeHead1 = string.Empty;
-    private string _chargeType1 = string.Empty;
-    private decimal _chargeAmount1;
-    private string _chargeHead2 = string.Empty;
-    private string _chargeType2 = string.Empty;
-    private decimal _chargeAmount2;
 
     // Remarks
     private string _remarks = string.Empty;
@@ -65,12 +65,16 @@ public sealed partial class EditPartyBillRegisterViewModel : ViewModelBase, INav
     /// <param name="partyBillRegisterCommandService">The party bill register command service.</param>
     /// <param name="updatePartyBillRegisterValidator">The update party bill register validator.</param>
     /// <param name="navigationService">The navigation service.</param>
-    public EditPartyBillRegisterViewModel(IPartyBillRegisterQueryService partyBillRegisterQueryService, IPartyBillRegisterCommandService partyBillRegisterCommandService, IUpdatePartyBillRegisterValidator updatePartyBillRegisterValidator, INavigationService navigationService)
+    /// <param name="customerQueryService">The customer query service.</param>
+    /// <param name="sourceDestinationQueryService">The source destination query service.</param>
+    public EditPartyBillRegisterViewModel(IPartyBillRegisterQueryService partyBillRegisterQueryService, IPartyBillRegisterCommandService partyBillRegisterCommandService, IUpdatePartyBillRegisterValidator updatePartyBillRegisterValidator, INavigationService navigationService, ICustomerQueryService customerQueryService, ISourceDestinationQueryService sourceDestinationQueryService)
     {
         _partyBillRegisterQueryService = partyBillRegisterQueryService ?? throw new ArgumentNullException(nameof(partyBillRegisterQueryService));
         _partyBillRegisterCommandService = partyBillRegisterCommandService ?? throw new ArgumentNullException(nameof(partyBillRegisterCommandService));
         _updatePartyBillRegisterValidator = updatePartyBillRegisterValidator ?? throw new ArgumentNullException(nameof(updatePartyBillRegisterValidator));
         _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
+        _customerQueryService = customerQueryService ?? throw new ArgumentNullException(nameof(customerQueryService));
+        _sourceDestinationQueryService = sourceDestinationQueryService ?? throw new ArgumentNullException(nameof(sourceDestinationQueryService));
 
         Title = "Edit Party Bill Register";
         GoBackCommand = new AsyncRelayCommand(ExecuteGoBackAsync, () => CanGoBack);
@@ -94,6 +98,7 @@ public sealed partial class EditPartyBillRegisterViewModel : ViewModelBase, INav
 
     public override async Task OnNavigatedToAsync(CancellationToken cancellationToken = default)
     {
+        await LoadMasterDataAsync(cancellationToken);
         await LoadPartyBillRegisterAsync(cancellationToken);
         
         var dispatcher = System.Windows.Application.Current?.Dispatcher;
@@ -136,6 +141,24 @@ public sealed partial class EditPartyBillRegisterViewModel : ViewModelBase, INav
     /// Gets the collection of party bill register details.
     /// </summary>
     public ObservableCollection<PartyBillRegisterDetailModel> PartyBillRegisterDetails { get; } = new();
+
+    /// <summary>
+    /// Gets or sets the collection of customers for dropdowns.
+    /// </summary>
+    public IReadOnlyList<CustomerListItem> Customers
+    {
+        get => _customers;
+        private set => SetProperty(ref _customers, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the collection of source/destinations for dropdowns.
+    /// </summary>
+    public IReadOnlyList<SourceDestinationListItem> SourceDestinations
+    {
+        get => _sourceDestinations;
+        private set => SetProperty(ref _sourceDestinations, value);
+    }
 
     /// <summary>
     /// Gets the party bill register ID.
@@ -201,72 +224,6 @@ public sealed partial class EditPartyBillRegisterViewModel : ViewModelBase, INav
     }
 
     /// <summary>
-    /// Gets or sets the first charge head.
-    /// </summary>
-    public string ChargeHead1
-    {
-        get => _chargeHead1;
-        set => SetProperty(ref _chargeHead1, value);
-    }
-
-    /// <summary>
-    /// Gets or sets the first charge type.
-    /// </summary>
-    public string ChargeType1
-    {
-        get => _chargeType1;
-        set => SetProperty(ref _chargeType1, value);
-    }
-
-    /// <summary>
-    /// Gets or sets the first charge amount.
-    /// </summary>
-    public decimal ChargeAmount1
-    {
-        get => _chargeAmount1;
-        set
-        {
-            if (SetProperty(ref _chargeAmount1, value))
-            {
-                CalculateGrandTotal();
-            }
-        }
-    }
-
-    /// <summary>
-    /// Gets or sets the second charge head.
-    /// </summary>
-    public string ChargeHead2
-    {
-        get => _chargeHead2;
-        set => SetProperty(ref _chargeHead2, value);
-    }
-
-    /// <summary>
-    /// Gets or sets the second charge type.
-    /// </summary>
-    public string ChargeType2
-    {
-        get => _chargeType2;
-        set => SetProperty(ref _chargeType2, value);
-    }
-
-    /// <summary>
-    /// Gets or sets the second charge amount.
-    /// </summary>
-    public decimal ChargeAmount2
-    {
-        get => _chargeAmount2;
-        set
-        {
-            if (SetProperty(ref _chargeAmount2, value))
-            {
-                CalculateGrandTotal();
-            }
-        }
-    }
-
-    /// <summary>
     /// Gets or sets the remarks.
     /// </summary>
     public string Remarks
@@ -326,12 +283,6 @@ public sealed partial class EditPartyBillRegisterViewModel : ViewModelBase, INav
             PartyId = PartyId,
             ThirdPartyName = ThirdPartyName,
             PermitNumber = PermitNumber,
-            ChargeHead1 = ChargeHead1,
-            ChargeType1 = ChargeType1,
-            ChargeAmount1 = ChargeAmount1,
-            ChargeHead2 = ChargeHead2,
-            ChargeType2 = ChargeType2,
-            ChargeAmount2 = ChargeAmount2,
             Remarks = Remarks,
             ModifiedBy = "System"
         };
@@ -395,12 +346,6 @@ public sealed partial class EditPartyBillRegisterViewModel : ViewModelBase, INav
         PartyName = partyBillRegister.PartyName;
         ThirdPartyName = partyBillRegister.ThirdPartyName;
         PermitNumber = partyBillRegister.PermitNumber;
-        ChargeHead1 = partyBillRegister.ChargeHead1;
-        ChargeType1 = partyBillRegister.ChargeType1;
-        ChargeAmount1 = partyBillRegister.ChargeAmount1;
-        ChargeHead2 = partyBillRegister.ChargeHead2;
-        ChargeType2 = partyBillRegister.ChargeType2;
-        ChargeAmount2 = partyBillRegister.ChargeAmount2;
         Remarks = partyBillRegister.Remarks;
 
         // Populate calculated totals
@@ -411,6 +356,22 @@ public sealed partial class EditPartyBillRegisterViewModel : ViewModelBase, INav
 
         // Populate details
         UpdatePartyBillRegisterDetails(partyBillRegister.PartyBillRegisterDetails);
+    }
+
+    /// <summary>
+    /// Loads master data for dropdowns.
+    /// </summary>
+    private async Task LoadMasterDataAsync(CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            Customers = await _customerQueryService.GetAllCustomersAsync(cancellationToken);
+            SourceDestinations = (await _sourceDestinationQueryService.GetAllSourceDestinationsAsync(cancellationToken)).ToList();
+        }
+        catch (Exception ex)
+        {
+            ValidationError = $"Failed to load master data: {ex.Message}";
+        }
     }
 
     /// <summary>
@@ -446,10 +407,10 @@ public sealed partial class EditPartyBillRegisterViewModel : ViewModelBase, INav
     }
 
     /// <summary>
-    /// Calculates the grand total based on total amount and additional charges.
+    /// Calculates the grand total based on total amount.
     /// </summary>
     private void CalculateGrandTotal()
     {
-        GrandTotal = TotalAmount + ChargeAmount1 + ChargeAmount2;
+        GrandTotal = TotalAmount;
     }
 }
