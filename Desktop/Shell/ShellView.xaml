@@ -111,6 +111,7 @@
                     <MenuItem Header="Loading Registers" Command="{Binding NavigateToLoadingRegistersCommand}" />
                     <MenuItem Header="Unloading Registers" Command="{Binding NavigateToUnloadingRegistersCommand}" />
                     <MenuItem Header="Payment Registers" Command="{Binding NavigateToPaymentRegistersCommand}" />
+                    <MenuItem Header="Party Bill Registers" Command="{Binding NavigateToPartyBillRegistersCommand}" />
                     <MenuItem Header="Orders" />
                     <MenuItem Header="Shipments" />
                 </MenuItem>

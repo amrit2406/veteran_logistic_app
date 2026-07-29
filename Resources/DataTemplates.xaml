@@ -43,7 +43,9 @@
     xmlns:transactionsUnloadingRegistersVm="clr-namespace:veteran_logistic.Transactions.UnloadingRegisters.ViewModels"
     xmlns:transactionsUnloadingRegistersViews="clr-namespace:veteran_logistic.Transactions.UnloadingRegisters.Views"
     xmlns:transactionsPaymentRegistersVm="clr-namespace:veteran_logistic.Transactions.PaymentRegisters.ViewModels"
-    xmlns:transactionsPaymentRegistersViews="clr-namespace:veteran_logistic.Transactions.PaymentRegisters.Views">
+    xmlns:transactionsPaymentRegistersViews="clr-namespace:veteran_logistic.Transactions.PaymentRegisters.Views"
+    xmlns:transactionsPartyBillRegisterVm="clr-namespace:veteran_logistic.Transactions.PartyBillRegister.ViewModels"
+    xmlns:transactionsPartyBillRegisterViews="clr-namespace:veteran_logistic.Transactions.PartyBillRegister.Views">
   <DataTemplate DataType="{x:Type vm:ShellViewModel}">
     <views:ShellView />
   </DataTemplate>
@@ -270,6 +272,18 @@
 
   <DataTemplate DataType="{x:Type transactionsPaymentRegistersVm:EditPaymentRegisterViewModel}">
     <transactionsPaymentRegistersViews:EditPaymentRegisterView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type transactionsPartyBillRegisterVm:PartyBillRegistersViewModel}">
+    <transactionsPartyBillRegisterViews:PartyBillRegistersView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type transactionsPartyBillRegisterVm:AddPartyBillRegisterViewModel}">
+    <transactionsPartyBillRegisterViews:AddPartyBillRegisterView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type transactionsPartyBillRegisterVm:EditPartyBillRegisterViewModel}">
+    <transactionsPartyBillRegisterViews:EditPartyBillRegisterView />
   </DataTemplate>
 
   <DataTemplate DataType="{x:Type vm:PlaceholderViewModel}">

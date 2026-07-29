@@ -11,6 +11,10 @@ using veteran_logistic.Transactions.PaymentRegisters.Contracts;
 using veteran_logistic.Transactions.PaymentRegisters.Services;
 using veteran_logistic.Transactions.PaymentRegisters.Validators;
 using veteran_logistic.Transactions.PaymentRegisters.ViewModels;
+using veteran_logistic.Transactions.PartyBillRegister.Contracts;
+using veteran_logistic.Transactions.PartyBillRegister.Services;
+using veteran_logistic.Transactions.PartyBillRegister.Validators;
+using veteran_logistic.Transactions.PartyBillRegister.ViewModels;
 using veteran_logistic.Masters.PaymentLocations.Contracts;
 
 namespace veteran_logistic.Transactions.DependencyInjection;
@@ -61,6 +65,17 @@ public static class TransactionsServiceCollectionExtensions
         services.AddTransient<PaymentRegistersViewModel>();
         services.AddTransient<AddPaymentRegisterViewModel>();
         services.AddTransient<EditPaymentRegisterViewModel>();
+
+        // Party Bill Register services
+        services.AddScoped<IPartyBillRegisterQueryService, PartyBillRegisterQueryService>();
+        services.AddScoped<IPartyBillRegisterCommandService, PartyBillRegisterCommandService>();
+        services.AddScoped<ICreatePartyBillRegisterValidator, CreatePartyBillRegisterValidator>();
+        services.AddScoped<IUpdatePartyBillRegisterValidator, UpdatePartyBillRegisterValidator>();
+        services.AddScoped<IUpdatePartyBillRegisterStatusValidator, UpdatePartyBillRegisterStatusValidator>();
+        services.AddScoped<IDeletePartyBillRegisterValidator, DeletePartyBillRegisterValidator>();
+        services.AddTransient<PartyBillRegistersViewModel>();
+        services.AddTransient<AddPartyBillRegisterViewModel>();
+        services.AddTransient<EditPartyBillRegisterViewModel>();
 
         return services;
     }

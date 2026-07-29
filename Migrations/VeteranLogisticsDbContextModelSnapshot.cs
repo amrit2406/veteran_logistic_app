@@ -725,6 +725,197 @@ namespace veteran_logistic.Migrations
                     b.ToTable("Materials");
                 });
 
+            modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.PartyBillRegister", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("BillDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("BillNumber")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<decimal>("ChargeAmount1")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ChargeAmount2")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ChargeHead1")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ChargeHead2")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ChargeType1")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ChargeType2")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int?>("ConsignorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("DestinationId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("FromDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("GrandTotal")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PartyId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PermitNumber")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Remarks")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("ThirdPartyName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<DateTime?>("ToDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TotalMaterialWeight")
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<int>("TotalRecords")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BillNumber")
+                        .IsUnique();
+
+                    b.HasIndex("ConsignorId");
+
+                    b.HasIndex("DestinationId");
+
+                    b.HasIndex("PartyId");
+
+                    b.ToTable("PartyBillRegisters");
+                });
+
+            modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.PartyBillRegisterDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Amount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("BillingRate")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ChallanNumber")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("DriverCommission")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("LoadingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("LoadingRegisterId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("MaterialWeight")
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PartyBillRegisterId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TPNumber")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("VehicleNumber")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LoadingRegisterId");
+
+                    b.HasIndex("PartyBillRegisterId");
+
+                    b.ToTable("PartyBillRegisterDetails");
+                });
+
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.PaymentLocation", b =>
                 {
                     b.Property<int>("Id")
@@ -1837,6 +2028,50 @@ namespace veteran_logistic.Migrations
                     b.Navigation("Vehicle");
                 });
 
+            modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.PartyBillRegister", b =>
+                {
+                    b.HasOne("VeteranLogistics.Data.Entities.Administration.Customer", "Consignor")
+                        .WithMany()
+                        .HasForeignKey("ConsignorId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("VeteranLogistics.Data.Entities.Administration.SourceDestination", "Destination")
+                        .WithMany()
+                        .HasForeignKey("DestinationId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("VeteranLogistics.Data.Entities.Administration.Customer", "Party")
+                        .WithMany()
+                        .HasForeignKey("PartyId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Consignor");
+
+                    b.Navigation("Destination");
+
+                    b.Navigation("Party");
+                });
+
+            modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.PartyBillRegisterDetail", b =>
+                {
+                    b.HasOne("VeteranLogistics.Data.Entities.Administration.LoadingRegister", "LoadingRegister")
+                        .WithMany()
+                        .HasForeignKey("LoadingRegisterId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("VeteranLogistics.Data.Entities.Administration.PartyBillRegister", "PartyBillRegister")
+                        .WithMany("PartyBillRegisterDetails")
+                        .HasForeignKey("PartyBillRegisterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("LoadingRegister");
+
+                    b.Navigation("PartyBillRegister");
+                });
+
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.PaymentRegister", b =>
                 {
                     b.HasOne("VeteranLogistics.Data.Entities.Administration.LoadingRegister", "LoadingRegister")
@@ -1979,6 +2214,11 @@ namespace veteran_logistic.Migrations
                     b.Navigation("Vehicle");
 
                     b.Navigation("VehicleOwner");
+                });
+
+            modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.PartyBillRegister", b =>
+                {
+                    b.Navigation("PartyBillRegisterDetails");
                 });
 
             modelBuilder.Entity("VeteranLogistics.Data.Entities.Administration.Permission", b =>

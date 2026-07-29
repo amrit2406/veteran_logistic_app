@@ -286,3 +286,9 @@ d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\PaymentRegist
 d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\PaymentRegisters\Views\AddPaymentRegisterView.g.cs
 d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\PaymentRegisters\Views\EditPaymentRegisterView.g.cs
 d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\PaymentRegisters\Views\PaymentRegistersView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\PartyBillRegister\Views\AddPartyBillRegisterView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\PartyBillRegister\Views\EditPartyBillRegisterView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\PartyBillRegister\Views\AddPartyBillRegisterView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\PartyBillRegister\Views\EditPartyBillRegisterView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\PartyBillRegister\Views\PartyBillRegistersView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Transactions\PartyBillRegister\Views\PartyBillRegistersView.baml

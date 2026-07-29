@@ -119,6 +119,16 @@ public class VeteranLogisticsDbContext : DbContext
     public DbSet<PaymentRegister> PaymentRegisters => Set<PaymentRegister>();
 
     /// <summary>
+    /// Gets or sets the PartyBillRegisters DbSet.
+    /// </summary>
+    public DbSet<PartyBillRegister> PartyBillRegisters => Set<PartyBillRegister>();
+
+    /// <summary>
+    /// Gets or sets the PartyBillRegisterDetails DbSet.
+    /// </summary>
+    public DbSet<PartyBillRegisterDetail> PartyBillRegisterDetails => Set<PartyBillRegisterDetail>();
+
+    /// <summary>
     /// Apply entity configurations discovered in this assembly.
     /// </summary>
     /// <param name="modelBuilder">Model builder.</param>
