@@ -2051,6 +2051,536 @@ Phase 3.14 - ownership transfer (not needed)
 Build verified successfully with 0 errors, 4 unrelated package warnings (Serilog version mismatches). All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer with ValidationResult.AddError pattern, Result pattern, Dependency injection with proper lifetimes, Navigation with INavigationAware, Async/await with CancellationToken and ConfigureAwait(false), Logging with ILogger, Busy state management. DO Rate module refactoring is architecturally consistent with existing modules and is production-ready. Full implementation with ID-based Consignor/Consignee selection, in-memory lookup service, ComboBox bindings with proper DisplayMemberPath/SelectedValuePath, and XAML parse error fixes. The module is ready for production use and successfully refactored from string-based to ID-based Consignor/Consignee fields.
 
 
+## Phase 4.1 - Party Bill Register Module (COMPLETED)
+
+### Business Requirements
+* **Transaction module** for managing party bills based on loading registers
+* **Bill Number**: Manually entered by user (not auto-generated)
+* **Header fields**: Bill Number, Bill Date, Party Name, Third Party Name, Permit Number
+* **Filter fields**: Consignor, Destination, From Date, To Date
+* **Eligible Loading Registers**: Select multiple loading registers to include in bill
+* **Calculated Totals**: Total Records, Total Material Weight, Total Amount, Grand Total
+* **Party Bill Register Details**: Grid showing selected loading register details (TP Number, Challan Number, Vehicle Number, Loading Date, Material Weight, Billing Rate, Driver Commission, Amount)
+* **Remarks**: Optional remarks field
+* **Removed fields**: Charge Head 1, Charge Type 1, Charge Amount 1, Charge Head 2, Charge Type 2, Charge Amount 2 (not currently needed)
+
+### Database Layer
+* **Entities Created**:
+  - `VeteranLogistics.Data/Entities/Administration/PartyBillRegister.cs`: Main entity with BillNumber, BillDate, PartyId, ThirdPartyName, PermitNumber, ConsignorId, DestinationId, FromDate, ToDate, TotalRecords, TotalMaterialWeight, TotalAmount, GrandTotal, Remarks, and standard audit fields
+  - `VeteranLogistics.Data/Entities/Administration/PartyBillRegisterDetail.cs`: Detail entity with PartyBillRegisterId, LoadingRegisterId, TPNumber, ChallanNumber, VehicleNumber, LoadingDate, MaterialWeight, BillingRate, DriverCommission, Amount, and standard audit fields
+* **Configuration Created**: `VeteranLogistics.Data/Configurations/PartyBillRegisterConfiguration.cs` and `PartyBillRegisterDetailConfiguration.cs` with Fluent API configurations
+* **Migration Created**: EF Core migration to create PartyBillRegister and PartyBillRegisterDetail tables
+* **Relationships**: PartyBillRegister has one-to-many relationship with PartyBillRegisterDetail, PartyBillRegisterDetail references LoadingRegister
+
+### Query Layer
+* **Interface**: `Transactions/PartyBillRegister/Contracts/IPartyBillRegisterQueryService.cs`
+  - GetAllPartyBillRegistersAsync: Get all party bill registers with filters
+  - GetPartyBillRegisterForEditAsync: Get single party bill register with details for editing
+  - GetEligibleLoadingRegistersAsync: Get loading registers eligible for billing based on filters
+* **Implementation**: `Transactions/PartyBillRegister/Services/PartyBillRegisterQueryService.cs`
+  - Uses VeteranLogisticsDbContext with AsNoTracking for read operations
+  - Includes related entities (Customer, SourceDestination, Vehicle) for display
+  - Applies soft delete query filter
+  - Returns DTO models (PartyBillRegisterListItem, PartyBillRegisterForEditModel, EligibleLoadingRegisterModel)
+* **Models**:
+  - `Transactions/PartyBillRegister/Models/PartyBillRegisterListItem.cs`: List view model
+  - `Transactions/PartyBillRegister/Models/PartyBillRegisterForEditModel.cs`: Edit view model with PartyBillRegisterDetailModel collection
+  - `Transactions/PartyBillRegister/Models/EligibleLoadingRegisterModel.cs`: Eligible loading register model with IsSelected property
+
+### Command Layer
+* **Interface**: `Transactions/PartyBillRegister/Contracts/IPartyBillRegisterCommandService.cs`
+  - CreatePartyBillRegisterAsync: Create new party bill register
+  - UpdatePartyBillRegisterAsync: Update existing party bill register
+  - UpdatePartyBillRegisterStatusAsync: Update IsActive status
+  - DeletePartyBillRegisterAsync: Soft delete party bill register
+* **Implementation**: `Transactions/PartyBillRegister/Services/PartyBillRegisterCommandService.cs`
+  - Validates BillNumber is required (no auto-generation)
+  - Retrieves selected loading registers and validates all found
+  - Calculates totals (TotalRecords, TotalMaterialWeight, TotalAmount, GrandTotal = TotalAmount)
+  - Creates PartyBillRegister entity with manual BillNumber
+  - Creates PartyBillRegisterDetail entities for each selected loading register
+  - Supports soft delete with cascade to details
+  - Uses structured logging with ILogger
+* **Request Models**:
+  - `Transactions/PartyBillRegister/Models/CreatePartyBillRegisterRequest.cs`: Create request with BillNumber, BillDate, PartyId, ThirdPartyName, PermitNumber, ConsignorId, DestinationId, FromDate, ToDate, Remarks, SelectedLoadingRegisterIds, CreatedBy
+  - `Transactions/PartyBillRegister/Models/UpdatePartyBillRegisterRequest.cs`: Update request with PartyBillRegisterId, BillDate, PartyId, ThirdPartyName, PermitNumber, Remarks, ModifiedBy
+  - `Transactions/PartyBillRegister/Models/UpdatePartyBillRegisterStatusRequest.cs`: Status update request
+  - `Transactions/PartyBillRegister/Models/DeletePartyBillRegisterRequest.cs`: Delete request
+* **Result Models**:
+  - `Transactions/PartyBillRegister/Models/CreatePartyBillRegisterResult.cs`: Create result with PartyBillRegisterId and BillNumber
+  - `Transactions/PartyBillRegister/Models/UpdatePartyBillRegisterResult.cs`: Update result
+  - `Transactions/PartyBillRegister/Models/UpdatePartyBillRegisterStatusResult.cs`: Status update result
+  - `Transactions/PartyBillRegister/Models/DeletePartyBillRegisterResult.cs`: Delete result
+
+### Validation Layer
+* **Interface**: `Transactions/PartyBillRegister/Contracts/ICreatePartyBillRegisterValidator.cs`
+* **Implementation**: `Transactions/PartyBillRegister/Validators/CreatePartyBillRegisterValidator.cs`
+  - Validates request not null
+  - Validates PartyId > 0
+  - Validates BillDate not default
+  - Validates FromDate <= ToDate
+  - Validates at least one loading register selected
+* **Interface**: `Transactions/PartyBillRegister/Contracts/IUpdatePartyBillRegisterValidator.cs`
+* **Implementation**: `Transactions/PartyBillRegister/Validators/UpdatePartyBillRegisterValidator.cs`
+  - Validates request not null
+  - Validates PartyBillRegisterId > 0
+  - Validates PartyId > 0
+  - Validates BillDate not default
+
+### ViewModel Layer
+* **AddPartyBillRegisterViewModel** (`Transactions/PartyBillRegister/ViewModels/AddPartyBillRegisterViewModel.cs`):
+  - Properties: BillNumber, BillDate, PartyId, PartyName, ThirdPartyName, PermitNumber, ConsignorId, ConsignorName, DestinationId, DestinationName, FromDate, ToDate, Remarks
+  - Collections: Customers, SourceDestinations, EligibleLoadingRegisters, PartyBillRegisterDetails
+  - Calculated properties: TotalRecords, TotalMaterialWeight, TotalAmount, GrandTotal (read-only)
+  - Commands: SaveAsync, CancelAsync, SearchEligibleLoadingRegistersAsync, GoBackCommand
+  - Master data loading: LoadMasterDataAsync loads Customers and SourceDestinations
+  - Eligible loading registers: LoadEligibleLoadingRegistersAsync based on filters
+  - Total calculation: CalculateTotals based on selected loading registers (GrandTotal = TotalAmount)
+  - INavigationAware: InitializeAsync for initialization
+  - Busy state management with SetBusy/ClearBusy
+  - Validation error display
+* **EditPartyBillRegisterViewModel** (`Transactions/PartyBillRegister/ViewModels/EditPartyBillRegisterViewModel.cs`):
+  - Properties: PartyBillRegisterId, BillNumber, BillDate, PartyId, PartyName, ThirdPartyName, PermitNumber, Remarks
+  - Collections: Customers, SourceDestinations, PartyBillRegisterDetails
+  - Calculated properties: TotalRecords, TotalMaterialWeight, TotalAmount, GrandTotal (read-only)
+  - Commands: SaveAsync, CancelAsync, GoBackCommand
+  - Master data loading: LoadMasterDataAsync loads Customers and SourceDestinations
+  - Party bill register loading: LoadPartyBillRegisterAsync loads existing data
+  - Total calculation: CalculateGrandTotal (GrandTotal = TotalAmount)
+  - INavigationAware: OnNavigatedToAsync for navigation parameter handling
+  - Busy state management with SetBusy/ClearBusy
+  - Validation error display
+
+### View Layer
+* **AddPartyBillRegisterView.xaml**:
+  - Header grid: Bill Number (editable TextBox), Bill Date, Party Name (ComboBox), Third Party Name, Permit Number
+  - Filter grid: Consignor (ComboBox), Destination (ComboBox), From Date, To Date
+  - Search button to load eligible loading registers
+  - Eligible Loading Registers DataGrid with IsSelected checkbox and loading register details
+  - Select All checkbox
+  - Calculated Totals grid (read-only): Total Records, Total Material Weight, Total Amount, Grand Total
+  - Party Bill Register Details DataGrid (read-only) showing selected loading register details
+  - Remarks TextBox
+  - Save and Cancel buttons
+  - Loading indicator with busy message
+  - Validation error display
+* **EditPartyBillRegisterView.xaml**:
+  - Header grid: Bill Number (read-only), Bill Date, Party Name (ComboBox), Third Party Name, Permit Number
+  - Calculated Totals grid (read-only): Total Records, Total Material Weight, Total Amount, Grand Total
+  - Party Bill Register Details DataGrid (read-only) showing loading register details
+  - Remarks TextBox
+  - Save and Cancel buttons
+  - Loading indicator with busy message
+  - Validation error display
+
+### Infrastructure & Integration
+* **DI Registration**: `Transactions/DependencyInjection/TransactionsServiceCollectionExtensions.cs`
+  - IPartyBillRegisterQueryService → PartyBillRegisterQueryService (scoped)
+  - IPartyBillRegisterCommandService → PartyBillRegisterCommandService (scoped)
+  - ICreatePartyBillRegisterValidator → CreatePartyBillRegisterValidator (transient)
+  - IUpdatePartyBillRegisterValidator → UpdatePartyBillRegisterValidator (transient)
+  - Added using directives for Customers.Contracts and SourceDestinations.Contracts
+* **Navigation**: Added to DataTemplates.xaml for PartyBillRegister ViewModels and Views
+* **Master Data Integration**: Uses ICustomerQueryService and ISourceDestinationQueryService for dropdown data
+
+### Explicitly Excluded
+* Charge Head 1, Charge Type 1, Charge Amount 1 fields (removed from UI, ViewModels, Request models, Validators, Command service)
+* Charge Head 2, Charge Type 2, Charge Amount 2 fields (removed from UI, ViewModels, Request models, Validators, Command service)
+* Auto-generated Bill Number (changed to manual entry)
+* No changes to MVVM architecture
+* No changes to query/command separation
+* No changes to validation pattern
+* No repository pattern, MediatR, or generic frameworks
+
+### Validation Status
+Build verified successfully with 0 errors, 2 unrelated warnings (null reference assignments). All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer with ValidationResult.AddError pattern, Result pattern, Dependency injection with proper lifetimes, Navigation with INavigationAware, Async/await with CancellationToken and ConfigureAwait(false), Logging with ILogger, Busy state management. Party Bill Register module is architecturally consistent with existing modules and is production-ready. Full implementation with manual Bill Number entry, master data integration for dropdowns, eligible loading register selection, calculated totals, and detail grid display. The module is ready for production use and successfully implements the Party Bill Register transaction functionality.
+
+
+## Phase 4.2 - Loading Register Module (COMPLETED)
+
+### Business Requirements
+* **Transaction module** for managing loading register entries
+* **Challan Number**: Auto-generated unique identifier
+* **Header fields**: Challan Number, Loading Date, TP Number, Vehicle Type
+* **Relationship fields**: Consignor, Consignee, Source, Destination, Vehicle, Union/Vendor, Material, Payment Location, Owner
+* **Weight fields**: Gross Weight, Tare Weight, Loading Weight (calculated: Gross - Tare), Shortage Weight
+* **Financial fields**: Rate, Gross Amount (calculated: LoadingWeight × Rate), Driver Commission
+* **Fuel fields**: Fuel Quantity, Fuel Amount, Fuel Cash, Fuel Advance
+* **Advance fields**: Cash Advance, Other Advance, Other Advance Date
+* **Additional fields**: Third Party, Vehicle Loaded By, Driver, Driving Licence Number, Driver Mobile, Owner Mobile, Owner Address, Notes
+* **Standard audit fields**: IsActive, IsDeleted, DeletedOn, CreatedBy, ModifiedBy, CreatedOn, ModifiedOn
+
+### Database Layer
+* **Entity Created**: `VeteranLogistics.Data/Entities/Administration/LoadingRegister.cs`
+  - ChallanNumber (required, unique, max 50)
+  - ConsignorId, ConsigneeId (foreign keys to Customer)
+  - SourceId, DestinationId (foreign keys to SourceDestination)
+  - VehicleId (foreign key to Vehicle)
+  - UnionVendorId (foreign key to Vendor)
+  - MaterialId (foreign key to Material)
+  - PaymentLocationId (foreign key to PaymentLocation)
+  - OwnerId (foreign key to VehicleOwner)
+  - LoadingDate, TPNumber, VehicleType
+  - DriverCommission, GrossWeight, TareWeight, LoadingWeight, ShortageWeight
+  - Rate, GrossAmount
+  - FuelQuantity, FuelAmount, FuelCash, FuelAdvance
+  - CashAdvance, OtherAdvance, OtherAdvanceDate
+  - ThirdParty, VehicleLoadedBy
+  - Driver, DrivingLicenceNumber, DriverMobile
+  - OwnerMobile, OwnerAddress, Notes
+  - Standard audit fields
+* **Configuration Created**: `VeteranLogistics.Data/Configurations/LoadingRegisterConfiguration.cs` with Fluent API configurations
+  - ChallanNumber required, unique约束, max length 50
+  - Decimal precision for weight (18,3), rate (18,2), amounts (18,2)
+  - Foreign key relationships with cascade behavior
+  - Soft delete query filter
+* **Migration Created**: EF Core migration to create LoadingRegister table
+* **Relationships**: Navigation properties to Customer, SourceDestination, Vehicle, Vendor, Material, PaymentLocation, VehicleOwner
+
+### Query Layer
+* **Interface**: `Transactions/LoadingRegisters/Contracts/ILoadingRegisterQueryService.cs`
+  - GetAllLoadingRegistersAsync: Get all loading registers
+  - SearchLoadingRegistersAsync: Search by challan number, TP number, vehicle number, consignor, consignee, driver, material
+  - GetLoadingRegisterForEditAsync: Get single loading register for editing
+  - GetLoadingRegisterByChallanNumberAsync: Get by challan number
+* **Implementation**: `Transactions/LoadingRegisters/Services/LoadingRegisterQueryService.cs`
+  - Uses VeteranLogisticsDbContext with AsNoTracking for read operations
+  - Includes related entities for display
+  - Applies soft delete query filter
+  - Returns DTO models (LoadingRegisterListItem, LoadingRegisterModel)
+* **Models**:
+  - `Transactions/LoadingRegisters/Models/LoadingRegisterListItem.cs`: List view model
+  - `Transactions/LoadingRegisters/Models/LoadingRegisterModel.cs`: Full model for edit/view
+
+### Command Layer
+* **Interface**: `Transactions/LoadingRegisters/Contracts/ILoadingRegisterCommandService.cs`
+  - CreateLoadingRegisterAsync: Create new loading register
+  - UpdateLoadingRegisterAsync: Update existing loading register
+  - UpdateLoadingRegisterStatusAsync: Update IsActive status
+  - DeleteLoadingRegisterAsync: Soft delete loading register
+* **Implementation**: `Transactions/LoadingRegisters/Services/LoadingRegisterCommandService.cs`
+  - Generates unique ChallanNumber
+  - Validates loading register data
+  - Creates/updates LoadingRegister entity
+  - Supports soft delete
+  - Uses structured logging with ILogger
+* **Request Models**:
+  - `Transactions/LoadingRegisters/Models/CreateLoadingRegisterRequest.cs`: Create request with all loading register fields
+  - `Transactions/LoadingRegisters/Models/UpdateLoadingRegisterRequest.cs`: Update request
+  - `Transactions/LoadingRegisters/Models/UpdateLoadingRegisterStatusRequest.cs`: Status update request
+  - `Transactions/LoadingRegisters/Models/DeleteLoadingRegisterRequest.cs`: Delete request
+* **Result Models**:
+  - `Transactions/LoadingRegisters/Models/CreateLoadingRegisterResult.cs`: Create result with LoadingRegisterId and ChallanNumber
+  - `Transactions/LoadingRegisters/Models/UpdateLoadingRegisterResult.cs`: Update result
+  - `Transactions/LoadingRegisters/Models/UpdateLoadingRegisterStatusResult.cs`: Status update result
+  - `Transactions/LoadingRegisters/Models/DeleteLoadingRegisterResult.cs`: Delete result
+
+### Validation Layer
+* **Interface**: `Transactions/LoadingRegisters/Contracts/ICreateLoadingRegisterValidator.cs`
+* **Implementation**: `Transactions/LoadingRegisters/Validators/CreateLoadingRegisterValidator.cs`
+  - Validates request not null
+  - Validates required fields (LoadingDate, VehicleId, MaterialId)
+  - Validates weight calculations
+  - Validates amount calculations
+* **Interface**: `Transactions/LoadingRegisters/Contracts/IUpdateLoadingRegisterValidator.cs`
+* **Implementation**: `Transactions/LoadingRegisters/Validators/UpdateLoadingRegisterValidator.cs`
+  - Validates request not null
+  - Validates LoadingRegisterId > 0
+  - Validates required fields
+
+### ViewModel Layer
+* **LoadingRegistersViewModel** (`Transactions/LoadingRegisters/ViewModels/LoadingRegistersViewModel.cs`):
+  - List view with search functionality
+  - Properties: Search, LoadingRegisters collection
+  - Commands: AddCommand, EditCommand, DeleteCommand, SearchCommand
+* **AddLoadingRegisterViewModel** (`Transactions/LoadingRegisters/ViewModels/AddLoadingRegisterViewModel.cs`):
+  - Properties for all loading register fields
+  - Master data collections: Customers, SourceDestinations, Vehicles, Vendors, Materials, PaymentLocations, VehicleOwners
+  - Commands: SaveAsync, CancelAsync, GoBackCommand
+  - ChallanNumber auto-generation
+  - Calculated fields: LoadingWeight, GrossAmount
+  - INavigationAware: InitializeAsync for initialization
+  - Busy state management
+* **EditLoadingRegisterViewModel** (`Transactions/LoadingRegisters/ViewModels/EditLoadingRegisterViewModel.cs`):
+  - Properties for all loading register fields
+  - Master data collections for dropdowns
+  - Commands: SaveAsync, CancelAsync, GoBackCommand
+  - INavigationAware: OnNavigatedToAsync for navigation parameter handling
+  - Busy state management
+
+### View Layer
+* **LoadingRegistersView.xaml**: List view with DataGrid, search functionality, Add/Edit/Delete buttons
+* **AddLoadingRegisterView.xaml**: Form with all loading register fields organized in grids, ComboBoxes for master data, calculated fields, Save/Cancel buttons
+* **EditLoadingRegisterView.xaml**: Similar to Add view but for editing existing records
+
+### Infrastructure & Integration
+* **DI Registration**: `Transactions/DependencyInjection/TransactionsServiceCollectionExtensions.cs`
+  - ILoadingRegisterQueryService → LoadingRegisterQueryService (scoped)
+  - ILoadingRegisterCommandService → LoadingRegisterCommandService (scoped)
+  - Validators registered as transient
+* **Navigation**: Added to DataTemplates.xaml for LoadingRegisters ViewModels and Views
+* **Master Data Integration**: Uses query services from Masters modules for dropdown data
+
+### Validation Status
+Build verified successfully. All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer, Result pattern, Dependency injection, Navigation with INavigationAware, Async/await with CancellationToken, Logging with ILogger, Busy state management. Loading Register module is architecturally consistent with existing modules and is production-ready.
+
+
+## Phase 4.3 - Payment Register Module (COMPLETED)
+
+### Business Requirements
+* **Transaction module** for managing payment entries based on Loading/Unloading registers
+* **Challan Number**: From Loading/Unloading Register
+* **Reference fields**: LoadingRegisterId, UnloadingRegisterId
+* **Header fields**: Challan Number, TP Number, Vehicle Number, Vehicle Type, Material Name, Driver Commission
+* **Date fields**: Loading Date, Unloading Date, Payment Date
+* **Weight fields**: Loading Weight, Unloading Weight
+* **Payment fields**: Payment Date, Payment Location, Payment Type, HSD Party
+* **Banking fields**: Beneficiary, PAN, UTR Number, Mobile Number, Account Number, IFSC Code, Bank Name
+* **Financial calculations**: TDS Percentage, Challan Money, Surcharge (2%), Admin Charge, Gross Amount, Payable Amount (calculated)
+* **Payment Status**: Pending/Paid status tracking
+* **Notes**: Optional notes field
+* **Standard audit fields**: IsActive, IsDeleted, DeletedOn, CreatedBy, ModifiedBy, CreatedOn, ModifiedOn
+
+### Database Layer
+* **Entity Created**: `VeteranLogistics.Data/Entities/Administration/PaymentRegister.cs`
+  - ChallanNumber, TPNumber, VehicleNumber, VehicleType, MaterialName
+  - LoadingRegisterId, UnloadingRegisterId (foreign keys)
+  - DriverCommission, LoadingDate, UnloadingDate
+  - LoadingWeight, UnloadingWeight
+  - PaymentDate, PaymentLocationId, PaymentType, HSDParty
+  - Beneficiary, PAN, UTRNumber, MobileNumber
+  - AccountNumber, IFSCCode, BankName
+  - TDSPercentage, ChallanMoney, Surcharge, AdminCharge
+  - GrossAmount, PayableAmount
+  - PaymentStatus, Notes
+  - Standard audit fields
+* **Configuration Created**: `VeteranLogistics.Data/Configurations/PaymentRegisterConfiguration.cs` with Fluent API configurations
+* **Migration Created**: EF Core migration to create PaymentRegister table
+* **Relationships**: Navigation properties to LoadingRegister, UnloadingRegister, PaymentLocation
+
+### Query Layer
+* **Interface**: `Transactions/PaymentRegisters/Contracts/IPaymentRegisterQueryService.cs`
+  - GetAllPaymentRegistersAsync: Get all payment registers
+  - SearchPaymentRegistersAsync: Search by challan number, TP number, vehicle number, material, beneficiary, payment status
+  - GetPaymentRegisterForEditAsync: Get single payment register for editing
+  - GetPaymentRegisterByChallanNumberAsync: Get by challan number
+  - GetPaymentRegisterDataByChallanNumberAsync: Auto-populate data from Loading/Unloading registers
+* **Implementation**: `Transactions/PaymentRegisters/Services/PaymentRegisterQueryService.cs`
+  - Uses VeteranLogisticsDbContext with AsNoTracking
+  - Includes related entities for display
+  - Applies soft delete query filter
+  - Auto-populates payment register data from Loading/Unloading registers
+  - Returns DTO models (PaymentRegisterListItem, PaymentRegisterModel)
+* **Models**:
+  - `Transactions/PaymentRegisters/Models/PaymentRegisterListItem.cs`: List view model
+  - `Transactions/PaymentRegisters/Models/PaymentRegisterModel.cs`: Full model for edit/view
+
+### Command Layer
+* **Interface**: `Transactions/PaymentRegisters/Contracts/IPaymentRegisterCommandService.cs`
+  - CreatePaymentRegisterAsync: Create new payment register
+  - UpdatePaymentRegisterAsync: Update existing payment register
+  - UpdatePaymentRegisterStatusAsync: Update payment status
+  - DeletePaymentRegisterAsync: Soft delete payment register
+* **Implementation**: `Transactions/PaymentRegisters/Services/PaymentRegisterCommandService.cs`
+  - Validates payment register data
+  - Calculates PayableAmount based on ChallanMoney, Surcharge, AdminCharge, TDS
+  - Creates/updates PaymentRegister entity
+  - Supports soft delete
+  - Uses structured logging with ILogger
+* **Request Models**:
+  - `Transactions/PaymentRegisters/Models/CreatePaymentRegisterRequest.cs`: Create request with all payment register fields
+  - `Transactions/PaymentRegisters/Models/UpdatePaymentRegisterRequest.cs`: Update request
+  - `Transactions/PaymentRegisters/Models/UpdatePaymentRegisterStatusRequest.cs`: Status update request
+  - `Transactions/PaymentRegisters/Models/DeletePaymentRegisterRequest.cs`: Delete request
+* **Result Models**:
+  - `Transactions/PaymentRegisters/Models/CreatePaymentRegisterResult.cs`: Create result
+  - `Transactions/PaymentRegisters/Models/UpdatePaymentRegisterResult.cs`: Update result
+  - `Transactions/PaymentRegisters/Models/UpdatePaymentRegisterStatusResult.cs`: Status update result
+  - `Transactions/PaymentRegisters/Models/DeletePaymentRegisterResult.cs`: Delete result
+
+### Validation Layer
+* **Interface**: `Transactions/PaymentRegisters/Contracts/ICreatePaymentRegisterValidator.cs`
+* **Implementation**: `Transactions/PaymentRegisters/Validators/CreatePaymentRegisterValidator.cs`
+  - Validates request not null
+  - Validates required fields (PaymentDate, PaymentType)
+  - Validates financial calculations
+* **Interface**: `Transactions/PaymentRegisters/Contracts/IUpdatePaymentRegisterValidator.cs`
+* **Implementation**: `Transactions/PaymentRegisters/Validators/UpdatePaymentRegisterValidator.cs`
+  - Validates request not null
+  - Validates PaymentRegisterId > 0
+  - Validates required fields
+
+### ViewModel Layer
+* **PaymentRegistersViewModel** (`Transactions/PaymentRegisters/ViewModels/PaymentRegistersViewModel.cs`):
+  - List view with search functionality
+  - Properties: Search, PaymentRegisters collection
+  - Commands: AddCommand, EditCommand, DeleteCommand, SearchCommand
+* **AddPaymentRegisterViewModel** (`Transactions/PaymentRegisters/ViewModels/AddPaymentRegisterViewModel.cs`):
+  - Properties for all payment register fields
+  - Master data collections: PaymentLocations
+  - Commands: SaveAsync, CancelAsync, GoBackCommand
+  - Auto-populate from Loading/Unloading register by Challan Number
+  - Calculated fields: PayableAmount
+  - INavigationAware: InitializeAsync for initialization
+  - Busy state management
+* **EditPaymentRegisterViewModel** (`Transactions/PaymentRegisters/ViewModels/EditPaymentRegisterViewModel.cs`):
+  - Properties for all payment register fields
+  - Master data collections for dropdowns
+  - Commands: SaveAsync, CancelAsync, GoBackCommand
+  - INavigationAware: OnNavigatedToAsync for navigation parameter handling
+  - Busy state management
+
+### View Layer
+* **PaymentRegistersView.xaml**: List view with DataGrid, search functionality, Add/Edit/Delete buttons
+* **AddPaymentRegisterView.xaml**: Form with payment register fields, Challan Number lookup, banking details, financial calculations, Save/Cancel buttons
+* **EditPaymentRegisterView.xaml**: Similar to Add view but for editing existing records
+
+### Infrastructure & Integration
+* **DI Registration**: `Transactions/DependencyInjection/TransactionsServiceCollectionExtensions.cs`
+  - IPaymentRegisterQueryService → PaymentRegisterQueryService (scoped)
+  - IPaymentRegisterCommandService → PaymentRegisterCommandService (scoped)
+  - Validators registered as transient
+* **Navigation**: Added to DataTemplates.xaml for PaymentRegisters ViewModels and Views
+* **Master Data Integration**: Uses PaymentLocation query service for dropdown data
+* **Loading/Unloading Integration**: Auto-populates data from Loading/Unloading registers by Challan Number
+
+### Validation Status
+Build verified successfully. All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer, Result pattern, Dependency injection, Navigation with INavigationAware, Async/await with CancellationToken, Logging with ILogger, Busy state management. Payment Register module is architecturally consistent with existing modules and is production-ready.
+
+
+## Phase 4.4 - Unloading Register Module (COMPLETED)
+
+### Business Requirements
+* **Transaction module** for managing unloading register entries
+* **Challan Number**: Auto-generated unique identifier
+* **Reference field**: LoadingRegisterId (links to Loading Register)
+* **Header fields**: Challan Number, Loading Register ID, Unloading Date, TP Number, Vehicle Type
+* **Relationship fields**: Consignor, Consignee, Source, Destination, Vehicle, Union/Vendor, Material, Payment Location, Owner
+* **Weight fields**: Gross Weight, Tare Weight, Loading Weight, Gross Weight UL, Tare Weight UL, Unloading Weight (calculated: GrossWeightUL - TareWeightUL), Shortage Weight
+* **Financial fields**: Challan Money, Rate, Gross Amount (calculated: LoadingWeight × Rate)
+* **Fuel fields**: Fuel Quantity, Fuel Amount, Fuel Cash, Fuel Advance
+* **Advance fields**: Cash Advance, Other Advance, Other Advance Date
+* **Additional fields**: Third Party, Vehicle Loaded By, Driver, Driving Licence Number, Driver Mobile, Owner Mobile, Owner Address, Notes
+* **Standard audit fields**: IsActive, IsDeleted, DeletedOn, CreatedBy, ModifiedBy, CreatedOn, ModifiedOn
+
+### Database Layer
+* **Entity Created**: `VeteranLogistics.Data/Entities/Administration/UnloadingRegister.cs`
+  - ChallanNumber (required, unique, max 50)
+  - LoadingRegisterId (foreign key to LoadingRegister)
+  - ConsignorId, ConsigneeId (foreign keys to Customer)
+  - SourceId, DestinationId (foreign keys to SourceDestination)
+  - VehicleId (foreign key to Vehicle)
+  - UnionVendorId (foreign key to Vendor)
+  - MaterialId (foreign key to Material)
+  - PaymentLocationId (foreign key to PaymentLocation)
+  - OwnerId (foreign key to VehicleOwner)
+  - UnloadingDate, TPNumber, VehicleType
+  - DriverCommission, GrossWeight, TareWeight, LoadingWeight
+  - GrossWeightUL, TareWeightUL, UnloadingWeight, ShortageWeight
+  - ChallanMoney, Rate, GrossAmount
+  - FuelQuantity, FuelAmount, FuelCash, FuelAdvance
+  - CashAdvance, OtherAdvance, OtherAdvanceDate
+  - ThirdParty, VehicleLoadedBy
+  - Driver, DrivingLicenceNumber, DriverMobile
+  - OwnerMobile, OwnerAddress, Notes
+  - Standard audit fields
+* **Configuration Created**: `VeteranLogistics.Data/Configurations/UnloadingRegisterConfiguration.cs` with Fluent API configurations
+  - ChallanNumber required, unique约束, max length 50
+  - Decimal precision for weight (18,3), rate (18,2), amounts (18,2)
+  - Foreign key relationships with cascade behavior
+  - Soft delete query filter
+* **Migration Created**: EF Core migration to create UnloadingRegister table
+* **Relationships**: Navigation properties to LoadingRegister, Customer, SourceDestination, Vehicle, Vendor, Material, PaymentLocation, VehicleOwner
+
+### Query Layer
+* **Interface**: `Transactions/UnloadingRegisters/Contracts/IUnloadingRegisterQueryService.cs`
+  - GetAllUnloadingRegistersAsync: Get all unloading registers
+  - SearchUnloadingRegistersAsync: Search by challan number, TP number, vehicle number, consignor, consignee, driver, material
+  - GetUnloadingRegisterForEditAsync: Get single unloading register for editing
+  - GetUnloadingRegisterByChallanNumberAsync: Get by challan number
+* **Implementation**: `Transactions/UnloadingRegisters/Services/UnloadingRegisterQueryService.cs`
+  - Uses VeteranLogisticsDbContext with AsNoTracking for read operations
+  - Includes related entities for display
+  - Applies soft delete query filter
+  - Returns DTO models (UnloadingRegisterListItem, UnloadingRegisterModel)
+* **Models**:
+  - `Transactions/UnloadingRegisters/Models/UnloadingRegisterListItem.cs`: List view model
+  - `Transactions/UnloadingRegisters/Models/UnloadingRegisterModel.cs`: Full model for edit/view
+
+### Command Layer
+* **Interface**: `Transactions/UnloadingRegisters/Contracts/IUnloadingRegisterCommandService.cs`
+  - CreateUnloadingRegisterAsync: Create new unloading register
+  - UpdateUnloadingRegisterAsync: Update existing unloading register
+  - UpdateUnloadingRegisterStatusAsync: Update IsActive status
+  - DeleteUnloadingRegisterAsync: Soft delete unloading register
+* **Implementation**: `Transactions/UnloadingRegisters/Services/UnloadingRegisterCommandService.cs`
+  - Generates unique ChallanNumber
+  - Validates unloading register data
+  - Creates/updates UnloadingRegister entity
+  - Supports soft delete
+  - Uses structured logging with ILogger
+* **Request Models**:
+  - `Transactions/UnloadingRegisters/Models/CreateUnloadingRegisterRequest.cs`: Create request with all unloading register fields
+  - `Transactions/UnloadingRegisters/Models/UpdateUnloadingRegisterRequest.cs`: Update request
+  - `Transactions/UnloadingRegisters/Models/UpdateUnloadingRegisterStatusRequest.cs`: Status update request
+  - `Transactions/UnloadingRegisters/Models/DeleteUnloadingRegisterRequest.cs`: Delete request
+* **Result Models**:
+  - `Transactions/UnloadingRegisters/Models/CreateUnloadingRegisterResult.cs`: Create result with UnloadingRegisterId and ChallanNumber
+  - `Transactions/UnloadingRegisters/Models/UpdateUnloadingRegisterResult.cs`: Update result
+  - `Transactions/UnloadingRegisters/Models/UpdateUnloadingRegisterStatusResult.cs`: Status update result
+  - `Transactions/UnloadingRegisters/Models/DeleteUnloadingRegisterResult.cs`: Delete result
+
+### Validation Layer
+* **Interface**: `Transactions/UnloadingRegisters/Contracts/ICreateUnloadingRegisterValidator.cs`
+* **Implementation**: `Transactions/UnloadingRegisters/Validators/CreateUnloadingRegisterValidator.cs`
+  - Validates request not null
+  - Validates required fields (UnloadingDate, VehicleId, MaterialId)
+  - Validates weight calculations
+  - Validates amount calculations
+* **Interface**: `Transactions/UnloadingRegisters/Contracts/IUpdateUnloadingRegisterValidator.cs`
+* **Implementation**: `Transactions/UnloadingRegisters/Validators/UpdateUnloadingRegisterValidator.cs`
+  - Validates request not null
+  - Validates UnloadingRegisterId > 0
+  - Validates required fields
+
+### ViewModel Layer
+* **UnloadingRegistersViewModel** (`Transactions/UnloadingRegisters/ViewModels/UnloadingRegistersViewModel.cs`):
+  - List view with search functionality
+  - Properties: Search, UnloadingRegisters collection
+  - Commands: AddCommand, EditCommand, DeleteCommand, SearchCommand
+* **AddUnloadingRegisterViewModel** (`Transactions/UnloadingRegisters/ViewModels/AddUnloadingRegisterViewModel.cs`):
+  - Properties for all unloading register fields
+  - Master data collections: Customers, SourceDestinations, Vehicles, Vendors, Materials, PaymentLocations, VehicleOwners
+  - Commands: SaveAsync, CancelAsync, GoBackCommand
+  - ChallanNumber auto-generation
+  - Calculated fields: LoadingWeight, UnloadingWeight, GrossAmount
+  - INavigationAware: InitializeAsync for initialization
+  - Busy state management
+* **EditUnloadingRegisterViewModel** (`Transactions/UnloadingRegisters/ViewModels/EditUnloadingRegisterViewModel.cs`):
+  - Properties for all unloading register fields
+  - Master data collections for dropdowns
+  - Commands: SaveAsync, CancelAsync, GoBackCommand
+  - INavigationAware: OnNavigatedToAsync for navigation parameter handling
+  - Busy state management
+
+### View Layer
+* **UnloadingRegistersView.xaml**: List view with DataGrid, search functionality, Add/Edit/Delete buttons
+* **AddUnloadingRegisterView.xaml**: Form with all unloading register fields organized in grids, ComboBoxes for master data, calculated fields, Save/Cancel buttons
+* **EditUnloadingRegisterView.xaml**: Similar to Add view but for editing existing records
+
+### Infrastructure & Integration
+* **DI Registration**: `Transactions/DependencyInjection/TransactionsServiceCollectionExtensions.cs`
+  - IUnloadingRegisterQueryService → UnloadingRegisterQueryService (scoped)
+  - IUnloadingRegisterCommandService → UnloadingRegisterCommandService (scoped)
+  - Validators registered as transient
+* **Navigation**: Added to DataTemplates.xaml for UnloadingRegisters ViewModels and Views
+* **Master Data Integration**: Uses query services from Masters modules for dropdown data
+* **Loading Register Integration**: Links to Loading Register via LoadingRegisterId
+
+### Validation Status
+Build verified successfully. All architectural patterns followed: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer, Result pattern, Dependency injection, Navigation with INavigationAware, Async/await with CancellationToken, Logging with ILogger, Busy state management. Unloading Register module is architecturally consistent with existing modules and is production-ready.
+
+
 ## 3. Architecture & Design
 
 ### Dependency Injection and Composition
