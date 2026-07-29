@@ -409,6 +409,74 @@ public sealed record ApplicationPermission
     /// </summary>
     public static readonly ApplicationPermission DeleteVehicleAssignments = new ApplicationPermission("masters.vehicleassignments.delete");
 
+    // Transactions - Loading Registers Permissions
+    /// <summary>
+    /// Permission to view loading registers.
+    /// </summary>
+    public static readonly ApplicationPermission ViewLoadingRegisters = new ApplicationPermission("transactions.loadingregisters.view");
+
+    /// <summary>
+    /// Permission to add loading registers.
+    /// </summary>
+    public static readonly ApplicationPermission AddLoadingRegisters = new ApplicationPermission("transactions.loadingregisters.add");
+
+    /// <summary>
+    /// Permission to edit loading registers.
+    /// </summary>
+    public static readonly ApplicationPermission EditLoadingRegisters = new ApplicationPermission("transactions.loadingregisters.edit");
+
+    /// <summary>
+    /// Permission to delete loading registers.
+    /// </summary>
+    public static readonly ApplicationPermission DeleteLoadingRegisters = new ApplicationPermission("transactions.loadingregisters.delete");
+
+    /// <summary>
+    /// Permission to update loading register status.
+    /// </summary>
+    public static readonly ApplicationPermission UpdateLoadingRegisterStatus = new ApplicationPermission("transactions.loadingregisters.updatestatus");
+
+    // Transactions - Payment Registers Permissions
+    /// <summary>
+    /// Permission to view payment registers.
+    /// </summary>
+    public static readonly ApplicationPermission ViewPaymentRegisters = new ApplicationPermission("transactions.paymentregisters.view");
+
+    /// <summary>
+    /// Permission to add payment registers.
+    /// </summary>
+    public static readonly ApplicationPermission AddPaymentRegisters = new ApplicationPermission("transactions.paymentregisters.add");
+
+    /// <summary>
+    /// Permission to edit payment registers.
+    /// </summary>
+    public static readonly ApplicationPermission EditPaymentRegisters = new ApplicationPermission("transactions.paymentregisters.edit");
+
+    /// <summary>
+    /// Permission to delete payment registers.
+    /// </summary>
+    public static readonly ApplicationPermission DeletePaymentRegisters = new ApplicationPermission("transactions.paymentregisters.delete");
+
+    // Transactions - Unloading Registers Permissions
+    /// <summary>
+    /// Permission to view unloading registers.
+    /// </summary>
+    public static readonly ApplicationPermission ViewUnloadingRegisters = new ApplicationPermission("transactions.unloadingregisters.view");
+
+    /// <summary>
+    /// Permission to add unloading registers.
+    /// </summary>
+    public static readonly ApplicationPermission AddUnloadingRegisters = new ApplicationPermission("transactions.unloadingregisters.add");
+
+    /// <summary>
+    /// Permission to edit unloading registers.
+    /// </summary>
+    public static readonly ApplicationPermission EditUnloadingRegisters = new ApplicationPermission("transactions.unloadingregisters.edit");
+
+    /// <summary>
+    /// Permission to delete unloading registers.
+    /// </summary>
+    public static readonly ApplicationPermission DeleteUnloadingRegisters = new ApplicationPermission("transactions.unloadingregisters.delete");
+
     /// <summary>
     /// Gets all available application permissions.
     /// </summary>

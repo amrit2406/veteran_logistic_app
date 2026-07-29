@@ -113,6 +113,25 @@ public static class PermissionSeed
         new Permission { Module = "Masters", Screen = "DORates", PermissionKey = "masters.dorates.edit", DisplayName = "Edit DO Rate", Description = "Edit existing DO rate", SortOrder = 7, IsActive = true },
         new Permission { Module = "Masters", Screen = "DORates", PermissionKey = "masters.dorates.delete", DisplayName = "Delete DO Rate", Description = "Delete a DO rate", SortOrder = 8, IsActive = true },
 
+        // Transactions - Loading Registers screen
+        new Permission { Module = "Transactions", Screen = "LoadingRegisters", PermissionKey = "transactions.loadingregisters.view", DisplayName = "View Loading Registers", Description = "View list of loading registers", SortOrder = 200, IsActive = true },
+        new Permission { Module = "Transactions", Screen = "LoadingRegisters", PermissionKey = "transactions.loadingregisters.add", DisplayName = "Add Loading Register", Description = "Create a new loading register", SortOrder = 201, IsActive = true },
+        new Permission { Module = "Transactions", Screen = "LoadingRegisters", PermissionKey = "transactions.loadingregisters.edit", DisplayName = "Edit Loading Register", Description = "Edit existing loading register", SortOrder = 202, IsActive = true },
+        new Permission { Module = "Transactions", Screen = "LoadingRegisters", PermissionKey = "transactions.loadingregisters.delete", DisplayName = "Delete Loading Register", Description = "Delete a loading register", SortOrder = 203, IsActive = true },
+        new Permission { Module = "Transactions", Screen = "LoadingRegisters", PermissionKey = "transactions.loadingregisters.updatestatus", DisplayName = "Update Loading Register Status", Description = "Update loading register status", SortOrder = 204, IsActive = true },
+
+        // Transactions - Payment Registers screen
+        new Permission { Module = "Transactions", Screen = "PaymentRegisters", PermissionKey = "transactions.paymentregisters.view", DisplayName = "View Payment Registers", Description = "View list of payment registers", SortOrder = 210, IsActive = true },
+        new Permission { Module = "Transactions", Screen = "PaymentRegisters", PermissionKey = "transactions.paymentregisters.add", DisplayName = "Add Payment Register", Description = "Create a new payment register", SortOrder = 211, IsActive = true },
+        new Permission { Module = "Transactions", Screen = "PaymentRegisters", PermissionKey = "transactions.paymentregisters.edit", DisplayName = "Edit Payment Register", Description = "Edit existing payment register", SortOrder = 212, IsActive = true },
+        new Permission { Module = "Transactions", Screen = "PaymentRegisters", PermissionKey = "transactions.paymentregisters.delete", DisplayName = "Delete Payment Register", Description = "Delete a payment register", SortOrder = 213, IsActive = true },
+
+        // Transactions - Unloading Registers screen
+        new Permission { Module = "Transactions", Screen = "UnloadingRegisters", PermissionKey = "transactions.unloadingregisters.view", DisplayName = "View Unloading Registers", Description = "View list of unloading registers", SortOrder = 220, IsActive = true },
+        new Permission { Module = "Transactions", Screen = "UnloadingRegisters", PermissionKey = "transactions.unloadingregisters.add", DisplayName = "Add Unloading Register", Description = "Create a new unloading register", SortOrder = 221, IsActive = true },
+        new Permission { Module = "Transactions", Screen = "UnloadingRegisters", PermissionKey = "transactions.unloadingregisters.edit", DisplayName = "Edit Unloading Register", Description = "Edit existing unloading register", SortOrder = 222, IsActive = true },
+        new Permission { Module = "Transactions", Screen = "UnloadingRegisters", PermissionKey = "transactions.unloadingregisters.delete", DisplayName = "Delete Unloading Register", Description = "Delete an unloading register", SortOrder = 223, IsActive = true }
+
     };
 
     /// <summary>

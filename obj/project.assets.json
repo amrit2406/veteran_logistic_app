@@ -3943,11 +3943,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\app\\veteran_logistic_app\\veteran_logistic.csproj",
+      "projectUniqueName": "D:\\app\\veteran_logistic_app\\veteran_logistic.csproj",
       "projectName": "veteran_logistic",
-      "projectPath": "d:\\app\\veteran_logistic_app\\veteran_logistic.csproj",
+      "projectPath": "D:\\app\\veteran_logistic_app\\veteran_logistic.csproj",
       "packagesPath": "C:\\Users\\infov\\.nuget\\packages\\",
-      "outputPath": "d:\\app\\veteran_logistic_app\\obj\\",
+      "outputPath": "D:\\app\\veteran_logistic_app\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\infov\\AppData\\Roaming\\NuGet\\NuGet.Config",
