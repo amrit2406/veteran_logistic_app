@@ -4,6 +4,8 @@ using System.Threading;
 using System.Windows;
 using veteran_logistic.Transactions.PaymentRegisters.Contracts;
 using veteran_logistic.Transactions.PaymentRegisters.Models;
+using veteran_logistic.Masters.PaymentLocations.Contracts;
+using veteran_logistic.Masters.PaymentLocations.Models;
 using veteran_logistic.MVVM;
 using veteran_logistic.Navigation;
 
@@ -17,9 +19,13 @@ public sealed partial class AddPaymentRegisterViewModel : ViewModelBase
     private readonly IPaymentRegisterQueryService _paymentRegisterQueryService;
     private readonly IPaymentRegisterCommandService _paymentRegisterCommandService;
     private readonly INavigationService _navigationService;
+    private readonly IPaymentLocationQueryService _paymentLocationQueryService;
     private string _challanNumber = string.Empty;
     private string _validationError = string.Empty;
     private PaymentRegisterModel? _paymentRegisterData;
+    private IReadOnlyList<PaymentLocationListItem> _paymentLocations = [];
+    private IReadOnlyList<string> _paymentTypes = ["Cash", "Cheque", "From Account"];
+    private IReadOnlyList<string> _paymentStatuses = ["Pending", "Paid"];
 
     /// <summary>
     /// Command to navigate back to the previous screen.
@@ -37,11 +43,13 @@ public sealed partial class AddPaymentRegisterViewModel : ViewModelBase
     /// <param name="paymentRegisterQueryService">The payment register query service.</param>
     /// <param name="paymentRegisterCommandService">The payment register command service.</param>
     /// <param name="navigationService">The navigation service.</param>
-    public AddPaymentRegisterViewModel(IPaymentRegisterQueryService paymentRegisterQueryService, IPaymentRegisterCommandService paymentRegisterCommandService, INavigationService navigationService)
+    /// <param name="paymentLocationQueryService">The payment location query service.</param>
+    public AddPaymentRegisterViewModel(IPaymentRegisterQueryService paymentRegisterQueryService, IPaymentRegisterCommandService paymentRegisterCommandService, INavigationService navigationService, IPaymentLocationQueryService paymentLocationQueryService)
     {
         _paymentRegisterQueryService = paymentRegisterQueryService ?? throw new ArgumentNullException(nameof(paymentRegisterQueryService));
         _paymentRegisterCommandService = paymentRegisterCommandService ?? throw new ArgumentNullException(nameof(paymentRegisterCommandService));
         _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
+        _paymentLocationQueryService = paymentLocationQueryService ?? throw new ArgumentNullException(nameof(paymentLocationQueryService));
 
         Title = "Add Payment Register";
         GoBackCommand = new AsyncRelayCommand(ExecuteGoBackAsync, () => CanGoBack);
@@ -60,7 +68,18 @@ public sealed partial class AddPaymentRegisterViewModel : ViewModelBase
             return;
         }
 
-        await base.InitializeAsync(cancellationToken);
+        try
+        {
+            // Load payment locations
+            var paymentLocations = await _paymentLocationQueryService.GetAllPaymentLocationsAsync(cancellationToken);
+            PaymentLocations = paymentLocations;
+            
+            await base.InitializeAsync(cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            ValidationError = $"Error loading payment locations: {ex.Message}";
+        }
     }
 
     public override async Task OnNavigatedToAsync(CancellationToken cancellationToken = default)
@@ -113,6 +132,25 @@ public sealed partial class AddPaymentRegisterViewModel : ViewModelBase
         get => _paymentRegisterData;
         set => SetProperty(ref _paymentRegisterData, value);
     }
+
+    /// <summary>
+    /// Gets the collection of payment locations.
+    /// </summary>
+    public IReadOnlyList<PaymentLocationListItem> PaymentLocations
+    {
+        get => _paymentLocations;
+        private set => SetProperty(ref _paymentLocations, value);
+    }
+
+    /// <summary>
+    /// Gets the collection of payment types.
+    /// </summary>
+    public IReadOnlyList<string> PaymentTypes => _paymentTypes;
+
+    /// <summary>
+    /// Gets the collection of payment statuses.
+    /// </summary>
+    public IReadOnlyList<string> PaymentStatuses => _paymentStatuses;
 
     /// <summary>
     /// Gets or sets the payment date.
@@ -200,6 +238,11 @@ public sealed partial class AddPaymentRegisterViewModel : ViewModelBase
     public bool IsActive { get; set; } = true;
 
     /// <summary>
+    /// Gets or sets the payment status.
+    /// </summary>
+    public string PaymentStatus { get; set; } = "Pending";
+
+    /// <summary>
     /// Command to load challan data.
     /// </summary>
     [RelayCommand(CanExecute = nameof(CanExecuteLoadChallanData))]
@@ -268,7 +311,8 @@ public sealed partial class AddPaymentRegisterViewModel : ViewModelBase
             ChallanMoney = ChallanMoney,
             Surcharge = Surcharge,
             AdminCharge = AdminCharge,
-            IsActive = IsActive
+            IsActive = IsActive,
+            PaymentStatus = PaymentStatus
         };
 
         SetBusy("Saving payment register...");

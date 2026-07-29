@@ -95,9 +95,6 @@ public sealed class PaymentRegisterCommandService : IPaymentRegisterCommandServi
             var tdsAmount = grossAmount * (request.TDSPercentage / 100);
             var payableAmount = grossAmount + request.ChallanMoney - tdsAmount - request.Surcharge - request.AdminCharge;
 
-            // Determine payment status
-            var paymentStatus = payableAmount > 0 ? "Pending" : "Fully Paid";
-
             var paymentRegister = new PaymentRegisterEntity
             {
                 ChallanNumber = request.ChallanNumber,
@@ -130,7 +127,7 @@ public sealed class PaymentRegisterCommandService : IPaymentRegisterCommandServi
                 AdminCharge = request.AdminCharge,
                 GrossAmount = grossAmount,
                 PayableAmount = payableAmount,
-                PaymentStatus = paymentStatus,
+                PaymentStatus = request.PaymentStatus,
                 IsActive = request.IsActive,
                 CreatedOn = DateTime.UtcNow,
                 CreatedBy = "System", // TODO: Replace with actual user from session
@@ -181,9 +178,6 @@ public sealed class PaymentRegisterCommandService : IPaymentRegisterCommandServi
             var tdsAmount = grossAmount * (request.TDSPercentage / 100);
             var payableAmount = grossAmount + request.ChallanMoney - tdsAmount - request.Surcharge - request.AdminCharge;
 
-            // Determine payment status
-            var paymentStatus = payableAmount > 0 ? "Pending" : "Fully Paid";
-
             paymentRegister.PaymentDate = request.PaymentDate;
             paymentRegister.PaymentLocationId = request.PaymentLocationId;
             paymentRegister.PaymentType = request.PaymentType;
@@ -201,7 +195,7 @@ public sealed class PaymentRegisterCommandService : IPaymentRegisterCommandServi
             paymentRegister.Surcharge = request.Surcharge;
             paymentRegister.AdminCharge = request.AdminCharge;
             paymentRegister.PayableAmount = payableAmount;
-            paymentRegister.PaymentStatus = paymentStatus;
+            paymentRegister.PaymentStatus = request.PaymentStatus;
             paymentRegister.IsActive = request.IsActive;
             paymentRegister.ModifiedOn = DateTime.UtcNow;
             paymentRegister.ModifiedBy = "System"; // TODO: Replace with actual user from session

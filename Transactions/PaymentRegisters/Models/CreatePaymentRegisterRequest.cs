@@ -104,4 +104,9 @@ public sealed class CreatePaymentRegisterRequest
     /// Gets or sets whether the payment register is active.
     /// </summary>
     public bool IsActive { get; set; } = true;
+
+    /// <summary>
+    /// Gets or sets the payment status.
+    /// </summary>
+    public string PaymentStatus { get; set; } = "Pending";
 }

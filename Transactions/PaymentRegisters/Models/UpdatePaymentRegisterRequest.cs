@@ -109,4 +109,9 @@ public sealed class UpdatePaymentRegisterRequest
     /// Gets or sets whether the payment register is active.
     /// </summary>
     public bool IsActive { get; set; }
+
+    /// <summary>
+    /// Gets or sets the payment status.
+    /// </summary>
+    public string PaymentStatus { get; set; } = string.Empty;
 }

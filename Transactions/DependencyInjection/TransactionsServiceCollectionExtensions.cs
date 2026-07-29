@@ -11,6 +11,7 @@ using veteran_logistic.Transactions.PaymentRegisters.Contracts;
 using veteran_logistic.Transactions.PaymentRegisters.Services;
 using veteran_logistic.Transactions.PaymentRegisters.Validators;
 using veteran_logistic.Transactions.PaymentRegisters.ViewModels;
+using veteran_logistic.Masters.PaymentLocations.Contracts;
 
 namespace veteran_logistic.Transactions.DependencyInjection;
 

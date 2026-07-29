@@ -309,10 +309,12 @@
                                    Style="{StaticResource BodyTextBlockStyle}"
                                    VerticalAlignment="Center"
                                    Margin="{StaticResource ExtraSmall}" />
-                        <TextBox Grid.Row="1" Grid.Column="1"
-                                 Text="{Binding PaymentType, UpdateSourceTrigger=PropertyChanged}"
-                                 Height="{StaticResource StandardControlHeight}"
-                                 Margin="{StaticResource ExtraSmall}" />
+                        <ComboBox Grid.Row="1" Grid.Column="1"
+                                  ItemsSource="{Binding PaymentTypes}"
+                                  SelectedItem="{Binding PaymentType}"
+                                  Height="{StaticResource StandardControlHeight}"
+                                  Margin="{StaticResource ExtraSmall}"
+                                  IsEditable="False" />
 
                         <TextBlock Grid.Row="1" Grid.Column="3" Text="HSD Party"
                                    Style="{StaticResource BodyTextBlockStyle}"
@@ -503,7 +505,7 @@
                     </Grid>
                 </Border>
 
-                <!-- Payment Status (Read-Only) -->
+                <!-- Payment Status -->
                 <Border Background="{DynamicResource SurfaceBrush}"
                         BorderBrush="{DynamicResource BorderBrush}"
                         BorderThickness="{StaticResource StandardBorderThickness}"
@@ -520,12 +522,12 @@
                                    Style="{StaticResource BodyTextBlockStyle}"
                                    VerticalAlignment="Center"
                                    Margin="{StaticResource ExtraSmall}" />
-                        <TextBox Grid.Column="1"
-                                 Text="{Binding PaymentStatus, Mode=OneWay}"
-                                 IsReadOnly="True"
-                                 Height="{StaticResource StandardControlHeight}"
-                                 Margin="{StaticResource ExtraSmall}"
-                                 Background="{DynamicResource DisabledBrush}" />
+                        <ComboBox Grid.Column="1"
+                                  ItemsSource="{Binding PaymentStatuses}"
+                                  SelectedItem="{Binding PaymentStatus}"
+                                  Height="{StaticResource StandardControlHeight}"
+                                  Margin="{StaticResource ExtraSmall}"
+                                  IsEditable="False" />
                     </Grid>
                 </Border>
 

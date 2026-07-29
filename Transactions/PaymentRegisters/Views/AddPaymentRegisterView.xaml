@@ -245,10 +245,12 @@
                                    Style="{StaticResource BodyTextBlockStyle}"
                                    VerticalAlignment="Center"
                                    Margin="{StaticResource ExtraSmall}" />
-                        <TextBox Grid.Row="1" Grid.Column="1"
-                                 Text="{Binding PaymentType, UpdateSourceTrigger=PropertyChanged}"
-                                 Height="{StaticResource StandardControlHeight}"
-                                 Margin="{StaticResource ExtraSmall}" />
+                        <ComboBox Grid.Row="1" Grid.Column="1"
+                                  ItemsSource="{Binding PaymentTypes}"
+                                  SelectedItem="{Binding PaymentType}"
+                                  Height="{StaticResource StandardControlHeight}"
+                                  Margin="{StaticResource ExtraSmall}"
+                                  IsEditable="False" />
 
                         <TextBlock Grid.Row="1" Grid.Column="3" Text="HSD Party"
                                    Style="{StaticResource BodyTextBlockStyle}"
@@ -415,6 +417,8 @@
                             <ColumnDefinition Width="16" />
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" MinWidth="150" />
+                            <ColumnDefinition Width="*" MinWidth="200" />
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Row="0" Grid.Column="0" Text="Notes"
@@ -437,6 +441,17 @@
                                    Style="{StaticResource BodyTextBlockStyle}"
                                    VerticalAlignment="Center"
                                    Margin="{StaticResource Small}" />
+
+                        <TextBlock Grid.Row="0" Grid.Column="5" Text="Payment Status"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="{StaticResource ExtraSmall}" />
+                        <ComboBox Grid.Row="0" Grid.Column="6"
+                                  ItemsSource="{Binding PaymentStatuses}"
+                                  SelectedItem="{Binding PaymentStatus}"
+                                  Height="{StaticResource StandardControlHeight}"
+                                  Margin="{StaticResource ExtraSmall}"
+                                  IsEditable="False" />
                     </Grid>
                 </Border>
 
