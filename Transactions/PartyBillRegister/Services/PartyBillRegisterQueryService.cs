@@ -202,7 +202,7 @@ public sealed class PartyBillRegisterQueryService : IPartyBillRegisterQueryServi
         var existingLoadingRegisterIds = await _dbContext.PartyBillRegisterDetails
             .AsNoTracking()
             .Include(pbrd => pbrd.PartyBillRegister)
-            .Where(pbrd => pbrd.PartyBillRegister.IsActive)
+            .Where(pbrd => pbrd.PartyBillRegister != null && pbrd.PartyBillRegister.IsActive)
             .Select(pbrd => pbrd.LoadingRegisterId)
             .Distinct()
             .ToListAsync(cancellationToken)

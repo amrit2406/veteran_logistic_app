@@ -345,7 +345,7 @@ public sealed partial class EditPartyBillRegisterViewModel : ViewModelBase, INav
         PartyId = partyBillRegister.PartyId;
         PartyName = partyBillRegister.PartyName;
         ThirdPartyName = partyBillRegister.ThirdPartyName;
-        PermitNumber = partyBillRegister.PermitNumber;
+        PermitNumber = partyBillRegister.PermitNumber ?? string.Empty;
         Remarks = partyBillRegister.Remarks;
 
         // Populate calculated totals
