@@ -5,6 +5,7 @@ using veteran_logistic.Authorization.DependencyInjection;
 using veteran_logistic.FinancialYear.DependencyInjection;
 using veteran_logistic.Masters.DependencyInjection;
 using veteran_logistic.Transactions.DependencyInjection;
+using veteran_logistic.Reports.DependencyInjection;
 using veteran_logistic.Services.Dialog;
 using veteran_logistic.Services.Notification;
 using VeteranLogistics.Data.DependencyInjection;
@@ -56,6 +57,7 @@ public static class ServiceCollectionExtensions
         services.AddAdministration();
         services.AddMasters();
         services.AddTransactions();
+        services.AddReports();
 
         // Bind strongly-typed options from configuration so components can receive IOptions<T>
         if (configuration is not null)

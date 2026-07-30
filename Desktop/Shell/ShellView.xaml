@@ -112,12 +112,11 @@
                     <MenuItem Header="Unloading Registers" Command="{Binding NavigateToUnloadingRegistersCommand}" />
                     <MenuItem Header="Payment Registers" Command="{Binding NavigateToPaymentRegistersCommand}" />
                     <MenuItem Header="Party Bill Registers" Command="{Binding NavigateToPartyBillRegistersCommand}" />
-                    <MenuItem Header="Orders" />
-                    <MenuItem Header="Shipments" />
+                    <!-- <MenuItem Header="Orders" />
+                    <MenuItem Header="Shipments" /> -->
                 </MenuItem>
                 <MenuItem Header="Reports" Style="{StaticResource TopMenuItemStyle}">
-                    <MenuItem Header="Sales" />
-                    <MenuItem Header="Inventory" />
+                    <MenuItem Header="Loading Report" Command="{Binding NavigateToLoadingReportCommand}" />
                 </MenuItem>
                 <MenuItem Header="Administration" Style="{StaticResource TopMenuItemStyle}">
                     <MenuItem Header="Users" Command="{Binding NavigateToUsersCommand}" />

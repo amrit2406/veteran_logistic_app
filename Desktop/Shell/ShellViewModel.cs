@@ -141,6 +141,11 @@ public sealed class ShellViewModel : ObservableObject
     public IAsyncRelayCommand NavigateToPartyBillRegistersCommand { get; }
 
     /// <summary>
+    /// Command to navigate to the Loading Report screen.
+    /// </summary>
+    public IAsyncRelayCommand NavigateToLoadingReportCommand { get; }
+
+    /// <summary>
     /// Command to navigate back to the previous screen.
     /// </summary>
     public IAsyncRelayCommand GoBackCommand { get; }
@@ -180,6 +185,7 @@ public sealed class ShellViewModel : ObservableObject
         NavigateToUnloadingRegistersCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Transactions.UnloadingRegisters.ViewModels.UnloadingRegistersViewModel>(), () => CanNavigateToUnloadingRegisters());
         NavigateToPaymentRegistersCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Transactions.PaymentRegisters.ViewModels.PaymentRegistersViewModel>(), () => CanNavigateToPaymentRegisters());
         NavigateToPartyBillRegistersCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Transactions.PartyBillRegister.ViewModels.PartyBillRegistersViewModel>(), () => CanNavigateToPartyBillRegisters());
+        NavigateToLoadingReportCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Reports.LoadingReport.ViewModels.LoadingReportViewModel>(), () => CanNavigateToLoadingReport());
         GoBackCommand = new AsyncRelayCommand(ExecuteGoBackAsync);
         navigationService.CurrentViewModelChanged += OnCurrentViewModelChanged;
         _currentViewModel = ResolveShellContent(navigationService.CurrentViewModel) ?? _placeholder;
@@ -217,6 +223,7 @@ public sealed class ShellViewModel : ObservableObject
         ((AsyncRelayCommand)NavigateToUnloadingRegistersCommand).NotifyCanExecuteChanged();
         ((AsyncRelayCommand)NavigateToPaymentRegistersCommand).NotifyCanExecuteChanged();
         ((AsyncRelayCommand)NavigateToPartyBillRegistersCommand).NotifyCanExecuteChanged();
+        ((AsyncRelayCommand)NavigateToLoadingReportCommand).NotifyCanExecuteChanged();
     }
 
     private bool CanNavigateToUsers()
@@ -315,6 +322,11 @@ public sealed class ShellViewModel : ObservableObject
     }
 
     private bool CanNavigateToPartyBillRegisters()
+    {
+        return true; // TODO: Add permission check when permission is defined
+    }
+
+    private bool CanNavigateToLoadingReport()
     {
         return true; // TODO: Add permission check when permission is defined
     }

@@ -2810,6 +2810,55 @@ Build verified successfully. All architectural patterns followed: MVVM with Comm
 * `VeteranLogistics.Shared\Validation\ValidationError.cs`
 * `VeteranLogistics.Shared\Validation\ValidationResult.cs`
 
+### Reports Module - Phase 5.1: Loading Report
+* **Status**: ✅ COMPLETED (2026-07-30)
+* **Business Requirements**: Loading Report module for reporting on loading register data
+* **Data Source**: Reads from existing Loading Register (no schema changes)
+* **DTOs Created**:
+  - `Reports/LoadingReport/DTOs/LoadingReportItem.cs` - 22 fields for report display
+  - `Reports/LoadingReport/DTOs/LoadingReportFilter.cs` - 16 filter criteria
+  - `Reports/LoadingReport/DTOs/LoadingReportTotals.cs` - 8 calculated totals
+* **Query Layer**:
+  - `Reports/LoadingReport/Contracts/ILoadingReportQueryService.cs` - Query interface
+  - `Reports/LoadingReport/Services/LoadingReportQueryService.cs` - Implementation with:
+    - AsNoTracking() for performance
+    - ConfigureAwait(false) for async operations
+    - CancellationToken support
+    - Efficient LINQ projections to DTOs
+    - Filter application before materialization
+    - Search with EF.Functions.Like
+    - Sorting on 8 fields (Loading Date, Challan Number, Vehicle, Customer, Material, Gross Weight, Loading Weight, Gross Amount)
+    - Totals calculation using GroupBy
+* **ViewModel**: `Reports/LoadingReport/ViewModels/LoadingReportViewModel.cs`
+  - Search with 300ms debounce
+  - Filter management (Apply, Clear)
+  - Sorting commands for 8 fields
+  - Busy state pattern
+  - Navigation support
+* **View**: `Reports/LoadingReport/Views/LoadingReportView.xaml`
+  - Header with title and toolbar (Back, Refresh)
+  - Expandable Filter Panel with date pickers and text boxes
+  - Search Section with debounced search textbox
+  - Loading Indicator with busy state
+  - DataGrid with 22 columns, read-only, sortable
+  - Totals Section displaying all 8 totals
+* **Export Services** (Placeholder implementations):
+  - `Reports/LoadingReport/Export/Pdf/LoadingReportPdfExporter.cs` - PDF export interface and implementation
+  - `Reports/LoadingReport/Export/Excel/LoadingReportExcelExporter.cs` - Excel export interface and implementation
+  - TODO: Implement actual PDF/Excel generation using libraries (QuestPDF, ClosedXML)
+* **Dependency Injection**:
+  - `Reports/DependencyInjection/ReportsServiceCollectionExtensions.cs` - Reports registration
+  - `Reports/LoadingReport/DependencyInjection/LoadingReportServiceCollectionExtensions.cs` - Loading Report registration
+  - Registered in `DependencyInjection/ServiceCollectionExtensions.cs`
+* **Navigation**:
+  - Added `NavigateToLoadingReportCommand` to ShellViewModel
+  - Added LoadingReportViewModel DataTemplate in Resources/DataTemplates.xaml
+* **Filter Support**: Date Range, Company, Customer, Consignor, Consignee, Source, Destination, Vehicle, Material, Driver, Owner, Union/Vendor, Payment Location, Challan Number, TP Number, Status
+* **Search Support**: Debounced (300ms) search across Challan Number, TP Number, Vehicle Number, Consignor, Consignee, Driver, Material
+* **Totals**: Record Count, Total Gross Weight, Total Tare Weight, Total Loading Weight, Total Gross Amount, Total Fuel Amount, Total Cash Advance, Total Other Advance
+* **Build Status**: ✅ Build succeeded with no errors or warnings
+* **Architecture Compliance**: ✅ All patterns followed (MVVM, DI, Navigation, Busy State, Query/Command Separation, Logging)
+
 ## 6. Document History
 
 * **Created**: 2026-07-02

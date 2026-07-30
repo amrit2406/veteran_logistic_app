@@ -55,6 +55,8 @@ namespace veteran_logistic
         private async void Application_Startup(object sender, StartupEventArgs e)
 
         {
+            // Configure QuestPDF license (Community license for open source projects)
+            QuestPDF.Settings.License = QuestPDF.Infrastructure.LicenseType.Community;
 
             // Build host using Host.CreateDefaultBuilder and central HostConfiguration
 
