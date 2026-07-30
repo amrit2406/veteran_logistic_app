@@ -1685,3 +1685,367 @@ Starting Excel export for loading report to C:\Users\infov\Downloads\LoadingRepo
 [Thread: 2]
 
 Excel export completed successfully for 2 records
+[2026-07-30 18:11:14 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-07-30 18:11:14 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 source/destinations
+[2026-07-30 18:11:14 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 materials
+[2026-07-30 18:11:14 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating unloading report with filters and search
+[2026-07-30 18:11:14 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+[2026-07-30 18:11:14 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Unloading report generated successfully with 1 records
+[2026-07-30 18:11:14 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating unloading report with filters and search
+[2026-07-30 18:11:14 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Unloading report generated successfully with 1 records
+[2026-07-30 18:11:17 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating unloading report with filters and search
+[2026-07-30 18:11:17 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Unloading report generated successfully with 1 records
+[2026-07-30 18:11:26 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Starting PDF export for unloading report to C:\Users\infov\Downloads\UnloadingReport_20260730_181122.pdf
+[2026-07-30 18:11:26 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+PDF export completed successfully for 1 records
+[2026-07-30 18:11:30 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Starting Excel export for unloading report to C:\Users\infov\Downloads\UnloadingReport_20260730_181128.xlsx
+[2026-07-30 18:11:30 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Excel export completed successfully for 1 records
+[2026-07-30 18:12:56 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-07-30 18:12:56 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 source/destinations
+[2026-07-30 18:12:56 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 materials
+[2026-07-30 18:12:56 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating loading report with filters and search
+[2026-07-30 18:12:56 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+[2026-07-30 18:12:56 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Loading report generated successfully with 2 records
+[2026-07-30 18:12:56 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating loading report with filters and search
+[2026-07-30 18:12:56 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Loading report generated successfully with 2 records
+[2026-07-30 18:13:04 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-07-30 18:13:04 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 source/destinations
+[2026-07-30 18:13:04 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 materials
+[2026-07-30 18:13:04 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating unloading report with filters and search
+[2026-07-30 18:13:04 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Unloading report generated successfully with 1 records
+[2026-07-30 18:13:04 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating unloading report with filters and search
+[2026-07-30 18:13:04 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Unloading report generated successfully with 1 records
+[2026-07-30 18:13:26 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating unloading report with filters and search
+[2026-07-30 18:13:26 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Unloading report generated successfully with 1 records
+[2026-07-30 18:13:29 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-07-30 18:13:29 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 source/destinations
+[2026-07-30 18:13:29 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 materials
+[2026-07-30 18:13:29 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating loading report with filters and search
+[2026-07-30 18:13:29 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Loading report generated successfully with 2 records
+[2026-07-30 18:13:29 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating loading report with filters and search
+[2026-07-30 18:13:29 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Loading report generated successfully with 2 records
+[2026-07-30 18:13:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-07-30 18:13:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 source/destinations
+[2026-07-30 18:13:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 materials
+[2026-07-30 18:13:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating loading report with filters and search
+[2026-07-30 18:13:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Loading report generated successfully with 2 records
+[2026-07-30 18:13:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating loading report with filters and search
+[2026-07-30 18:13:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Loading report generated successfully with 2 records
+[2026-07-30 18:13:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-07-30 18:13:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 source/destinations
+[2026-07-30 18:13:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 materials
+[2026-07-30 18:13:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating unloading report with filters and search
+[2026-07-30 18:13:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Unloading report generated successfully with 1 records
+[2026-07-30 18:13:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating unloading report with filters and search
+[2026-07-30 18:13:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Unloading report generated successfully with 1 records

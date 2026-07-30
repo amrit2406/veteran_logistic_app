@@ -117,6 +117,7 @@
                 </MenuItem>
                 <MenuItem Header="Reports" Style="{StaticResource TopMenuItemStyle}">
                     <MenuItem Header="Loading Report" Command="{Binding NavigateToLoadingReportCommand}" />
+                    <MenuItem Header="Unloading Report" Command="{Binding NavigateToUnloadingReportCommand}" />
                 </MenuItem>
                 <MenuItem Header="Administration" Style="{StaticResource TopMenuItemStyle}">
                     <MenuItem Header="Users" Command="{Binding NavigateToUsersCommand}" />
