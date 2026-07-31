@@ -24,4 +24,6 @@
     <SolidColorBrush x:Key="HoverBrush" Color="{StaticResource Hover}" />
     <SolidColorBrush x:Key="PressedBrush" Color="{StaticResource Pressed}" />
     <SolidColorBrush x:Key="FocusBrush" Color="{StaticResource Focus}" />
+    <SolidColorBrush x:Key="RowBrush" Color="{StaticResource Background}" />
+    <SolidColorBrush x:Key="AlternatingRowBrush" Color="{StaticResource Surface}" />
 </ResourceDictionary>

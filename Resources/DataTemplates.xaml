@@ -49,7 +49,9 @@
     xmlns:reportsLoadingReportVm="clr-namespace:veteran_logistic.Reports.LoadingReport.ViewModels"
     xmlns:reportsLoadingReportViews="clr-namespace:veteran_logistic.Reports.LoadingReport.Views"
     xmlns:reportsUnloadingReportVm="clr-namespace:veteran_logistic.Reports.UnloadingReport.ViewModels"
-    xmlns:reportsUnloadingReportViews="clr-namespace:veteran_logistic.Reports.UnloadingReport.Views">
+    xmlns:reportsUnloadingReportViews="clr-namespace:veteran_logistic.Reports.UnloadingReport.Views"
+    xmlns:reportsPaymentReportVm="clr-namespace:veteran_logistic.Reports.PaymentReport.ViewModels"
+    xmlns:reportsPaymentReportViews="clr-namespace:veteran_logistic.Reports.PaymentReport.Views">
   <DataTemplate DataType="{x:Type vm:ShellViewModel}">
     <views:ShellView />
   </DataTemplate>
@@ -296,6 +298,10 @@
 
   <DataTemplate DataType="{x:Type reportsUnloadingReportVm:UnloadingReportViewModel}">
     <reportsUnloadingReportViews:UnloadingReportView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type reportsPaymentReportVm:PaymentReportViewModel}">
+    <reportsPaymentReportViews:PaymentReportView />
   </DataTemplate>
 
   <DataTemplate DataType="{x:Type vm:PlaceholderViewModel}">

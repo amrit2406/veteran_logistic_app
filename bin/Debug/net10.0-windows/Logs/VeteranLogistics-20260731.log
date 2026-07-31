@@ -1,0 +1,238 @@
+[2026-07-31 17:02:36 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 materials
+[2026-07-31 17:02:36 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 payment locations
+[2026-07-31 17:02:36 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating payment report with filters and search
+[2026-07-31 17:02:36 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+[2026-07-31 17:02:36 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Payment report generated successfully with 1 records
+[2026-07-31 17:02:37 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating payment report with filters and search
+[2026-07-31 17:02:37 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Payment report generated successfully with 1 records
+[2026-07-31 17:02:45 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating payment report with filters and search
+[2026-07-31 17:02:45 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Payment report generated successfully with 1 records
+[2026-07-31 17:02:45 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating payment report with filters and search
+[2026-07-31 17:02:45 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Payment report generated successfully with 1 records
+[2026-07-31 17:02:45 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating payment report with filters and search
+[2026-07-31 17:02:45 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Payment report generated successfully with 1 records
+[2026-07-31 17:02:46 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating payment report with filters and search
+[2026-07-31 17:02:46 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Payment report generated successfully with 1 records
+[2026-07-31 17:02:46 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating payment report with filters and search
+[2026-07-31 17:02:46 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Payment report generated successfully with 1 records
+[2026-07-31 17:03:21 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Starting Excel export for payment report to C:\Users\infov\Downloads\PaymentReport_20260731_170318.xlsx
+[2026-07-31 17:03:22 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Excel export completed successfully for 1 records
+[2026-07-31 17:03:26 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Starting PDF export for payment report to C:\Users\infov\Downloads\PaymentReport_20260731_170324.pdf
+[2026-07-31 17:03:27 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+PDF export completed successfully for 1 records
+[2026-07-31 17:12:21 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 materials
+[2026-07-31 17:12:21 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 payment locations
+[2026-07-31 17:12:21 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating payment report with filters and search
+[2026-07-31 17:12:21 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+[2026-07-31 17:12:21 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Payment report generated successfully with 1 records
+[2026-07-31 17:12:21 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating payment report with filters and search
+[2026-07-31 17:12:21 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Payment report generated successfully with 1 records
+[2026-07-31 17:13:04 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating payment report with filters and search
+[2026-07-31 17:13:04 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Payment report generated successfully with 1 records
+[2026-07-31 17:13:07 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Starting Excel export for payment report to C:\Users\infov\Downloads\PaymentReport_20260731_171305.xlsx
+[2026-07-31 17:13:08 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Excel export completed successfully for 1 records
+[2026-07-31 17:13:12 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Starting PDF export for payment report to C:\Users\infov\Downloads\PaymentReport_20260731_171310.pdf
+[2026-07-31 17:13:12 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+PDF export completed successfully for 1 records

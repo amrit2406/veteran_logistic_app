@@ -339,3 +339,5 @@ d:\app\veteran_logistic_app\bin\Debug\net10.0-windows\runtimes\win-x86\native\Qu
 d:\app\veteran_logistic_app\bin\Debug\net10.0-windows\runtimes\win-x86\native\qpdf.dll
 d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Reports\UnloadingReport\Views\UnloadingReportView.g.cs
 d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Reports\UnloadingReport\Views\UnloadingReportView.baml
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Reports\PaymentReport\Views\PaymentReportView.g.cs
+D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Reports\PaymentReport\Views\PaymentReportView.baml

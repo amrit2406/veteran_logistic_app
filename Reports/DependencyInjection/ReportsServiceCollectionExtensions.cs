@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using veteran_logistic.Reports.LoadingReport.DependencyInjection;
 using veteran_logistic.Reports.UnloadingReport.DependencyInjection;
+using veteran_logistic.Reports.PaymentReport.DependencyInjection;
 
 namespace veteran_logistic.Reports.DependencyInjection;
 
@@ -23,6 +24,9 @@ public static class ReportsServiceCollectionExtensions
 
         // Unloading Report
         services.AddUnloadingReport();
+
+        // Payment Report
+        services.AddPaymentReport();
 
         return services;
     }
