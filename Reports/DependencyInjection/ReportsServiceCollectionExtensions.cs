@@ -2,6 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using veteran_logistic.Reports.LoadingReport.DependencyInjection;
 using veteran_logistic.Reports.UnloadingReport.DependencyInjection;
 using veteran_logistic.Reports.PaymentReport.DependencyInjection;
+using veteran_logistic.Reports.PartyBillingReport.DependencyInjection;
 
 namespace veteran_logistic.Reports.DependencyInjection;
 
@@ -27,6 +28,9 @@ public static class ReportsServiceCollectionExtensions
 
         // Payment Report
         services.AddPaymentReport();
+
+        // Party Billing Report
+        services.AddPartyBillingReport();
 
         return services;
     }

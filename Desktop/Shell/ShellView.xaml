@@ -119,6 +119,7 @@
                     <MenuItem Header="Loading Report" Command="{Binding NavigateToLoadingReportCommand}" />
                     <MenuItem Header="Unloading Report" Command="{Binding NavigateToUnloadingReportCommand}" />
                     <MenuItem Header="Payment Report" Command="{Binding NavigateToPaymentReportCommand}" />
+                    <MenuItem Header="Party Billing Report" Command="{Binding NavigateToPartyBillingReportCommand}" />
                 </MenuItem>
                 <MenuItem Header="Administration" Style="{StaticResource TopMenuItemStyle}">
                     <MenuItem Header="Users" Command="{Binding NavigateToUsersCommand}" />
