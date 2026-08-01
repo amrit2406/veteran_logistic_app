@@ -13,6 +13,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -101,273 +102,332 @@
                 Padding="{StaticResource Medium}"
                 Margin="{StaticResource Small}">
             <Expander Header="Filters" IsExpanded="True">
-                <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="300">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
-                        <!-- Search Row -->
-                        <TextBlock Grid.Row="0" Grid.Column="0"
-                                   Text="Search:"
-                                   Style="{StaticResource CaptionTextBlockStyle}"
-                                   VerticalAlignment="Center"
-                                   Margin="{StaticResource Small}" />
-                        <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5"
-                                 Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                                 Margin="{StaticResource Small}"
-                                 VerticalAlignment="Center" />
+                    <!-- Date Range -->
+                    <TextBlock Grid.Row="0" Grid.Column="0"
+                               Text="Date From:"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               VerticalAlignment="Center"
+                               Margin="{StaticResource Small}" />
+                    <DatePicker Grid.Row="0" Grid.Column="1"
+                               SelectedDate="{Binding Filter.DateFrom}"
+                               Margin="{StaticResource Small}"
+                               VerticalAlignment="Center" />
 
-                        <!-- Date Range -->
-                        <TextBlock Grid.Row="1" Grid.Column="0"
-                                   Text="Date From:"
+                    <TextBlock Grid.Row="0" Grid.Column="2"
+                               Text="Date To:"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               VerticalAlignment="Center"
+                               Margin="{StaticResource Small}" />
+                    <DatePicker Grid.Row="0" Grid.Column="3"
+                               SelectedDate="{Binding Filter.DateTo}"
+                               Margin="{StaticResource Small}"
+                               VerticalAlignment="Center" />
+
+                    <!-- Customer -->
+                    <TextBlock Grid.Row="1" Grid.Column="0"
+                               Text="Customer:"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               VerticalAlignment="Center"
+                               Margin="{StaticResource Small}" />
+                    <ComboBox Grid.Row="1" Grid.Column="1"
+                             ItemsSource="{Binding Customers}"
+                             SelectedValue="{Binding Filter.CustomerId}"
+                             SelectedValuePath="Id"
+                             DisplayMemberPath="CustomerName"
+                             Margin="{StaticResource Small}"
+                             VerticalAlignment="Center"
+                             Width="120" />
+
+                    <!-- Vehicle -->
+                    <TextBlock Grid.Row="1" Grid.Column="2"
+                               Text="Vehicle:"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               VerticalAlignment="Center"
+                               Margin="{StaticResource Small}" />
+                    <ComboBox Grid.Row="1" Grid.Column="3"
+                             ItemsSource="{Binding Vehicles}"
+                             SelectedValue="{Binding Filter.VehicleId}"
+                             SelectedValuePath="Id"
+                             DisplayMemberPath="VehicleNumber"
+                             Margin="{StaticResource Small}"
+                             VerticalAlignment="Center"
+                             Width="120" />
+
+                    <!-- Material -->
+                    <TextBlock Grid.Row="2" Grid.Column="0"
+                               Text="Material:"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               VerticalAlignment="Center"
+                               Margin="{StaticResource Small}" />
+                    <ComboBox Grid.Row="2" Grid.Column="1"
+                             ItemsSource="{Binding Materials}"
+                             SelectedValue="{Binding Filter.MaterialId}"
+                             SelectedValuePath="Id"
+                             DisplayMemberPath="MaterialName"
+                             Margin="{StaticResource Small}"
+                             VerticalAlignment="Center"
+                             Width="120" />
+
+                    <!-- Driver -->
+                    <TextBlock Grid.Row="2" Grid.Column="2"
+                               Text="Driver:"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               VerticalAlignment="Center"
+                               Margin="{StaticResource Small}" />
+                    <TextBox Grid.Row="2" Grid.Column="3"
+                             Text="{Binding Filter.Driver, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="{StaticResource Small}"
+                             VerticalAlignment="Center"
+                             Width="120" />
+
+                    <!-- Vehicle Owner -->
+                    <TextBlock Grid.Row="3" Grid.Column="0"
+                               Text="Vehicle Owner:"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               VerticalAlignment="Center"
+                               Margin="{StaticResource Small}" />
+                    <ComboBox Grid.Row="3" Grid.Column="1"
+                             ItemsSource="{Binding VehicleOwners}"
+                             SelectedValue="{Binding Filter.OwnerId}"
+                             SelectedValuePath="Id"
+                             DisplayMemberPath="DisplayName"
+                             Margin="{StaticResource Small}"
+                             VerticalAlignment="Center"
+                             Width="120" />
+
+                    <!-- Payment Location -->
+                    <TextBlock Grid.Row="3" Grid.Column="2"
+                               Text="Payment Location:"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               VerticalAlignment="Center"
+                               Margin="{StaticResource Small}" />
+                    <ComboBox Grid.Row="3" Grid.Column="3"
+                             ItemsSource="{Binding PaymentLocations}"
+                             SelectedValue="{Binding Filter.PaymentLocationId}"
+                             SelectedValuePath="Id"
+                             DisplayMemberPath="PaymentLocationName"
+                             Margin="{StaticResource Small}"
+                             VerticalAlignment="Center"
+                             Width="120" />
+
+                    <!-- Payment Type -->
+                    <TextBlock Grid.Row="4" Grid.Column="0"
+                               Text="Payment Type:"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               VerticalAlignment="Center"
+                               Margin="{StaticResource Small}" />
+                    <TextBox Grid.Row="4" Grid.Column="1"
+                             Text="{Binding Filter.PaymentType, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="{StaticResource Small}"
+                             VerticalAlignment="Center"
+                             Width="120" />
+
+                    <!-- Beneficiary -->
+                    <TextBlock Grid.Row="4" Grid.Column="2"
+                               Text="Beneficiary:"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               VerticalAlignment="Center"
+                               Margin="{StaticResource Small}" />
+                    <TextBox Grid.Row="4" Grid.Column="3"
+                             Text="{Binding Filter.Beneficiary, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="{StaticResource Small}"
+                             VerticalAlignment="Center"
+                             Width="120" />
+
+                    <!-- Bank Name -->
+                    <TextBlock Grid.Row="5" Grid.Column="0"
+                               Text="Bank Name:"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               VerticalAlignment="Center"
+                               Margin="{StaticResource Small}" />
+                    <TextBox Grid.Row="5" Grid.Column="1"
+                             Text="{Binding Filter.BankName, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="{StaticResource Small}"
+                             VerticalAlignment="Center"
+                             Width="120" />
+
+                    <!-- Filter Buttons -->
+                    <StackPanel Grid.Row="0" Grid.Column="4"
+                               Grid.RowSpan="6"
+                               Orientation="Vertical"
+                               VerticalAlignment="Center"
+                               Margin="{StaticResource Small}">
+                        <Button Command="{Binding ApplyFiltersCommand}"
+                                Style="{StaticResource BaseButtonStyle}"
+                                Height="{StaticResource StandardControlHeight}"
+                                Margin="{StaticResource Small}">
+                            <TextBlock Text="Apply"
                                    Style="{StaticResource CaptionTextBlockStyle}"
-                                   VerticalAlignment="Center"
-                                   Margin="{StaticResource Small}" />
-                        <DatePicker Grid.Row="1" Grid.Column="1"
-                                   SelectedDate="{Binding Filter.DateFrom}"
-                                   Margin="{StaticResource Small}"
+                                   HorizontalAlignment="Center"
                                    VerticalAlignment="Center" />
-
-                        <TextBlock Grid.Row="1" Grid.Column="2"
-                                   Text="Date To:"
+                        </Button>
+                        <Button Command="{Binding ClearFiltersCommand}"
+                                Style="{StaticResource BaseButtonStyle}"
+                                Height="{StaticResource StandardControlHeight}"
+                                Margin="{StaticResource Small}">
+                            <TextBlock Text="Clear"
                                    Style="{StaticResource CaptionTextBlockStyle}"
-                                   VerticalAlignment="Center"
-                                   Margin="{StaticResource Small}" />
-                        <DatePicker Grid.Row="1" Grid.Column="3"
-                                   SelectedDate="{Binding Filter.DateTo}"
-                                   Margin="{StaticResource Small}"
+                                   HorizontalAlignment="Center"
                                    VerticalAlignment="Center" />
-
-                        <!-- Customer -->
-                        <TextBlock Grid.Row="2" Grid.Column="0"
-                                   Text="Customer:"
-                                   Style="{StaticResource CaptionTextBlockStyle}"
-                                   VerticalAlignment="Center"
-                                   Margin="{StaticResource Small}" />
-                        <ComboBox Grid.Row="2" Grid.Column="1"
-                                 ItemsSource="{Binding Customers}"
-                                 SelectedValue="{Binding Filter.CustomerId}"
-                                 SelectedValuePath="Id"
-                                 DisplayMemberPath="CustomerName"
-                                 Margin="{StaticResource Small}"
-                                 VerticalAlignment="Center"
-                                 Width="150" />
-
-                        <!-- Vehicle -->
-                        <TextBlock Grid.Row="2" Grid.Column="2"
-                                   Text="Vehicle:"
-                                   Style="{StaticResource CaptionTextBlockStyle}"
-                                   VerticalAlignment="Center"
-                                   Margin="{StaticResource Small}" />
-                        <ComboBox Grid.Row="2" Grid.Column="3"
-                                 ItemsSource="{Binding Vehicles}"
-                                 SelectedValue="{Binding Filter.VehicleId}"
-                                 SelectedValuePath="Id"
-                                 DisplayMemberPath="VehicleNumber"
-                                 Margin="{StaticResource Small}"
-                                 VerticalAlignment="Center"
-                                 Width="150" />
-
-                        <!-- Material -->
-                        <TextBlock Grid.Row="2" Grid.Column="4"
-                                   Text="Material:"
-                                   Style="{StaticResource CaptionTextBlockStyle}"
-                                   VerticalAlignment="Center"
-                                   Margin="{StaticResource Small}" />
-                        <ComboBox Grid.Row="2" Grid.Column="5"
-                                 ItemsSource="{Binding Materials}"
-                                 SelectedValue="{Binding Filter.MaterialId}"
-                                 SelectedValuePath="Id"
-                                 DisplayMemberPath="MaterialName"
-                                 Margin="{StaticResource Small}"
-                                 VerticalAlignment="Center"
-                                 Width="150" />
-
-                        <!-- Driver -->
-                        <TextBlock Grid.Row="3" Grid.Column="0"
-                                   Text="Driver:"
-                                   Style="{StaticResource CaptionTextBlockStyle}"
-                                   VerticalAlignment="Center"
-                                   Margin="{StaticResource Small}" />
-                        <TextBox Grid.Row="3" Grid.Column="1"
-                                 Text="{Binding Filter.Driver, UpdateSourceTrigger=PropertyChanged}"
-                                 Margin="{StaticResource Small}"
-                                 VerticalAlignment="Center"
-                                 Width="150" />
-
-                        <!-- Vehicle Owner -->
-                        <TextBlock Grid.Row="3" Grid.Column="2"
-                                   Text="Vehicle Owner:"
-                                   Style="{StaticResource CaptionTextBlockStyle}"
-                                   VerticalAlignment="Center"
-                                   Margin="{StaticResource Small}" />
-                        <ComboBox Grid.Row="3" Grid.Column="3"
-                                 ItemsSource="{Binding VehicleOwners}"
-                                 SelectedValue="{Binding Filter.OwnerId}"
-                                 SelectedValuePath="Id"
-                                 DisplayMemberPath="DisplayName"
-                                 Margin="{StaticResource Small}"
-                                 VerticalAlignment="Center"
-                                 Width="150" />
-
-                        <!-- Payment Location -->
-                        <TextBlock Grid.Row="3" Grid.Column="4"
-                                   Text="Payment Location:"
-                                   Style="{StaticResource CaptionTextBlockStyle}"
-                                   VerticalAlignment="Center"
-                                   Margin="{StaticResource Small}" />
-                        <ComboBox Grid.Row="3" Grid.Column="5"
-                                 ItemsSource="{Binding PaymentLocations}"
-                                 SelectedValue="{Binding Filter.PaymentLocationId}"
-                                 SelectedValuePath="Id"
-                                 DisplayMemberPath="PaymentLocationName"
-                                 Margin="{StaticResource Small}"
-                                 VerticalAlignment="Center"
-                                 Width="150" />
-
-                        <!-- Payment Type -->
-                        <TextBlock Grid.Row="4" Grid.Column="0"
-                                   Text="Payment Type:"
-                                   Style="{StaticResource CaptionTextBlockStyle}"
-                                   VerticalAlignment="Center"
-                                   Margin="{StaticResource Small}" />
-                        <TextBox Grid.Row="4" Grid.Column="1"
-                                 Text="{Binding Filter.PaymentType, UpdateSourceTrigger=PropertyChanged}"
-                                 Margin="{StaticResource Small}"
-                                 VerticalAlignment="Center"
-                                 Width="150" />
-
-                        <!-- Beneficiary -->
-                        <TextBlock Grid.Row="4" Grid.Column="2"
-                                   Text="Beneficiary:"
-                                   Style="{StaticResource CaptionTextBlockStyle}"
-                                   VerticalAlignment="Center"
-                                   Margin="{StaticResource Small}" />
-                        <TextBox Grid.Row="4" Grid.Column="3"
-                                 Text="{Binding Filter.Beneficiary, UpdateSourceTrigger=PropertyChanged}"
-                                 Margin="{StaticResource Small}"
-                                 VerticalAlignment="Center"
-                                 Width="150" />
-
-                        <!-- Bank Name -->
-                        <TextBlock Grid.Row="4" Grid.Column="4"
-                                   Text="Bank Name:"
-                                   Style="{StaticResource CaptionTextBlockStyle}"
-                                   VerticalAlignment="Center"
-                                   Margin="{StaticResource Small}" />
-                        <TextBox Grid.Row="4" Grid.Column="5"
-                                 Text="{Binding Filter.BankName, UpdateSourceTrigger=PropertyChanged}"
-                                 Margin="{StaticResource Small}"
-                                 VerticalAlignment="Center"
-                                 Width="150" />
-
-                        <!-- Payment Status -->
-                        <TextBlock Grid.Row="5" Grid.Column="0"
-                                   Text="Payment Status:"
-                                   Style="{StaticResource CaptionTextBlockStyle}"
-                                   VerticalAlignment="Center"
-                                   Margin="{StaticResource Small}" />
-                        <TextBox Grid.Row="5" Grid.Column="1"
-                                 Text="{Binding Filter.PaymentStatus, UpdateSourceTrigger=PropertyChanged}"
-                                 Margin="{StaticResource Small}"
-                                 VerticalAlignment="Center"
-                                 Width="150" />
-
-                        <!-- Status -->
-                        <TextBlock Grid.Row="5" Grid.Column="2"
-                                   Text="Status:"
-                                   Style="{StaticResource CaptionTextBlockStyle}"
-                                   VerticalAlignment="Center"
-                                   Margin="{StaticResource Small}" />
-                        <ComboBox Grid.Row="5" Grid.Column="3"
-                                 Margin="{StaticResource Small}"
-                                 VerticalAlignment="Center"
-                                 Width="150">
-                            <ComboBoxItem Content="All" Tag="" />
-                            <ComboBoxItem Content="Active" Tag="True" />
-                            <ComboBoxItem Content="Inactive" Tag="False" />
-                        </ComboBox>
-
-                        <!-- Filter Buttons -->
-                        <StackPanel Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2"
-                                    Orientation="Horizontal"
-                                    HorizontalAlignment="Right"
-                                    Margin="{StaticResource Small}">
-                            <Button Content="Apply"
-                                    Command="{Binding ApplyFiltersCommand}"
-                                    Margin="{StaticResource Small}"
-                                    Height="{StaticResource StandardControlHeight}"
-                                    Width="80" />
-                            <Button Content="Clear"
-                                    Command="{Binding ClearFiltersCommand}"
-                                    Margin="{StaticResource Small}"
-                                    Height="{StaticResource StandardControlHeight}"
-                                    Width="80" />
-                        </StackPanel>
-                    </Grid>
-                </ScrollViewer>
+                        </Button>
+                    </StackPanel>
+                </Grid>
             </Expander>
         </Border>
 
-        <!-- Report Grid -->
-        <Border Grid.Row="3"
+        <!-- Search Section -->
+        <Border Grid.Row="2"
                 Background="{DynamicResource SurfaceBrush}"
                 BorderBrush="{DynamicResource BorderBrush}"
                 BorderThickness="{StaticResource StandardBorderThickness}"
                 Padding="{StaticResource Medium}"
                 Margin="{StaticResource Small}">
-            <DataGrid ItemsSource="{Binding ReportItems}"
-                      AutoGenerateColumns="False"
-                      IsReadOnly="True"
-                      CanUserAddRows="False"
-                      CanUserDeleteRows="False"
-                      SelectionMode="Single"
-                      GridLinesVisibility="All"
-                      HeadersVisibility="Column"
-                      AlternatingRowBackground="{DynamicResource AlternatingRowBrush}"
-                      RowBackground="{DynamicResource RowBrush}"
-                      CanUserResizeColumns="True"
-                      CanUserSortColumns="True">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Payment Date" Binding="{Binding PaymentDate, StringFormat=dd-MM-yyyy}" Width="100" />
-                    <DataGridTextColumn Header="Challan Number" Binding="{Binding ChallanNumber}" Width="120" />
-                    <DataGridTextColumn Header="TP Number" Binding="{Binding TPNumber}" Width="100" />
-                    <DataGridTextColumn Header="Vehicle Number" Binding="{Binding VehicleNumber}" Width="120" />
-                    <DataGridTextColumn Header="Customer" Binding="{Binding CustomerName}" Width="150" />
-                    <DataGridTextColumn Header="Material" Binding="{Binding MaterialName}" Width="120" />
-                    <DataGridTextColumn Header="Driver" Binding="{Binding Driver}" Width="120" />
-                    <DataGridTextColumn Header="Owner" Binding="{Binding VehicleOwner}" Width="150" />
-                    <DataGridTextColumn Header="Payment Type" Binding="{Binding PaymentType}" Width="100" />
-                    <DataGridTextColumn Header="Beneficiary" Binding="{Binding Beneficiary}" Width="150" />
-                    <DataGridTextColumn Header="Bank Name" Binding="{Binding BankName}" Width="150" />
-                    <DataGridTextColumn Header="UTR Number" Binding="{Binding UTRNumber}" Width="120" />
-                    <DataGridTextColumn Header="Driver Comm" Binding="{Binding DriverCommission, StringFormat=F2}" Width="100" />
-                    <DataGridTextColumn Header="Challan Amt" Binding="{Binding ChallanAmount, StringFormat=F2}" Width="100" />
-                    <DataGridTextColumn Header="TDS" Binding="{Binding TDSAmount, StringFormat=F2}" Width="80" />
-                    <DataGridTextColumn Header="Surcharge" Binding="{Binding SurchargeAmount, StringFormat=F2}" Width="80" />
-                    <DataGridTextColumn Header="Admin Charge" Binding="{Binding AdminCharge, StringFormat=F2}" Width="90" />
-                    <DataGridTextColumn Header="Net Payment" Binding="{Binding NetPayment, StringFormat=F2}" Width="100" />
-                    <DataGridTextColumn Header="Status" Binding="{Binding PaymentStatus}" Width="100" />
-                </DataGrid.Columns>
-            </DataGrid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0"
+                           Text="Search:"
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           VerticalAlignment="Center"
+                           Margin="{StaticResource Small}" />
+                <TextBox Grid.Column="1"
+                         Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="{StaticResource Small}"
+                         VerticalAlignment="Center">
+                    <TextBox.Style>
+                        <Style BasedOn="{StaticResource BaseTextBoxStyle}" TargetType="TextBox">
+                            <Setter Property="Padding" Value="{StaticResource Small}" />
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+            </Grid>
         </Border>
 
-        <!-- Totals Panel -->
-        <Border Grid.Row="4"
+        <!-- Loading Indicator -->
+        <Border Grid.Row="3"
+                Background="{DynamicResource SurfaceBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="{StaticResource StandardBorderThickness}"
+                Padding="{StaticResource Medium}"
+                Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <ProgressBar Height="{StaticResource StandardControlHeight}"
+                           IsIndeterminate="True"
+                           Foreground="{DynamicResource PrimaryBrush}"
+                           Margin="{StaticResource Small}" />
+                <TextBlock Text="{Binding BusyMessage}"
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           VerticalAlignment="Center" />
+            </StackPanel>
+        </Border>
+
+        <!-- DataGrid -->
+        <DataGrid Grid.Row="4"
+                  ItemsSource="{Binding ReportItems}"
+                  IsReadOnly="True"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Payment Date"
+                                    Binding="{Binding PaymentDate, StringFormat=dd-MM-yyyy}"
+                                    Width="Auto" />
+
+                <DataGridTextColumn Header="Challan Number"
+                                    Binding="{Binding ChallanNumber}"
+                                    Width="Auto" />
+
+                <DataGridTextColumn Header="TP Number"
+                                    Binding="{Binding TPNumber}"
+                                    Width="Auto" />
+
+                <DataGridTextColumn Header="Vehicle Number"
+                                    Binding="{Binding VehicleNumber}"
+                                    Width="Auto" />
+
+                <DataGridTextColumn Header="Customer"
+                                    Binding="{Binding CustomerName}"
+                                    Width="*" />
+
+                <DataGridTextColumn Header="Material"
+                                    Binding="{Binding MaterialName}"
+                                    Width="Auto" />
+
+                <DataGridTextColumn Header="Driver"
+                                    Binding="{Binding Driver}"
+                                    Width="Auto" />
+
+                <DataGridTextColumn Header="Owner"
+                                    Binding="{Binding VehicleOwner}"
+                                    Width="Auto" />
+
+                <DataGridTextColumn Header="Payment Type"
+                                    Binding="{Binding PaymentType}"
+                                    Width="Auto" />
+
+                <DataGridTextColumn Header="Beneficiary"
+                                    Binding="{Binding Beneficiary}"
+                                    Width="Auto" />
+
+                <DataGridTextColumn Header="Bank Name"
+                                    Binding="{Binding BankName}"
+                                    Width="Auto" />
+
+                <DataGridTextColumn Header="UTR Number"
+                                    Binding="{Binding UTRNumber}"
+                                    Width="Auto" />
+
+                <DataGridTextColumn Header="Driver Comm"
+                                    Binding="{Binding DriverCommission, StringFormat=F2}"
+                                    Width="Auto" />
+
+                <DataGridTextColumn Header="Challan Amt"
+                                    Binding="{Binding ChallanAmount, StringFormat=F2}"
+                                    Width="Auto" />
+
+                <DataGridTextColumn Header="TDS"
+                                    Binding="{Binding TDSAmount, StringFormat=F2}"
+                                    Width="Auto" />
+
+                <DataGridTextColumn Header="Surcharge"
+                                    Binding="{Binding SurchargeAmount, StringFormat=F2}"
+                                    Width="Auto" />
+
+                <DataGridTextColumn Header="Admin Charge"
+                                    Binding="{Binding AdminCharge, StringFormat=F2}"
+                                    Width="Auto" />
+
+                <DataGridTextColumn Header="Net Payment"
+                                    Binding="{Binding NetPayment, StringFormat=F2}"
+                                    Width="Auto" />
+
+                <DataGridTextColumn Header="Status"
+                                    Binding="{Binding PaymentStatus}"
+                                    Width="Auto" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Totals Section -->
+        <Border Grid.Row="5"
                 Background="{DynamicResource SurfaceBrush}"
                 BorderBrush="{DynamicResource BorderBrush}"
                 BorderThickness="{StaticResource StandardBorderThickness}"
@@ -375,60 +435,86 @@
                 Margin="{StaticResource Small}">
             <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="150">
                 <WrapPanel Orientation="Horizontal">
-                    <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Padding="{StaticResource Small}" Margin="{StaticResource Small}" Background="{DynamicResource BackgroundBrush}">
-                        <StackPanel>
-                            <TextBlock Text="Record Count" Style="{StaticResource CaptionTextBlockStyle}" FontWeight="Bold" />
-                            <TextBlock Text="{Binding Totals.RecordCount}" Style="{StaticResource CaptionTextBlockStyle}" FontWeight="SemiBold" />
-                        </StackPanel>
-                    </Border>
-                    <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Padding="{StaticResource Small}" Margin="{StaticResource Small}" Background="{DynamicResource BackgroundBrush}">
-                        <StackPanel>
-                            <TextBlock Text="Total Loading Weight" Style="{StaticResource CaptionTextBlockStyle}" FontWeight="Bold" />
-                            <TextBlock Text="{Binding Totals.TotalLoadingWeight, StringFormat=F2}" Style="{StaticResource CaptionTextBlockStyle}" FontWeight="SemiBold" />
-                        </StackPanel>
-                    </Border>
-                    <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Padding="{StaticResource Small}" Margin="{StaticResource Small}" Background="{DynamicResource BackgroundBrush}">
-                        <StackPanel>
-                            <TextBlock Text="Total Unloading Weight" Style="{StaticResource CaptionTextBlockStyle}" FontWeight="Bold" />
-                            <TextBlock Text="{Binding Totals.TotalUnloadingWeight, StringFormat=F2}" Style="{StaticResource CaptionTextBlockStyle}" FontWeight="SemiBold" />
-                        </StackPanel>
-                    </Border>
-                    <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Padding="{StaticResource Small}" Margin="{StaticResource Small}" Background="{DynamicResource BackgroundBrush}">
-                        <StackPanel>
-                            <TextBlock Text="Total Driver Comm" Style="{StaticResource CaptionTextBlockStyle}" FontWeight="Bold" />
-                            <TextBlock Text="{Binding Totals.TotalDriverCommission, StringFormat=F2}" Style="{StaticResource CaptionTextBlockStyle}" FontWeight="SemiBold" />
-                        </StackPanel>
-                    </Border>
-                    <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Padding="{StaticResource Small}" Margin="{StaticResource Small}" Background="{DynamicResource BackgroundBrush}">
-                        <StackPanel>
-                            <TextBlock Text="Total Challan Amt" Style="{StaticResource CaptionTextBlockStyle}" FontWeight="Bold" />
-                            <TextBlock Text="{Binding Totals.TotalChallanAmount, StringFormat=F2}" Style="{StaticResource CaptionTextBlockStyle}" FontWeight="SemiBold" />
-                        </StackPanel>
-                    </Border>
-                    <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Padding="{StaticResource Small}" Margin="{StaticResource Small}" Background="{DynamicResource BackgroundBrush}">
-                        <StackPanel>
-                            <TextBlock Text="Total TDS" Style="{StaticResource CaptionTextBlockStyle}" FontWeight="Bold" />
-                            <TextBlock Text="{Binding Totals.TotalTDSAmount, StringFormat=F2}" Style="{StaticResource CaptionTextBlockStyle}" FontWeight="SemiBold" />
-                        </StackPanel>
-                    </Border>
-                    <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Padding="{StaticResource Small}" Margin="{StaticResource Small}" Background="{DynamicResource BackgroundBrush}">
-                        <StackPanel>
-                            <TextBlock Text="Total Surcharge" Style="{StaticResource CaptionTextBlockStyle}" FontWeight="Bold" />
-                            <TextBlock Text="{Binding Totals.TotalSurchargeAmount, StringFormat=F2}" Style="{StaticResource CaptionTextBlockStyle}" FontWeight="SemiBold" />
-                        </StackPanel>
-                    </Border>
-                    <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Padding="{StaticResource Small}" Margin="{StaticResource Small}" Background="{DynamicResource BackgroundBrush}">
-                        <StackPanel>
-                            <TextBlock Text="Total Admin Charge" Style="{StaticResource CaptionTextBlockStyle}" FontWeight="Bold" />
-                            <TextBlock Text="{Binding Totals.TotalAdminCharge, StringFormat=F2}" Style="{StaticResource CaptionTextBlockStyle}" FontWeight="SemiBold" />
-                        </StackPanel>
-                    </Border>
-                    <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Padding="{StaticResource Small}" Margin="{StaticResource Small}" Background="{DynamicResource BackgroundBrush}">
-                        <StackPanel>
-                            <TextBlock Text="Total Net Payment" Style="{StaticResource CaptionTextBlockStyle}" FontWeight="Bold" />
-                            <TextBlock Text="{Binding Totals.TotalNetPayment, StringFormat=F2}" Style="{StaticResource CaptionTextBlockStyle}" FontWeight="SemiBold" />
-                        </StackPanel>
-                    </Border>
+                    <TextBlock Text="Record Count:"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               FontWeight="Bold"
+                               Margin="{StaticResource Small}" />
+                    <TextBlock Text="{Binding Totals.RecordCount}"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               Margin="{StaticResource Small}"
+                               Width="80" />
+
+                    <TextBlock Text="Total Loading Weight:"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               FontWeight="Bold"
+                               Margin="{StaticResource Small}" />
+                    <TextBlock Text="{Binding Totals.TotalLoadingWeight, StringFormat=F2}"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               Margin="{StaticResource Small}"
+                               Width="80" />
+
+                    <TextBlock Text="Total Unloading Weight:"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               FontWeight="Bold"
+                               Margin="{StaticResource Small}" />
+                    <TextBlock Text="{Binding Totals.TotalUnloadingWeight, StringFormat=F2}"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               Margin="{StaticResource Small}"
+                               Width="80" />
+
+                    <TextBlock Text="Total Driver Comm:"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               FontWeight="Bold"
+                               Margin="{StaticResource Small}" />
+                    <TextBlock Text="{Binding Totals.TotalDriverCommission, StringFormat=F2}"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               Margin="{StaticResource Small}"
+                               Width="80" />
+
+                    <TextBlock Text="Total Challan Amt:"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               FontWeight="Bold"
+                               Margin="{StaticResource Small}" />
+                    <TextBlock Text="{Binding Totals.TotalChallanAmount, StringFormat=F2}"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               Margin="{StaticResource Small}"
+                               Width="80" />
+
+                    <TextBlock Text="Total TDS:"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               FontWeight="Bold"
+                               Margin="{StaticResource Small}" />
+                    <TextBlock Text="{Binding Totals.TotalTDSAmount, StringFormat=F2}"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               Margin="{StaticResource Small}"
+                               Width="80" />
+
+                    <TextBlock Text="Total Surcharge:"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               FontWeight="Bold"
+                               Margin="{StaticResource Small}" />
+                    <TextBlock Text="{Binding Totals.TotalSurchargeAmount, StringFormat=F2}"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               Margin="{StaticResource Small}"
+                               Width="80" />
+
+                    <TextBlock Text="Total Admin Charge:"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               FontWeight="Bold"
+                               Margin="{StaticResource Small}" />
+                    <TextBlock Text="{Binding Totals.TotalAdminCharge, StringFormat=F2}"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               Margin="{StaticResource Small}"
+                               Width="80" />
+
+                    <TextBlock Text="Total Net Payment:"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               FontWeight="Bold"
+                               Margin="{StaticResource Small}" />
+                    <TextBlock Text="{Binding Totals.TotalNetPayment, StringFormat=F2}"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               Margin="{StaticResource Small}"
+                               Width="80" />
                 </WrapPanel>
             </ScrollViewer>
         </Border>

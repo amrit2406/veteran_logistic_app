@@ -236,3 +236,52 @@ Starting PDF export for payment report to C:\Users\infov\Downloads\PaymentReport
 [Thread: 2]
 
 PDF export completed successfully for 1 records
+[2026-07-31 17:34:31 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 materials
+[2026-07-31 17:34:31 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 payment locations
+[2026-07-31 17:34:31 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating payment report with filters and search
+[2026-07-31 17:34:31 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+[2026-07-31 17:34:31 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Payment report generated successfully with 1 records
+[2026-07-31 17:34:31 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating payment report with filters and search
+[2026-07-31 17:34:31 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Payment report generated successfully with 1 records
