@@ -1,5 +1,5 @@
 ﻿
-FD:\app\veteran_logistic_app\App.xaml;;
+Fd:\app\veteran_logistic_app\App.xaml;;
 FD:\app\veteran_logistic_app\Administration\FinancialYears\Views\FinancialYearsView.xaml;;
 FD:\app\veteran_logistic_app\Administration\Permissions\Views\PermissionMatrixView.xaml;;
 FD:\app\veteran_logistic_app\Administration\Users\Views\AddUserView.xaml;;
@@ -28,4 +28,5 @@ FD:\app\veteran_logistic_app\Transactions\LoadingRegisters\Views\LoadingRegister
 FD:\app\veteran_logistic_app\Transactions\PartyBillRegister\Views\PartyBillRegistersView.xaml;;
 FD:\app\veteran_logistic_app\Transactions\PaymentRegisters\Views\PaymentRegistersView.xaml;;
 FD:\app\veteran_logistic_app\Transactions\UnloadingRegisters\Views\UnloadingRegistersView.xaml;;
+Fd:\app\veteran_logistic_app\Reports\TdsReport\Views\TdsReportView.xaml;;
 

@@ -343,3 +343,5 @@ D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Reports\PaymentReport\View
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Reports\PaymentReport\Views\PaymentReportView.baml
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Reports\PartyBillingReport\Views\PartyBillingReportView.g.cs
 D:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Reports\PartyBillingReport\Views\PartyBillingReportView.baml
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Reports\TdsReport\Views\TdsReportView.g.cs
+d:\app\veteran_logistic_app\obj\Debug\net10.0-windows\Reports\TdsReport\Views\TdsReportView.baml
