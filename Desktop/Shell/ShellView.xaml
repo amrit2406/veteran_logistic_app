@@ -121,6 +121,7 @@
                     <MenuItem Header="Payment Report" Command="{Binding NavigateToPaymentReportCommand}" />
                     <MenuItem Header="Party Billing Report" Command="{Binding NavigateToPartyBillingReportCommand}" />
                     <MenuItem Header="TDS Report" Command="{Binding NavigateToTdsReportCommand}" />
+                    <MenuItem Header="Consolidated Report" Command="{Binding NavigateToConsolidatedReportCommand}" />
                 </MenuItem>
                 <MenuItem Header="Administration" Style="{StaticResource TopMenuItemStyle}">
                     <MenuItem Header="Users" Command="{Binding NavigateToUsersCommand}" />

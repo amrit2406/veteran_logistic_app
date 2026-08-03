@@ -1,0 +1,2637 @@
+[2026-08-03 10:56:31 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 payment locations
+[2026-08-03 10:56:31 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating TDS report with filters and search
+[2026-08-03 10:56:31 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+[2026-08-03 10:56:31 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+TDS report generated successfully with 1 records
+[2026-08-03 10:56:31 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating TDS report grouped summary by customer
+[2026-08-03 10:56:32 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+TDS grouped summary generated successfully with 1 groups
+[2026-08-03 10:56:32 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating TDS report with filters and search
+[2026-08-03 10:56:32 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+TDS report generated successfully with 1 records
+[2026-08-03 10:56:32 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating TDS report grouped summary by customer
+[2026-08-03 10:56:32 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+TDS grouped summary generated successfully with 1 groups
+[2026-08-03 10:56:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-08-03 10:56:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 source/destinations
+[2026-08-03 10:56:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 materials
+[2026-08-03 10:56:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating loading report with filters and search
+[2026-08-03 10:56:42 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+[2026-08-03 10:56:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Loading report generated successfully with 2 records
+[2026-08-03 10:56:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating loading report with filters and search
+[2026-08-03 10:56:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Loading report generated successfully with 2 records
+[2026-08-03 10:56:48 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 materials
+[2026-08-03 10:56:48 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 payment locations
+[2026-08-03 10:56:48 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating payment report with filters and search
+[2026-08-03 10:56:48 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+[2026-08-03 10:56:48 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Payment report generated successfully with 1 records
+[2026-08-03 10:56:48 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating payment report with filters and search
+[2026-08-03 10:56:48 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Payment report generated successfully with 1 records
+[2026-08-03 10:56:54 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 materials
+[2026-08-03 10:56:54 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-08-03 10:56:54 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 source/destinations
+[2026-08-03 10:56:54 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating party billing report summary with filters and search
+[2026-08-03 10:56:55 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Party billing report summary generated successfully with 1 records
+[2026-08-03 10:56:55 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating party billing report summary with filters and search
+[2026-08-03 10:56:55 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Party billing report summary generated successfully with 1 records
+[2026-08-03 10:56:57 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating party billing report summary with filters and search
+[2026-08-03 10:56:57 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Party billing report summary generated successfully with 1 records
+[2026-08-03 10:56:57 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating party billing report summary with filters and search
+[2026-08-03 10:56:57 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Party billing report summary generated successfully with 1 records
+[2026-08-03 10:56:57 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating party billing report summary with filters and search
+[2026-08-03 10:56:57 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Party billing report summary generated successfully with 1 records
+[2026-08-03 10:56:57 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating party billing report summary with filters and search
+[2026-08-03 10:56:57 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Party billing report summary generated successfully with 1 records
+[2026-08-03 10:57:05 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-03 10:57:05 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-03 10:57:05 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-03 10:57:05 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-03 10:57:05 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-03 10:57:05 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-03 10:57:05 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-03 10:57:05 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-03 10:57:05 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-03 10:57:05 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-03 10:57:05 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-03 10:57:05 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-03 10:57:34 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-03 12:34:33 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 12:47:10 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 12:47:10 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 12:47:10 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 12:47:10 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 12:47:23 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 12:47:23 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 12:47:24 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 12:47:24 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 12:47:35 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 12:47:35 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 12:47:40 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 12:47:40 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 0 records
+[2026-08-03 12:47:44 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 12:47:44 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 0 records
+[2026-08-03 12:47:47 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 12:47:47 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 0 records
+[2026-08-03 12:47:50 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 12:47:50 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 0 records
+[2026-08-03 12:47:50 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 12:47:50 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 12:47:54 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 12:47:54 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 12:47:54 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 12:47:54 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 12:47:55 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 12:47:55 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 12:47:55 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 12:47:55 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 12:47:55 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 12:47:55 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 12:47:57 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 12:47:57 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 12:47:58 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 12:47:58 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 12:47:58 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 12:47:58 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 12:47:58 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 12:47:58 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 12:48:01 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 12:48:01 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 12:48:01 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 12:48:01 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 12:48:06 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 12:48:06 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 0 records
+[2026-08-03 12:48:08 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 12:48:08 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 0 records
+[2026-08-03 12:48:10 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 12:48:10 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 0 records
+[2026-08-03 12:48:12 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 12:48:12 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 0 records
+[2026-08-03 12:48:13 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 12:48:13 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 13:17:40 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 13:17:40 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 13:17:40 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 13:17:40 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:45:26 ERR]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An exception occurred while iterating over the results of a query for context type 'VeteranLogistics.Data.Context.VeteranLogisticsDbContext'.
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at veteran_logistic.Masters.Customers.Services.CustomerQueryService.GetAllCustomersAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Masters\Customers\Services\CustomerQueryService.cs:line 32
+   at veteran_logistic.Reports.ConsolidatedReport.ViewModels.ConsolidatedReportViewModel.LoadConsigneesAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\ConsolidatedReport\ViewModels\ConsolidatedReportViewModel.cs:line 337
+[2026-08-03 14:45:26 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-08-03 14:45:26 ERR]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An exception occurred while iterating over the results of a query for context type 'VeteranLogistics.Data.Context.VeteranLogisticsDbContext'.
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at veteran_logistic.Masters.SourceDestinations.Services.SourceDestinationQueryService.GetAllSourceDestinationsAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Masters\SourceDestinations\Services\SourceDestinationQueryService.cs:line 34
+   at veteran_logistic.Reports.ConsolidatedReport.ViewModels.ConsolidatedReportViewModel.LoadSourcesAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\ConsolidatedReport\ViewModels\ConsolidatedReportViewModel.cs:line 347
+[2026-08-03 14:45:26 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-08-03 14:45:26 ERR]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An exception occurred while iterating over the results of a query for context type 'VeteranLogistics.Data.Context.VeteranLogisticsDbContext'.
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at veteran_logistic.Masters.SourceDestinations.Services.SourceDestinationQueryService.GetAllSourceDestinationsAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Masters\SourceDestinations\Services\SourceDestinationQueryService.cs:line 34
+   at veteran_logistic.Reports.ConsolidatedReport.ViewModels.ConsolidatedReportViewModel.LoadDestinationsAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\ConsolidatedReport\ViewModels\ConsolidatedReportViewModel.cs:line 357
+[2026-08-03 14:45:36 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:45:36 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:45:40 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:45:40 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:45:41 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:45:41 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:45:41 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:45:41 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:45:49 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:45:49 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:45:51 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:45:51 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:46:22 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:46:22 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 1 records
+[2026-08-03 14:46:28 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:46:29 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 1 records
+[2026-08-03 14:46:33 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:46:33 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 1 records
+[2026-08-03 14:46:36 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:46:36 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 1 records
+[2026-08-03 14:46:39 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:46:39 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 1 records
+[2026-08-03 14:46:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:46:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 1 records
+[2026-08-03 14:46:48 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Starting Excel export for consolidated report to C:\Users\infov\Downloads\ConsolidatedReport_20260803_144646.xlsx
+[2026-08-03 14:46:49 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Excel export completed successfully for 1 records
+[2026-08-03 14:46:52 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Starting PDF export for consolidated report to C:\Users\infov\Downloads\ConsolidatedReport_20260803_144651.pdf
+[2026-08-03 14:46:53 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+PDF export completed successfully for 1 records
+[2026-08-03 14:58:49 ERR]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An exception occurred while iterating over the results of a query for context type 'VeteranLogistics.Data.Context.VeteranLogisticsDbContext'.
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at veteran_logistic.Masters.Customers.Services.CustomerQueryService.GetAllCustomersAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Masters\Customers\Services\CustomerQueryService.cs:line 32
+   at veteran_logistic.Reports.ConsolidatedReport.ViewModels.ConsolidatedReportViewModel.LoadConsigneesAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\ConsolidatedReport\ViewModels\ConsolidatedReportViewModel.cs:line 337
+[2026-08-03 14:58:49 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-08-03 14:58:49 ERR]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An exception occurred while iterating over the results of a query for context type 'VeteranLogistics.Data.Context.VeteranLogisticsDbContext'.
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at veteran_logistic.Masters.SourceDestinations.Services.SourceDestinationQueryService.GetAllSourceDestinationsAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Masters\SourceDestinations\Services\SourceDestinationQueryService.cs:line 34
+   at veteran_logistic.Reports.ConsolidatedReport.ViewModels.ConsolidatedReportViewModel.LoadSourcesAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\ConsolidatedReport\ViewModels\ConsolidatedReportViewModel.cs:line 347
+[2026-08-03 14:58:49 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-08-03 14:58:49 ERR]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An exception occurred while iterating over the results of a query for context type 'VeteranLogistics.Data.Context.VeteranLogisticsDbContext'.
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at veteran_logistic.Masters.SourceDestinations.Services.SourceDestinationQueryService.GetAllSourceDestinationsAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Masters\SourceDestinations\Services\SourceDestinationQueryService.cs:line 34
+   at veteran_logistic.Reports.ConsolidatedReport.ViewModels.ConsolidatedReportViewModel.LoadDestinationsAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\ConsolidatedReport\ViewModels\ConsolidatedReportViewModel.cs:line 357
+[2026-08-03 14:58:52 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:58:52 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:58:54 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:58:54 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:58:54 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:58:54 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:58:54 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:58:54 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:58:54 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:58:54 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:58:55 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:58:55 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:58:55 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:58:55 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:59:00 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:59:00 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:59:00 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:59:00 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:59:00 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:59:00 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:59:01 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:59:01 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:59:01 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:59:01 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:59:01 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:59:01 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:59:01 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:59:01 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:59:01 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:59:01 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:59:02 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:59:02 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:59:02 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:59:02 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:59:02 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:59:02 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:59:02 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:59:02 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:59:02 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:59:02 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:59:03 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:59:03 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:59:03 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:59:03 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:59:03 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:59:03 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:59:03 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:59:03 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:59:03 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:59:03 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:59:03 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:59:03 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:59:04 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:59:04 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:59:04 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:59:04 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:59:04 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:59:04 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:59:04 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:59:05 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:59:05 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:59:05 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 14:59:05 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 14:59:05 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 15:04:05 ERR]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An exception occurred while iterating over the results of a query for context type 'VeteranLogistics.Data.Context.VeteranLogisticsDbContext'.
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at veteran_logistic.Masters.Customers.Services.CustomerQueryService.GetAllCustomersAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Masters\Customers\Services\CustomerQueryService.cs:line 32
+   at veteran_logistic.Reports.ConsolidatedReport.ViewModels.ConsolidatedReportViewModel.LoadConsigneesAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\ConsolidatedReport\ViewModels\ConsolidatedReportViewModel.cs:line 337
+[2026-08-03 15:04:05 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-08-03 15:04:05 ERR]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An exception occurred while iterating over the results of a query for context type 'VeteranLogistics.Data.Context.VeteranLogisticsDbContext'.
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at veteran_logistic.Masters.SourceDestinations.Services.SourceDestinationQueryService.GetAllSourceDestinationsAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Masters\SourceDestinations\Services\SourceDestinationQueryService.cs:line 34
+   at veteran_logistic.Reports.ConsolidatedReport.ViewModels.ConsolidatedReportViewModel.LoadSourcesAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\ConsolidatedReport\ViewModels\ConsolidatedReportViewModel.cs:line 347
+[2026-08-03 15:04:05 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-08-03 15:04:05 ERR]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An exception occurred while iterating over the results of a query for context type 'VeteranLogistics.Data.Context.VeteranLogisticsDbContext'.
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at veteran_logistic.Masters.SourceDestinations.Services.SourceDestinationQueryService.GetAllSourceDestinationsAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Masters\SourceDestinations\Services\SourceDestinationQueryService.cs:line 34
+   at veteran_logistic.Reports.ConsolidatedReport.ViewModels.ConsolidatedReportViewModel.LoadDestinationsAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\ConsolidatedReport\ViewModels\ConsolidatedReportViewModel.cs:line 357
+[2026-08-03 15:04:10 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 15:04:11 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 15:04:12 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 15:04:12 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 15:04:13 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 15:04:13 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 15:04:13 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 15:04:13 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 15:04:14 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 15:04:14 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 15:04:14 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 15:04:14 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 15:04:45 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 15:04:45 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 15:04:50 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 15:04:50 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 15:10:35 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-03 15:10:35 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-03 15:10:35 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-03 15:10:35 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-03 15:10:35 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-03 15:10:35 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-03 15:10:35 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-03 15:10:35 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-03 15:10:35 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-03 15:10:35 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-03 15:10:35 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-03 15:10:35 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-03 15:14:21 ERR]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An exception occurred while iterating over the results of a query for context type 'VeteranLogistics.Data.Context.VeteranLogisticsDbContext'.
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+[2026-08-03 15:14:21 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-08-03 15:14:21 ERR]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An exception occurred while iterating over the results of a query for context type 'VeteranLogistics.Data.Context.VeteranLogisticsDbContext'.
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+[2026-08-03 15:14:21 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-08-03 15:14:21 ERR]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An exception occurred while iterating over the results of a query for context type 'VeteranLogistics.Data.Context.VeteranLogisticsDbContext'.
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+[2026-08-03 15:45:15 ERR]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An exception occurred while iterating over the results of a query for context type 'VeteranLogistics.Data.Context.VeteranLogisticsDbContext'.
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at veteran_logistic.Masters.Customers.Services.CustomerQueryService.GetAllCustomersAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Masters\Customers\Services\CustomerQueryService.cs:line 32
+   at veteran_logistic.Reports.ConsolidatedReport.ViewModels.ConsolidatedReportViewModel.LoadConsigneesAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\ConsolidatedReport\ViewModels\ConsolidatedReportViewModel.cs:line 338
+[2026-08-03 15:45:15 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-08-03 15:45:15 ERR]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An exception occurred while iterating over the results of a query for context type 'VeteranLogistics.Data.Context.VeteranLogisticsDbContext'.
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at veteran_logistic.Masters.SourceDestinations.Services.SourceDestinationQueryService.GetAllSourceDestinationsAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Masters\SourceDestinations\Services\SourceDestinationQueryService.cs:line 34
+   at veteran_logistic.Reports.ConsolidatedReport.ViewModels.ConsolidatedReportViewModel.LoadSourcesAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\ConsolidatedReport\ViewModels\ConsolidatedReportViewModel.cs:line 348
+[2026-08-03 15:45:15 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-08-03 15:45:15 ERR]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An exception occurred while iterating over the results of a query for context type 'VeteranLogistics.Data.Context.VeteranLogisticsDbContext'.
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at veteran_logistic.Masters.SourceDestinations.Services.SourceDestinationQueryService.GetAllSourceDestinationsAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Masters\SourceDestinations\Services\SourceDestinationQueryService.cs:line 34
+   at veteran_logistic.Reports.ConsolidatedReport.ViewModels.ConsolidatedReportViewModel.LoadDestinationsAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\ConsolidatedReport\ViewModels\ConsolidatedReportViewModel.cs:line 358
+[2026-08-03 15:45:17 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 15:45:18 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 15:45:18 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 15:45:18 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 15:45:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 15:45:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 15:45:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 15:45:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 15:45:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 15:45:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 16:07:09 ERR]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An exception occurred while iterating over the results of a query for context type 'VeteranLogistics.Data.Context.VeteranLogisticsDbContext'.
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at veteran_logistic.Masters.Customers.Services.CustomerQueryService.GetAllCustomersAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Masters\Customers\Services\CustomerQueryService.cs:line 32
+   at veteran_logistic.Reports.ConsolidatedReport.ViewModels.ConsolidatedReportViewModel.LoadConsigneesAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\ConsolidatedReport\ViewModels\ConsolidatedReportViewModel.cs:line 339
+[2026-08-03 16:07:09 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-08-03 16:07:09 ERR]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An exception occurred while iterating over the results of a query for context type 'VeteranLogistics.Data.Context.VeteranLogisticsDbContext'.
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at veteran_logistic.Masters.SourceDestinations.Services.SourceDestinationQueryService.GetAllSourceDestinationsAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Masters\SourceDestinations\Services\SourceDestinationQueryService.cs:line 34
+   at veteran_logistic.Reports.ConsolidatedReport.ViewModels.ConsolidatedReportViewModel.LoadSourcesAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\ConsolidatedReport\ViewModels\ConsolidatedReportViewModel.cs:line 351
+[2026-08-03 16:07:09 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-08-03 16:07:09 ERR]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An exception occurred while iterating over the results of a query for context type 'VeteranLogistics.Data.Context.VeteranLogisticsDbContext'.
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at veteran_logistic.Masters.SourceDestinations.Services.SourceDestinationQueryService.GetAllSourceDestinationsAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Masters\SourceDestinations\Services\SourceDestinationQueryService.cs:line 34
+   at veteran_logistic.Reports.ConsolidatedReport.ViewModels.ConsolidatedReportViewModel.LoadDestinationsAsync(CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\ConsolidatedReport\ViewModels\ConsolidatedReportViewModel.cs:line 368
+[2026-08-03 16:07:11 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 16:07:11 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 16:07:13 ERR]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An exception occurred while iterating over the results of a query for context type 'VeteranLogistics.Data.Context.VeteranLogisticsDbContext'.
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+[2026-08-03 16:07:13 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-08-03 16:07:13 ERR]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An exception occurred while iterating over the results of a query for context type 'VeteranLogistics.Data.Context.VeteranLogisticsDbContext'.
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+[2026-08-03 16:07:13 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-08-03 16:07:13 ERR]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+An exception occurred while iterating over the results of a query for context type 'VeteranLogistics.Data.Context.VeteranLogisticsDbContext'.
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+[2026-08-03 16:09:47 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-03 16:09:47 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-03 16:09:47 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-03 16:09:47 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-03 16:09:47 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-03 16:09:47 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-03 16:09:47 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-03 16:09:47 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-03 16:09:47 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-03 16:09:47 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-03 16:09:47 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-03 16:09:47 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-03 16:09:48 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-08-03 16:09:48 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 source/destinations
+[2026-08-03 16:09:48 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-08-03 16:09:48 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 source/destinations
+[2026-08-03 16:09:48 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 16:09:48 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 16:09:48 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 16:09:48 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 16:09:50 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-08-03 16:09:50 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 source/destinations
+[2026-08-03 16:09:50 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-08-03 16:09:50 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 source/destinations
+[2026-08-03 16:09:50 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 16:09:50 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 16:10:03 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 16:10:03 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 1 records
+[2026-08-03 16:10:08 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 16:10:08 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 1 records
+[2026-08-03 16:10:15 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 16:10:15 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records
+[2026-08-03 16:10:17 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-08-03 16:10:17 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 source/destinations
+[2026-08-03 16:10:17 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Getting all source/destinations
+[2026-08-03 16:10:17 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Retrieved 3 source/destinations
+[2026-08-03 16:10:17 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Generating consolidated report with filters and search
+[2026-08-03 16:10:17 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Consolidated report generated successfully with 2 records

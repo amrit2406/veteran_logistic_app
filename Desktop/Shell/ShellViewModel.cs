@@ -166,6 +166,11 @@ public sealed class ShellViewModel : ObservableObject
     public IAsyncRelayCommand NavigateToTdsReportCommand { get; }
 
     /// <summary>
+    /// Command to navigate to the Consolidated Report screen.
+    /// </summary>
+    public IAsyncRelayCommand NavigateToConsolidatedReportCommand { get; }
+
+    /// <summary>
     /// Command to navigate back to the previous screen.
     /// </summary>
     public IAsyncRelayCommand GoBackCommand { get; }
@@ -210,6 +215,7 @@ public sealed class ShellViewModel : ObservableObject
         NavigateToPaymentReportCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Reports.PaymentReport.ViewModels.PaymentReportViewModel>(), () => CanNavigateToPaymentReport());
         NavigateToPartyBillingReportCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Reports.PartyBillingReport.ViewModels.PartyBillingReportViewModel>(), () => CanNavigateToPartyBillingReport());
         NavigateToTdsReportCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Reports.TdsReport.ViewModels.TdsReportViewModel>(), () => CanNavigateToTdsReport());
+        NavigateToConsolidatedReportCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Reports.ConsolidatedReport.ViewModels.ConsolidatedReportViewModel>(), () => CanNavigateToConsolidatedReport());
         GoBackCommand = new AsyncRelayCommand(ExecuteGoBackAsync);
         navigationService.CurrentViewModelChanged += OnCurrentViewModelChanged;
         _currentViewModel = ResolveShellContent(navigationService.CurrentViewModel) ?? _placeholder;
@@ -375,6 +381,11 @@ public sealed class ShellViewModel : ObservableObject
     }
 
     private bool CanNavigateToTdsReport()
+    {
+        return true; // TODO: Add permission check when permission is defined
+    }
+
+    private bool CanNavigateToConsolidatedReport()
     {
         return true; // TODO: Add permission check when permission is defined
     }

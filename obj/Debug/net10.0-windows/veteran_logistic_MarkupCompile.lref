@@ -1,5 +1,5 @@
 ﻿
-Fd:\app\veteran_logistic_app\App.xaml;;
+FD:\app\veteran_logistic_app\App.xaml;;
 FD:\app\veteran_logistic_app\Administration\FinancialYears\Views\FinancialYearsView.xaml;;
 FD:\app\veteran_logistic_app\Administration\Permissions\Views\PermissionMatrixView.xaml;;
 FD:\app\veteran_logistic_app\Administration\Users\Views\AddUserView.xaml;;
@@ -19,14 +19,15 @@ FD:\app\veteran_logistic_app\Masters\VehicleAssignments\Views\VehicleAssignments
 FD:\app\veteran_logistic_app\Masters\VehicleOwners\Views\VehicleOwnersView.xaml;;
 FD:\app\veteran_logistic_app\Masters\Vehicles\Views\VehiclesView.xaml;;
 FD:\app\veteran_logistic_app\Masters\Vendors\Views\VendorsView.xaml;;
+FD:\app\veteran_logistic_app\Reports\ConsolidatedReport\Views\ConsolidatedReportView.xaml;;
 FD:\app\veteran_logistic_app\Reports\LoadingReport\Views\LoadingReportView.xaml;;
 FD:\app\veteran_logistic_app\Reports\PartyBillingReport\Views\PartyBillingReportView.xaml;;
 FD:\app\veteran_logistic_app\Reports\PaymentReport\Views\PaymentReportView.xaml;;
+FD:\app\veteran_logistic_app\Reports\TdsReport\Views\TdsReportView.xaml;;
 FD:\app\veteran_logistic_app\Reports\UnloadingReport\Views\UnloadingReportView.xaml;;
 FD:\app\veteran_logistic_app\Resources\DataTemplates.xaml;;
 FD:\app\veteran_logistic_app\Transactions\LoadingRegisters\Views\LoadingRegistersView.xaml;;
 FD:\app\veteran_logistic_app\Transactions\PartyBillRegister\Views\PartyBillRegistersView.xaml;;
 FD:\app\veteran_logistic_app\Transactions\PaymentRegisters\Views\PaymentRegistersView.xaml;;
 FD:\app\veteran_logistic_app\Transactions\UnloadingRegisters\Views\UnloadingRegistersView.xaml;;
-Fd:\app\veteran_logistic_app\Reports\TdsReport\Views\TdsReportView.xaml;;
 

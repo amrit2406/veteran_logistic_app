@@ -4,6 +4,7 @@ using veteran_logistic.Reports.UnloadingReport.DependencyInjection;
 using veteran_logistic.Reports.PaymentReport.DependencyInjection;
 using veteran_logistic.Reports.PartyBillingReport.DependencyInjection;
 using veteran_logistic.Reports.TdsReport.DependencyInjection;
+using veteran_logistic.Reports.ConsolidatedReport.DependencyInjection;
 
 namespace veteran_logistic.Reports.DependencyInjection;
 
@@ -35,6 +36,9 @@ public static class ReportsServiceCollectionExtensions
 
         // TDS Report
         services.AddTdsReport();
+
+        // Consolidated Report
+        services.AddConsolidatedReport();
 
         return services;
     }
