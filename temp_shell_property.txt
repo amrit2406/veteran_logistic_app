@@ -1,0 +1,14 @@
+﻿    /// <summary>
+    /// Command to navigate to the Consolidated Report screen.
+    /// </summary>
+    public IAsyncRelayCommand NavigateToConsolidatedReportCommand { get; }
+
+    /// <summary>
+    /// Command to navigate to the Query Builder screen.
+    /// </summary>
+    public IAsyncRelayCommand NavigateToQueryBuilderCommand { get; }
+
+    /// <summary>
+    /// Command to navigate back to the previous screen.
+    /// </summary>
+    public IAsyncRelayCommand GoBackCommand { get; }

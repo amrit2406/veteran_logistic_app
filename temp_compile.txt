@@ -1,0 +1,3 @@
+﻿<ItemGroup>
+    <Compile Include="Reports\QueryBuilder\**\*.cs" />
+</ItemGroup>
