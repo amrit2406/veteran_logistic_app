@@ -2679,6 +2679,80 @@ Build verified successfully. All architectural patterns followed: MVVM with Comm
 * **Architecture Compliance**: ✅ All patterns followed (MVVM, DI, Navigation, Busy State, Query/Command Separation, Logging)
 * **Consistency**: ✅ Fully consistent with Phase 5.1 (Loading Report) architecture and UI design
 
+### Reports Module - Phase 5.3: Payment Report
+* **Status**: ✅ COMPLETED (2026-08-01)
+* **Business Requirements**: Payment Report module for reporting on payment register data
+* **Data Source**: Reads from existing Payment Register (no schema changes)
+* **Architecture**: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer, Result pattern, Dependency injection, Navigation with INavigationAware, Async/await with CancellationToken, Logging with ILogger, Busy state management
+* **Components**: Contracts (QueryService, PdfExporter, ExcelExporter), DTOs (Filter, Item, Totals), Services (QueryService), Export (Pdf, Excel), ViewModels, Views, DependencyInjection
+* **Features**: Date range, customer, vehicle, driver, material, source, destination, payment location, payment type filters; 300ms debounced search; sorting on LoadingDate, ChallanNumber, Vehicle, Customer, Source, Destination, Material, GrossAmount; totals (RecordCount, TotalLoadingWeight, TotalUnloadingWeight, TotalShortageWeight, TotalGrossAmount, TotalChallanMoney, TotalPayableAmount, TotalTDS, TotalSurcharge, TotalAdminCharge); PDF/Excel export with filters and timestamp
+* **Build Status**: ✅ Build succeeded with no errors or warnings
+* **Architecture Compliance**: ✅ All patterns followed (MVVM, DI, Navigation, Busy State, Query/Command Separation, Logging)
+* **Consistency**: ✅ Fully consistent with Phase 5.1 (Loading Report) architecture and UI design
+
+### Reports Module - Phase 5.4: Party Billing Report
+* **Status**: ✅ COMPLETED (2026-08-02)
+* **Business Requirements**: Party Billing Report module for reporting on party bill register data
+* **Data Source**: Reads from existing Party Bill Register and Party Bill Register Detail (no schema changes)
+* **Architecture**: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer, Result pattern, Dependency injection, Navigation with INavigationAware, Async/await with CancellationToken, Logging with ILogger, Busy state management
+* **Components**: Contracts (QueryService, PdfExporter, ExcelExporter), DTOs (Filter, Item, DetailItem, Totals), Services (QueryService), Export (Pdf, Excel), ViewModels, Views, DependencyInjection
+* **Features**: Date range, party, consignor, destination filters; 300ms debounced search; sorting on BillDate, BillNumber, Party, TotalAmount; summary cards (TotalBills, TotalRecords, TotalMaterialWeight, TotalAmount, TotalCharges, GrandTotal); totals (RecordCount, TotalMaterialWeight, TotalAmount, TotalCharges, GrandTotal); PDF/Excel export with filters and timestamp
+* **Build Status**: ✅ Build succeeded with no errors or warnings
+* **Architecture Compliance**: ✅ All patterns followed (MVVM, DI, Navigation, Busy State, Query/Command Separation, Logging)
+* **Consistency**: ✅ Fully consistent with Phase 5.1 (Loading Report) architecture and UI design
+
+### Reports Module - Phase 5.5: TDS Report
+* **Status**: ✅ COMPLETED (2026-08-03)
+* **Business Requirements**: TDS Report module for reporting on TDS data from payment register
+* **Data Source**: Reads from existing Payment Register (no schema changes)
+* **Architecture**: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer, Result pattern, Dependency injection, Navigation with INavigationAware, Async/await with CancellationToken, Logging with ILogger, Busy state management
+* **Components**: Contracts (QueryService, PdfExporter, ExcelExporter), DTOs (Filter, Item, Totals), Services (QueryService), Export (Pdf, Excel), ViewModels, Views, DependencyInjection
+* **Features**: Date range, customer, vehicle, payment type filters; 300ms debounced search; sorting on PaymentDate, ChallanNumber, Vehicle, Customer, PayableAmount; totals (RecordCount, TotalPayableAmount, TotalTDS, TotalNetPayment); PDF/Excel export with filters and timestamp
+* **Build Status**: ✅ Build succeeded with no errors or warnings
+* **Architecture Compliance**: ✅ All patterns followed (MVVM, DI, Navigation, Busy State, Query/Command Separation, Logging)
+* **Consistency**: ✅ Fully consistent with Phase 5.1 (Loading Report) architecture and UI design
+
+### Reports Module - Phase 5.6: Consolidated Report
+* **Status**: ✅ COMPLETED (2026-08-04)
+* **Business Requirements**: Consolidated Report module combining loading, unloading, payment, and billing data
+* **Data Source**: Reads from existing Loading Register, Unloading Register, Payment Register, Party Bill Register Detail (no schema changes)
+* **Architecture**: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer, Result pattern, Dependency injection, Navigation with INavigationAware, Async/await with CancellationToken, Logging with ILogger, Busy state management
+* **Components**: Contracts (QueryService, PdfExporter, ExcelExporter), DTOs (Filter, Item, SummaryCards, Totals), Services (QueryService), Export (Pdf, Excel), ViewModels, Views, DependencyInjection
+* **Features**: Date range, customer, source, destination filters; 300ms debounced search; sorting on LoadingDate, ChallanNumber, Vehicle, Customer, Source, Destination; summary cards (TotalTransactions, LoadingOnly, PendingUnloading, PendingPayment, PendingBilling, Completed, TotalRevenue, TotalNetPayment, TotalTDS); totals (RecordCount, TotalLoadingWeight, TotalUnloadingWeight, TotalShortageWeight, TotalGrossAmount, TotalNetPayment, TotalTDS); PDF/Excel export with filters and timestamp
+* **Build Status**: ✅ Build succeeded with no errors or warnings
+* **Architecture Compliance**: ✅ All patterns followed (MVVM, DI, Navigation, Busy State, Query/Command Separation, Logging)
+* **Consistency**: ✅ Fully consistent with Phase 5.1 (Loading Report) architecture and UI design
+
+### Reports Module - Phase 5.7: Query Builder
+* **Status**: ✅ COMPLETED (2026-08-04)
+* **Business Requirements**: Query Builder module for ad-hoc report generation across all modules
+* **Data Source**: Dynamic query across available modules (no schema changes)
+* **Architecture**: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer, Result pattern, Dependency injection, Navigation with INavigationAware, Async/await with CancellationToken, Logging with ILogger, Busy state management
+* **Components**: Contracts (QueryEngine, PdfExporter, ExcelExporter, CsvExporter), DTOs (QueryResult, QueryResultItem), Metadata (FieldDataType, FieldMetadata, ModuleMetadata, QueryMetadataProvider), Models (AggregateType, FilterOperator, QueryDefinition, QueryFilter, QuerySort, QueryAggregate), Services (QueryEngine), Export (Pdf, Excel, Csv), ViewModels, Views, DependencyInjection
+* **Features**: Module selection, field selection, filter configuration, sorting, aggregation; query execution; export to PDF, Excel, CSV; metadata-driven query generation
+* **Build Status**: ✅ Build succeeded with no errors or warnings
+* **Architecture Compliance**: ✅ All patterns followed (MVVM, DI, Navigation, Busy State, Query/Command Separation, Logging)
+* **Consistency**: ✅ Follows existing report architecture with metadata-driven query generation
+
+### Reports Module - Phase 5.8: Bank Report
+* **Status**: ❌ SKIPPED (2026-08-04)
+* **Reason**: Customer entity lacks bank-related fields (BankName, AccountNumber, IFSCCode, Branch, BeneficiaryName, AccountType)
+* **Validation**: Inspected Customer entity - only contains basic customer information (CustomerCode, CustomerName, Address, Phone, Email, GSTNumber, PANNumber, IsActive, IsDeleted)
+* **Requirement**: Bank Report cannot be implemented without schema changes to Customer entity
+* **Future Action**: Add bank fields to Customer entity through proper migration before implementing Bank Report
+
+### Reports Module - Phase 5.9: DO Status Report
+* **Status**: ✅ COMPLETED (2026-08-04)
+* **Business Requirements**: DO Status Report module for operational tracking of Delivery Orders
+* **Data Source**: Reads from existing Loading Register, Unloading Register, Payment Register, Party Bill Register Detail (no schema changes)
+* **Architecture**: MVVM with CommunityToolkit.Mvvm, Query/Command separation, Validation layer, Result pattern, Dependency injection, Navigation with INavigationAware, Async/await with CancellationToken, Logging with ILogger, Busy state management
+* **Components**: Contracts (QueryService, PdfExporter, ExcelExporter), DTOs (DOStatus enum, Filter, Item, SummaryCards, Totals), Services (QueryService), Export (Pdf, Excel), ViewModels, Views, DependencyInjection
+* **Features**: Date range, customer, vehicle, driver, material, source, destination, DO status, payment status, billing status filters; 300ms debounced search; sorting on LoadingDate, ChallanNumber, Vehicle, Customer, Source, Status; dashboard cards (TotalDO, TodayLoading, RunningDO, CompletedDO, PaymentPending, BillPending); totals (TotalRecords, TotalLoadingWeight, TotalUnloadingWeight, TotalShortageWeight, TotalGrossAmount, TotalChallanMoney, TotalPendingAmount); automatic status calculation (Loaded, InTransit, Unloaded, PaymentPending, PaymentCompleted, BillPending, Completed); PDF/Excel export with filters and timestamp
+* **Status Calculation**: Derived from existing transaction data - no manual status fields in database
+* **Build Status**: ✅ Build succeeded with no errors or warnings
+* **Architecture Compliance**: ✅ All patterns followed (MVVM, DI, Navigation, Busy State, Query/Command Separation, Logging)
+* **Consistency**: ✅ Fully consistent with Phase 5.1 (Loading Report) architecture and UI design
+
 ## 3. Architecture & Design
 
 ### Dependency Injection and Composition
