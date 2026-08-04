@@ -140,3 +140,2221 @@ System.InvalidOperationException: Property 'PartyBillRegister' not found on type
 [Thread: 2]
 
 Query executed in 212ms with 1 records
+[2026-08-04 12:35:22 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Executing query for module Payment
+[2026-08-04 12:35:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2026-08-04 12:35:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for Id
+System.InvalidOperationException: Property 'PaymentRegister' not found on type 'PaymentRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute3[T0,T1,T2,TRet](CallSite site, T0 arg0, T1 arg1, T2 arg2)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:35:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for ChallanNumber
+System.InvalidOperationException: Property 'PaymentRegister' not found on type 'PaymentRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:35:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for TPNumber
+System.InvalidOperationException: Property 'PaymentRegister' not found on type 'PaymentRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:35:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for VehicleNumber
+System.InvalidOperationException: Property 'PaymentRegister' not found on type 'PaymentRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:35:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for MaterialName
+System.InvalidOperationException: Property 'PaymentRegister' not found on type 'PaymentRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:35:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for LoadingWeight
+System.InvalidOperationException: Property 'PaymentRegister' not found on type 'PaymentRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:35:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for UnloadingWeight
+System.InvalidOperationException: Property 'PaymentRegister' not found on type 'PaymentRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:35:22 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for BankName
+System.InvalidOperationException: Property 'PaymentRegister' not found on type 'PaymentRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:35:22 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Query executed in 213ms with 1 records
+[2026-08-04 12:44:08 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Executing query for module Loading
+[2026-08-04 12:44:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2026-08-04 12:44:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for Id
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute3[T0,T1,T2,TRet](CallSite site, T0 arg0, T1 arg1, T2 arg2)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:44:08 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for ChallanNumber
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:44:09 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for TPNumber
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:44:09 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for Consignor.CustomerName
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:44:09 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for Vehicle.VehicleNumber
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:44:09 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for Material.MaterialName
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:44:09 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for FuelAmount
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:44:09 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for Id
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:44:09 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for ChallanNumber
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:44:09 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for TPNumber
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:44:09 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for Consignor.CustomerName
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:44:09 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for Vehicle.VehicleNumber
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:44:09 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for Material.MaterialName
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:44:09 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for FuelAmount
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:44:09 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Query executed in 463ms with 2 records
+[2026-08-04 12:44:21 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Starting PDF export for query builder to C:\Users\infov\Downloads\Query_Result_20260804_124419.pdf
+[2026-08-04 12:44:21 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+PDF export completed successfully for 2 records
+[2026-08-04 12:44:25 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Starting Excel export for query builder to C:\Users\infov\Downloads\Query_Result_20260804_124424.xlsx
+[2026-08-04 12:44:26 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Excel export completed successfully for 2 records
+[2026-08-04 12:44:30 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Starting CSV export for query builder to C:\Users\infov\Downloads\Query_Result_20260804_124429.csv
+[2026-08-04 12:44:30 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+CSV export completed successfully for 2 records
+[2026-08-04 12:49:25 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Executing query for module Loading
+[2026-08-04 12:49:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2026-08-04 12:49:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for Id
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute3[T0,T1,T2,TRet](CallSite site, T0 arg0, T1 arg1, T2 arg2)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:49:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for ChallanNumber
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:49:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for LoadingDate
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:49:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for TPNumber
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:49:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for Consignor.CustomerName
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:49:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for Consignee.CustomerName
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:49:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for Source.LocationName
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:49:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for Destination.LocationName
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:49:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for Id
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:49:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for ChallanNumber
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:49:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for LoadingDate
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:49:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for TPNumber
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:49:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for Consignor.CustomerName
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:49:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for Consignee.CustomerName
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:49:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for Source.LocationName
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:49:25 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for Destination.LocationName
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:49:26 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Query executed in 403ms with 2 records
+[2026-08-04 12:49:47 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Executing query for module Loading
+[2026-08-04 12:49:47 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2026-08-04 12:49:47 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for ChallanNumber
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:49:47 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for ChallanNumber
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:49:47 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Query executed in 20ms with 2 records
+[2026-08-04 13:02:16 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-04 13:02:16 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-04 13:02:16 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-04 13:02:16 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-04 13:02:16 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-04 13:02:16 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-04 13:02:16 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-04 13:02:16 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-04 13:02:16 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-04 13:02:16 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' is requesting permissions.
+[2026-08-04 13:02:16 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User 'admin' with role 'Administrator' has 73 permissions.
+[2026-08-04 13:02:16 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+User permissions: administration.users.view, administration.users.add, administration.users.edit, administration.users.activate, administration.users.delete, administration.roles.view, administration.roles.add, administration.roles.edit, administration.roles.activate, administration.roles.delete, administration.permissionmatrix.view, administration.permissionmatrix.manage, administration.financialyears.view, administration.financialyears.add, administration.financialyears.edit, administration.financialyears.activate, administration.financialyears.close, masters.companies.view, masters.companies.add, masters.companies.edit, masters.companies.delete, masters.customers.view, masters.customers.add, masters.customers.edit, masters.customers.delete, masters.vendors.view, masters.vendors.add, masters.vendors.edit, masters.vendors.delete, masters.sourcedestinations.view, masters.sourcedestinations.add, masters.sourcedestinations.edit, masters.sourcedestinations.delete, masters.materials.view, masters.materials.add, masters.materials.edit, masters.materials.delete, masters.fuelpumps.view, masters.fuelpumps.add, masters.fuelpumps.edit, masters.fuelpumps.delete, masters.hsdrates.view, masters.hsdrates.add, masters.hsdrates.edit, masters.hsdrates.delete, masters.paymentlocations.view, masters.paymentlocations.add, masters.paymentlocations.edit, masters.paymentlocations.delete, masters.vehicleowners.view, masters.vehicleowners.add, masters.vehicleowners.edit, masters.vehicleowners.delete, masters.vehicleassignments.view, masters.vehicleassignments.add, masters.vehicleassignments.edit, masters.vehicleassignments.delete, drivers.view, drivers.create, drivers.edit, drivers.delete, vehicles.view, vehicles.create, vehicles.edit, vehicles.delete, trips.view, trips.create, trips.edit, trips.delete, dispatches.view, dispatches.create, dispatches.edit, dispatches.delete
+[2026-08-04 13:02:30 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Executing query for module Loading
+[2026-08-04 13:02:30 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2026-08-04 13:02:30 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for Id
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute3[T0,T1,T2,TRet](CallSite site, T0 arg0, T1 arg1, T2 arg2)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 13:02:30 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for ChallanNumber
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 13:02:30 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for Id
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 13:02:30 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for ChallanNumber
+System.InvalidOperationException: Property 'LoadingRegister' not found on type 'LoadingRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 13:02:30 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Query executed in 139ms with 2 records
+[2026-08-04 13:02:38 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Starting PDF export for query builder to C:\Users\infov\Downloads\Query_Result_20260804_130236.pdf
+[2026-08-04 13:02:38 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+PDF export completed successfully for 2 records
+[2026-08-04 13:06:00 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Executing query for module Loading
+[2026-08-04 13:06:00 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2026-08-04 13:06:00 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Query executed in 62ms with 2 records
+[2026-08-04 13:07:02 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Executing query for module Unloading
+[2026-08-04 13:07:02 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2026-08-04 13:07:02 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Query executed in 18ms with 1 records
+[2026-08-04 13:11:11 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Executing query for module Loading
+[2026-08-04 13:11:11 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2026-08-04 13:11:11 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field ChallanNumber (PropertyPath: ChallanNumber) = null
+[2026-08-04 13:11:11 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field TPNumber (PropertyPath: TPNumber) = null
+[2026-08-04 13:11:11 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field ConsigneeName (PropertyPath: Consignee.CustomerName) = null
+[2026-08-04 13:11:11 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - QueryResultItem has 3 values
+[2026-08-04 13:11:11 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field ChallanNumber (PropertyPath: ChallanNumber) = null
+[2026-08-04 13:11:11 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field TPNumber (PropertyPath: TPNumber) = null
+[2026-08-04 13:11:11 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field ConsigneeName (PropertyPath: Consignee.CustomerName) = null
+[2026-08-04 13:11:11 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - QueryResultItem has 3 values
+[2026-08-04 13:11:11 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Query executed in 100ms with 2 records
+[2026-08-04 13:21:33 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Executing query for module Loading
+[2026-08-04 13:21:33 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field ChallanNumber (PropertyPath: ChallanNumber) = null
+[2026-08-04 13:21:33 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field TPNumber (PropertyPath: TPNumber) = null
+[2026-08-04 13:21:33 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field ConsigneeName (PropertyPath: Consignee.CustomerName) = null
+[2026-08-04 13:21:33 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - QueryResultItem has 3 values
+[2026-08-04 13:21:33 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field ChallanNumber (PropertyPath: ChallanNumber) = null
+[2026-08-04 13:21:33 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field TPNumber (PropertyPath: TPNumber) = null
+[2026-08-04 13:21:33 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field ConsigneeName (PropertyPath: Consignee.CustomerName) = null
+[2026-08-04 13:21:33 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - QueryResultItem has 3 values
+[2026-08-04 13:21:33 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Query executed in 59ms with 2 records
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Executing query for module Loading
+[2026-08-04 13:28:19 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Processing result of type: VeteranLogistics.Data.Entities.Administration.LoadingRegister
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=Id
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: null
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field Id (PropertyPath: Id) = null
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=ChallanNumber
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: null
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field ChallanNumber (PropertyPath: ChallanNumber) = null
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=LoadingDate
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: null
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field LoadingDate (PropertyPath: LoadingDate) = null
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=TPNumber
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: null
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field TPNumber (PropertyPath: TPNumber) = null
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=Consignor.CustomerName
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: null
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field ConsignorName (PropertyPath: Consignor.CustomerName) = null
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=PaymentLocation.PaymentLocationName
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: null
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field PaymentLocationName (PropertyPath: PaymentLocation.PaymentLocationName) = null
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - QueryResultItem has 6 values
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Processing result of type: VeteranLogistics.Data.Entities.Administration.LoadingRegister
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=Id
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: null
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field Id (PropertyPath: Id) = null
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=ChallanNumber
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: null
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field ChallanNumber (PropertyPath: ChallanNumber) = null
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=LoadingDate
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: null
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field LoadingDate (PropertyPath: LoadingDate) = null
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=TPNumber
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: null
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field TPNumber (PropertyPath: TPNumber) = null
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=Consignor.CustomerName
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: null
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field ConsignorName (PropertyPath: Consignor.CustomerName) = null
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=PaymentLocation.PaymentLocationName
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: null
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field PaymentLocationName (PropertyPath: PaymentLocation.PaymentLocationName) = null
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - QueryResultItem has 6 values
+[2026-08-04 13:28:19 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Query executed in 372ms with 2 records
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Executing query for module Unloading
+[2026-08-04 13:31:42 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Processing result of type: VeteranLogistics.Data.Entities.Administration.UnloadingRegister
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.UnloadingRegister, propertyPath=Id
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+CompilePropertyAccessor: type=VeteranLogistics.Data.Entities.Administration.UnloadingRegister, propertyPath=UnloadingRegister.Id
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Looking for property 'UnloadingRegister' on type 'VeteranLogistics.Data.Entities.Administration.UnloadingRegister'
+[2026-08-04 13:31:42 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Property 'UnloadingRegister' not found on type 'VeteranLogistics.Data.Entities.Administration.UnloadingRegister'
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: null
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field Id (PropertyPath: Id) = null
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.UnloadingRegister, propertyPath=UnloadingDate
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+CompilePropertyAccessor: type=VeteranLogistics.Data.Entities.Administration.UnloadingRegister, propertyPath=UnloadingRegister.UnloadingDate
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Looking for property 'UnloadingRegister' on type 'VeteranLogistics.Data.Entities.Administration.UnloadingRegister'
+[2026-08-04 13:31:42 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Property 'UnloadingRegister' not found on type 'VeteranLogistics.Data.Entities.Administration.UnloadingRegister'
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: null
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field UnloadingDate (PropertyPath: UnloadingDate) = null
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.UnloadingRegister, propertyPath=ChallanNumber
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+CompilePropertyAccessor: type=VeteranLogistics.Data.Entities.Administration.UnloadingRegister, propertyPath=UnloadingRegister.ChallanNumber
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Looking for property 'UnloadingRegister' on type 'VeteranLogistics.Data.Entities.Administration.UnloadingRegister'
+[2026-08-04 13:31:42 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Property 'UnloadingRegister' not found on type 'VeteranLogistics.Data.Entities.Administration.UnloadingRegister'
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: null
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field ChallanNumber (PropertyPath: ChallanNumber) = null
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.UnloadingRegister, propertyPath=TPNumber
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+CompilePropertyAccessor: type=VeteranLogistics.Data.Entities.Administration.UnloadingRegister, propertyPath=UnloadingRegister.TPNumber
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Looking for property 'UnloadingRegister' on type 'VeteranLogistics.Data.Entities.Administration.UnloadingRegister'
+[2026-08-04 13:31:42 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Property 'UnloadingRegister' not found on type 'VeteranLogistics.Data.Entities.Administration.UnloadingRegister'
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: null
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field TPNumber (PropertyPath: TPNumber) = null
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.UnloadingRegister, propertyPath=Consignor.CustomerName
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+CompilePropertyAccessor: type=VeteranLogistics.Data.Entities.Administration.UnloadingRegister, propertyPath=UnloadingRegister.Consignor.CustomerName
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Looking for property 'UnloadingRegister' on type 'VeteranLogistics.Data.Entities.Administration.UnloadingRegister'
+[2026-08-04 13:31:42 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Property 'UnloadingRegister' not found on type 'VeteranLogistics.Data.Entities.Administration.UnloadingRegister'
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: null
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field ConsignorName (PropertyPath: Consignor.CustomerName) = null
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - QueryResultItem has 5 values
+[2026-08-04 13:31:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Query executed in 148ms with 1 records
+[2026-08-04 13:35:33 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Executing query for module Loading
+[2026-08-04 13:35:33 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Processing result of type: VeteranLogistics.Data.Entities.Administration.LoadingRegister
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=Id
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+CompilePropertyAccessor: type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=Id
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Looking for property 'Id' on type 'VeteranLogistics.Data.Entities.Administration.LoadingRegister'
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Found property 'Id' of type System.Int32
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Successfully compiled accessor
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: 11
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field Id (PropertyPath: Id) = 11
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=ChallanNumber
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+CompilePropertyAccessor: type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=ChallanNumber
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Looking for property 'ChallanNumber' on type 'VeteranLogistics.Data.Entities.Administration.LoadingRegister'
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Found property 'ChallanNumber' of type System.String
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Successfully compiled accessor
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: CH2026000001
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field ChallanNumber (PropertyPath: ChallanNumber) = CH2026000001
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=LoadingDate
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+CompilePropertyAccessor: type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=LoadingDate
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Looking for property 'LoadingDate' on type 'VeteranLogistics.Data.Entities.Administration.LoadingRegister'
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Found property 'LoadingDate' of type System.DateTime
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Successfully compiled accessor
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: "2026-07-23T00:00:00.0000000"
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field LoadingDate (PropertyPath: LoadingDate) = "2026-07-23T00:00:00.0000000"
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=TPNumber
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+CompilePropertyAccessor: type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=TPNumber
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Looking for property 'TPNumber' on type 'VeteranLogistics.Data.Entities.Administration.LoadingRegister'
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Found property 'TPNumber' of type System.String
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Successfully compiled accessor
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: 1
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field TPNumber (PropertyPath: TPNumber) = 1
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=Consignor.CustomerName
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+CompilePropertyAccessor: type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=Consignor.CustomerName
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Looking for property 'Consignor' on type 'VeteranLogistics.Data.Entities.Administration.LoadingRegister'
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Found property 'Consignor' of type VeteranLogistics.Data.Entities.Administration.Customer
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Looking for property 'CustomerName' on type 'VeteranLogistics.Data.Entities.Administration.Customer'
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Found property 'CustomerName' of type System.String
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Successfully compiled accessor
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: qwe
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field ConsignorName (PropertyPath: Consignor.CustomerName) = qwe
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=Source.LocationName
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+CompilePropertyAccessor: type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=Source.LocationName
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Looking for property 'Source' on type 'VeteranLogistics.Data.Entities.Administration.LoadingRegister'
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Found property 'Source' of type VeteranLogistics.Data.Entities.Administration.SourceDestination
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Looking for property 'LocationName' on type 'VeteranLogistics.Data.Entities.Administration.SourceDestination'
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Found property 'LocationName' of type System.String
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+  Successfully compiled accessor
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: Bam
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field SourceName (PropertyPath: Source.LocationName) = Bam
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - QueryResultItem has 6 values
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Processing result of type: VeteranLogistics.Data.Entities.Administration.LoadingRegister
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=Id
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: 12
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field Id (PropertyPath: Id) = 12
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=ChallanNumber
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: CH2026000002
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field ChallanNumber (PropertyPath: ChallanNumber) = CH2026000002
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=LoadingDate
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: "2026-07-23T00:00:00.0000000"
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field LoadingDate (PropertyPath: LoadingDate) = "2026-07-23T00:00:00.0000000"
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=TPNumber
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: 2
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field TPNumber (PropertyPath: TPNumber) = 2
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=Consignor.CustomerName
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: rst
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field ConsignorName (PropertyPath: Consignor.CustomerName) = rst
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue: obj type=VeteranLogistics.Data.Entities.Administration.LoadingRegister, propertyPath=Source.LocationName
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+GetPropertyValue result: ghara
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - Field SourceName (PropertyPath: Source.LocationName) = ghara
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Async - QueryResultItem has 6 values
+[2026-08-04 13:35:34 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Query executed in 275ms with 2 records
+[2026-08-04 13:35:40 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Starting PDF export for query builder to C:\Users\infov\Downloads\Query_Result_20260804_133538.pdf
+[2026-08-04 13:35:40 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+PDF export completed successfully for 2 records
+[2026-08-04 13:35:44 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Starting Excel export for query builder to C:\Users\infov\Downloads\Query_Result_20260804_133542.xlsx
+[2026-08-04 13:35:44 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Excel export completed successfully for 2 records
+[2026-08-04 13:35:47 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Starting PDF export for query builder to C:\Users\infov\AppData\Local\Temp\Query_Result_20260804_133547.pdf
+[2026-08-04 13:35:47 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+PDF export completed successfully for 2 records
+[2026-08-04 13:46:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Executing query for module Loading
+[2026-08-04 13:46:42 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2026-08-04 13:46:42 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Query executed in 116ms with 2 records
+[2026-08-04 13:46:53 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Starting PDF export for query builder to C:\Users\infov\Downloads\Query_Result_20260804_134652.pdf
+[2026-08-04 13:46:53 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+PDF export completed successfully for 2 records

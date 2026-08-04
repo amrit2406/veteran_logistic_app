@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.ComponentModel;
+
 namespace veteran_logistic.Reports.QueryBuilder.DTOs;
 
 /// <summary>

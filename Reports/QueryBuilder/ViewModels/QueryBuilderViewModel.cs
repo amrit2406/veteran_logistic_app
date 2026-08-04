@@ -455,28 +455,66 @@ public sealed partial class QueryBuilderViewModel : ViewModelBase, IDisposable
                 SearchText,
                 _searchCancellationTokenSource.Token).ConfigureAwait(false);
 
-            ResultItems.Clear();
-            foreach (var item in QueryResult.Items)
+            // Update all UI-bound properties on UI thread
+            var dispatcher = System.Windows.Application.Current?.Dispatcher;
+            if (dispatcher != null && !dispatcher.CheckAccess())
             {
-                ResultItems.Add(item);
+                await dispatcher.InvokeAsync(() =>
+                {
+                    ResultItems.Clear();
+                    foreach (var item in QueryResult.Items)
+                    {
+                        ResultItems.Add(item);
+                    }
+                    HasResultLimitWarning = QueryResult.TotalCount >= MaxResultLimit;
+                    IsBusy = false;
+                    ColumnsGenerated = false; // Trigger column regeneration
+                });
             }
-
-            HasResultLimitWarning = QueryResult.TotalCount >= MaxResultLimit;
+            else
+            {
+                ResultItems.Clear();
+                foreach (var item in QueryResult.Items)
+                {
+                    ResultItems.Add(item);
+                }
+                HasResultLimitWarning = QueryResult.TotalCount >= MaxResultLimit;
+                IsBusy = false;
+                ColumnsGenerated = false; // Trigger column regeneration
+            }
 
             await _notificationService.ShowSuccessAsync("Success", $"Query executed successfully. {QueryResult.TotalCount} records returned.").ConfigureAwait(false);
         }
         catch (OperationCanceledException)
         {
+            var dispatcher = System.Windows.Application.Current?.Dispatcher;
+            if (dispatcher != null && !dispatcher.CheckAccess())
+            {
+                await dispatcher.InvokeAsync(() => IsBusy = false);
+            }
+            else
+            {
+                IsBusy = false;
+            }
             await _notificationService.ShowInformationAsync("Cancelled", "Query execution was cancelled.").ConfigureAwait(false);
         }
         catch (Exception ex)
         {
+            var dispatcher = System.Windows.Application.Current?.Dispatcher;
+            if (dispatcher != null && !dispatcher.CheckAccess())
+            {
+                await dispatcher.InvokeAsync(() =>
+                {
+                    IsBusy = false;
+                    ValidationMessage = ex.Message;
+                });
+            }
+            else
+            {
+                IsBusy = false;
+                ValidationMessage = ex.Message;
+            }
             await _notificationService.ShowErrorAsync("Error", $"Error executing query: {ex.Message}").ConfigureAwait(false);
-            ValidationMessage = ex.Message;
-        }
-        finally
-        {
-            IsBusy = false;
         }
     }
 

@@ -28,7 +28,6 @@ public sealed class QueryEngine : IQueryEngine
     private readonly ConcurrentDictionary<string, Func<object, object?>> _propertyAccessors;
     private readonly ConcurrentDictionary<string, LambdaExpression> _filterExpressionCache;
     private readonly ConcurrentDictionary<string, LambdaExpression> _sortExpressionCache;
-    private readonly ConcurrentDictionary<string, PropertyInfo> _propertyInfoCache;
 
     public QueryEngine(VeteranLogisticsDbContext dbContext, ILogger<QueryEngine> logger)
     {
@@ -37,40 +36,6 @@ public sealed class QueryEngine : IQueryEngine
         _propertyAccessors = new ConcurrentDictionary<string, Func<object, object?>>();
         _filterExpressionCache = new ConcurrentDictionary<string, LambdaExpression>();
         _sortExpressionCache = new ConcurrentDictionary<string, LambdaExpression>();
-        _propertyInfoCache = new ConcurrentDictionary<string, PropertyInfo>();
-        
-        // Pre-populate property info cache for known entity types
-        PreloadPropertyInfoCache();
-    }
-
-    private void PreloadPropertyInfoCache()
-    {
-        var entityTypes = new[]
-        {
-            typeof(LoadingRegisterEntity),
-            typeof(UnloadingRegisterEntity),
-            typeof(PaymentRegisterEntity),
-            typeof(PartyBillRegisterEntity)
-        };
-
-        foreach (var entityType in entityTypes)
-        {
-            var properties = entityType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            foreach (var property in properties)
-            {
-                _propertyInfoCache.TryAdd($"{entityType.Name}.{property.Name}", property);
-                
-                // Also cache navigation property types
-                if (property.PropertyType.IsClass && property.PropertyType != typeof(string))
-                {
-                    var navProperties = property.PropertyType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
-                    foreach (var navProperty in navProperties)
-                    {
-                        _propertyInfoCache.TryAdd($"{property.PropertyType.Name}.{navProperty.Name}", navProperty);
-                    }
-                }
-            }
-        }
     }
 
     public async Task<QueryResult> ExecuteQueryAsync(
@@ -523,7 +488,7 @@ public sealed class QueryEngine : IQueryEngine
                 await task.ConfigureAwait(false);
                 
                 var results = (dynamic)task.GetType().GetProperty("Result")!.GetValue(task)!;
-                
+
                 foreach (var result in results)
                 {
                     var item = new QueryResultItem();
@@ -577,6 +542,7 @@ public sealed class QueryEngine : IQueryEngine
                         }
                     }
 
+                    _logger.LogInformation("Sync - QueryResultItem has {Count} values", item.Values.Count);
                     items.Add(item);
                 }
             }
@@ -647,9 +613,9 @@ public sealed class QueryEngine : IQueryEngine
     {
         if (obj == null) return null;
 
-        var accessor = _propertyAccessors.GetOrAdd($"{obj.GetType().Name}.{propertyPath}", path => 
+        var accessor = _propertyAccessors.GetOrAdd($"{obj.GetType().FullName}.{propertyPath}", _ =>
         {
-            return CompilePropertyAccessor(obj.GetType(), path);
+            return CompilePropertyAccessor(obj.GetType(), propertyPath);
         });
 
         return accessor(obj);
@@ -664,20 +630,16 @@ public sealed class QueryEngine : IQueryEngine
         foreach (var property in properties)
         {
             var currentType = expression.Type;
-            
-            // Use cached PropertyInfo instead of runtime reflection
-            var cacheKey = $"{currentType.Name}.{property}";
-            var propertyInfo = _propertyInfoCache.GetOrAdd(cacheKey, _ => 
-            {
-                // Only fall back to reflection if not in cache
-                return currentType.GetProperty(property) ?? throw new InvalidOperationException($"Property '{property}' not found on type '{currentType.Name}'");
-            });
-            
+
+            // Use reflection to get property info (simpler and more reliable for projection)
+            var propertyInfo = currentType.GetProperty(property);
+
             if (propertyInfo == null)
             {
                 return _ => null;
             }
-            expression = Expression.Property(expression, propertyInfo!);
+
+            expression = Expression.Property(expression, propertyInfo);
         }
 
         var conversion = Expression.Convert(expression, typeof(object));
