@@ -55,9 +55,9 @@ public static class QueryMetadataProvider
                 new() { FieldId = "CashAdvance", DisplayName = "Cash Advance", DataType = FieldDataType.Number, PropertyPath = "CashAdvance", CanGroup = false, CanAggregate = true },
                 new() { FieldId = "OtherAdvance", DisplayName = "Other Advance", DataType = FieldDataType.Number, PropertyPath = "OtherAdvance", CanGroup = false, CanAggregate = true },
                 new() { FieldId = "DriverCommission", DisplayName = "Driver Commission", DataType = FieldDataType.Number, PropertyPath = "DriverCommission", CanGroup = false, CanAggregate = true },
-                new() { FieldId = "PaymentLocationName", DisplayName = "Payment Location", DataType = FieldDataType.Text, PropertyPath = "PaymentLocation.LocationName", CanGroup = true, CanAggregate = false },
-                new() { FieldId = "UnionVendorName", DisplayName = "Union/Vendor", DataType = FieldDataType.Text, PropertyPath = "UnionVendor.VendorName", CanGroup = true, CanAggregate = false },
-                new() { FieldId = "OwnerName", DisplayName = "Owner", DataType = FieldDataType.Text, PropertyPath = "Owner.OwnerName", CanGroup = true, CanAggregate = false },
+                new() { FieldId = "PaymentLocationName", DisplayName = "Payment Location", DataType = FieldDataType.Text, PropertyPath = "PaymentLocation.PaymentLocationName", CanGroup = true, CanAggregate = false },
+                new() { FieldId = "UnionVendorName", DisplayName = "Union/Vendor", DataType = FieldDataType.Text, PropertyPath = "UnionVendor.Name", CanGroup = true, CanAggregate = false },
+                new() { FieldId = "OwnerName", DisplayName = "Owner", DataType = FieldDataType.Text, PropertyPath = "Owner.CompanyName", CanGroup = true, CanAggregate = false },
                 new() { FieldId = "IsActive", DisplayName = "Active", DataType = FieldDataType.Boolean, PropertyPath = "IsActive", CanGroup = true, CanAggregate = false }
             }
         };
@@ -89,9 +89,10 @@ public static class QueryMetadataProvider
                 new() { FieldId = "GrossWeight", DisplayName = "Gross Weight", DataType = FieldDataType.Number, PropertyPath = "GrossWeight", CanGroup = false, CanAggregate = true },
                 new() { FieldId = "TareWeight", DisplayName = "Tare Weight", DataType = FieldDataType.Number, PropertyPath = "TareWeight", CanGroup = false, CanAggregate = true },
                 new() { FieldId = "LoadingWeight", DisplayName = "Loading Weight", DataType = FieldDataType.Number, PropertyPath = "LoadingWeight", CanGroup = false, CanAggregate = true },
-                new() { FieldId = "GrossWeightUL", DisplayName = "Gross Weight (UL)", DataType = FieldDataType.Number, PropertyPath = "GrossWeightUL", CanGroup = false, CanAggregate = true },
-                new() { FieldId = "TareWeightUL", DisplayName = "Tare Weight (UL)", DataType = FieldDataType.Number, PropertyPath = "TareWeightUL", CanGroup = false, CanAggregate = true },
+                new() { FieldId = "GrossWeightUL", DisplayName = "Gross Weight UL", DataType = FieldDataType.Number, PropertyPath = "GrossWeightUL", CanGroup = false, CanAggregate = true },
+                new() { FieldId = "TareWeightUL", DisplayName = "Tare Weight UL", DataType = FieldDataType.Number, PropertyPath = "TareWeightUL", CanGroup = false, CanAggregate = true },
                 new() { FieldId = "UnloadingWeight", DisplayName = "Unloading Weight", DataType = FieldDataType.Number, PropertyPath = "UnloadingWeight", CanGroup = false, CanAggregate = true },
+                new() { FieldId = "ShortageWeight", DisplayName = "Shortage Weight", DataType = FieldDataType.Number, PropertyPath = "ShortageWeight", CanGroup = false, CanAggregate = true },
                 new() { FieldId = "ChallanMoney", DisplayName = "Challan Money", DataType = FieldDataType.Number, PropertyPath = "ChallanMoney", CanGroup = false, CanAggregate = true },
                 new() { FieldId = "Rate", DisplayName = "Rate", DataType = FieldDataType.Number, PropertyPath = "Rate", CanGroup = false, CanAggregate = true },
                 new() { FieldId = "GrossAmount", DisplayName = "Gross Amount", DataType = FieldDataType.Number, PropertyPath = "GrossAmount", CanGroup = false, CanAggregate = true },
@@ -99,13 +100,12 @@ public static class QueryMetadataProvider
                 new() { FieldId = "FuelAmount", DisplayName = "Fuel Amount", DataType = FieldDataType.Number, PropertyPath = "FuelAmount", CanGroup = false, CanAggregate = true },
                 new() { FieldId = "FuelCash", DisplayName = "Fuel Cash", DataType = FieldDataType.Number, PropertyPath = "FuelCash", CanGroup = false, CanAggregate = true },
                 new() { FieldId = "FuelAdvance", DisplayName = "Fuel Advance", DataType = FieldDataType.Number, PropertyPath = "FuelAdvance", CanGroup = false, CanAggregate = true },
-                new() { FieldId = "ShortageWeight", DisplayName = "Shortage Weight", DataType = FieldDataType.Number, PropertyPath = "ShortageWeight", CanGroup = false, CanAggregate = true },
                 new() { FieldId = "CashAdvance", DisplayName = "Cash Advance", DataType = FieldDataType.Number, PropertyPath = "CashAdvance", CanGroup = false, CanAggregate = true },
                 new() { FieldId = "OtherAdvance", DisplayName = "Other Advance", DataType = FieldDataType.Number, PropertyPath = "OtherAdvance", CanGroup = false, CanAggregate = true },
                 new() { FieldId = "DriverCommission", DisplayName = "Driver Commission", DataType = FieldDataType.Number, PropertyPath = "DriverCommission", CanGroup = false, CanAggregate = true },
-                new() { FieldId = "PaymentLocationName", DisplayName = "Payment Location", DataType = FieldDataType.Text, PropertyPath = "PaymentLocation.LocationName", CanGroup = true, CanAggregate = false },
-                new() { FieldId = "UnionVendorName", DisplayName = "Union/Vendor", DataType = FieldDataType.Text, PropertyPath = "UnionVendor.VendorName", CanGroup = true, CanAggregate = false },
-                new() { FieldId = "OwnerName", DisplayName = "Owner", DataType = FieldDataType.Text, PropertyPath = "Owner.OwnerName", CanGroup = true, CanAggregate = false },
+                new() { FieldId = "PaymentLocationName", DisplayName = "Payment Location", DataType = FieldDataType.Text, PropertyPath = "PaymentLocation.PaymentLocationName", CanGroup = true, CanAggregate = false },
+                new() { FieldId = "UnionVendorName", DisplayName = "Union/Vendor", DataType = FieldDataType.Text, PropertyPath = "UnionVendor.Name", CanGroup = true, CanAggregate = false },
+                new() { FieldId = "OwnerName", DisplayName = "Owner", DataType = FieldDataType.Text, PropertyPath = "Owner.CompanyName", CanGroup = true, CanAggregate = false },
                 new() { FieldId = "IsActive", DisplayName = "Active", DataType = FieldDataType.Boolean, PropertyPath = "IsActive", CanGroup = true, CanAggregate = false }
             }
         };
@@ -128,29 +128,28 @@ public static class QueryMetadataProvider
                 new() { FieldId = "VehicleNumber", DisplayName = "Vehicle Number", DataType = FieldDataType.Text, PropertyPath = "VehicleNumber", CanGroup = true, CanAggregate = false },
                 new() { FieldId = "VehicleType", DisplayName = "Vehicle Type", DataType = FieldDataType.Text, PropertyPath = "VehicleType", CanGroup = true, CanAggregate = false },
                 new() { FieldId = "MaterialName", DisplayName = "Material", DataType = FieldDataType.Text, PropertyPath = "MaterialName", CanGroup = true, CanAggregate = false },
-                new() { FieldId = "DriverCommission", DisplayName = "Driver Commission", DataType = FieldDataType.Number, PropertyPath = "DriverCommission", CanGroup = false, CanAggregate = true },
                 new() { FieldId = "LoadingDate", DisplayName = "Loading Date", DataType = FieldDataType.Date, PropertyPath = "LoadingDate", CanGroup = true, CanAggregate = false },
                 new() { FieldId = "UnloadingDate", DisplayName = "Unloading Date", DataType = FieldDataType.Date, PropertyPath = "UnloadingDate", CanGroup = true, CanAggregate = false },
                 new() { FieldId = "LoadingWeight", DisplayName = "Loading Weight", DataType = FieldDataType.Number, PropertyPath = "LoadingWeight", CanGroup = false, CanAggregate = true },
                 new() { FieldId = "UnloadingWeight", DisplayName = "Unloading Weight", DataType = FieldDataType.Number, PropertyPath = "UnloadingWeight", CanGroup = false, CanAggregate = true },
+                new() { FieldId = "DriverCommission", DisplayName = "Driver Commission", DataType = FieldDataType.Number, PropertyPath = "DriverCommission", CanGroup = false, CanAggregate = true },
                 new() { FieldId = "PaymentDate", DisplayName = "Payment Date", DataType = FieldDataType.Date, PropertyPath = "PaymentDate", CanGroup = true, CanAggregate = false },
-                new() { FieldId = "PaymentLocationName", DisplayName = "Payment Location", DataType = FieldDataType.Text, PropertyPath = "PaymentLocation.LocationName", CanGroup = true, CanAggregate = false },
                 new() { FieldId = "PaymentType", DisplayName = "Payment Type", DataType = FieldDataType.Text, PropertyPath = "PaymentType", CanGroup = true, CanAggregate = false },
-                new() { FieldId = "HSDParty", DisplayName = "HSD Party", DataType = FieldDataType.Text, PropertyPath = "HSDParty", CanGroup = true, CanAggregate = false },
-                new() { FieldId = "Beneficiary", DisplayName = "Beneficiary", DataType = FieldDataType.Text, PropertyPath = "Beneficiary", CanGroup = true, CanAggregate = false },
-                new() { FieldId = "PAN", DisplayName = "PAN", DataType = FieldDataType.Text, PropertyPath = "PAN", CanGroup = true, CanAggregate = false },
-                new() { FieldId = "UTRNumber", DisplayName = "UTR Number", DataType = FieldDataType.Text, PropertyPath = "UTRNumber", CanGroup = true, CanAggregate = false },
-                new() { FieldId = "MobileNumber", DisplayName = "Mobile Number", DataType = FieldDataType.Text, PropertyPath = "MobileNumber", CanGroup = true, CanAggregate = false },
-                new() { FieldId = "AccountNumber", DisplayName = "Account Number", DataType = FieldDataType.Text, PropertyPath = "AccountNumber", CanGroup = true, CanAggregate = false },
-                new() { FieldId = "IFSCCode", DisplayName = "IFSC Code", DataType = FieldDataType.Text, PropertyPath = "IFSCCode", CanGroup = true, CanAggregate = false },
-                new() { FieldId = "BankName", DisplayName = "Bank Name", DataType = FieldDataType.Text, PropertyPath = "BankName", CanGroup = true, CanAggregate = false },
+                new() { FieldId = "PaymentLocationName", DisplayName = "Payment Location", DataType = FieldDataType.Text, PropertyPath = "PaymentLocation.PaymentLocationName", CanGroup = true, CanAggregate = false },
+                new() { FieldId = "GrossAmount", DisplayName = "Gross Amount", DataType = FieldDataType.Number, PropertyPath = "GrossAmount", CanGroup = false, CanAggregate = true },
                 new() { FieldId = "TDSPercentage", DisplayName = "TDS Percentage", DataType = FieldDataType.Number, PropertyPath = "TDSPercentage", CanGroup = false, CanAggregate = true },
                 new() { FieldId = "ChallanMoney", DisplayName = "Challan Money", DataType = FieldDataType.Number, PropertyPath = "ChallanMoney", CanGroup = false, CanAggregate = true },
                 new() { FieldId = "Surcharge", DisplayName = "Surcharge", DataType = FieldDataType.Number, PropertyPath = "Surcharge", CanGroup = false, CanAggregate = true },
                 new() { FieldId = "AdminCharge", DisplayName = "Admin Charge", DataType = FieldDataType.Number, PropertyPath = "AdminCharge", CanGroup = false, CanAggregate = true },
-                new() { FieldId = "GrossAmount", DisplayName = "Gross Amount", DataType = FieldDataType.Number, PropertyPath = "GrossAmount", CanGroup = false, CanAggregate = true },
                 new() { FieldId = "PayableAmount", DisplayName = "Payable Amount", DataType = FieldDataType.Number, PropertyPath = "PayableAmount", CanGroup = false, CanAggregate = true },
                 new() { FieldId = "PaymentStatus", DisplayName = "Payment Status", DataType = FieldDataType.Text, PropertyPath = "PaymentStatus", CanGroup = true, CanAggregate = false },
+                new() { FieldId = "Beneficiary", DisplayName = "Beneficiary", DataType = FieldDataType.Text, PropertyPath = "Beneficiary", CanGroup = true, CanAggregate = false },
+                new() { FieldId = "PAN", DisplayName = "PAN", DataType = FieldDataType.Text, PropertyPath = "PAN", CanGroup = true, CanAggregate = false },
+                new() { FieldId = "UTRNumber", DisplayName = "UTR Number", DataType = FieldDataType.Text, PropertyPath = "UTRNumber", CanGroup = true, CanAggregate = false },
+                new() { FieldId = "MobileNumber", DisplayName = "Mobile Number", DataType = FieldDataType.Text, PropertyPath = "MobileNumber", CanGroup = true, CanAggregate = false },
+                new() { FieldId = "BankName", DisplayName = "Bank Name", DataType = FieldDataType.Text, PropertyPath = "BankName", CanGroup = true, CanAggregate = false },
+                new() { FieldId = "AccountNumber", DisplayName = "Account Number", DataType = FieldDataType.Text, PropertyPath = "AccountNumber", CanGroup = true, CanAggregate = false },
+                new() { FieldId = "IFSCCode", DisplayName = "IFSC Code", DataType = FieldDataType.Text, PropertyPath = "IFSCCode", CanGroup = true, CanAggregate = false },
                 new() { FieldId = "IsActive", DisplayName = "Active", DataType = FieldDataType.Boolean, PropertyPath = "IsActive", CanGroup = true, CanAggregate = false }
             }
         };
@@ -187,17 +186,24 @@ public static class QueryMetadataProvider
                 new() { FieldId = "ChargeType2", DisplayName = "Charge Type 2", DataType = FieldDataType.Text, PropertyPath = "ChargeType2", CanGroup = true, CanAggregate = false },
                 new() { FieldId = "ChargeAmount2", DisplayName = "Charge Amount 2", DataType = FieldDataType.Number, PropertyPath = "ChargeAmount2", CanGroup = false, CanAggregate = true },
                 new() { FieldId = "GrandTotal", DisplayName = "Grand Total", DataType = FieldDataType.Number, PropertyPath = "GrandTotal", CanGroup = false, CanAggregate = true },
-                new() { FieldId = "Remarks", DisplayName = "Remarks", DataType = FieldDataType.Text, PropertyPath = "Remarks", CanGroup = false, CanAggregate = false },
+                new() { FieldId = "Remarks", DisplayName = "Remarks", DataType = FieldDataType.Text, PropertyPath = "Remarks", CanGroup = true, CanAggregate = false },
                 new() { FieldId = "IsActive", DisplayName = "Active", DataType = FieldDataType.Boolean, PropertyPath = "IsActive", CanGroup = true, CanAggregate = false }
             }
         };
     }
 
     /// <summary>
-    /// Gets module metadata by module ID.
+    /// Gets a module by its ID.
     /// </summary>
     public static ModuleMetadata? GetModuleById(string moduleId)
     {
-        return GetAllModules().FirstOrDefault(m => m.ModuleId == moduleId);
+        return moduleId switch
+        {
+            "Loading" => GetLoadingModule(),
+            "Unloading" => GetUnloadingModule(),
+            "Payment" => GetPaymentModule(),
+            "PartyBilling" => GetPartyBillingModule(),
+            _ => null
+        };
     }
 }
