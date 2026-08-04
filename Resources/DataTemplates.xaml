@@ -57,7 +57,9 @@
     xmlns:reportsTdsReportVm="clr-namespace:veteran_logistic.Reports.TdsReport.ViewModels"
     xmlns:reportsTdsReportViews="clr-namespace:veteran_logistic.Reports.TdsReport.Views"
     xmlns:reportsConsolidatedReportVm="clr-namespace:veteran_logistic.Reports.ConsolidatedReport.ViewModels"
-    xmlns:reportsConsolidatedReportViews="clr-namespace:veteran_logistic.Reports.ConsolidatedReport.Views">
+    xmlns:reportsConsolidatedReportViews="clr-namespace:veteran_logistic.Reports.ConsolidatedReport.Views"
+    xmlns:reportsQueryBuilderVm="clr-namespace:veteran_logistic.Reports.QueryBuilder.ViewModels"
+    xmlns:reportsQueryBuilderViews="clr-namespace:veteran_logistic.Reports.QueryBuilder.Views">
   <DataTemplate DataType="{x:Type vm:ShellViewModel}">
     <views:ShellView />
   </DataTemplate>
@@ -320,6 +322,10 @@
 
   <DataTemplate DataType="{x:Type reportsConsolidatedReportVm:ConsolidatedReportViewModel}">
     <reportsConsolidatedReportViews:ConsolidatedReportView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type reportsQueryBuilderVm:QueryBuilderViewModel}">
+    <reportsQueryBuilderViews:QueryBuilderView />
   </DataTemplate>
 
   <DataTemplate DataType="{x:Type vm:PlaceholderViewModel}">

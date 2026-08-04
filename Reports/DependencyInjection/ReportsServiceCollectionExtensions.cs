@@ -5,6 +5,7 @@ using veteran_logistic.Reports.PaymentReport.DependencyInjection;
 using veteran_logistic.Reports.PartyBillingReport.DependencyInjection;
 using veteran_logistic.Reports.TdsReport.DependencyInjection;
 using veteran_logistic.Reports.ConsolidatedReport.DependencyInjection;
+using veteran_logistic.Reports.QueryBuilder.DependencyInjection;
 
 namespace veteran_logistic.Reports.DependencyInjection;
 
@@ -39,6 +40,9 @@ public static class ReportsServiceCollectionExtensions
 
         // Consolidated Report
         services.AddConsolidatedReport();
+
+        // Query Builder
+        services.AddQueryBuilder();
 
         return services;
     }
