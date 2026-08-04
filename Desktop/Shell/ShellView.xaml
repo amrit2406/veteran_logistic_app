@@ -122,6 +122,7 @@
                     <MenuItem Header="Party Billing Report" Command="{Binding NavigateToPartyBillingReportCommand}" />
                     <MenuItem Header="TDS Report" Command="{Binding NavigateToTdsReportCommand}" />
                     <MenuItem Header="Consolidated Report" Command="{Binding NavigateToConsolidatedReportCommand}" />
+                    <MenuItem Header="DO Status Report" Command="{Binding NavigateToDOStatusReportCommand}" />
                     <MenuItem Header="Query Builder" Command="{Binding NavigateToQueryBuilderCommand}" />
                 </MenuItem>
                 <MenuItem Header="Administration" Style="{StaticResource TopMenuItemStyle}">

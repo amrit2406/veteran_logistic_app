@@ -171,6 +171,11 @@ public sealed class ShellViewModel : ObservableObject
     public IAsyncRelayCommand NavigateToConsolidatedReportCommand { get; }
 
     /// <summary>
+    /// Command to navigate to the DO Status Report screen.
+    /// </summary>
+    public IAsyncRelayCommand NavigateToDOStatusReportCommand { get; }
+
+    /// <summary>
     /// Command to navigate to the Query Builder screen.
     /// </summary>
     public IAsyncRelayCommand NavigateToQueryBuilderCommand { get; }
@@ -221,6 +226,7 @@ public sealed class ShellViewModel : ObservableObject
         NavigateToPartyBillingReportCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Reports.PartyBillingReport.ViewModels.PartyBillingReportViewModel>(), () => CanNavigateToPartyBillingReport());
         NavigateToTdsReportCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Reports.TdsReport.ViewModels.TdsReportViewModel>(), () => CanNavigateToTdsReport());
         NavigateToConsolidatedReportCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Reports.ConsolidatedReport.ViewModels.ConsolidatedReportViewModel>(), () => CanNavigateToConsolidatedReport());
+        NavigateToDOStatusReportCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Reports.DOStatusReport.ViewModels.DOStatusReportViewModel>(), () => CanNavigateToDOStatusReport());
         NavigateToQueryBuilderCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Reports.QueryBuilder.ViewModels.QueryBuilderViewModel>(), () => CanNavigateToQueryBuilder());
         GoBackCommand = new AsyncRelayCommand(ExecuteGoBackAsync);
         navigationService.CurrentViewModelChanged += OnCurrentViewModelChanged;
@@ -392,6 +398,11 @@ public sealed class ShellViewModel : ObservableObject
     }
 
     private bool CanNavigateToConsolidatedReport()
+    {
+        return true; // TODO: Add permission check when permission is defined
+    }
+
+    private bool CanNavigateToDOStatusReport()
     {
         return true; // TODO: Add permission check when permission is defined
     }

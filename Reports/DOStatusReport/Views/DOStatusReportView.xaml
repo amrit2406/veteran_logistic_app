@@ -1,0 +1,518 @@
+<UserControl x:Class="veteran_logistic.Reports.DOStatusReport.Views.DOStatusReportView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:veteran_logistic.Converters"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid Background="{DynamicResource BackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0"
+                Background="{DynamicResource SurfaceBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="{StaticResource StandardBorderThickness}"
+                Padding="{StaticResource Medium}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0"
+                           Text="DO Status Report"
+                           Style="{StaticResource HeadingTextBlockStyle}"
+                           VerticalAlignment="Center" />
+
+                <StackPanel Grid.Column="1"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Right">
+                    <!-- Back Button -->
+                    <Button Height="{StaticResource StandardControlHeight}"
+                            Command="{Binding GoBackCommand}"
+                            IsEnabled="{Binding CanGoBack}"
+                            Style="{StaticResource IconButtonStyle}"
+                            ToolTip="Go Back"
+                            VerticalAlignment="Center"
+                            Margin="{StaticResource Small}">
+                        <Viewbox Width="16" Height="16">
+                            <Path Data="{StaticResource BackIconGeometry}"
+                                  Fill="{DynamicResource TextPrimaryBrush}" />
+                        </Viewbox>
+                    </Button>
+
+                    <!-- Export to PDF Button -->
+                    <Button Height="{StaticResource StandardControlHeight}"
+                            Command="{Binding ExportToPdfCommand}"
+                            Style="{StaticResource IconButtonStyle}"
+                            ToolTip="Export to PDF"
+                            VerticalAlignment="Center"
+                            Margin="{StaticResource Small}">
+                        <TextBlock Text="Export PDF"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Button>
+
+                    <!-- Export to Excel Button -->
+                    <Button Height="{StaticResource StandardControlHeight}"
+                            Command="{Binding ExportToExcelCommand}"
+                            Style="{StaticResource IconButtonStyle}"
+                            ToolTip="Export to Excel"
+                            VerticalAlignment="Center"
+                            Margin="{StaticResource Small}">
+                        <TextBlock Text="Export Excel"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Button>
+
+                    <!-- Print Button -->
+                    <Button Height="{StaticResource StandardControlHeight}"
+                            Command="{Binding PrintCommand}"
+                            Style="{StaticResource IconButtonStyle}"
+                            ToolTip="Print"
+                            VerticalAlignment="Center"
+                            Margin="{StaticResource Small}">
+                        <TextBlock Text="Print"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Button>
+
+                    <!-- Refresh Button -->
+                    <Button Height="{StaticResource StandardControlHeight}"
+                            Command="{Binding RefreshCommand}"
+                            Style="{StaticResource IconButtonStyle}"
+                            ToolTip="Refresh"
+                            VerticalAlignment="Center"
+                            Margin="{StaticResource Small}">
+                        <TextBlock Text="Refresh"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Summary Cards -->
+        <Border Grid.Row="1"
+                Background="{DynamicResource SurfaceBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="{StaticResource StandardBorderThickness}"
+                Padding="{StaticResource Medium}"
+                Margin="{StaticResource Small}">
+            <WrapPanel Orientation="Horizontal">
+                <Border Background="{DynamicResource CardBackgroundBrush}"
+                        BorderBrush="{DynamicResource BorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="4"
+                        Padding="12"
+                        Margin="6"
+                        Width="180">
+                    <StackPanel>
+                        <TextBlock Text="Total DO"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   Foreground="{DynamicResource TextSecondaryBrush}" />
+                        <TextBlock Text="{Binding SummaryCards.TotalDO}"
+                                   Style="{StaticResource HeadingTextBlockStyle}"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   Margin="0,4,0,0" />
+                    </StackPanel>
+                </Border>
+                <Border Background="{DynamicResource CardBackgroundBrush}"
+                        BorderBrush="{DynamicResource BorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="4"
+                        Padding="12"
+                        Margin="6"
+                        Width="180">
+                    <StackPanel>
+                        <TextBlock Text="Today's Loading"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   Foreground="{DynamicResource TextSecondaryBrush}" />
+                        <TextBlock Text="{Binding SummaryCards.TodayLoading}"
+                                   Style="{StaticResource HeadingTextBlockStyle}"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   Margin="0,4,0,0" />
+                    </StackPanel>
+                </Border>
+                <Border Background="{DynamicResource CardBackgroundBrush}"
+                        BorderBrush="{DynamicResource BorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="4"
+                        Padding="12"
+                        Margin="6"
+                        Width="180">
+                    <StackPanel>
+                        <TextBlock Text="Running DO"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   Foreground="{DynamicResource TextSecondaryBrush}" />
+                        <TextBlock Text="{Binding SummaryCards.RunningDO}"
+                                   Style="{StaticResource HeadingTextBlockStyle}"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   Margin="0,4,0,0" />
+                    </StackPanel>
+                </Border>
+                <Border Background="{DynamicResource CardBackgroundBrush}"
+                        BorderBrush="{DynamicResource BorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="4"
+                        Padding="12"
+                        Margin="6"
+                        Width="180">
+                    <StackPanel>
+                        <TextBlock Text="Completed DO"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   Foreground="{DynamicResource TextSecondaryBrush}" />
+                        <TextBlock Text="{Binding SummaryCards.CompletedDO}"
+                                   Style="{StaticResource HeadingTextBlockStyle}"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   Margin="0,4,0,0" />
+                    </StackPanel>
+                </Border>
+                <Border Background="{DynamicResource CardBackgroundBrush}"
+                        BorderBrush="{DynamicResource BorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="4"
+                        Padding="12"
+                        Margin="6"
+                        Width="180">
+                    <StackPanel>
+                        <TextBlock Text="Payment Pending"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   Foreground="{DynamicResource TextSecondaryBrush}" />
+                        <TextBlock Text="{Binding SummaryCards.PaymentPending}"
+                                   Style="{StaticResource HeadingTextBlockStyle}"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   Margin="0,4,0,0" />
+                    </StackPanel>
+                </Border>
+                <Border Background="{DynamicResource CardBackgroundBrush}"
+                        BorderBrush="{DynamicResource BorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="4"
+                        Padding="12"
+                        Margin="6"
+                        Width="180">
+                    <StackPanel>
+                        <TextBlock Text="Bill Pending"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   Foreground="{DynamicResource TextSecondaryBrush}" />
+                        <TextBlock Text="{Binding SummaryCards.BillPending}"
+                                   Style="{StaticResource HeadingTextBlockStyle}"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   Margin="0,4,0,0" />
+                    </StackPanel>
+                </Border>
+            </WrapPanel>
+        </Border>
+
+        <!-- Filter Panel -->
+        <Border Grid.Row="2"
+                Background="{DynamicResource SurfaceBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="{StaticResource StandardBorderThickness}"
+                Padding="{StaticResource Medium}"
+                Margin="{StaticResource Small}">
+            <Expander Header="Filters" IsExpanded="True">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Date Range -->
+                    <TextBlock Grid.Row="0" Grid.Column="0"
+                               Text="Date From:"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               VerticalAlignment="Center"
+                               Margin="{StaticResource Small}" />
+                    <DatePicker Grid.Row="0" Grid.Column="1"
+                               SelectedDate="{Binding Filter.DateFrom}"
+                               Margin="{StaticResource Small}"
+                               VerticalAlignment="Center" />
+
+                    <TextBlock Grid.Row="0" Grid.Column="2"
+                               Text="Date To:"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               VerticalAlignment="Center"
+                               Margin="{StaticResource Small}" />
+                    <DatePicker Grid.Row="0" Grid.Column="3"
+                               SelectedDate="{Binding Filter.DateTo}"
+                               Margin="{StaticResource Small}"
+                               VerticalAlignment="Center" />
+
+                    <!-- Customer -->
+                    <TextBlock Grid.Row="1" Grid.Column="0"
+                               Text="Customer:"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               VerticalAlignment="Center"
+                               Margin="{StaticResource Small}" />
+                    <ComboBox Grid.Row="1" Grid.Column="1"
+                             ItemsSource="{Binding Customers}"
+                             SelectedValue="{Binding Filter.CustomerId}"
+                             SelectedValuePath="Id"
+                             DisplayMemberPath="CustomerName"
+                             Margin="{StaticResource Small}"
+                             VerticalAlignment="Center"
+                             Width="150" />
+
+                    <!-- Vehicle -->
+                    <TextBlock Grid.Row="1" Grid.Column="2"
+                               Text="Vehicle:"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               VerticalAlignment="Center"
+                               Margin="{StaticResource Small}" />
+                    <ComboBox Grid.Row="1" Grid.Column="3"
+                             ItemsSource="{Binding Vehicles}"
+                             SelectedValue="{Binding Filter.VehicleId}"
+                             SelectedValuePath="Id"
+                             DisplayMemberPath="VehicleNumber"
+                             Margin="{StaticResource Small}"
+                             VerticalAlignment="Center"
+                             Width="150" />
+
+                    <!-- Material -->
+                    <TextBlock Grid.Row="2" Grid.Column="0"
+                               Text="Material:"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               VerticalAlignment="Center"
+                               Margin="{StaticResource Small}" />
+                    <ComboBox Grid.Row="2" Grid.Column="1"
+                             ItemsSource="{Binding Materials}"
+                             SelectedValue="{Binding Filter.MaterialId}"
+                             SelectedValuePath="Id"
+                             DisplayMemberPath="MaterialName"
+                             Margin="{StaticResource Small}"
+                             VerticalAlignment="Center"
+                             Width="150" />
+
+                    <!-- Source -->
+                    <TextBlock Grid.Row="2" Grid.Column="2"
+                               Text="Source:"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               VerticalAlignment="Center"
+                               Margin="{StaticResource Small}" />
+                    <ComboBox Grid.Row="2" Grid.Column="3"
+                             ItemsSource="{Binding SourceDestinations}"
+                             SelectedValue="{Binding Filter.SourceId}"
+                             SelectedValuePath="Id"
+                             DisplayMemberPath="LocationName"
+                             Margin="{StaticResource Small}"
+                             VerticalAlignment="Center"
+                             Width="150" />
+
+                    <!-- Destination -->
+                    <TextBlock Grid.Row="2" Grid.Column="4"
+                               Text="Destination:"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               VerticalAlignment="Center"
+                               Margin="{StaticResource Small}" />
+                    <ComboBox Grid.Row="2" Grid.Column="5"
+                             ItemsSource="{Binding SourceDestinations}"
+                             SelectedValue="{Binding Filter.DestinationId}"
+                             SelectedValuePath="Id"
+                             DisplayMemberPath="LocationName"
+                             Margin="{StaticResource Small}"
+                             VerticalAlignment="Center"
+                             Width="150" />
+
+                    <!-- Filter Actions -->
+                    <StackPanel Grid.Row="0" Grid.Column="4"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                Margin="{StaticResource Small}">
+                        <Button Command="{Binding ApplyFiltersCommand}"
+                                Content="Apply"
+                                Width="80"
+                                Height="{StaticResource StandardControlHeight}"
+                                Margin="{StaticResource Small}" />
+                        <Button Command="{Binding ClearFiltersCommand}"
+                                Content="Clear"
+                                Width="80"
+                                Height="{StaticResource StandardControlHeight}"
+                                Margin="{StaticResource Small}" />
+                    </StackPanel>
+                </Grid>
+            </Expander>
+        </Border>
+
+        <!-- Search Bar -->
+        <Border Grid.Row="3"
+                Background="{DynamicResource SurfaceBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="{StaticResource StandardBorderThickness}"
+                Padding="{StaticResource Medium}"
+                Margin="{StaticResource Small}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0"
+                           Text="Search:"
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           VerticalAlignment="Center"
+                           Margin="{StaticResource Small}" />
+                <TextBox Grid.Column="1"
+                         Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="{StaticResource Small}"
+                         VerticalAlignment="Center" />
+            </Grid>
+        </Border>
+
+        <!-- Data Grid -->
+        <Border Grid.Row="4"
+                Background="{DynamicResource SurfaceBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="{StaticResource StandardBorderThickness}"
+                Padding="{StaticResource Medium}"
+                Margin="{StaticResource Small}">
+            <DataGrid ItemsSource="{Binding ReportItems}"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      SelectionMode="Single"
+                      GridLinesVisibility="Horizontal"
+                      HeadersVisibility="Column"
+                      AlternatingRowBackground="{DynamicResource AlternatingRowBrush}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Challan No." Binding="{Binding ChallanNumber}" Width="*" />
+                    <DataGridTextColumn Header="TP No." Binding="{Binding TPNumber}" Width="*" />
+                    <DataGridTextColumn Header="Loading Date" Binding="{Binding LoadingDate, StringFormat='dd-MM-yyyy'}" Width="*" />
+                    <DataGridTextColumn Header="Vehicle No." Binding="{Binding VehicleNumber}" Width="*" />
+                    <DataGridTextColumn Header="Consignor" Binding="{Binding ConsignorName}" Width="*" />
+                    <DataGridTextColumn Header="Consignee" Binding="{Binding ConsigneeName}" Width="*" />
+                    <DataGridTextColumn Header="Driver" Binding="{Binding Driver}" Width="*" />
+                    <DataGridTextColumn Header="Material" Binding="{Binding MaterialName}" Width="*" />
+                    <DataGridTextColumn Header="Load Wt" Binding="{Binding LoadingWeight, StringFormat='F2'}" Width="*" />
+                    <DataGridTextColumn Header="Unload Wt" Binding="{Binding UnloadingWeight, StringFormat='F2'}" Width="*" />
+                    <DataGridTextColumn Header="Shortage" Binding="{Binding ShortageWeight, StringFormat='F2'}" Width="*" />
+                    <DataGridTextColumn Header="Gross Amt" Binding="{Binding GrossAmount, StringFormat='F2'}" Width="*" />
+                    <DataGridTextColumn Header="Challan $" Binding="{Binding ChallanMoney, StringFormat='F2'}" Width="*" />
+                    <DataGridTextColumn Header="Pending $" Binding="{Binding PendingAmount, StringFormat='F2'}" Width="*" />
+                    <DataGridTextColumn Header="Bill No." Binding="{Binding BillNumber}" Width="*" />
+                    <DataGridTextColumn Header="Bill Date" Binding="{Binding BillDate, StringFormat='dd-MM-yyyy'}" Width="*" />
+                    <DataGridTextColumn Header="DO Status" Binding="{Binding DOStatus}" Width="*" />
+                    <DataGridTextColumn Header="Pay Status" Binding="{Binding PaymentStatus}" Width="*" />
+                    <DataGridTextColumn Header="Bill Status" Binding="{Binding BillingStatus}" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+        <!-- Footer / Totals -->
+        <Border Grid.Row="5"
+                Background="{DynamicResource SurfaceBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="{StaticResource StandardBorderThickness}"
+                Padding="{StaticResource Medium}"
+                Margin="{StaticResource Small}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0"
+                           Text="Records:"
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           VerticalAlignment="Center"
+                           Margin="{StaticResource Small}" />
+                <TextBlock Grid.Column="1"
+                           Text="{Binding Totals.TotalRecords}"
+                           Style="{StaticResource BodyTextBlockStyle}"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="{StaticResource Small}" />
+
+                <TextBlock Grid.Column="2"
+                           Text="Total Load Wt:"
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           VerticalAlignment="Center"
+                           Margin="{StaticResource Small}" />
+                <TextBlock Grid.Column="3"
+                           Text="{Binding Totals.TotalLoadingWeight, StringFormat='F2'}"
+                           Style="{StaticResource BodyTextBlockStyle}"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="{StaticResource Small}" />
+
+                <TextBlock Grid.Column="4"
+                           Text="Total Gross Amt:"
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           VerticalAlignment="Center"
+                           Margin="{StaticResource Small}" />
+                <TextBlock Grid.Column="5"
+                           Text="{Binding Totals.TotalGrossAmount, StringFormat='F2'}"
+                           Style="{StaticResource BodyTextBlockStyle}"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="{StaticResource Small}" />
+
+                <TextBlock Grid.Column="6"
+                           Text="Total Pending:"
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           VerticalAlignment="Center"
+                           Margin="{StaticResource Small}" />
+                <TextBlock Grid.Column="7"
+                           Text="{Binding Totals.TotalPendingAmount, StringFormat='F2'}"
+                           Style="{StaticResource BodyTextBlockStyle}"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="{StaticResource Small}" />
+            </Grid>
+        </Border>
+
+        <!-- Busy Indicator -->
+        <Border Grid.Row="0" Grid.RowSpan="6"
+                Background="{DynamicResource OverlayBrush}"
+                Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="{Binding BusyMessage}"
+                           Style="{StaticResource HeadingTextBlockStyle}"
+                           HorizontalAlignment="Center"
+                           Margin="{StaticResource Medium}" />
+                <ProgressBar IsIndeterminate="True"
+                           Width="200"
+                           Height="4"
+                           HorizontalAlignment="Center" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>
