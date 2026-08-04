@@ -7,9 +7,13 @@
              mc:Ignorable="d">
     <UserControl.Resources>
         <converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter" />
+        <converters:DOStatusToBrushConverter x:Key="DOStatusToBrushConverter" />
+        <converters:DOExceptionToBrushConverter x:Key="DOExceptionToBrushConverter" />
+        <converters:BooleanToYesNoConverter x:Key="BooleanToYesNoConverter" />
     </UserControl.Resources>
     <Grid Background="{DynamicResource BackgroundBrush}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -121,14 +125,14 @@
                         CornerRadius="4"
                         Padding="12"
                         Margin="6"
-                        Width="180">
+                        Width="160">
                     <StackPanel>
                         <TextBlock Text="Total DO"
                                    Style="{StaticResource CaptionTextBlockStyle}"
                                    Foreground="{DynamicResource TextSecondaryBrush}" />
                         <TextBlock Text="{Binding SummaryCards.TotalDO}"
                                    Style="{StaticResource HeadingTextBlockStyle}"
-                                   FontSize="24"
+                                   FontSize="22"
                                    FontWeight="Bold"
                                    Margin="0,4,0,0" />
                     </StackPanel>
@@ -139,14 +143,14 @@
                         CornerRadius="4"
                         Padding="12"
                         Margin="6"
-                        Width="180">
+                        Width="160">
                     <StackPanel>
                         <TextBlock Text="Today's Loading"
                                    Style="{StaticResource CaptionTextBlockStyle}"
                                    Foreground="{DynamicResource TextSecondaryBrush}" />
                         <TextBlock Text="{Binding SummaryCards.TodayLoading}"
                                    Style="{StaticResource HeadingTextBlockStyle}"
-                                   FontSize="24"
+                                   FontSize="22"
                                    FontWeight="Bold"
                                    Margin="0,4,0,0" />
                     </StackPanel>
@@ -157,14 +161,32 @@
                         CornerRadius="4"
                         Padding="12"
                         Margin="6"
-                        Width="180">
+                        Width="160">
+                    <StackPanel>
+                        <TextBlock Text="Today's Completed"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   Foreground="{DynamicResource TextSecondaryBrush}" />
+                        <TextBlock Text="{Binding SummaryCards.TodayCompleted}"
+                                   Style="{StaticResource HeadingTextBlockStyle}"
+                                   FontSize="22"
+                                   FontWeight="Bold"
+                                   Margin="0,4,0,0" />
+                    </StackPanel>
+                </Border>
+                <Border Background="{DynamicResource CardBackgroundBrush}"
+                        BorderBrush="{DynamicResource BorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="4"
+                        Padding="12"
+                        Margin="6"
+                        Width="160">
                     <StackPanel>
                         <TextBlock Text="Running DO"
                                    Style="{StaticResource CaptionTextBlockStyle}"
                                    Foreground="{DynamicResource TextSecondaryBrush}" />
                         <TextBlock Text="{Binding SummaryCards.RunningDO}"
                                    Style="{StaticResource HeadingTextBlockStyle}"
-                                   FontSize="24"
+                                   FontSize="22"
                                    FontWeight="Bold"
                                    Margin="0,4,0,0" />
                     </StackPanel>
@@ -175,14 +197,14 @@
                         CornerRadius="4"
                         Padding="12"
                         Margin="6"
-                        Width="180">
+                        Width="160">
                     <StackPanel>
                         <TextBlock Text="Completed DO"
                                    Style="{StaticResource CaptionTextBlockStyle}"
                                    Foreground="{DynamicResource TextSecondaryBrush}" />
                         <TextBlock Text="{Binding SummaryCards.CompletedDO}"
                                    Style="{StaticResource HeadingTextBlockStyle}"
-                                   FontSize="24"
+                                   FontSize="22"
                                    FontWeight="Bold"
                                    Margin="0,4,0,0" />
                     </StackPanel>
@@ -193,14 +215,14 @@
                         CornerRadius="4"
                         Padding="12"
                         Margin="6"
-                        Width="180">
+                        Width="160">
                     <StackPanel>
                         <TextBlock Text="Payment Pending"
                                    Style="{StaticResource CaptionTextBlockStyle}"
                                    Foreground="{DynamicResource TextSecondaryBrush}" />
                         <TextBlock Text="{Binding SummaryCards.PaymentPending}"
                                    Style="{StaticResource HeadingTextBlockStyle}"
-                                   FontSize="24"
+                                   FontSize="22"
                                    FontWeight="Bold"
                                    Margin="0,4,0,0" />
                     </StackPanel>
@@ -211,14 +233,86 @@
                         CornerRadius="4"
                         Padding="12"
                         Margin="6"
-                        Width="180">
+                        Width="160">
                     <StackPanel>
                         <TextBlock Text="Bill Pending"
                                    Style="{StaticResource CaptionTextBlockStyle}"
                                    Foreground="{DynamicResource TextSecondaryBrush}" />
                         <TextBlock Text="{Binding SummaryCards.BillPending}"
                                    Style="{StaticResource HeadingTextBlockStyle}"
-                                   FontSize="24"
+                                   FontSize="22"
+                                   FontWeight="Bold"
+                                   Margin="0,4,0,0" />
+                    </StackPanel>
+                </Border>
+                <Border Background="{DynamicResource CardBackgroundBrush}"
+                        BorderBrush="{DynamicResource BorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="4"
+                        Padding="12"
+                        Margin="6"
+                        Width="160">
+                    <StackPanel>
+                        <TextBlock Text="Delayed DO"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   Foreground="{DynamicResource TextSecondaryBrush}" />
+                        <TextBlock Text="{Binding SummaryCards.DelayedDO}"
+                                   Style="{StaticResource HeadingTextBlockStyle}"
+                                   FontSize="22"
+                                   FontWeight="Bold"
+                                   Margin="0,4,0,0" />
+                    </StackPanel>
+                </Border>
+                <Border Background="{DynamicResource CardBackgroundBrush}"
+                        BorderBrush="{DynamicResource BorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="4"
+                        Padding="12"
+                        Margin="6"
+                        Width="160">
+                    <StackPanel>
+                        <TextBlock Text="Exception DO"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   Foreground="{DynamicResource TextSecondaryBrush}" />
+                        <TextBlock Text="{Binding SummaryCards.ExceptionDO}"
+                                   Style="{StaticResource HeadingTextBlockStyle}"
+                                   FontSize="22"
+                                   FontWeight="Bold"
+                                   Margin="0,4,0,0" />
+                    </StackPanel>
+                </Border>
+                <Border Background="{DynamicResource CardBackgroundBrush}"
+                        BorderBrush="{DynamicResource BorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="4"
+                        Padding="12"
+                        Margin="6"
+                        Width="160">
+                    <StackPanel>
+                        <TextBlock Text="Completion %"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   Foreground="{DynamicResource TextSecondaryBrush}" />
+                        <TextBlock Text="{Binding SummaryCards.CompletionPercentage, StringFormat={}{0:F1}%}"
+                                   Style="{StaticResource HeadingTextBlockStyle}"
+                                   FontSize="22"
+                                   FontWeight="Bold"
+                                   Margin="0,4,0,0" />
+                    </StackPanel>
+                </Border>
+                <Border Background="{DynamicResource CardBackgroundBrush}"
+                        BorderBrush="{DynamicResource BorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="4"
+                        Padding="12"
+                        Margin="6"
+                        Width="160">
+                    <StackPanel>
+                        <TextBlock Text="Pending %"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   Foreground="{DynamicResource TextSecondaryBrush}" />
+                        <TextBlock Text="{Binding SummaryCards.PendingPercentage, StringFormat={}{0:F1}%}"
+                                   Style="{StaticResource HeadingTextBlockStyle}"
+                                   FontSize="22"
                                    FontWeight="Bold"
                                    Margin="0,4,0,0" />
                     </StackPanel>
@@ -227,7 +321,7 @@
         </Border>
 
         <!-- Filter Panel -->
-        <Border Grid.Row="2"
+        <Border Grid.Row="3"
                 Background="{DynamicResource SurfaceBrush}"
                 BorderBrush="{DynamicResource BorderBrush}"
                 BorderThickness="{StaticResource StandardBorderThickness}"
@@ -365,8 +459,56 @@
             </Expander>
         </Border>
 
+        <!-- Last Refresh Info -->
+        <Border Grid.Row="4"
+                Background="{DynamicResource SurfaceBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="{StaticResource StandardBorderThickness}"
+                Padding="{StaticResource Medium}"
+                Margin="{StaticResource Small}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0"
+                           Text="Last Refresh:"
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           VerticalAlignment="Center"
+                           Margin="{StaticResource Small}" />
+                <TextBlock Grid.Column="1"
+                           Text="{Binding LastRefreshTime, StringFormat='dd-MM-yyyy HH:mm:ss'}"
+                           Style="{StaticResource BodyTextBlockStyle}"
+                           VerticalAlignment="Center"
+                           Margin="{StaticResource Small}" />
+
+                <TextBlock Grid.Column="2"
+                           Text="Execution Time:"
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           VerticalAlignment="Center"
+                           Margin="{StaticResource Small}" />
+                <TextBlock Grid.Column="3"
+                           Text="{Binding ExecutionTime, StringFormat='ss\\.fff'}s"
+                           Style="{StaticResource BodyTextBlockStyle}"
+                           VerticalAlignment="Center"
+                           Margin="{StaticResource Small}" />
+
+                <TextBlock Grid.Column="4"
+                           Text="{Binding CurrentFilterSummary}"
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           VerticalAlignment="Center"
+                           Margin="{StaticResource Small}"
+                           Foreground="{DynamicResource TextSecondaryBrush}"
+                           TextAlignment="Right" />
+            </Grid>
+        </Border>
+
         <!-- Search Bar -->
-        <Border Grid.Row="3"
+        <Border Grid.Row="5"
                 Background="{DynamicResource SurfaceBrush}"
                 BorderBrush="{DynamicResource BorderBrush}"
                 BorderThickness="{StaticResource StandardBorderThickness}"
@@ -391,13 +533,14 @@
         </Border>
 
         <!-- Data Grid -->
-        <Border Grid.Row="4"
+        <Border Grid.Row="6"
                 Background="{DynamicResource SurfaceBrush}"
                 BorderBrush="{DynamicResource BorderBrush}"
                 BorderThickness="{StaticResource StandardBorderThickness}"
                 Padding="{StaticResource Medium}"
                 Margin="{StaticResource Small}">
             <DataGrid ItemsSource="{Binding ReportItems}"
+                      SelectedItem="{Binding SelectedItem}"
                       AutoGenerateColumns="False"
                       IsReadOnly="True"
                       CanUserAddRows="False"
@@ -406,6 +549,16 @@
                       GridLinesVisibility="Horizontal"
                       HeadersVisibility="Column"
                       AlternatingRowBackground="{DynamicResource AlternatingRowBrush}">
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="{Binding ExceptionType, Converter={StaticResource DOExceptionToBrushConverter}}" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ExceptionType}" Value="None">
+                                <Setter Property="Background" Value="{Binding DOStatus, Converter={StaticResource DOStatusToBrushConverter}}" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Challan No." Binding="{Binding ChallanNumber}" Width="*" />
                     <DataGridTextColumn Header="TP No." Binding="{Binding TPNumber}" Width="*" />
@@ -423,9 +576,12 @@
                     <DataGridTextColumn Header="Pending $" Binding="{Binding PendingAmount, StringFormat='F2'}" Width="*" />
                     <DataGridTextColumn Header="Bill No." Binding="{Binding BillNumber}" Width="*" />
                     <DataGridTextColumn Header="Bill Date" Binding="{Binding BillDate, StringFormat='dd-MM-yyyy'}" Width="*" />
+                    <DataGridTextColumn Header="Age (Days)" Binding="{Binding AgeInDays}" Width="*" />
+                    <DataGridTextColumn Header="Delayed" Binding="{Binding IsDelayed, Converter={StaticResource BooleanToYesNoConverter}}" Width="*" />
                     <DataGridTextColumn Header="DO Status" Binding="{Binding DOStatus}" Width="*" />
                     <DataGridTextColumn Header="Pay Status" Binding="{Binding PaymentStatus}" Width="*" />
                     <DataGridTextColumn Header="Bill Status" Binding="{Binding BillingStatus}" Width="*" />
+                    <DataGridTextColumn Header="Exception" Binding="{Binding ExceptionType}" Width="*" />
                 </DataGrid.Columns>
             </DataGrid>
         </Border>
@@ -439,6 +595,11 @@
                 Margin="{StaticResource Small}">
             <Grid>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
@@ -474,23 +635,47 @@
                            Margin="{StaticResource Small}" />
 
                 <TextBlock Grid.Column="4"
-                           Text="Total Gross Amt:"
+                           Text="Completed Gross:"
                            Style="{StaticResource CaptionTextBlockStyle}"
                            VerticalAlignment="Center"
                            Margin="{StaticResource Small}" />
                 <TextBlock Grid.Column="5"
-                           Text="{Binding Totals.TotalGrossAmount, StringFormat='F2'}"
+                           Text="{Binding Totals.CompletedGrossAmount, StringFormat='F2'}"
                            Style="{StaticResource BodyTextBlockStyle}"
                            FontWeight="Bold"
                            VerticalAlignment="Center"
                            Margin="{StaticResource Small}" />
 
                 <TextBlock Grid.Column="6"
-                           Text="Total Pending:"
+                           Text="Pending Gross:"
                            Style="{StaticResource CaptionTextBlockStyle}"
                            VerticalAlignment="Center"
                            Margin="{StaticResource Small}" />
                 <TextBlock Grid.Column="7"
+                           Text="{Binding Totals.PendingGrossAmount, StringFormat='F2'}"
+                           Style="{StaticResource BodyTextBlockStyle}"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="{StaticResource Small}" />
+
+                <TextBlock Grid.Column="8"
+                           Text="Today's Gross:"
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           VerticalAlignment="Center"
+                           Margin="{StaticResource Small}" />
+                <TextBlock Grid.Column="9"
+                           Text="{Binding Totals.TodayGrossAmount, StringFormat='F2'}"
+                           Style="{StaticResource BodyTextBlockStyle}"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="{StaticResource Small}" />
+
+                <TextBlock Grid.Column="10"
+                           Text="Total Pending:"
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           VerticalAlignment="Center"
+                           Margin="{StaticResource Small}" />
+                <TextBlock Grid.Column="11"
                            Text="{Binding Totals.TotalPendingAmount, StringFormat='F2'}"
                            Style="{StaticResource BodyTextBlockStyle}"
                            FontWeight="Bold"
@@ -500,7 +685,7 @@
         </Border>
 
         <!-- Busy Indicator -->
-        <Border Grid.Row="0" Grid.RowSpan="6"
+        <Border Grid.Row="0" Grid.RowSpan="7"
                 Background="{DynamicResource OverlayBrush}"
                 Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">

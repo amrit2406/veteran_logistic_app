@@ -53,12 +53,22 @@ public sealed class DOStatusReportFilter
     /// <summary>
     /// Gets or sets the payment status filter.
     /// </summary>
-    public string? PaymentStatus { get; set; }
+    public PaymentStatusType? PaymentStatus { get; set; }
 
     /// <summary>
     /// Gets or sets the billing status filter.
     /// </summary>
-    public string? BillingStatus { get; set; }
+    public BillingStatusType? BillingStatus { get; set; }
+
+    /// <summary>
+    /// Gets or sets the exception type filter.
+    /// </summary>
+    public DOExceptionType? ExceptionType { get; set; }
+
+    /// <summary>
+    /// Gets or sets whether to filter only delayed DOs.
+    /// </summary>
+    public bool? IsDelayed { get; set; }
 
     /// <summary>
     /// Determines whether the filter has any active criteria.
@@ -73,8 +83,10 @@ public sealed class DOStatusReportFilter
         SourceId.HasValue ||
         DestinationId.HasValue ||
         DOStatus.HasValue ||
-        !string.IsNullOrWhiteSpace(PaymentStatus) ||
-        !string.IsNullOrWhiteSpace(BillingStatus);
+        PaymentStatus.HasValue ||
+        BillingStatus.HasValue ||
+        ExceptionType.HasValue ||
+        IsDelayed.HasValue;
 
     /// <summary>
     /// Clears all filter criteria.
@@ -92,5 +104,7 @@ public sealed class DOStatusReportFilter
         DOStatus = null;
         PaymentStatus = null;
         BillingStatus = null;
+        ExceptionType = null;
+        IsDelayed = null;
     }
 }

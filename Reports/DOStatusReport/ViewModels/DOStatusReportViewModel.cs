@@ -39,6 +39,9 @@ public sealed partial class DOStatusReportViewModel : ViewModelBase
     private bool _sortAscending = true;
     private DOStatusReportFilter _filter = new();
     private CancellationTokenSource? _searchCancellationTokenSource;
+    private DateTime _lastRefreshTime = DateTime.MinValue;
+    private TimeSpan _executionTime = TimeSpan.Zero;
+    private int _currentRecordCount = 0;
 
     /// <summary>
     /// Command to navigate back to the previous screen.
@@ -131,6 +134,30 @@ public sealed partial class DOStatusReportViewModel : ViewModelBase
     public ObservableCollection<DOStatusReportItem> ReportItems { get; } = new();
 
     /// <summary>
+    /// Gets or sets the selected DO status report item.
+    /// </summary>
+    public DOStatusReportItem? SelectedItem { get; set; }
+
+    /// <summary>
+    /// Command to navigate to the loading register details.
+    /// </summary>
+    [RelayCommand]
+    private async Task NavigateToLoadingRegisterAsync()
+    {
+        if (SelectedItem == null)
+        {
+            return;
+        }
+
+        var parameters = new NavigationParameter
+        {
+            { "Id", SelectedItem.Id }
+        };
+
+        await _navigationService.NavigateToAsync("EditLoadingRegister", parameters);
+    }
+
+    /// <summary>
     /// Gets the calculated summary cards for the report.
     /// </summary>
     public DOStatusReportSummaryCards SummaryCards { get; } = new();
@@ -212,6 +239,60 @@ public sealed partial class DOStatusReportViewModel : ViewModelBase
     {
         get => _filter;
         set => SetProperty(ref _filter, value);
+    }
+
+    /// <summary>
+    /// Gets the last refresh time.
+    /// </summary>
+    public DateTime LastRefreshTime => _lastRefreshTime;
+
+    /// <summary>
+    /// Gets the execution time of the last refresh.
+    /// </summary>
+    public TimeSpan ExecutionTime => _executionTime;
+
+    /// <summary>
+    /// Gets the current record count.
+    /// </summary>
+    public int CurrentRecordCount => _currentRecordCount;
+
+    /// <summary>
+    /// Gets the current filter summary.
+    /// </summary>
+    public string CurrentFilterSummary => Filter.HasFilter ? GetFilterSummary() : "No filters applied";
+
+    private string GetFilterSummary()
+    {
+        var parts = new List<string>();
+
+        if (Filter.DateFrom.HasValue)
+            parts.Add($"From: {Filter.DateFrom.Value:dd-MM-yyyy}");
+        if (Filter.DateTo.HasValue)
+            parts.Add($"To: {Filter.DateTo.Value:dd-MM-yyyy}");
+        if (Filter.CustomerId.HasValue)
+            parts.Add($"Customer: {Filter.CustomerId.Value}");
+        if (Filter.VehicleId.HasValue)
+            parts.Add($"Vehicle: {Filter.VehicleId.Value}");
+        if (!string.IsNullOrWhiteSpace(Filter.Driver))
+            parts.Add($"Driver: {Filter.Driver}");
+        if (Filter.MaterialId.HasValue)
+            parts.Add($"Material: {Filter.MaterialId.Value}");
+        if (Filter.SourceId.HasValue)
+            parts.Add($"Source: {Filter.SourceId.Value}");
+        if (Filter.DestinationId.HasValue)
+            parts.Add($"Destination: {Filter.DestinationId.Value}");
+        if (Filter.DOStatus.HasValue)
+            parts.Add($"Status: {Filter.DOStatus.Value}");
+        if (Filter.PaymentStatus.HasValue)
+            parts.Add($"Payment: {Filter.PaymentStatus.Value}");
+        if (Filter.BillingStatus.HasValue)
+            parts.Add($"Billing: {Filter.BillingStatus.Value}");
+        if (Filter.ExceptionType.HasValue)
+            parts.Add($"Exception: {Filter.ExceptionType.Value}");
+        if (Filter.IsDelayed.HasValue)
+            parts.Add($"Delayed: {Filter.IsDelayed.Value}");
+
+        return parts.Count > 0 ? string.Join(", ", parts) : "No filters applied";
     }
 
     /// <summary>
@@ -420,15 +501,30 @@ public sealed partial class DOStatusReportViewModel : ViewModelBase
     private async Task LoadReportAsync(CancellationToken cancellationToken = default)
     {
         SetBusy("Loading report...");
+        var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+
         var (items, summaryCards, totals) = await _doStatusReportQueryService.GetDOStatusReportAsync(
             Filter,
             SearchText,
             SortBy,
             SortAscending,
             cancellationToken);
+
+        stopwatch.Stop();
+
+        _lastRefreshTime = DateTime.Now;
+        _executionTime = stopwatch.Elapsed;
+        _currentRecordCount = items.Count;
+
         UpdateReportItems(items);
         UpdateSummaryCards(summaryCards);
         UpdateTotals(totals);
+
+        OnPropertyChanged(nameof(LastRefreshTime));
+        OnPropertyChanged(nameof(ExecutionTime));
+        OnPropertyChanged(nameof(CurrentRecordCount));
+        OnPropertyChanged(nameof(CurrentFilterSummary));
+
         ClearBusy();
     }
 
@@ -598,10 +694,15 @@ public sealed partial class DOStatusReportViewModel : ViewModelBase
         {
             SummaryCards.TotalDO = summaryCards.TotalDO;
             SummaryCards.TodayLoading = summaryCards.TodayLoading;
+            SummaryCards.TodayCompleted = summaryCards.TodayCompleted;
             SummaryCards.RunningDO = summaryCards.RunningDO;
             SummaryCards.CompletedDO = summaryCards.CompletedDO;
             SummaryCards.PaymentPending = summaryCards.PaymentPending;
             SummaryCards.BillPending = summaryCards.BillPending;
+            SummaryCards.DelayedDO = summaryCards.DelayedDO;
+            SummaryCards.ExceptionDO = summaryCards.ExceptionDO;
+            SummaryCards.CompletionPercentage = summaryCards.CompletionPercentage;
+            SummaryCards.PendingPercentage = summaryCards.PendingPercentage;
         }
         else
         {
@@ -609,10 +710,15 @@ public sealed partial class DOStatusReportViewModel : ViewModelBase
             {
                 SummaryCards.TotalDO = summaryCards.TotalDO;
                 SummaryCards.TodayLoading = summaryCards.TodayLoading;
+                SummaryCards.TodayCompleted = summaryCards.TodayCompleted;
                 SummaryCards.RunningDO = summaryCards.RunningDO;
                 SummaryCards.CompletedDO = summaryCards.CompletedDO;
                 SummaryCards.PaymentPending = summaryCards.PaymentPending;
                 SummaryCards.BillPending = summaryCards.BillPending;
+                SummaryCards.DelayedDO = summaryCards.DelayedDO;
+                SummaryCards.ExceptionDO = summaryCards.ExceptionDO;
+                SummaryCards.CompletionPercentage = summaryCards.CompletionPercentage;
+                SummaryCards.PendingPercentage = summaryCards.PendingPercentage;
             });
         }
     }
@@ -632,6 +738,12 @@ public sealed partial class DOStatusReportViewModel : ViewModelBase
             Totals.TotalGrossAmount = totals.TotalGrossAmount;
             Totals.TotalChallanMoney = totals.TotalChallanMoney;
             Totals.TotalPendingAmount = totals.TotalPendingAmount;
+            Totals.CompletedGrossAmount = totals.CompletedGrossAmount;
+            Totals.PendingGrossAmount = totals.PendingGrossAmount;
+            Totals.TodayGrossAmount = totals.TodayGrossAmount;
+            Totals.TodayLoadingWeight = totals.TodayLoadingWeight;
+            Totals.CompletedLoadingWeight = totals.CompletedLoadingWeight;
+            Totals.PendingLoadingWeight = totals.PendingLoadingWeight;
         }
         else
         {
@@ -644,6 +756,12 @@ public sealed partial class DOStatusReportViewModel : ViewModelBase
                 Totals.TotalGrossAmount = totals.TotalGrossAmount;
                 Totals.TotalChallanMoney = totals.TotalChallanMoney;
                 Totals.TotalPendingAmount = totals.TotalPendingAmount;
+                Totals.CompletedGrossAmount = totals.CompletedGrossAmount;
+                Totals.PendingGrossAmount = totals.PendingGrossAmount;
+                Totals.TodayGrossAmount = totals.TodayGrossAmount;
+                Totals.TodayLoadingWeight = totals.TodayLoadingWeight;
+                Totals.CompletedLoadingWeight = totals.CompletedLoadingWeight;
+                Totals.PendingLoadingWeight = totals.PendingLoadingWeight;
             });
         }
     }

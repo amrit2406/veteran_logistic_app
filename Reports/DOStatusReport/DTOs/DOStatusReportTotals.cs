@@ -39,4 +39,34 @@ public sealed class DOStatusReportTotals
     /// Gets or sets the total pending amount.
     /// </summary>
     public decimal TotalPendingAmount { get; set; }
+
+    /// <summary>
+    /// Gets or sets the completed gross amount.
+    /// </summary>
+    public decimal CompletedGrossAmount { get; set; }
+
+    /// <summary>
+    /// Gets or sets the pending gross amount.
+    /// </summary>
+    public decimal PendingGrossAmount { get; set; }
+
+    /// <summary>
+    /// Gets or sets today's gross amount.
+    /// </summary>
+    public decimal TodayGrossAmount { get; set; }
+
+    /// <summary>
+    /// Gets or sets today's loading weight.
+    /// </summary>
+    public decimal TodayLoadingWeight { get; set; }
+
+    /// <summary>
+    /// Gets or sets the completed loading weight.
+    /// </summary>
+    public decimal CompletedLoadingWeight { get; set; }
+
+    /// <summary>
+    /// Gets or sets the pending loading weight.
+    /// </summary>
+    public decimal PendingLoadingWeight { get; set; }
 }

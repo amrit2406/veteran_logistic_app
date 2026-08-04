@@ -108,10 +108,30 @@ public sealed class DOStatusReportItem
     /// <summary>
     /// Gets or sets the payment status.
     /// </summary>
-    public string PaymentStatus { get; set; } = string.Empty;
+    public PaymentStatusType PaymentStatus { get; set; }
 
     /// <summary>
     /// Gets or sets the billing status.
     /// </summary>
-    public string BillingStatus { get; set; } = string.Empty;
+    public BillingStatusType BillingStatus { get; set; }
+
+    /// <summary>
+    /// Gets or sets the exception type detected for this DO.
+    /// </summary>
+    public DOExceptionType ExceptionType { get; set; }
+
+    /// <summary>
+    /// Gets or sets the age of the DO in days since loading.
+    /// </summary>
+    public int AgeInDays { get; set; }
+
+    /// <summary>
+    /// Gets or sets whether this DO is delayed beyond the configured threshold.
+    /// </summary>
+    public bool IsDelayed { get; set; }
+
+    /// <summary>
+    /// Gets or sets the delay in days beyond the threshold.
+    /// </summary>
+    public int DelayDays { get; set; }
 }
