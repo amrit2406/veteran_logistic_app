@@ -15,14 +15,17 @@ using veteran_logistic.Reports.QueryBuilder.Export.Excel;
 using veteran_logistic.Reports.QueryBuilder.Export.Pdf;
 using veteran_logistic.Reports.QueryBuilder.Export.Csv;
 using System.IO;
+using static veteran_logistic.Reports.QueryBuilder.Metadata.QueryMetadataProvider;
 
 namespace veteran_logistic.Reports.QueryBuilder.ViewModels;
 
 /// <summary>
 /// ViewModel for the Query Builder screen.
 /// </summary>
-public sealed partial class QueryBuilderViewModel : ViewModelBase
+public sealed partial class QueryBuilderViewModel : ViewModelBase, IDisposable
 {
+    private const int MaxResultLimit = 10000;
+    
     private readonly IQueryEngine _queryEngine;
     private readonly INavigationService _navigationService;
     private readonly IQueryBuilderExcelExporter _excelExporter;
@@ -228,7 +231,6 @@ public sealed partial class QueryBuilderViewModel : ViewModelBase
 
     private bool _columnsGenerated;
     private bool _hasResultLimitWarning;
-    private const int MaxResultLimit = 10000;
 
     public bool HasResultLimitWarning
     {
@@ -699,5 +701,19 @@ public sealed partial class QueryBuilderViewModel : ViewModelBase
         {
             IsBusy = false;
         }
+    }
+
+    public void Dispose()
+    {
+        _searchCancellationTokenSource?.Cancel();
+        _searchCancellationTokenSource?.Dispose();
+        _searchCancellationTokenSource = null;
+        
+        ResultItems.Clear();
+        AvailableColumns.Clear();
+        SelectedColumns.Clear();
+        Filters.Clear();
+        Sorts.Clear();
+        Aggregates.Clear();
     }
 }

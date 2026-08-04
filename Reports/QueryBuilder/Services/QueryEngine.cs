@@ -12,6 +12,7 @@ using LoadingRegisterEntity = VeteranLogistics.Data.Entities.Administration.Load
 using UnloadingRegisterEntity = VeteranLogistics.Data.Entities.Administration.UnloadingRegister;
 using PaymentRegisterEntity = VeteranLogistics.Data.Entities.Administration.PaymentRegister;
 using PartyBillRegisterEntity = VeteranLogistics.Data.Entities.Administration.PartyBillRegister;
+using static veteran_logistic.Reports.QueryBuilder.Metadata.QueryMetadataProvider;
 
 namespace veteran_logistic.Reports.QueryBuilder.Services;
 
@@ -20,11 +21,14 @@ namespace veteran_logistic.Reports.QueryBuilder.Services;
 /// </summary>
 public sealed class QueryEngine : IQueryEngine
 {
+    private const int MaxResultLimit = 10000;
+    
     private readonly VeteranLogisticsDbContext _dbContext;
     private readonly ILogger<QueryEngine> _logger;
     private readonly ConcurrentDictionary<string, Func<object, object?>> _propertyAccessors;
     private readonly ConcurrentDictionary<string, LambdaExpression> _filterExpressionCache;
     private readonly ConcurrentDictionary<string, LambdaExpression> _sortExpressionCache;
+    private readonly ConcurrentDictionary<string, PropertyInfo> _propertyInfoCache;
 
     public QueryEngine(VeteranLogisticsDbContext dbContext, ILogger<QueryEngine> logger)
     {
@@ -33,6 +37,40 @@ public sealed class QueryEngine : IQueryEngine
         _propertyAccessors = new ConcurrentDictionary<string, Func<object, object?>>();
         _filterExpressionCache = new ConcurrentDictionary<string, LambdaExpression>();
         _sortExpressionCache = new ConcurrentDictionary<string, LambdaExpression>();
+        _propertyInfoCache = new ConcurrentDictionary<string, PropertyInfo>();
+        
+        // Pre-populate property info cache for known entity types
+        PreloadPropertyInfoCache();
+    }
+
+    private void PreloadPropertyInfoCache()
+    {
+        var entityTypes = new[]
+        {
+            typeof(LoadingRegisterEntity),
+            typeof(UnloadingRegisterEntity),
+            typeof(PaymentRegisterEntity),
+            typeof(PartyBillRegisterEntity)
+        };
+
+        foreach (var entityType in entityTypes)
+        {
+            var properties = entityType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            foreach (var property in properties)
+            {
+                _propertyInfoCache.TryAdd($"{entityType.Name}.{property.Name}", property);
+                
+                // Also cache navigation property types
+                if (property.PropertyType.IsClass && property.PropertyType != typeof(string))
+                {
+                    var navProperties = property.PropertyType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+                    foreach (var navProperty in navProperties)
+                    {
+                        _propertyInfoCache.TryAdd($"{property.PropertyType.Name}.{navProperty.Name}", navProperty);
+                    }
+                }
+            }
+        }
     }
 
     public async Task<QueryResult> ExecuteQueryAsync(
@@ -80,7 +118,7 @@ public sealed class QueryEngine : IQueryEngine
         if (takeMethod != null)
         {
             query = (IQueryable)takeMethod.MakeGenericMethod(query.ElementType)
-                .Invoke(null, new object[] { query, 10000 })!;
+                .Invoke(null, new object[] { query, MaxResultLimit })!;
         }
 
         var items = await ProjectToResultItems(
@@ -110,25 +148,21 @@ public sealed class QueryEngine : IQueryEngine
     {
         return moduleId switch
         {
-            "Loading" => _dbContext.LoadingRegisters
+            LoadingModuleId => _dbContext.LoadingRegisters
                 .AsNoTracking()
-                .AsSplitQuery()
-                .Where(lr => !lr.IsDeleted),
+                .AsSplitQuery(),
             
-            "Unloading" => _dbContext.UnloadingRegisters
+            UnloadingModuleId => _dbContext.UnloadingRegisters
                 .AsNoTracking()
-                .AsSplitQuery()
-                .Where(ur => !ur.IsDeleted),
+                .AsSplitQuery(),
             
-            "Payment" => _dbContext.PaymentRegisters
+            PaymentModuleId => _dbContext.PaymentRegisters
                 .AsNoTracking()
-                .AsSplitQuery()
-                .Where(pr => !pr.IsDeleted),
+                .AsSplitQuery(),
             
-            "PartyBilling" => _dbContext.PartyBillRegisters
+            PartyBillingModuleId => _dbContext.PartyBillRegisters
                 .AsNoTracking()
-                .AsSplitQuery()
-                .Where(pbr => !pbr.IsDeleted),
+                .AsSplitQuery(),
             
             _ => throw new ArgumentException($"Unknown module: {moduleId}")
         };
@@ -630,12 +664,20 @@ public sealed class QueryEngine : IQueryEngine
         foreach (var property in properties)
         {
             var currentType = expression.Type;
-            var propertyInfo = currentType.GetProperty(property);
+            
+            // Use cached PropertyInfo instead of runtime reflection
+            var cacheKey = $"{currentType.Name}.{property}";
+            var propertyInfo = _propertyInfoCache.GetOrAdd(cacheKey, _ => 
+            {
+                // Only fall back to reflection if not in cache
+                return currentType.GetProperty(property) ?? throw new InvalidOperationException($"Property '{property}' not found on type '{currentType.Name}'");
+            });
+            
             if (propertyInfo == null)
             {
                 return _ => null;
             }
-            expression = Expression.Property(expression, propertyInfo);
+            expression = Expression.Property(expression, propertyInfo!);
         }
 
         var conversion = Expression.Convert(expression, typeof(object));
@@ -666,7 +708,7 @@ public sealed class QueryEngine : IQueryEngine
         if (takeMethod != null)
         {
             query = (IQueryable)takeMethod.MakeGenericMethod(query.ElementType)
-                .Invoke(null, new object[] { query, 10000 })!;
+                .Invoke(null, new object[] { query, MaxResultLimit })!;
         }
 
         // Materialize with projection to avoid reflection
@@ -737,17 +779,86 @@ public sealed class QueryEngine : IQueryEngine
         return aggregateType switch
         {
             AggregateType.Count => values.Count,
-            AggregateType.Sum => values.Sum(v => ConvertToDecimal(v)),
-            AggregateType.Average => values.Average(v => ConvertToDecimal(v)),
-            AggregateType.Minimum => values.Min(v => ConvertToDecimal(v)),
-            AggregateType.Maximum => values.Max(v => ConvertToDecimal(v)),
+            AggregateType.Sum => SafeSum(values),
+            AggregateType.Average => SafeAverage(values),
+            AggregateType.Minimum => SafeMin(values),
+            AggregateType.Maximum => SafeMax(values),
             _ => null
         };
+    }
+
+    private decimal SafeSum(List<object?> values)
+    {
+        try
+        {
+            checked
+            {
+                return values.Sum(v => ConvertToDecimal(v));
+            }
+        }
+        catch (OverflowException)
+        {
+            _logger.LogWarning("Sum overflow detected in query aggregation");
+            return decimal.MaxValue;
+        }
+    }
+
+    private decimal? SafeAverage(List<object?> values)
+    {
+        try
+        {
+            return values.Average(v => ConvertToDecimal(v));
+        }
+        catch (OverflowException)
+        {
+            _logger.LogWarning("Average overflow detected in query aggregation");
+            return null;
+        }
+    }
+
+    private decimal? SafeMin(List<object?> values)
+    {
+        try
+        {
+            return values.Min(v => ConvertToDecimal(v));
+        }
+        catch (OverflowException)
+        {
+            _logger.LogWarning("Min overflow detected in query aggregation");
+            return null;
+        }
+    }
+
+    private decimal? SafeMax(List<object?> values)
+    {
+        try
+        {
+            return values.Max(v => ConvertToDecimal(v));
+        }
+        catch (OverflowException)
+        {
+            _logger.LogWarning("Max overflow detected in query aggregation");
+            return null;
+        }
     }
 
     private decimal ConvertToDecimal(object? value)
     {
         if (value == null) return 0;
-        return Convert.ToDecimal(value);
+        
+        try
+        {
+            return Convert.ToDecimal(value);
+        }
+        catch (FormatException)
+        {
+            _logger.LogWarning("Failed to convert value to decimal: {Value}", value);
+            return 0;
+        }
+        catch (InvalidCastException)
+        {
+            _logger.LogWarning("Invalid cast to decimal for value: {Value}", value);
+            return 0;
+        }
     }
 }

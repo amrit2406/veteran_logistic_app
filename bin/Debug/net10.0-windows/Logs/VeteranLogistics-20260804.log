@@ -1,0 +1,142 @@
+[2026-08-04 12:19:40 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Executing query for module PartyBilling
+[2026-08-04 12:19:40 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2026-08-04 12:19:40 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for Id
+System.InvalidOperationException: Property 'PartyBillRegister' not found on type 'PartyBillRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute3[T0,T1,T2,TRet](CallSite site, T0 arg0, T1 arg1, T2 arg2)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:19:40 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for BillNumber
+System.InvalidOperationException: Property 'PartyBillRegister' not found on type 'PartyBillRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:19:40 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for Party.CustomerName
+System.InvalidOperationException: Property 'PartyBillRegister' not found on type 'PartyBillRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:19:40 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for ThirdPartyName
+System.InvalidOperationException: Property 'PartyBillRegister' not found on type 'PartyBillRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:19:41 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for FromDate
+System.InvalidOperationException: Property 'PartyBillRegister' not found on type 'PartyBillRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:19:41 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for ToDate
+System.InvalidOperationException: Property 'PartyBillRegister' not found on type 'PartyBillRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:19:41 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for TotalMaterialWeight
+System.InvalidOperationException: Property 'PartyBillRegister' not found on type 'PartyBillRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:19:41 WRN]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Failed to get property value for GrandTotal
+System.InvalidOperationException: Property 'PartyBillRegister' not found on type 'PartyBillRegister'
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass26_1.<CompilePropertyAccessor>b__0(String _) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 673
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.CompilePropertyAccessor(Type type, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 670
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.<>c__DisplayClass25_0.<GetPropertyValue>b__0(String path) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 652
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.GetPropertyValue(Object obj, String propertyPath) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 650
+   at veteran_logistic.Reports.QueryBuilder.Services.QueryEngine.ProjectToResultItems(IQueryable query, List`1 selectedColumns, ModuleMetadata moduleMetadata, String moduleId, CancellationToken cancellationToken) in D:\app\veteran_logistic_app\Reports\QueryBuilder\Services\QueryEngine.cs:line 535
+[2026-08-04 12:19:41 INF]
+[Veteran Logistics]
+[0.1.0]
+[Machine: VVSPL1]
+[Thread: 2]
+
+Query executed in 212ms with 1 records

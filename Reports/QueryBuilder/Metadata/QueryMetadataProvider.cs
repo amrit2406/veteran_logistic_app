@@ -5,6 +5,11 @@ namespace veteran_logistic.Reports.QueryBuilder.Metadata;
 /// </summary>
 public static class QueryMetadataProvider
 {
+    public const string LoadingModuleId = "Loading";
+    public const string UnloadingModuleId = "Unloading";
+    public const string PaymentModuleId = "Payment";
+    public const string PartyBillingModuleId = "PartyBilling";
+
     /// <summary>
     /// Gets all available modules with their field metadata.
     /// </summary>
@@ -26,7 +31,7 @@ public static class QueryMetadataProvider
     {
         return new ModuleMetadata
         {
-            ModuleId = "Loading",
+            ModuleId = LoadingModuleId,
             DisplayName = "Loading Register",
             Fields = new List<FieldMetadata>
             {
@@ -70,7 +75,7 @@ public static class QueryMetadataProvider
     {
         return new ModuleMetadata
         {
-            ModuleId = "Unloading",
+            ModuleId = UnloadingModuleId,
             DisplayName = "Unloading Register",
             Fields = new List<FieldMetadata>
             {
@@ -118,7 +123,7 @@ public static class QueryMetadataProvider
     {
         return new ModuleMetadata
         {
-            ModuleId = "Payment",
+            ModuleId = PaymentModuleId,
             DisplayName = "Payment Register",
             Fields = new List<FieldMetadata>
             {
@@ -162,7 +167,7 @@ public static class QueryMetadataProvider
     {
         return new ModuleMetadata
         {
-            ModuleId = "PartyBilling",
+            ModuleId = PartyBillingModuleId,
             DisplayName = "Party Bill Register",
             Fields = new List<FieldMetadata>
             {
@@ -199,10 +204,10 @@ public static class QueryMetadataProvider
     {
         return moduleId switch
         {
-            "Loading" => GetLoadingModule(),
-            "Unloading" => GetUnloadingModule(),
-            "Payment" => GetPaymentModule(),
-            "PartyBilling" => GetPartyBillingModule(),
+            LoadingModuleId => GetLoadingModule(),
+            UnloadingModuleId => GetUnloadingModule(),
+            PaymentModuleId => GetPaymentModule(),
+            PartyBillingModuleId => GetPartyBillingModule(),
             _ => null
         };
     }
