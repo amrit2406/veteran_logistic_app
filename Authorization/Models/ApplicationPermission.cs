@@ -477,6 +477,93 @@ public sealed record ApplicationPermission
     /// </summary>
     public static readonly ApplicationPermission DeleteUnloadingRegisters = new ApplicationPermission("transactions.unloadingregisters.delete");
 
+    // Transactions - Party Bill Register Permissions
+    /// <summary>
+    /// Permission to view party bill registers.
+    /// </summary>
+    public static readonly ApplicationPermission ViewPartyBillRegisters = new ApplicationPermission("transactions.partybillregisters.view");
+
+    /// <summary>
+    /// Permission to add party bill registers.
+    /// </summary>
+    public static readonly ApplicationPermission AddPartyBillRegisters = new ApplicationPermission("transactions.partybillregisters.add");
+
+    /// <summary>
+    /// Permission to edit party bill registers.
+    /// </summary>
+    public static readonly ApplicationPermission EditPartyBillRegisters = new ApplicationPermission("transactions.partybillregisters.edit");
+
+    /// <summary>
+    /// Permission to delete party bill registers.
+    /// </summary>
+    public static readonly ApplicationPermission DeletePartyBillRegisters = new ApplicationPermission("transactions.partybillregisters.delete");
+
+    // Reports - Loading Report Permissions
+    /// <summary>
+    /// Permission to view loading report.
+    /// </summary>
+    public static readonly ApplicationPermission ViewLoadingReport = new ApplicationPermission("reports.loadingreport.view");
+
+    /// <summary>
+    /// Permission to export loading report.
+    /// </summary>
+    public static readonly ApplicationPermission ExportLoadingReport = new ApplicationPermission("reports.loadingreport.export");
+
+    // Reports - Payment Report Permissions
+    /// <summary>
+    /// Permission to view payment report.
+    /// </summary>
+    public static readonly ApplicationPermission ViewPaymentReport = new ApplicationPermission("reports.paymentreport.view");
+
+    /// <summary>
+    /// Permission to export payment report.
+    /// </summary>
+    public static readonly ApplicationPermission ExportPaymentReport = new ApplicationPermission("reports.paymentreport.export");
+
+    // Reports - Unloading Report Permissions
+    /// <summary>
+    /// Permission to view unloading report.
+    /// </summary>
+    public static readonly ApplicationPermission ViewUnloadingReport = new ApplicationPermission("reports.unloadingreport.view");
+
+    /// <summary>
+    /// Permission to export unloading report.
+    /// </summary>
+    public static readonly ApplicationPermission ExportUnloadingReport = new ApplicationPermission("reports.unloadingreport.export");
+
+    // Reports - Party Billing Report Permissions
+    /// <summary>
+    /// Permission to view party billing report.
+    /// </summary>
+    public static readonly ApplicationPermission ViewPartyBillingReport = new ApplicationPermission("reports.partybillingreport.view");
+
+    /// <summary>
+    /// Permission to export party billing report.
+    /// </summary>
+    public static readonly ApplicationPermission ExportPartyBillingReport = new ApplicationPermission("reports.partybillingreport.export");
+
+    // Reports - DO Status Report Permissions
+    /// <summary>
+    /// Permission to view DO status report.
+    /// </summary>
+    public static readonly ApplicationPermission ViewDOStatusReport = new ApplicationPermission("reports.dostatusreport.view");
+
+    /// <summary>
+    /// Permission to export DO status report.
+    /// </summary>
+    public static readonly ApplicationPermission ExportDOStatusReport = new ApplicationPermission("reports.dostatusreport.export");
+
+    // Reports - Consolidated Report Permissions
+    /// <summary>
+    /// Permission to view consolidated report.
+    /// </summary>
+    public static readonly ApplicationPermission ViewConsolidatedReport = new ApplicationPermission("reports.consolidatedreport.view");
+
+    /// <summary>
+    /// Permission to export consolidated report.
+    /// </summary>
+    public static readonly ApplicationPermission ExportConsolidatedReport = new ApplicationPermission("reports.consolidatedreport.export");
+
     /// <summary>
     /// Gets all available application permissions.
     /// </summary>

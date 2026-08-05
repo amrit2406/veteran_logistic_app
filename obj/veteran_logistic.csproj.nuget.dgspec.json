@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\app\\veteran_logistic_app\\veteran_logistic.csproj": {}
+    "d:\\app\\veteran_logistic_app\\veteran_logistic.csproj": {}
   },
   "projects": {
-    "D:\\app\\veteran_logistic_app\\veteran_logistic.csproj": {
+    "d:\\app\\veteran_logistic_app\\veteran_logistic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\app\\veteran_logistic_app\\veteran_logistic.csproj",
+        "projectUniqueName": "d:\\app\\veteran_logistic_app\\veteran_logistic.csproj",
         "projectName": "veteran_logistic",
-        "projectPath": "D:\\app\\veteran_logistic_app\\veteran_logistic.csproj",
+        "projectPath": "d:\\app\\veteran_logistic_app\\veteran_logistic.csproj",
         "packagesPath": "C:\\Users\\infov\\.nuget\\packages\\",
-        "outputPath": "D:\\app\\veteran_logistic_app\\obj\\",
+        "outputPath": "d:\\app\\veteran_logistic_app\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\infov\\AppData\\Roaming\\NuGet\\NuGet.Config",

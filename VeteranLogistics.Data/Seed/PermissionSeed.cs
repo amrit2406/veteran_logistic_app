@@ -130,7 +130,37 @@ public static class PermissionSeed
         new Permission { Module = "Transactions", Screen = "UnloadingRegisters", PermissionKey = "transactions.unloadingregisters.view", DisplayName = "View Unloading Registers", Description = "View list of unloading registers", SortOrder = 220, IsActive = true },
         new Permission { Module = "Transactions", Screen = "UnloadingRegisters", PermissionKey = "transactions.unloadingregisters.add", DisplayName = "Add Unloading Register", Description = "Create a new unloading register", SortOrder = 221, IsActive = true },
         new Permission { Module = "Transactions", Screen = "UnloadingRegisters", PermissionKey = "transactions.unloadingregisters.edit", DisplayName = "Edit Unloading Register", Description = "Edit existing unloading register", SortOrder = 222, IsActive = true },
-        new Permission { Module = "Transactions", Screen = "UnloadingRegisters", PermissionKey = "transactions.unloadingregisters.delete", DisplayName = "Delete Unloading Register", Description = "Delete an unloading register", SortOrder = 223, IsActive = true }
+        new Permission { Module = "Transactions", Screen = "UnloadingRegisters", PermissionKey = "transactions.unloadingregisters.delete", DisplayName = "Delete Unloading Register", Description = "Delete an unloading register", SortOrder = 223, IsActive = true },
+
+        // Transactions - Party Bill Register screen
+        new Permission { Module = "Transactions", Screen = "PartyBillRegisters", PermissionKey = "transactions.partybillregisters.view", DisplayName = "View Party Bill Registers", Description = "View list of party bill registers", SortOrder = 230, IsActive = true },
+        new Permission { Module = "Transactions", Screen = "PartyBillRegisters", PermissionKey = "transactions.partybillregisters.add", DisplayName = "Add Party Bill Register", Description = "Create a new party bill register", SortOrder = 231, IsActive = true },
+        new Permission { Module = "Transactions", Screen = "PartyBillRegisters", PermissionKey = "transactions.partybillregisters.edit", DisplayName = "Edit Party Bill Register", Description = "Edit existing party bill register", SortOrder = 232, IsActive = true },
+        new Permission { Module = "Transactions", Screen = "PartyBillRegisters", PermissionKey = "transactions.partybillregisters.delete", DisplayName = "Delete Party Bill Register", Description = "Delete a party bill register", SortOrder = 233, IsActive = true },
+
+        // Reports - Loading Report screen
+        new Permission { Module = "Reports", Screen = "LoadingReport", PermissionKey = "reports.loadingreport.view", DisplayName = "View Loading Report", Description = "View loading report", SortOrder = 300, IsActive = true },
+        new Permission { Module = "Reports", Screen = "LoadingReport", PermissionKey = "reports.loadingreport.export", DisplayName = "Export Loading Report", Description = "Export loading report", SortOrder = 301, IsActive = true },
+
+        // Reports - Payment Report screen
+        new Permission { Module = "Reports", Screen = "PaymentReport", PermissionKey = "reports.paymentreport.view", DisplayName = "View Payment Report", Description = "View payment report", SortOrder = 310, IsActive = true },
+        new Permission { Module = "Reports", Screen = "PaymentReport", PermissionKey = "reports.paymentreport.export", DisplayName = "Export Payment Report", Description = "Export payment report", SortOrder = 311, IsActive = true },
+
+        // Reports - Unloading Report screen
+        new Permission { Module = "Reports", Screen = "UnloadingReport", PermissionKey = "reports.unloadingreport.view", DisplayName = "View Unloading Report", Description = "View unloading report", SortOrder = 320, IsActive = true },
+        new Permission { Module = "Reports", Screen = "UnloadingReport", PermissionKey = "reports.unloadingreport.export", DisplayName = "Export Unloading Report", Description = "Export unloading report", SortOrder = 321, IsActive = true },
+
+        // Reports - Party Billing Report screen
+        new Permission { Module = "Reports", Screen = "PartyBillingReport", PermissionKey = "reports.partybillingreport.view", DisplayName = "View Party Billing Report", Description = "View party billing report", SortOrder = 330, IsActive = true },
+        new Permission { Module = "Reports", Screen = "PartyBillingReport", PermissionKey = "reports.partybillingreport.export", DisplayName = "Export Party Billing Report", Description = "Export party billing report", SortOrder = 331, IsActive = true },
+
+        // Reports - DO Status Report screen
+        new Permission { Module = "Reports", Screen = "DOStatusReport", PermissionKey = "reports.dostatusreport.view", DisplayName = "View DO Status Report", Description = "View DO status report", SortOrder = 340, IsActive = true },
+        new Permission { Module = "Reports", Screen = "DOStatusReport", PermissionKey = "reports.dostatusreport.export", DisplayName = "Export DO Status Report", Description = "Export DO status report", SortOrder = 341, IsActive = true },
+
+        // Reports - Consolidated Report screen
+        new Permission { Module = "Reports", Screen = "ConsolidatedReport", PermissionKey = "reports.consolidatedreport.view", DisplayName = "View Consolidated Report", Description = "View consolidated report", SortOrder = 350, IsActive = true },
+        new Permission { Module = "Reports", Screen = "ConsolidatedReport", PermissionKey = "reports.consolidatedreport.export", DisplayName = "Export Consolidated Report", Description = "Export consolidated report", SortOrder = 351, IsActive = true }
 
     };
 
