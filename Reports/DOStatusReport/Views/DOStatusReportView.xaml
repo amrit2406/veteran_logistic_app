@@ -492,7 +492,7 @@
                            VerticalAlignment="Center"
                            Margin="{StaticResource Small}" />
                 <TextBlock Grid.Column="3"
-                           Text="{Binding ExecutionTime, StringFormat='ss\\.fff'}s"
+                           Text="{Binding ExecutionTime, StringFormat='{}{0:ss\\.fff}s'}"
                            Style="{StaticResource BodyTextBlockStyle}"
                            VerticalAlignment="Center"
                            Margin="{StaticResource Small}" />

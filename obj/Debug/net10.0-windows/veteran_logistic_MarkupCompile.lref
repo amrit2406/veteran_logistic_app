@@ -20,6 +20,7 @@ FD:\app\veteran_logistic_app\Masters\VehicleOwners\Views\VehicleOwnersView.xaml;
 FD:\app\veteran_logistic_app\Masters\Vehicles\Views\VehiclesView.xaml;;
 FD:\app\veteran_logistic_app\Masters\Vendors\Views\VendorsView.xaml;;
 FD:\app\veteran_logistic_app\Reports\ConsolidatedReport\Views\ConsolidatedReportView.xaml;;
+FD:\app\veteran_logistic_app\Reports\DOStatusReport\Views\DOStatusReportView.xaml;;
 FD:\app\veteran_logistic_app\Reports\LoadingReport\Views\LoadingReportView.xaml;;
 FD:\app\veteran_logistic_app\Reports\PartyBillingReport\Views\PartyBillingReportView.xaml;;
 FD:\app\veteran_logistic_app\Reports\PaymentReport\Views\PaymentReportView.xaml;;
@@ -31,5 +32,4 @@ FD:\app\veteran_logistic_app\Transactions\LoadingRegisters\Views\LoadingRegister
 FD:\app\veteran_logistic_app\Transactions\PartyBillRegister\Views\PartyBillRegistersView.xaml;;
 FD:\app\veteran_logistic_app\Transactions\PaymentRegisters\Views\PaymentRegistersView.xaml;;
 FD:\app\veteran_logistic_app\Transactions\UnloadingRegisters\Views\UnloadingRegistersView.xaml;;
-FD:\app\veteran_logistic_app\Reports\DOStatusReport\Views\DOStatusReportView.xaml;;
 

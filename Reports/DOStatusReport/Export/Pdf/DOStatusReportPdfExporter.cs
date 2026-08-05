@@ -114,10 +114,15 @@ public sealed class DOStatusReportPdfExporter : IDOStatusReportPdfExporter
 
                     table.Cell().Element(CellStyle).Text($"Total DO: {_summaryCards.TotalDO}").Bold();
                     table.Cell().Element(CellStyle).Text($"Today's Loading: {_summaryCards.TodayLoading}").Bold();
+                    table.Cell().Element(CellStyle).Text($"Today's Completed: {_summaryCards.TodayCompleted}").Bold();
                     table.Cell().Element(CellStyle).Text($"Running DO: {_summaryCards.RunningDO}").Bold();
                     table.Cell().Element(CellStyle).Text($"Completed DO: {_summaryCards.CompletedDO}").Bold();
                     table.Cell().Element(CellStyle).Text($"Payment Pending: {_summaryCards.PaymentPending}").Bold();
                     table.Cell().Element(CellStyle).Text($"Bill Pending: {_summaryCards.BillPending}").Bold();
+                    table.Cell().Element(CellStyle).Text($"Delayed DO: {_summaryCards.DelayedDO}").Bold();
+                    table.Cell().Element(CellStyle).Text($"Exception DO: {_summaryCards.ExceptionDO}").Bold();
+                    table.Cell().Element(CellStyle).Text($"Completion %: {_summaryCards.CompletionPercentage:F1}%").Bold();
+                    table.Cell().Element(CellStyle).Text($"Pending %: {_summaryCards.PendingPercentage:F1}%").Bold();
                 });
 
                 column.Item().PaddingTop(10);
@@ -127,19 +132,24 @@ public sealed class DOStatusReportPdfExporter : IDOStatusReportPdfExporter
                 {
                     table.ColumnsDefinition(columns =>
                     {
-                        columns.RelativeColumn(0.8f);  // Challan
-                        columns.RelativeColumn(0.6f);  // TP
-                        columns.RelativeColumn(0.8f);  // Date
-                        columns.RelativeColumn(1.2f);  // Vehicle
-                        columns.RelativeColumn(1.2f);  // Consignor
-                        columns.RelativeColumn(1.2f);  // Consignee
-                        columns.RelativeColumn(0.7f);  // Load Weight
-                        columns.RelativeColumn(0.7f);  // Unload Weight
-                        columns.RelativeColumn(0.7f);  // Gross Amount
-                        columns.RelativeColumn(0.7f);  // Challan Money
+                        columns.RelativeColumn(0.7f);  // Challan
+                        columns.RelativeColumn(0.5f);  // TP
+                        columns.RelativeColumn(0.7f);  // Date
+                        columns.RelativeColumn(1.0f);  // Vehicle
+                        columns.RelativeColumn(1.0f);  // Consignor
+                        columns.RelativeColumn(1.0f);  // Consignee
+                        columns.RelativeColumn(0.6f);  // Load Weight
+                        columns.RelativeColumn(0.6f);  // Unload Weight
+                        columns.RelativeColumn(0.5f);  // Shortage
+                        columns.RelativeColumn(0.6f);  // Gross Amount
+                        columns.RelativeColumn(0.6f);  // Challan Money
+                        columns.RelativeColumn(0.6f);  // Pending Amount
+                        columns.RelativeColumn(0.5f);  // Age
+                        columns.RelativeColumn(0.4f);  // Delayed
                         columns.RelativeColumn(0.6f);  // DO Status
                         columns.RelativeColumn(0.6f);  // Pay Status
                         columns.RelativeColumn(0.6f);  // Bill Status
+                        columns.RelativeColumn(0.6f);  // Exception
                     });
 
                     table.Header(header =>
@@ -152,11 +162,16 @@ public sealed class DOStatusReportPdfExporter : IDOStatusReportPdfExporter
                         header.Cell().Element(CellStyle).Text("Consignee").Bold();
                         header.Cell().Element(CellStyle).Text("Load Wt").Bold();
                         header.Cell().Element(CellStyle).Text("Unload Wt").Bold();
+                        header.Cell().Element(CellStyle).Text("Shortage").Bold();
                         header.Cell().Element(CellStyle).Text("Gross Amt").Bold();
                         header.Cell().Element(CellStyle).Text("Challan $").Bold();
+                        header.Cell().Element(CellStyle).Text("Pending $").Bold();
+                        header.Cell().Element(CellStyle).Text("Age").Bold();
+                        header.Cell().Element(CellStyle).Text("Delayed").Bold();
                         header.Cell().Element(CellStyle).Text("DO Status").Bold();
                         header.Cell().Element(CellStyle).Text("Pay Status").Bold();
                         header.Cell().Element(CellStyle).Text("Bill Status").Bold();
+                        header.Cell().Element(CellStyle).Text("Exception").Bold();
                     });
 
                     foreach (var item in _items)
@@ -169,11 +184,16 @@ public sealed class DOStatusReportPdfExporter : IDOStatusReportPdfExporter
                         table.Cell().Element(CellStyle).Text(item.ConsigneeName);
                         table.Cell().Element(CellStyle).Text(item.LoadingWeight.ToString("F2"));
                         table.Cell().Element(CellStyle).Text(item.UnloadingWeight.ToString("F2"));
+                        table.Cell().Element(CellStyle).Text(item.ShortageWeight.ToString("F2"));
                         table.Cell().Element(CellStyle).Text(item.GrossAmount.ToString("F2"));
                         table.Cell().Element(CellStyle).Text(item.ChallanMoney.ToString("F2"));
+                        table.Cell().Element(CellStyle).Text(item.PendingAmount.ToString("F2"));
+                        table.Cell().Element(CellStyle).Text(item.AgeInDays.ToString());
+                        table.Cell().Element(CellStyle).Text(item.IsDelayed ? "Yes" : "No");
                         table.Cell().Element(CellStyle).Text(item.DOStatus.ToString());
-                        table.Cell().Element(CellStyle).Text(item.PaymentStatus);
-                        table.Cell().Element(CellStyle).Text(item.BillingStatus);
+                        table.Cell().Element(CellStyle).Text(item.PaymentStatus.ToString());
+                        table.Cell().Element(CellStyle).Text(item.BillingStatus.ToString());
+                        table.Cell().Element(CellStyle).Text(item.ExceptionType.ToString());
                     }
                 });
 
@@ -182,6 +202,8 @@ public sealed class DOStatusReportPdfExporter : IDOStatusReportPdfExporter
                 {
                     table.ColumnsDefinition(columns =>
                     {
+                        columns.RelativeColumn(1);
+                        columns.RelativeColumn(1);
                         columns.RelativeColumn(1);
                         columns.RelativeColumn(1);
                         columns.RelativeColumn(1);
@@ -195,6 +217,10 @@ public sealed class DOStatusReportPdfExporter : IDOStatusReportPdfExporter
                     table.Cell().Element(CellStyle).Text($"Total Gross Amt: {_totals.TotalGrossAmount:F2}").Bold();
                     table.Cell().Element(CellStyle).Text($"Total Challan $: {_totals.TotalChallanMoney:F2}").Bold();
                     table.Cell().Element(CellStyle).Text($"Total Pending: {_totals.TotalPendingAmount:F2}").Bold();
+                    table.Cell().Element(CellStyle).Text($"Completed Gross: {_totals.CompletedGrossAmount:F2}").Bold();
+                    table.Cell().Element(CellStyle).Text($"Pending Gross: {_totals.PendingGrossAmount:F2}").Bold();
+                    table.Cell().Element(CellStyle).Text($"Today's Gross: {_totals.TodayGrossAmount:F2}").Bold();
+                    table.Cell().Element(CellStyle).Text($"Today's Load Wt: {_totals.TodayLoadingWeight:F2}").Bold();
                 });
             });
         }

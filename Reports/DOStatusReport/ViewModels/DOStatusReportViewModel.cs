@@ -149,12 +149,7 @@ public sealed partial class DOStatusReportViewModel : ViewModelBase
             return;
         }
 
-        var parameters = new NavigationParameter
-        {
-            { "Id", SelectedItem.Id }
-        };
-
-        await _navigationService.NavigateToAsync("EditLoadingRegister", parameters);
+        await _navigationService.NavigateAsync<veteran_logistic.Transactions.LoadingRegisters.ViewModels.LoadingRegistersViewModel>();
     }
 
     /// <summary>

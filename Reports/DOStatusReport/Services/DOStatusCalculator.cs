@@ -155,7 +155,7 @@ public static class DOStatusCalculator
         if (hasPayment && !hasBill)
         {
             var daysSincePayment = (DateTime.Today - (unloadingDate ?? loadingDate)).Days;
-            if (daysSinceLoading > delayThresholdDays)
+            if (daysSincePayment > delayThresholdDays)
             {
                 return DOExceptionType.MissingBill;
             }

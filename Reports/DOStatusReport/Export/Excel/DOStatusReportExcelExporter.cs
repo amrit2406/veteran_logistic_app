@@ -56,14 +56,26 @@ public sealed class DOStatusReportExcelExporter : IDOStatusReportExcelExporter
         worksheet.Cell($"B{summaryRow + 1}").Value = summaryCards.TotalDO;
         worksheet.Cell($"A{summaryRow + 2}").Value = "Today's Loading:";
         worksheet.Cell($"B{summaryRow + 2}").Value = summaryCards.TodayLoading;
-        worksheet.Cell($"A{summaryRow + 3}").Value = "Running DO:";
-        worksheet.Cell($"B{summaryRow + 3}").Value = summaryCards.RunningDO;
-        worksheet.Cell($"A{summaryRow + 4}").Value = "Completed DO:";
-        worksheet.Cell($"B{summaryRow + 4}").Value = summaryCards.CompletedDO;
-        worksheet.Cell($"A{summaryRow + 5}").Value = "Payment Pending:";
-        worksheet.Cell($"B{summaryRow + 5}").Value = summaryCards.PaymentPending;
-        worksheet.Cell($"A{summaryRow + 6}").Value = "Bill Pending:";
-        worksheet.Cell($"B{summaryRow + 6}").Value = summaryCards.BillPending;
+        worksheet.Cell($"A{summaryRow + 3}").Value = "Today's Completed:";
+        worksheet.Cell($"B{summaryRow + 3}").Value = summaryCards.TodayCompleted;
+        worksheet.Cell($"A{summaryRow + 4}").Value = "Running DO:";
+        worksheet.Cell($"B{summaryRow + 4}").Value = summaryCards.RunningDO;
+        worksheet.Cell($"A{summaryRow + 5}").Value = "Completed DO:";
+        worksheet.Cell($"B{summaryRow + 5}").Value = summaryCards.CompletedDO;
+        worksheet.Cell($"A{summaryRow + 6}").Value = "Payment Pending:";
+        worksheet.Cell($"B{summaryRow + 6}").Value = summaryCards.PaymentPending;
+        worksheet.Cell($"A{summaryRow + 7}").Value = "Bill Pending:";
+        worksheet.Cell($"B{summaryRow + 7}").Value = summaryCards.BillPending;
+        worksheet.Cell($"A{summaryRow + 8}").Value = "Delayed DO:";
+        worksheet.Cell($"B{summaryRow + 8}").Value = summaryCards.DelayedDO;
+        worksheet.Cell($"A{summaryRow + 9}").Value = "Exception DO:";
+        worksheet.Cell($"B{summaryRow + 9}").Value = summaryCards.ExceptionDO;
+        worksheet.Cell($"A{summaryRow + 10}").Value = "Completion %:";
+        worksheet.Cell($"B{summaryRow + 10}").Value = summaryCards.CompletionPercentage;
+        worksheet.Cell($"B{summaryRow + 10}").Style.NumberFormat.Format = "0.00";
+        worksheet.Cell($"A{summaryRow + 11}").Value = "Pending %:";
+        worksheet.Cell($"B{summaryRow + 11}").Value = summaryCards.PendingPercentage;
+        worksheet.Cell($"B{summaryRow + 11}").Style.NumberFormat.Format = "0.00";
 
         // Filters
         if (filter.HasFilter)
@@ -80,7 +92,7 @@ public sealed class DOStatusReportExcelExporter : IDOStatusReportExcelExporter
         }
 
         // Table Headers
-        int headerRow = filter.HasFilter ? summaryRow + 11 : summaryRow + 8;
+        int headerRow = filter.HasFilter ? summaryRow + 14 : summaryRow + 11;
         worksheet.Cell($"A{headerRow}").Value = "Challan No.";
         worksheet.Cell($"B{headerRow}").Value = "TP Number";
         worksheet.Cell($"C{headerRow}").Value = "Loading Date";
@@ -97,11 +109,14 @@ public sealed class DOStatusReportExcelExporter : IDOStatusReportExcelExporter
         worksheet.Cell($"N{headerRow}").Value = "Pending Amount";
         worksheet.Cell($"O{headerRow}").Value = "Bill Number";
         worksheet.Cell($"P{headerRow}").Value = "Bill Date";
-        worksheet.Cell($"Q{headerRow}").Value = "DO Status";
-        worksheet.Cell($"R{headerRow}").Value = "Payment Status";
-        worksheet.Cell($"S{headerRow}").Value = "Billing Status";
+        worksheet.Cell($"Q{headerRow}").Value = "Age (Days)";
+        worksheet.Cell($"R{headerRow}").Value = "Delayed";
+        worksheet.Cell($"S{headerRow}").Value = "DO Status";
+        worksheet.Cell($"T{headerRow}").Value = "Payment Status";
+        worksheet.Cell($"U{headerRow}").Value = "Billing Status";
+        worksheet.Cell($"V{headerRow}").Value = "Exception";
 
-        var headerRange = worksheet.Range($"A{headerRow}:S{headerRow}");
+        var headerRange = worksheet.Range($"A{headerRow}:V{headerRow}");
         headerRange.Style.Font.Bold = true;
         headerRange.Style.Fill.BackgroundColor = XLColor.LightGray;
         headerRange.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
@@ -135,15 +150,18 @@ public sealed class DOStatusReportExcelExporter : IDOStatusReportExcelExporter
             worksheet.Cell($"O{dataRow}").Value = item.BillNumber;
             worksheet.Cell($"P{dataRow}").Value = item.BillDate;
             worksheet.Cell($"P{dataRow}").Style.NumberFormat.Format = "dd-MM-yyyy";
-            worksheet.Cell($"Q{dataRow}").Value = item.DOStatus.ToString();
-            worksheet.Cell($"R{dataRow}").Value = item.PaymentStatus;
-            worksheet.Cell($"S{dataRow}").Value = item.BillingStatus;
+            worksheet.Cell($"Q{dataRow}").Value = item.AgeInDays;
+            worksheet.Cell($"R{dataRow}").Value = item.IsDelayed ? "Yes" : "No";
+            worksheet.Cell($"S{dataRow}").Value = item.DOStatus.ToString();
+            worksheet.Cell($"T{dataRow}").Value = item.PaymentStatus.ToString();
+            worksheet.Cell($"U{dataRow}").Value = item.BillingStatus.ToString();
+            worksheet.Cell($"V{dataRow}").Value = item.ExceptionType.ToString();
 
             dataRow++;
         }
 
         // Data borders
-        var dataRange = worksheet.Range($"A{headerRow}:S{dataRow - 1}");
+        var dataRange = worksheet.Range($"A{headerRow}:V{dataRow - 1}");
         dataRange.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
         dataRange.Style.Border.InsideBorder = XLBorderStyleValues.Thin;
 
@@ -182,6 +200,22 @@ public sealed class DOStatusReportExcelExporter : IDOStatusReportExcelExporter
         worksheet.Cell($"A{totalsRow + 7}").Value = "Total Pending Amount:";
         worksheet.Cell($"B{totalsRow + 7}").Value = totals.TotalPendingAmount;
         worksheet.Cell($"B{totalsRow + 7}").Style.NumberFormat.Format = "#,##0.00";
+
+        worksheet.Cell($"A{totalsRow + 8}").Value = "Completed Gross Amount:";
+        worksheet.Cell($"B{totalsRow + 8}").Value = totals.CompletedGrossAmount;
+        worksheet.Cell($"B{totalsRow + 8}").Style.NumberFormat.Format = "#,##0.00";
+
+        worksheet.Cell($"A{totalsRow + 9}").Value = "Pending Gross Amount:";
+        worksheet.Cell($"B{totalsRow + 9}").Value = totals.PendingGrossAmount;
+        worksheet.Cell($"B{totalsRow + 9}").Style.NumberFormat.Format = "#,##0.00";
+
+        worksheet.Cell($"A{totalsRow + 10}").Value = "Today's Gross Amount:";
+        worksheet.Cell($"B{totalsRow + 10}").Value = totals.TodayGrossAmount;
+        worksheet.Cell($"B{totalsRow + 10}").Style.NumberFormat.Format = "#,##0.00";
+
+        worksheet.Cell($"A{totalsRow + 11}").Value = "Today's Loading Weight:";
+        worksheet.Cell($"B{totalsRow + 11}").Value = totals.TodayLoadingWeight;
+        worksheet.Cell($"B{totalsRow + 11}").Style.NumberFormat.Format = "#,##0.00";
 
         workbook.SaveAs(filePath);
         _logger.LogInformation("Excel export completed successfully for {RecordCount} records", items.Count);
