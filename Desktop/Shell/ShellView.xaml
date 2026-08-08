@@ -89,10 +89,6 @@
                 BorderBrush="{DynamicResource BorderBrush}"
                 BorderThickness="0,0,0,1">
             <Menu Style="{StaticResource TopMenuStyle}" HorizontalAlignment="Stretch">
-                <MenuItem Header="Dashboard" Style="{StaticResource TopMenuItemStyle}">
-                    <MenuItem Header="Overview" />
-                    <MenuItem Header="KPIs" />
-                </MenuItem>
                 <MenuItem Header="Masters" Style="{StaticResource TopMenuItemStyle}">
                     <MenuItem Header="Companies" Command="{Binding NavigateToCompaniesCommand}" />
                     <MenuItem Header="Customers" Command="{Binding NavigateToCustomersCommand}" />
@@ -131,8 +127,6 @@
                     <MenuItem Header="Permission Matrix" Command="{Binding NavigateToPermissionMatrixCommand}" />
                     <MenuItem Header="Financial Years" Command="{Binding NavigateToFinancialYearsCommand}" />
                 </MenuItem>
-                <MenuItem Header="Settings" Style="{StaticResource TopMenuItemStyle}" />
-                <MenuItem Header="Help" Style="{StaticResource TopMenuItemStyle}" />
             </Menu>
         </Border>
 
