@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using VeteranLogistics.Data.Context;
+using veteran_logistic.FinancialYear.Contracts;
 using VeteranLogistics.Data.Entities.Administration;
 using veteran_logistic.Transactions.PartyBillRegister.Contracts;
 using veteran_logistic.Transactions.PartyBillRegister.Models;
@@ -14,16 +15,19 @@ public sealed class PartyBillRegisterQueryService : IPartyBillRegisterQueryServi
 {
     private readonly VeteranLogisticsDbContext _dbContext;
     private readonly ILogger<PartyBillRegisterQueryService> _logger;
+    private readonly IFinancialYearContext _financialYearContext;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="PartyBillRegisterQueryService"/> class.
     /// </summary>
     /// <param name="dbContext">The database context.</param>
     /// <param name="logger">The logger.</param>
-    public PartyBillRegisterQueryService(VeteranLogisticsDbContext dbContext, ILogger<PartyBillRegisterQueryService> logger)
+    /// <param name="financialYearContext">The financial year context.</param>
+    public PartyBillRegisterQueryService(VeteranLogisticsDbContext dbContext, ILogger<PartyBillRegisterQueryService> logger, IFinancialYearContext financialYearContext)
     {
         _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _financialYearContext = financialYearContext ?? throw new ArgumentNullException(nameof(financialYearContext));
     }
 
     /// <inheritdoc />
@@ -31,9 +35,9 @@ public sealed class PartyBillRegisterQueryService : IPartyBillRegisterQueryServi
     {
         _logger.LogInformation("Retrieving all party bill registers");
 
-        var query = _dbContext.PartyBillRegisters
+        var query = ApplyFinancialYearFilter(_dbContext.PartyBillRegisters
             .AsNoTracking()
-            .Include(pbr => pbr.Party)
+            .Include(pbr => pbr.Party))
             .OrderByDescending(pbr => pbr.BillDate)
             .ThenByDescending(pbr => pbr.CreatedOn);
 
@@ -61,9 +65,9 @@ public sealed class PartyBillRegisterQueryService : IPartyBillRegisterQueryServi
     {
         _logger.LogInformation("Searching party bill registers with search term: {SearchTerm}", search ?? "all");
 
-        var query = _dbContext.PartyBillRegisters
+        var query = ApplyFinancialYearFilter(_dbContext.PartyBillRegisters
             .AsNoTracking()
-            .Include(pbr => pbr.Party)
+            .Include(pbr => pbr.Party))
             .AsQueryable();
 
         if (!string.IsNullOrWhiteSpace(search))
@@ -267,5 +271,17 @@ public sealed class PartyBillRegisterQueryService : IPartyBillRegisterQueryServi
 
         _logger.LogInformation("Retrieved {Count} party bill register details", details.Count);
         return details.AsReadOnly();
+    }
+
+    private IQueryable<VeteranLogistics.Data.Entities.Administration.PartyBillRegister> ApplyFinancialYearFilter(IQueryable<VeteranLogistics.Data.Entities.Administration.PartyBillRegister> query)
+    {
+        var selectedFY = _financialYearContext.SelectedFinancialYear;
+        if (selectedFY != null)
+        {
+            query = query.Where(pbr => 
+                pbr.BillDate >= selectedFY.StartDate && 
+                pbr.BillDate <= selectedFY.EndDate);
+        }
+        return query;
     }
 }

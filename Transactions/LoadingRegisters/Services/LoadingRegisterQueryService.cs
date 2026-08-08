@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using VeteranLogistics.Data.Context;
+using veteran_logistic.FinancialYear.Contracts;
 using LoadingRegisterEntity = VeteranLogistics.Data.Entities.Administration.LoadingRegister;
 using veteran_logistic.Transactions.LoadingRegisters.Contracts;
 using veteran_logistic.Transactions.LoadingRegisters.Models;
@@ -14,22 +15,26 @@ public sealed class LoadingRegisterQueryService : ILoadingRegisterQueryService
 {
     private readonly VeteranLogisticsDbContext _dbContext;
     private readonly ILogger<LoadingRegisterQueryService> _logger;
+    private readonly IFinancialYearContext _financialYearContext;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="LoadingRegisterQueryService"/> class.
     /// </summary>
     /// <param name="dbContext">The database context.</param>
     /// <param name="logger">The logger.</param>
-    public LoadingRegisterQueryService(VeteranLogisticsDbContext dbContext, ILogger<LoadingRegisterQueryService> logger)
+    /// <param name="financialYearContext">The financial year context.</param>
+    public LoadingRegisterQueryService(VeteranLogisticsDbContext dbContext, ILogger<LoadingRegisterQueryService> logger, IFinancialYearContext financialYearContext)
     {
         _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _financialYearContext = financialYearContext ?? throw new ArgumentNullException(nameof(financialYearContext));
     }
 
     /// <inheritdoc />
     public async Task<IReadOnlyList<LoadingRegisterListItem>> GetAllLoadingRegistersAsync(CancellationToken cancellationToken = default)
     {
-        return await ProjectToListItem(_dbContext.LoadingRegisters.AsNoTracking())
+        var query = ApplyFinancialYearFilter(_dbContext.LoadingRegisters.AsNoTracking());
+        return await ProjectToListItem(query)
             .OrderBy(lr => lr.LoadingDate)
             .ThenBy(lr => lr.ChallanNumber)
             .ToListAsync(cancellationToken)
@@ -39,7 +44,7 @@ public sealed class LoadingRegisterQueryService : ILoadingRegisterQueryService
     /// <inheritdoc />
     public async Task<IReadOnlyList<LoadingRegisterListItem>> SearchLoadingRegistersAsync(string? search, CancellationToken cancellationToken = default)
     {
-        var query = _dbContext.LoadingRegisters.AsNoTracking();
+        var query = ApplyFinancialYearFilter(_dbContext.LoadingRegisters.AsNoTracking());
 
         if (!string.IsNullOrWhiteSpace(search))
         {
@@ -180,5 +185,17 @@ public sealed class LoadingRegisterQueryService : ILoadingRegisterQueryService
             GrossAmount = lr.GrossAmount,
             IsActive = lr.IsActive
         });
+    }
+
+    private IQueryable<LoadingRegisterEntity> ApplyFinancialYearFilter(IQueryable<LoadingRegisterEntity> query)
+    {
+        var selectedFY = _financialYearContext.SelectedFinancialYear;
+        if (selectedFY != null)
+        {
+            query = query.Where(lr => 
+                lr.LoadingDate >= selectedFY.StartDate && 
+                lr.LoadingDate <= selectedFY.EndDate);
+        }
+        return query;
     }
 }

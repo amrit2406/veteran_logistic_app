@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using VeteranLogistics.Data.Context;
+using veteran_logistic.FinancialYear.Contracts;
 using PaymentRegisterEntity = VeteranLogistics.Data.Entities.Administration.PaymentRegister;
 using LoadingRegisterEntity = VeteranLogistics.Data.Entities.Administration.LoadingRegister;
 using UnloadingRegisterEntity = VeteranLogistics.Data.Entities.Administration.UnloadingRegister;
@@ -16,22 +17,26 @@ public sealed class PaymentRegisterQueryService : IPaymentRegisterQueryService
 {
     private readonly VeteranLogisticsDbContext _dbContext;
     private readonly ILogger<PaymentRegisterQueryService> _logger;
+    private readonly IFinancialYearContext _financialYearContext;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="PaymentRegisterQueryService"/> class.
     /// </summary>
     /// <param name="dbContext">The database context.</param>
     /// <param name="logger">The logger.</param>
-    public PaymentRegisterQueryService(VeteranLogisticsDbContext dbContext, ILogger<PaymentRegisterQueryService> logger)
+    /// <param name="financialYearContext">The financial year context.</param>
+    public PaymentRegisterQueryService(VeteranLogisticsDbContext dbContext, ILogger<PaymentRegisterQueryService> logger, IFinancialYearContext financialYearContext)
     {
         _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _financialYearContext = financialYearContext ?? throw new ArgumentNullException(nameof(financialYearContext));
     }
 
     /// <inheritdoc />
     public async Task<IReadOnlyList<PaymentRegisterListItem>> GetAllPaymentRegistersAsync(CancellationToken cancellationToken = default)
     {
-        return await ProjectToListItem(_dbContext.PaymentRegisters.AsNoTracking())
+        var query = ApplyFinancialYearFilter(_dbContext.PaymentRegisters.AsNoTracking());
+        return await ProjectToListItem(query)
             .OrderBy(pr => pr.PaymentDate)
             .ThenBy(pr => pr.ChallanNumber)
             .ToListAsync(cancellationToken)
@@ -41,7 +46,7 @@ public sealed class PaymentRegisterQueryService : IPaymentRegisterQueryService
     /// <inheritdoc />
     public async Task<IReadOnlyList<PaymentRegisterListItem>> SearchPaymentRegistersAsync(string? search, CancellationToken cancellationToken = default)
     {
-        var query = _dbContext.PaymentRegisters.AsNoTracking();
+        var query = ApplyFinancialYearFilter(_dbContext.PaymentRegisters.AsNoTracking());
 
         if (!string.IsNullOrWhiteSpace(search))
         {
@@ -264,5 +269,17 @@ public sealed class PaymentRegisterQueryService : IPaymentRegisterQueryService
             PayableAmount = pr.PayableAmount,
             IsActive = pr.IsActive
         });
+    }
+
+    private IQueryable<PaymentRegisterEntity> ApplyFinancialYearFilter(IQueryable<PaymentRegisterEntity> query)
+    {
+        var selectedFY = _financialYearContext.SelectedFinancialYear;
+        if (selectedFY != null)
+        {
+            query = query.Where(pr => 
+                pr.PaymentDate >= selectedFY.StartDate && 
+                pr.PaymentDate <= selectedFY.EndDate);
+        }
+        return query;
     }
 }
