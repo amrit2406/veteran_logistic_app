@@ -88,7 +88,7 @@ public sealed partial class FinancialYearSelectionViewModel : ViewModelBase
                 FinancialYears.Add(year);
             }
 
-            // Optionally pre-select the first one or current year
+            // Pre-select the first one or current year
             if (FinancialYears.Any())
             {
                 SelectedFinancialYear = FinancialYears.OrderByDescending(y => y.StartDate).First();
@@ -127,6 +127,13 @@ public sealed partial class FinancialYearSelectionViewModel : ViewModelBase
             {
                 // Store in context
                 _financialYearContext.SetFinancialYear(result.SelectedFinancialYear!);
+                
+                // If this is the default financial year (negative ID), show a note
+                if (result.SelectedFinancialYear!.Id < 0)
+                {
+                    // You could optionally show a notification here
+                    // For now, just proceed to shell
+                }
                 
                 // Navigate to Shell
                 await _navigationService.NavigateAsync<Shell.ShellViewModel>();

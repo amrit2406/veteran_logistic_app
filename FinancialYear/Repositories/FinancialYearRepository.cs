@@ -1,24 +1,61 @@
+using Microsoft.EntityFrameworkCore;
+using VeteranLogistics.Data.Context;
+using VeteranLogistics.Data.Entities.Administration;
 using veteran_logistic.FinancialYear.Contracts;
 using veteran_logistic.FinancialYear.Models;
 
 namespace veteran_logistic.FinancialYear.Repositories;
 
 /// <summary>
-/// Stub repository implementation for retrieving financial years.
+/// Repository implementation for retrieving financial years from the database with fallback to default data.
 /// </summary>
 public sealed class FinancialYearRepository : IFinancialYearRepository
 {
-    /// <inheritdoc />
-    public Task<IEnumerable<veteran_logistic.FinancialYear.Models.FinancialYear>> GetActiveFinancialYearsAsync(CancellationToken cancellationToken = default)
+    private readonly VeteranLogisticsDbContext _dbContext;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="FinancialYearRepository"/> class.
+    /// </summary>
+    /// <param name="dbContext">The database context.</param>
+    public FinancialYearRepository(VeteranLogisticsDbContext dbContext)
     {
-        // For Phase 1.6, we return a hardcoded list to simulate an EF/database repository.
-        var years = new List<veteran_logistic.FinancialYear.Models.FinancialYear>
+        _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+    }
+
+    /// <inheritdoc />
+    public async Task<IEnumerable<veteran_logistic.FinancialYear.Models.FinancialYear>> GetActiveFinancialYearsAsync(CancellationToken cancellationToken = default)
+    {
+        // Get financial years from database
+        var dbFinancialYears = await _dbContext.FinancialYears
+            .Where(fy => !fy.IsDeleted && !fy.IsClosed)
+            .OrderByDescending(fy => fy.StartDate)
+            .ToListAsync(cancellationToken);
+
+        // Convert database financial years to model
+        var result = dbFinancialYears.Select(fy => new veteran_logistic.FinancialYear.Models.FinancialYear
         {
-            new veteran_logistic.FinancialYear.Models.FinancialYear { Id = 1, Name = "2023-2024", StartDate = new DateTime(2023, 4, 1), EndDate = new DateTime(2024, 3, 31), IsActive = true },
-            new veteran_logistic.FinancialYear.Models.FinancialYear { Id = 2, Name = "2024-2025", StartDate = new DateTime(2024, 4, 1), EndDate = new DateTime(2025, 3, 31), IsActive = true },
-            new veteran_logistic.FinancialYear.Models.FinancialYear { Id = 3, Name = "2025-2026", StartDate = new DateTime(2025, 4, 1), EndDate = new DateTime(2026, 3, 31), IsActive = true }
+            Id = fy.Id,
+            Name = fy.Name,
+            StartDate = fy.StartDate,
+            EndDate = fy.EndDate,
+            IsActive = !fy.IsClosed && !fy.IsDeleted
+        }).ToList();
+
+        // Always add 1 default financial year (dummy data)
+        var currentYear = DateTime.Now.Year;
+        var nextYear = DateTime.Now.Year + 1;
+        var defaultYear = new veteran_logistic.FinancialYear.Models.FinancialYear
+        {
+            Id = -1, // Negative ID indicates this is a default/fallback record
+            Name = $"{currentYear}-{nextYear}",
+            StartDate = new DateTime(currentYear, 4, 1),
+            EndDate = new DateTime(nextYear, 3, 31),
+            IsActive = true
         };
 
-        return Task.FromResult<IEnumerable<veteran_logistic.FinancialYear.Models.FinancialYear>>(years);
+        result.Add(defaultYear);
+
+        // Return combined list (database years + default year)
+        return result.OrderByDescending(fy => fy.StartDate);
     }
 }

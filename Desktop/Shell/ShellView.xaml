@@ -43,9 +43,13 @@
                                Style="{StaticResource HeadingTextBlockStyle}"
                                Margin="8,0"
                                VerticalAlignment="Center" />
-                    <TextBlock Text=" | FY: 2025-2026"
+                    <TextBlock Text=" | FY: "
                                Style="{StaticResource SubHeadingTextBlockStyle}"
                                Margin="12,0,0,0"
+                               VerticalAlignment="Center" />
+                    <TextBlock Text="{Binding FinancialYearDisplayText}"
+                               Style="{StaticResource SubHeadingTextBlockStyle}"
+                               Margin="0,0,0,0"
                                VerticalAlignment="Center" />
                 </StackPanel>
 

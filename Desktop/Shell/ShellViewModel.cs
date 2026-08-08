@@ -5,6 +5,7 @@ using veteran_logistic.Authentication.Contracts;
 using veteran_logistic.Authentication.ViewModels;
 using veteran_logistic.Authorization.Contracts;
 using veteran_logistic.Authorization.Models;
+using veteran_logistic.FinancialYear.Contracts;
 using veteran_logistic.Navigation;
 
 namespace veteran_logistic.Shell;
@@ -18,6 +19,7 @@ public sealed class ShellViewModel : ObservableObject
     private readonly ILogoutService _logoutService;
     private readonly INavigationService _navigationService;
     private readonly IPermissionAuthorizationService _permissionAuthorizationService;
+    private readonly IFinancialYearContext _financialYearContext;
     private object? _currentViewModel;
 
     private static object? ResolveShellContent(object? vm) => vm switch
@@ -34,6 +36,11 @@ public sealed class ShellViewModel : ObservableObject
         get => _currentViewModel;
         private set => SetProperty(ref _currentViewModel, value);
     }
+
+    /// <summary>
+    /// Gets the display text for the current financial year.
+    /// </summary>
+    public string FinancialYearDisplayText => _financialYearContext.SelectedFinancialYear?.Name ?? "Not Selected";
 
     /// <summary>
     /// Command to logout the current user and return to the login screen.
@@ -190,15 +197,26 @@ public sealed class ShellViewModel : ObservableObject
     /// </summary>
     public bool CanGoBack => _navigationService.CanGoBack;
 
-    public ShellViewModel(INavigationService navigationService, ILogoutService logoutService, IPermissionAuthorizationService permissionAuthorizationService)
+    public ShellViewModel(INavigationService navigationService, ILogoutService logoutService, IPermissionAuthorizationService permissionAuthorizationService, IFinancialYearContext financialYearContext)
     {
         if (navigationService is null) throw new ArgumentNullException(nameof(navigationService));
         if (logoutService is null) throw new ArgumentNullException(nameof(logoutService));
         if (permissionAuthorizationService is null) throw new ArgumentNullException(nameof(permissionAuthorizationService));
+        if (financialYearContext is null) throw new ArgumentNullException(nameof(financialYearContext));
 
         _navigationService = navigationService;
         _logoutService = logoutService;
         _permissionAuthorizationService = permissionAuthorizationService;
+        _financialYearContext = financialYearContext;
+        
+        // Subscribe to financial year changes
+        _financialYearContext.PropertyChanged += (s, e) => 
+        {
+            if (e.PropertyName == nameof(IFinancialYearContext.SelectedFinancialYear))
+            {
+                OnPropertyChanged(nameof(FinancialYearDisplayText));
+            }
+        };
         LogoutCommand = new AsyncRelayCommand(ExecuteLogoutAsync);
         NavigateToUsersCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Administration.Users.ViewModels.UsersViewModel>(), () => CanNavigateToUsers());
         NavigateToRolesCommand = new AsyncRelayCommand(() => navigationService.NavigateAsync<veteran_logistic.Administration.Roles.ViewModels.RolesViewModel>(), () => CanNavigateToRoles());

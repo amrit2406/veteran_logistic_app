@@ -36,6 +36,7 @@ public sealed class FinancialYearService : IFinancialYearService
             return FinancialYearSelectionResult.Failure("Selected financial year is invalid or inactive.");
         }
 
+        // Allow selection of default financial year (negative ID indicates fallback record)
         return FinancialYearSelectionResult.Success(selectedYear);
     }
 }
